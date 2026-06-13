@@ -19,11 +19,11 @@ export const metadata: Metadata = {
     template: "%s | Machine Learning Refined",
   },
   description:
-    "Book resources, notebooks, exercises, and SEO analytics for Machine Learning Refined.",
+    "Machine Learning Refined: Foundations, Algorithms, and Applications. Book resources, notebooks, exercises, and analytics for improving the site.",
   openGraph: {
     title: "Machine Learning Refined",
     description:
-      "Book resources, notebooks, exercises, and SEO analytics for Machine Learning Refined.",
+      "Foundations, Algorithms, and Applications. Book resources, notebooks, exercises, and analytics for improving the site.",
     url: "https://www.mlrefined.com",
     siteName: "Machine Learning Refined",
     type: "website",

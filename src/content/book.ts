@@ -6,6 +6,65 @@ export type BookChapter = {
   summary: string;
 };
 
+export const bookStats = [
+  { value: "2nd", label: "edition" },
+  { value: "100+", label: "universities and colleges" },
+  { value: "84", label: "notebooks in the resource repo" },
+  { value: "13", label: "exercise notebooks" },
+];
+
+export const pedagogy = [
+  {
+    title: "Intuition",
+    description: "Explain the idea plainly before formalizing it.",
+  },
+  {
+    title: "Visualization",
+    description: "Use geometry and animations to make the model visible.",
+  },
+  {
+    title: "Mathematics",
+    description: "Derive the costs, models, and optimization routines.",
+  },
+  {
+    title: "Implementation",
+    description: "Code the method directly in Python with fundamental tools.",
+  },
+];
+
+export const audiencePaths = [
+  {
+    title: "Independent learners",
+    description:
+      "Start with chapter PDFs, online notes, Colab notebooks, and guided roadmaps.",
+  },
+  {
+    title: "Instructors",
+    description:
+      "Use slides, exercise wrappers, datasets, and course-oriented study plans.",
+  },
+  {
+    title: "Practitioners returning to fundamentals",
+    description:
+      "Revisit regression, classification, clustering, optimization, and deep learning from a unified viewpoint.",
+  },
+];
+
+export const purchaseLinks = [
+  {
+    title: "Cambridge University Press",
+    href: "https://www.cambridge.org/us/academic/subjects/engineering/communications-and-signal-processing/machine-learning-refined-foundations-algorithms-and-applications-2nd-edition?format=HB",
+  },
+  {
+    title: "Amazon",
+    href: "https://www.amazon.com/Machine-Learning-Refined-Foundations-Applications/dp/1108480721",
+  },
+  {
+    title: "Barnes & Noble",
+    href: "https://www.barnesandnoble.com/w/machine-learning-refined-jeremy-watt/1136155294?ean=9781108480727",
+  },
+];
+
 export const chapters: BookChapter[] = [
   {
     number: "1",
@@ -54,22 +113,26 @@ export const chapters: BookChapter[] = [
 export const resourceGroups = [
   {
     title: "Chapter PDFs",
-    description: "Downloadable book chapters linked back to the canonical GitHub repo.",
+    description:
+      "Sample chapters and book PDFs linked back to the canonical GitHub repo.",
     href: "https://github.com/neonwatty/machine-learning-refined/tree/main/chapter_pdfs",
   },
   {
-    title: "Colab notebooks",
-    description: "Interactive notes for optimization, regression, classification, and neural networks.",
+    title: "Colab and Jupyter notebooks",
+    description:
+      "Interactive notes for optimization, regression, classification, clustering, and neural networks.",
     href: "https://github.com/neonwatty/machine-learning-refined/tree/main/notes",
   },
   {
     title: "Exercises",
-    description: "Notebook wrappers and datasets for each major chapter.",
+    description:
+      "Exercise wrappers and datasets for hands-on Python practice.",
     href: "https://github.com/neonwatty/machine-learning-refined/tree/main/exercises",
   },
   {
-    title: "Presentations",
-    description: "Instructor-facing slide resources for course adoption.",
+    title: "Slides and roadmaps",
+    description:
+      "Instructor-facing presentations and recommended study paths for different courses.",
     href: "https://github.com/neonwatty/machine-learning-refined/tree/main/presentations",
   },
 ];
