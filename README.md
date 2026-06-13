@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Machine Learning Refined Website
 
-## Getting Started
+Modern Vercel-backed website and analytics surface for
+[Machine Learning Refined](https://www.mlrefined.com/).
 
-First, run the development server:
+The book resources remain canonical in
+[neonwatty/machine-learning-refined](https://github.com/neonwatty/machine-learning-refined).
+This app exposes those resources through crawlable, mobile-friendly routes and
+adds the measurement layer needed to improve technical and content SEO.
+
+## Stack
+
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- PostHog client analytics scaffold
+- Google Search Console env scaffold
+- Vercel-ready metadata, sitemap, and robots file conventions
+
+## Local Development
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Initial Routes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/` public homepage scaffold
+- `/chapters` chapter index scaffold
+- `/resources` resource index scaffold
+- `/dashboard` owner analytics dashboard scaffold
+- `/sitemap.xml` generated sitemap
+- `/robots.txt` generated robots file
 
-## Learn More
+## Analytics Plan
 
-To learn more about Next.js, take a look at the following resources:
+PostHog is initialized through `src/instrumentation-client.ts` only when
+`NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` is present. The first tracked action is
+`github_resource_clicked`, emitted by `ResourceLink`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Google Search Console credentials are represented in `.env.example`; API
+ingestion will be added once the deployment and property access are ready.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Next Milestones
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Import the full chapter/notebook/exercise inventory from the resource repo.
+2. Add dynamic chapter pages under `/chapters/[slug]`.
+3. Protect `/dashboard` before connecting private analytics data.
+4. Wire Search Console ingestion and dashboard opportunity scoring.
+5. Deploy to Vercel, then transfer `mlrefined.com` after preview verification.
