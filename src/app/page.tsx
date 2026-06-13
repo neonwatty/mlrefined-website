@@ -8,6 +8,8 @@ import {
   pedagogy,
   purchaseLinks,
   resourceGroups,
+  testimonials,
+  universityLogos,
 } from "@/content/book";
 import { ResourceLink } from "@/components/analytics/resource-link";
 import { primaryNav, siteConfig } from "@/lib/site";
@@ -128,6 +130,69 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-14">
+        <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+          <div>
+            <h2 className="text-3xl font-semibold">
+              Used in courses around the world.
+            </h2>
+            <p className="mt-3 max-w-2xl leading-7 text-black/60">
+              The current site notes adoption as a reference text in more than
+              100 universities and colleges. This is the beginning of a cleaner
+              proof layer for that story.
+            </p>
+          </div>
+          <p className="text-sm font-medium text-black/55">
+            Social proof from the current site
+          </p>
+        </div>
+
+        <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-9">
+          {universityLogos.map((logo) => (
+            <div
+              key={logo.name}
+              className="flex h-24 items-center justify-center rounded-lg border border-black/10 bg-white p-4"
+            >
+              <Image
+                className="max-h-14 w-auto object-contain"
+                src={logo.image}
+                alt={`${logo.name} logo`}
+                width={logo.width}
+                height={logo.height}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {testimonials.map((testimonial) => (
+            <article
+              key={testimonial.name}
+              className="rounded-lg border border-black/10 bg-white p-5"
+            >
+              <div className="flex items-center gap-3">
+                <Image
+                  className="size-12 rounded-full object-cover"
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  width={120}
+                  height={120}
+                />
+                <div>
+                  <h3 className="text-sm font-semibold">{testimonial.name}</h3>
+                  <p className="mt-1 text-xs leading-5 text-black/50">
+                    {testimonial.role}
+                  </p>
+                </div>
+              </div>
+              <p className="mt-4 text-sm leading-6 text-black/65">
+                {testimonial.summary}
+              </p>
+            </article>
+          ))}
         </div>
       </section>
 
