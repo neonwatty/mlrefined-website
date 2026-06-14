@@ -2,8 +2,13 @@ export type BookChapter = {
   number: string;
   title: string;
   slug: string;
+  part: "Orientation" | "Optimization" | "Linear learning" | "Nonlinear learning";
   intent: "learner" | "instructor" | "reference";
   summary: string;
+  notesHref?: string;
+  exercisesHref?: string;
+  pdfHref: string;
+  topics: string[];
 };
 
 export type SocialProofLogo = {

@@ -2,8 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ResourceLink } from "@/components/analytics/resource-link";
+import { GitHubMark } from "@/components/github-mark";
+import { SiteHeader } from "@/components/site-header";
 import { chapterTracks, resourceGroups, universityLogos } from "@/content/book";
-import { primaryNav, siteConfig } from "@/lib/site";
+import { siteConfig } from "@/lib/site";
 
 const featuredTrack = chapterTracks[1];
 
@@ -13,19 +15,6 @@ const resourceIconClasses = [
   "border-black/55 text-black/55",
   "border-[#1f65c1] text-[#1f65c1]",
 ];
-
-function GitHubMark() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="size-5"
-      fill="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.5v-1.73c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.35 1.12 2.92.85.09-.67.35-1.12.63-1.38-2.22-.26-4.55-1.14-4.55-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.95c.85 0 1.7.12 2.5.34 1.9-1.33 2.74-1.05 2.74-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.95.68 1.92v2.79c0 .28.18.6.69.5A10.15 10.15 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z" />
-    </svg>
-  );
-}
 
 function ResourceGlyph({ index }: { index: number }) {
   const isCode = index === 1;
@@ -78,32 +67,7 @@ function ResourceGlyph({ index }: { index: number }) {
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-[#0b0b0b]">
-      <header className="border-b border-black/10 bg-white">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-          <Link className="text-lg font-semibold tracking-normal" href="/">
-            Machine Learning Refined
-          </Link>
-          <div className="hidden items-center gap-10 text-sm font-medium text-black/70 md:flex">
-            {primaryNav.map((item) => {
-              const isActive = item.href === "/";
-
-              return (
-                <Link
-                  key={item.href}
-                  className={`border-b-2 pb-2 transition-colors ${
-                    isActive
-                      ? "border-[#155fac] text-black"
-                      : "border-transparent hover:text-black"
-                  }`}
-                  href={item.href}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </div>
-        </nav>
-      </header>
+      <SiteHeader activeHref="/" />
 
       <section className="mx-auto grid max-w-6xl gap-12 px-6 pb-8 pt-12 md:pt-14 lg:grid-cols-[1fr_360px] lg:items-start">
         <div>

@@ -21,10 +21,16 @@ describe("book content contracts", () => {
   it("keeps chapter metadata crawlable and unique", () => {
     const slugs = new Set(chapters.map((chapter) => chapter.slug));
 
+    expect(chapters).toHaveLength(14);
     expect(slugs.size).toBe(chapters.length);
     expect(chapters.every((chapter) => chapter.number && chapter.title)).toBe(
       true,
     );
+    expect(chapters.every((chapter) => chapter.pdfHref.includes("chapter_pdfs"))).toBe(
+      true,
+    );
+    expect(chapters.some((chapter) => chapter.notesHref)).toBe(true);
+    expect(chapters.some((chapter) => chapter.exercisesHref)).toBe(true);
   });
 
   it("uses local visual assets for proof and track imagery", () => {
