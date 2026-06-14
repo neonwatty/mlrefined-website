@@ -1,14 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
 
 import { ResourceLink } from "@/components/analytics/resource-link";
 import {
-  audiencePaths,
-  bookStats,
   chapterTracks,
-  learningWidgets,
-  pedagogy,
   purchaseLinks,
   resourceGroups,
   studyRoadmaps,
@@ -17,46 +12,19 @@ import {
 } from "@/content/book";
 import { primaryNav, siteConfig } from "@/lib/site";
 
-function SectionHeader({
-  title,
-  description,
-  action,
-  tone = "light",
-}: {
-  title: string;
-  description: string;
-  action?: ReactNode;
-  tone?: "light" | "dark";
-}) {
-  const titleClass = tone === "dark" ? "text-white" : "text-[#141414]";
-  const descriptionClass = tone === "dark" ? "text-white/65" : "text-black/60";
-
-  return (
-    <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
-      <div>
-        <h2
-          className={`max-w-3xl text-3xl font-semibold leading-tight md:text-4xl ${titleClass}`}
-        >
-          {title}
-        </h2>
-        <p className={`mt-4 max-w-2xl leading-7 ${descriptionClass}`}>
-          {description}
-        </p>
-      </div>
-      {action ? <div className="shrink-0">{action}</div> : null}
-    </div>
-  );
-}
+const featuredTrack = chapterTracks[1];
+const featuredRoadmap = studyRoadmaps[1];
+const featuredQuote = testimonials[1];
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#fbfbf8] text-[#141414]">
-      <header className="border-b border-black/10 bg-[#fbfbf8]/95">
+    <main className="min-h-screen bg-white text-[#111111]">
+      <header className="border-b border-black/10 bg-white">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-          <Link className="font-semibold" href="/">
+          <Link className="text-sm font-semibold tracking-normal" href="/">
             Machine Learning Refined
           </Link>
-          <div className="hidden gap-6 text-sm text-black/65 md:flex">
+          <div className="hidden items-center gap-7 text-sm text-black/55 md:flex">
             {primaryNav.map((item) => (
               <Link
                 key={item.href}
@@ -70,310 +38,165 @@ export default function Home() {
         </nav>
       </header>
 
-      <section className="border-b border-black/10 bg-white">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-14 lg:min-h-[720px] lg:grid-cols-[1fr_390px] lg:items-center">
-          <div>
-            <h1 className="max-w-3xl text-5xl font-semibold leading-[0.96] tracking-normal md:text-7xl">
-              Machine Learning Refined
-            </h1>
-            <h2 className="mt-5 max-w-2xl text-2xl font-medium leading-tight text-black/75 md:text-3xl">
-              Foundations, Algorithms, and Applications
-            </h2>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-black/65">
-              A university textbook and open resource collection for building
-              machine learning understanding from intuition and geometry through
-              derivation and hands-on Python implementation.
-            </p>
+      <section className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:py-20 lg:grid-cols-[1fr_360px] lg:items-center">
+        <div>
+          <h1 className="max-w-3xl text-5xl font-semibold leading-[0.97] tracking-normal md:text-7xl">
+            Machine Learning Refined
+          </h1>
+          <p className="mt-5 max-w-2xl text-2xl leading-tight text-black/75 md:text-3xl">
+            Foundations, Algorithms, and Applications
+          </p>
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-black/62">
+            A university textbook and open resource collection for learning
+            machine learning from intuition and geometry through derivation and
+            hands-on Python implementation.
+          </p>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <ResourceLink
-                className="inline-flex h-12 items-center justify-center rounded-md bg-black px-5 text-sm font-medium text-white transition-colors hover:bg-black/85"
-                eventName="chapter_pdf_clicked"
-                eventProperties={{
-                  location: "home_hero",
-                  resource: "chapter_pdfs",
-                }}
-                href="https://github.com/neonwatty/machine-learning-refined/tree/main/chapter_pdfs"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Download chapter PDFs
-              </ResourceLink>
-              <ResourceLink
-                className="inline-flex h-12 items-center justify-center rounded-md border border-black/15 bg-white px-5 text-sm font-medium transition-colors hover:bg-black/[0.03]"
-                eventName="github_resource_clicked"
-                eventProperties={{ location: "home_hero", resource: "repo" }}
-                href={siteConfig.githubRepo}
-                target="_blank"
-                rel="noreferrer"
-              >
-                View GitHub repo
-              </ResourceLink>
-            </div>
-
-            <div className="mt-11 grid max-w-2xl grid-cols-2 gap-5 md:grid-cols-4">
-              {bookStats.map((stat) => (
-                <div key={stat.label} className="border-t border-black/15 pt-4">
-                  <p className="text-3xl font-semibold">{stat.value}</p>
-                  <p className="mt-1 text-sm leading-5 text-black/55">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mx-auto w-full max-w-[390px]">
-            <div className="rounded-lg border border-black/10 bg-white p-4 shadow-2xl shadow-black/10">
-              <Image
-                className="h-auto w-full rounded-md"
-                src="/book-cover-2nd.png"
-                alt="Machine Learning Refined second edition book cover"
-                width={760}
-                height={1000}
-                priority
-              />
-            </div>
-            <div className="mt-4 grid grid-cols-2 gap-3">
-              {purchaseLinks.slice(0, 2).map((link) => (
-                <ResourceLink
-                  key={link.title}
-                  className="inline-flex min-h-12 items-center justify-center rounded-md border border-black/15 bg-white px-3 text-center text-sm font-medium leading-5 transition-colors hover:bg-black/[0.03]"
-                  eventName="purchase_link_clicked"
-                  eventProperties={{
-                    location: "home_cover",
-                    retailer: link.title,
-                  }}
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {link.title}
-                </ResourceLink>
-              ))}
-            </div>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <ResourceLink
+              className="inline-flex h-12 items-center justify-center rounded-md bg-black px-5 text-sm font-medium text-white transition-colors hover:bg-black/85"
+              eventName="chapter_pdf_clicked"
+              eventProperties={{
+                location: "home_hero",
+                resource: "chapter_pdfs",
+              }}
+              href="https://github.com/neonwatty/machine-learning-refined/tree/main/chapter_pdfs"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Download chapter PDFs
+            </ResourceLink>
+            <ResourceLink
+              className="inline-flex h-12 items-center justify-center rounded-md border border-black/15 px-5 text-sm font-medium transition-colors hover:bg-black/[0.03]"
+              eventName="github_resource_clicked"
+              eventProperties={{ location: "home_hero", resource: "repo" }}
+              href={siteConfig.githubRepo}
+              target="_blank"
+              rel="noreferrer"
+            >
+              View GitHub repo
+            </ResourceLink>
           </div>
         </div>
-      </section>
 
-      <section className="bg-[#07101f] text-white">
-        <div className="mx-auto grid max-w-6xl gap-9 px-6 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div>
-            <h2 className="max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
-              Mastery means seeing the same idea four ways.
-            </h2>
-            <p className="mt-5 max-w-xl leading-7 text-white/65">
-              The book is organized around a durable learning loop: first
-              intuition, then visualization, then mathematical derivation, then
-              direct implementation.
-            </p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            {pedagogy.map((item, index) => (
-              <div
-                key={item.title}
-                className="border-t border-white/15 pt-5"
+        <div className="mx-auto w-full max-w-[360px]">
+          <Image
+            className="h-auto w-full rounded-md shadow-2xl shadow-black/15"
+            src="/book-cover-2nd.png"
+            alt="Machine Learning Refined second edition book cover"
+            width={760}
+            height={1000}
+            priority
+          />
+          <div className="mt-4 grid grid-cols-2 gap-3">
+            {purchaseLinks.slice(0, 2).map((link) => (
+              <ResourceLink
+                key={link.title}
+                className="inline-flex min-h-11 items-center justify-center rounded-md border border-black/15 px-3 text-center text-sm font-medium leading-5 transition-colors hover:bg-black/[0.03]"
+                eventName="purchase_link_clicked"
+                eventProperties={{
+                  location: "home_cover",
+                  retailer: link.title,
+                }}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
               >
-                <p className="font-mono text-sm text-[#f3d44e]">
-                  0{index + 1}
-                </p>
-                <h3 className="mt-3 text-lg font-medium">{item.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-white/60">
-                  {item.description}
-                </p>
-              </div>
+                {link.title}
+              </ResourceLink>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <SectionHeader
-          title="Used in courses around the world."
-          description="The current site notes adoption as a reference text in more than 100 universities and colleges. This proof layer brings that story into the new experience."
-          action={
-            <p className="text-sm font-medium text-black/55">
-              Social proof from the current site
-            </p>
-          }
-        />
-
-        <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-9">
-          {universityLogos.map((logo) => (
-            <div
-              key={logo.name}
-              className="flex h-24 items-center justify-center rounded-lg border border-black/10 bg-white p-4"
-            >
-              <Image
-                className="max-h-14 w-auto object-contain"
-                src={logo.image}
-                alt={`${logo.name} logo`}
-                width={logo.width}
-                height={logo.height}
-              />
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {testimonials.map((testimonial) => (
-            <article
-              key={testimonial.name}
-              className="rounded-lg border border-black/10 bg-white p-5"
-            >
-              <div className="flex items-center gap-3">
+      <section className="border-y border-black/10 bg-[#fafafa]">
+        <div className="mx-auto max-w-6xl px-6 py-10">
+          <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:items-center">
+            <div>
+              <p className="text-sm font-semibold text-black/70">
+                Used as a reference text at 100+ universities and colleges.
+              </p>
+              <div className="mt-5 flex items-center gap-3">
                 <Image
-                  className="size-12 rounded-full object-cover"
-                  src={testimonial.image}
-                  alt={testimonial.name}
+                  className="size-10 rounded-full object-cover"
+                  src={featuredQuote.image}
+                  alt={featuredQuote.name}
                   width={120}
                   height={120}
                 />
                 <div>
-                  <h3 className="text-sm font-semibold">{testimonial.name}</h3>
-                  <p className="mt-1 text-xs leading-5 text-black/50">
-                    {testimonial.role}
+                  <p className="text-sm font-medium">{featuredQuote.name}</p>
+                  <p className="text-xs leading-5 text-black/50">
+                    {featuredQuote.role}
                   </p>
                 </div>
               </div>
-              <p className="mt-4 text-sm leading-6 text-black/65">
-                {testimonial.summary}
+            </div>
+            <div>
+              <p className="max-w-3xl text-lg leading-8 text-black/65">
+                {featuredQuote.summary}
               </p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-y border-black/10 bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <SectionHeader
-            title="Start from the path that fits."
-            description="The current site and repo already serve several audiences. The new site should make each path visible, measurable, and easy to improve."
-            action={
-              <Link className="text-sm font-medium" href="/resources">
-                Browse resources
-              </Link>
-            }
-          />
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {audiencePaths.map((path) => (
-              <article
-                key={path.title}
-                className="rounded-lg border border-black/10 bg-[#fbfbf8] p-6"
-              >
-                <h3 className="text-xl font-semibold">{path.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-black/60">
-                  {path.description}
-                </p>
-              </article>
-            ))}
+              <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-5">
+                {universityLogos.slice(0, 6).map((logo) => (
+                  <Image
+                    key={logo.name}
+                    className="max-h-9 w-auto object-contain opacity-65 grayscale"
+                    src={logo.image}
+                    alt={`${logo.name} logo`}
+                    width={logo.width}
+                    height={logo.height}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <SectionHeader
-          title="Chapter tracks with the visuals still attached."
-          description="The repo already contains the strongest evidence for the book's teaching style: notebooks, animations, chapter PDFs, exercises, and roadmaps. These tracks turn that material into browsable entry points."
-        />
-        <div className="mt-9 grid gap-5 lg:grid-cols-3">
-          {chapterTracks.map((track) => (
-            <ResourceLink
-              key={track.title}
-              className="group overflow-hidden rounded-lg border border-black/10 bg-white"
-              eventName="github_resource_clicked"
-              eventProperties={{
-                location: "chapter_tracks",
-                resource: track.title,
-              }}
-              href={track.href}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div className="aspect-[4/3] bg-[#f7f8fa] p-3">
-                <Image
-                  className="h-full w-full rounded-md object-contain"
-                  src={track.image}
-                  alt={track.imageAlt}
-                  width={640}
-                  height={480}
-                  unoptimized
-                />
-              </div>
-              <div className="p-5">
+      <section className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div className="overflow-hidden rounded-lg border border-black/10 bg-[#f7f8fa] p-4">
+          <Image
+            className="h-auto w-full rounded-md"
+            src={featuredTrack.image}
+            alt={featuredTrack.imageAlt}
+            width={900}
+            height={560}
+            unoptimized
+          />
+        </div>
+        <div>
+          <h2 className="max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
+            Visual notes for learning the ideas, not just using the tools.
+          </h2>
+          <p className="mt-5 max-w-xl leading-7 text-black/62">
+            The supporting repo includes notebooks, animations, exercises,
+            slides, and roadmaps. The new site can expose that material without
+            making the homepage carry all of it.
+          </p>
+          <div className="mt-8 divide-y divide-black/10 border-y border-black/10">
+            {chapterTracks.map((track) => (
+              <ResourceLink
+                key={track.title}
+                className="group grid gap-1 py-4 md:grid-cols-[150px_1fr]"
+                eventName="github_resource_clicked"
+                eventProperties={{
+                  location: "home_chapter_tracks",
+                  resource: track.title,
+                }}
+                href={track.href}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <p className="font-mono text-sm text-black/45">
                   {track.range}
                 </p>
-                <h3 className="mt-2 text-xl font-semibold transition-colors group-hover:text-[#245b90]">
-                  {track.title}
-                </h3>
-                <p className="mt-3 text-sm leading-6 text-black/60">
-                  {track.description}
-                </p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {track.topics.map((topic) => (
-                    <span
-                      key={topic}
-                      className="rounded-full border border-black/10 px-3 py-1 text-xs text-black/55"
-                    >
-                      {topic}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </ResourceLink>
-          ))}
-        </div>
-      </section>
-
-      <section className="bg-[#07101f] text-white">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <SectionHeader
-            title="The notes are visual, interactive, and runnable."
-            description="Notebook widgets make abstract ideas tangible: decision boundaries, validation splits, optimization geometry, feature transformations, and model families."
-            tone="dark"
-            action={
-              <ResourceLink
-                className="text-sm font-medium text-white"
-                eventName="github_resource_clicked"
-                eventProperties={{ location: "widget_gallery", resource: "notes" }}
-                href="https://github.com/neonwatty/machine-learning-refined/tree/main/notes"
-                target="_blank"
-                rel="noreferrer"
-              >
-                View all notes
-              </ResourceLink>
-            }
-          />
-          <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {learningWidgets.map((widget) => (
-              <ResourceLink
-                key={widget.title}
-                className="overflow-hidden rounded-lg border border-white/10 bg-white/[0.04]"
-                eventName="github_resource_clicked"
-                eventProperties={{
-                  location: "widget_gallery",
-                  resource: widget.title,
-                }}
-                href={widget.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <div className="aspect-[4/3] bg-white p-2">
-                  <Image
-                    className="h-full w-full rounded-md object-contain"
-                    src={widget.image}
-                    alt={`${widget.title} animated widget`}
-                    width={640}
-                    height={480}
-                    unoptimized
-                  />
-                </div>
-                <div className="p-4">
-                  <p className="text-xs uppercase tracking-[0.16em] text-[#f3d44e]">
-                    {widget.topic}
+                <div>
+                  <h3 className="font-medium transition-colors group-hover:text-[#245b90]">
+                    {track.title}
+                  </h3>
+                  <p className="mt-1 text-sm leading-6 text-black/55">
+                    {track.description}
                   </p>
-                  <h3 className="mt-2 font-medium">{widget.title}</h3>
                 </div>
               </ResourceLink>
             ))}
@@ -381,64 +204,89 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <SectionHeader
-          title="Roadmaps for courses and self-study."
-          description="The README already contains four suggested paths through the material. Surfacing these helps learners and instructors choose a route before they ever touch the repo."
-        />
-        <div className="mt-9 grid gap-5 md:grid-cols-2">
-          {studyRoadmaps.map((roadmap) => (
-            <article
-              key={roadmap.title}
-              className="overflow-hidden rounded-lg border border-black/10 bg-white"
-            >
-              <div className="aspect-[16/10] bg-[#f7f8fa] p-4">
+      <section className="border-t border-black/10">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:py-20 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <h2 className="max-w-lg text-3xl font-semibold leading-tight md:text-4xl">
+              A clear route through a deep resource library.
+            </h2>
+            <p className="mt-5 max-w-xl leading-7 text-black/62">
+              Keep the homepage calm, then let focused pages do the heavier
+              lifting for chapters, notebooks, slides, exercises, and SEO.
+            </p>
+            <div className="mt-8 rounded-lg border border-black/10 bg-[#fafafa] p-4">
+              <div className="aspect-[16/10]">
                 <Image
                   className="h-full w-full rounded-md object-contain"
-                  src={roadmap.image}
-                  alt={roadmap.imageAlt}
+                  src={featuredRoadmap.image}
+                  alt={featuredRoadmap.imageAlt}
                   width={1200}
                   height={800}
                 />
               </div>
-              <div className="p-5">
-                <h3 className="text-lg font-semibold">{roadmap.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-black/60">
-                  {roadmap.description}
-                </p>
-              </div>
-            </article>
-          ))}
+              <p className="mt-4 text-sm font-medium">{featuredRoadmap.title}</p>
+              <p className="mt-1 text-sm leading-6 text-black/55">
+                {featuredRoadmap.description}
+              </p>
+            </div>
+          </div>
+
+          <div className="lg:pt-2">
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-black/45">
+              Resources
+            </p>
+            <div className="mt-5 divide-y divide-black/10 border-y border-black/10">
+              {resourceGroups.slice(0, 4).map((resource) => (
+                <ResourceLink
+                  key={resource.title}
+                  className="block py-5 transition-colors hover:bg-black/[0.02]"
+                  eventName="github_resource_clicked"
+                  eventProperties={{
+                    location: "home_resource_list",
+                    resource: resource.title,
+                  }}
+                  href={resource.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <h3 className="font-medium">{resource.title}</h3>
+                  <p className="mt-2 max-w-2xl text-sm leading-6 text-black/58">
+                    {resource.description}
+                  </p>
+                </ResourceLink>
+              ))}
+            </div>
+            <Link
+              className="mt-6 inline-flex text-sm font-medium text-black transition-colors hover:text-[#245b90]"
+              href="/resources"
+            >
+              Browse all resources
+            </Link>
+          </div>
         </div>
       </section>
 
-      <section className="border-t border-black/10 bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <SectionHeader
-            title="Open teaching and study resources."
-            description="The GitHub repo is more than a code dump. It contains the raw material for a searchable content library with chapter pages, runnable notes, exercises, slides, and study roadmaps."
-          />
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            {resourceGroups.map((resource) => (
-              <ResourceLink
-                key={resource.title}
-                className="rounded-lg border border-black/10 bg-[#fbfbf8] p-5 transition-colors hover:bg-white"
-                eventName="github_resource_clicked"
-                eventProperties={{
-                  location: "resource_foundation",
-                  resource: resource.title,
-                }}
-                href={resource.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <h3 className="font-medium">{resource.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-black/60">
-                  {resource.description}
-                </p>
-              </ResourceLink>
-            ))}
+      <section className="border-t border-black/10 bg-[#111111] text-white">
+        <div className="mx-auto flex max-w-6xl flex-col justify-between gap-6 px-6 py-10 md:flex-row md:items-center">
+          <div>
+            <h2 className="text-2xl font-semibold">
+              Start with the book. Follow the code when you need it.
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-white/60">
+              The homepage now points to the strongest next steps without trying
+              to explain the entire ecosystem at once.
+            </p>
           </div>
+          <ResourceLink
+            className="inline-flex h-11 shrink-0 items-center justify-center rounded-md bg-white px-4 text-sm font-medium text-black transition-colors hover:bg-white/90"
+            eventName="github_resource_clicked"
+            eventProperties={{ location: "home_footer", resource: "repo" }}
+            href={siteConfig.githubRepo}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open the repo
+          </ResourceLink>
         </div>
       </section>
     </main>
