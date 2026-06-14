@@ -2,59 +2,126 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ResourceLink } from "@/components/analytics/resource-link";
-import {
-  chapterTracks,
-  purchaseLinks,
-  resourceGroups,
-  studyRoadmaps,
-  testimonials,
-  universityLogos,
-} from "@/content/book";
+import { chapterTracks, resourceGroups, universityLogos } from "@/content/book";
 import { primaryNav, siteConfig } from "@/lib/site";
 
 const featuredTrack = chapterTracks[1];
-const featuredRoadmap = studyRoadmaps[1];
-const featuredQuote = testimonials[1];
+
+const resourceIconClasses = [
+  "border-[#f5b31b] text-[#f5b31b]",
+  "border-[#1f65c1] text-[#1f65c1]",
+  "border-black/55 text-black/55",
+  "border-[#1f65c1] text-[#1f65c1]",
+];
+
+function GitHubMark() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="size-5"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.5v-1.73c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.35 1.12 2.92.85.09-.67.35-1.12.63-1.38-2.22-.26-4.55-1.14-4.55-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.95c.85 0 1.7.12 2.5.34 1.9-1.33 2.74-1.05 2.74-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.95.68 1.92v2.79c0 .28.18.6.69.5A10.15 10.15 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z" />
+    </svg>
+  );
+}
+
+function ResourceGlyph({ index }: { index: number }) {
+  const isCode = index === 1;
+  const isPencil = index === 2;
+
+  return (
+    <span
+      className={`flex size-6 items-center justify-center rounded border ${resourceIconClasses[index]}`}
+    >
+      {isCode ? (
+        <svg aria-hidden="true" className="size-4" fill="none" viewBox="0 0 16 16">
+          <path
+            d="m6 5-3 3 3 3M10 5l3 3-3 3"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.8"
+          />
+        </svg>
+      ) : isPencil ? (
+        <svg aria-hidden="true" className="size-4" fill="none" viewBox="0 0 16 16">
+          <path
+            d="m10.9 2.7 2.4 2.4-7 7-3.1.7.7-3.1 7-7Z"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.5"
+          />
+        </svg>
+      ) : (
+        <svg aria-hidden="true" className="size-4" fill="none" viewBox="0 0 16 16">
+          <path
+            d="M4.5 2.5h5L12 5v8.5H4.5v-11Z"
+            stroke="currentColor"
+            strokeLinejoin="round"
+            strokeWidth="1.4"
+          />
+          <path
+            d="M6 7h4M6 9.5h4"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeWidth="1.4"
+          />
+        </svg>
+      )}
+    </span>
+  );
+}
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white text-[#111111]">
+    <main className="min-h-screen bg-white text-[#0b0b0b]">
       <header className="border-b border-black/10 bg-white">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-          <Link className="text-sm font-semibold tracking-normal" href="/">
+          <Link className="text-lg font-semibold tracking-normal" href="/">
             Machine Learning Refined
           </Link>
-          <div className="hidden items-center gap-7 text-sm text-black/55 md:flex">
-            {primaryNav.map((item) => (
-              <Link
-                key={item.href}
-                className="transition-colors hover:text-black"
-                href={item.href}
-              >
-                {item.label}
-              </Link>
-            ))}
+          <div className="hidden items-center gap-10 text-sm font-medium text-black/70 md:flex">
+            {primaryNav.map((item) => {
+              const isActive = item.href === "/";
+
+              return (
+                <Link
+                  key={item.href}
+                  className={`border-b-2 pb-2 transition-colors ${
+                    isActive
+                      ? "border-[#155fac] text-black"
+                      : "border-transparent hover:text-black"
+                  }`}
+                  href={item.href}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
         </nav>
       </header>
 
-      <section className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:py-20 lg:grid-cols-[1fr_360px] lg:items-center">
+      <section className="mx-auto grid max-w-6xl gap-12 px-6 pb-8 pt-12 md:pt-14 lg:grid-cols-[1fr_360px] lg:items-start">
         <div>
-          <h1 className="max-w-3xl text-5xl font-semibold leading-[0.97] tracking-normal md:text-7xl">
+          <h1 className="max-w-3xl text-5xl font-semibold leading-[0.98] tracking-normal md:text-7xl">
             Machine Learning Refined
           </h1>
-          <p className="mt-5 max-w-2xl text-2xl leading-tight text-black/75 md:text-3xl">
+          <p className="mt-5 max-w-2xl text-xl font-semibold leading-tight md:text-2xl">
             Foundations, Algorithms, and Applications
           </p>
-          <p className="mt-7 max-w-2xl text-lg leading-8 text-black/62">
+          <p className="mt-7 max-w-xl text-lg leading-8 text-black/68">
             A university textbook and open resource collection for learning
             machine learning from intuition and geometry through derivation and
             hands-on Python implementation.
           </p>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <ResourceLink
-              className="inline-flex h-12 items-center justify-center rounded-md bg-black px-5 text-sm font-medium text-white transition-colors hover:bg-black/85"
+              className="inline-flex h-12 items-center justify-center rounded-md bg-[#f6b91a] px-6 text-sm font-semibold text-black shadow-sm shadow-[#f6b91a]/20 transition-colors hover:bg-[#f0ad00]"
               eventName="chapter_pdf_clicked"
               eventProperties={{
                 location: "home_hero",
@@ -67,7 +134,7 @@ export default function Home() {
               Download chapter PDFs
             </ResourceLink>
             <ResourceLink
-              className="inline-flex h-12 items-center justify-center rounded-md border border-black/15 px-5 text-sm font-medium transition-colors hover:bg-black/[0.03]"
+              className="inline-flex h-12 items-center justify-center gap-3 rounded-md border border-black/35 px-6 text-sm font-semibold transition-colors hover:bg-black/[0.03]"
               eventName="github_resource_clicked"
               eventProperties={{ location: "home_hero", resource: "repo" }}
               href={siteConfig.githubRepo}
@@ -75,220 +142,113 @@ export default function Home() {
               rel="noreferrer"
             >
               View GitHub repo
+              <GitHubMark />
             </ResourceLink>
           </div>
         </div>
 
-        <div className="mx-auto w-full max-w-[360px]">
+        <div className="mx-auto w-full max-w-[330px]">
           <Image
-            className="h-auto w-full rounded-md shadow-2xl shadow-black/15"
+            className="h-auto w-full rounded-md shadow-2xl shadow-black/20"
             src="/book-cover-2nd.png"
             alt="Machine Learning Refined second edition book cover"
             width={760}
             height={1000}
             priority
           />
-          <div className="mt-4 grid grid-cols-2 gap-3">
-            {purchaseLinks.slice(0, 2).map((link) => (
-              <ResourceLink
-                key={link.title}
-                className="inline-flex min-h-11 items-center justify-center rounded-md border border-black/15 px-3 text-center text-sm font-medium leading-5 transition-colors hover:bg-black/[0.03]"
-                eventName="purchase_link_clicked"
-                eventProperties={{
-                  location: "home_cover",
-                  retailer: link.title,
-                }}
-                href={link.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.title}
-              </ResourceLink>
-            ))}
-          </div>
         </div>
       </section>
 
-      <section className="border-y border-black/10 bg-[#fafafa]">
-        <div className="mx-auto max-w-6xl px-6 py-10">
-          <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:items-center">
-            <div>
-              <p className="text-sm font-semibold text-black/70">
-                Used as a reference text at 100+ universities and colleges.
-              </p>
-              <div className="mt-5 flex items-center gap-3">
-                <Image
-                  className="size-10 rounded-full object-cover"
-                  src={featuredQuote.image}
-                  alt={featuredQuote.name}
-                  width={120}
-                  height={120}
-                />
-                <div>
-                  <p className="text-sm font-medium">{featuredQuote.name}</p>
-                  <p className="text-xs leading-5 text-black/50">
-                    {featuredQuote.role}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div>
-              <p className="max-w-3xl text-lg leading-8 text-black/65">
-                {featuredQuote.summary}
-              </p>
-              <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-5">
-                {universityLogos.slice(0, 6).map((logo) => (
-                  <Image
-                    key={logo.name}
-                    className="max-h-9 w-auto object-contain opacity-65 grayscale"
-                    src={logo.image}
-                    alt={`${logo.name} logo`}
-                    width={logo.width}
-                    height={logo.height}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
+      <section className="mx-auto max-w-6xl border-y border-black/12 px-6 py-5">
+        <p className="text-center text-sm font-medium text-black/82 md:text-base">
+          Used as a reference text at 100+ universities and colleges.
+        </p>
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-x-11 gap-y-5">
+          {universityLogos.slice(0, 6).map((logo) => (
+            <Image
+              key={logo.name}
+              className="max-h-8 w-auto object-contain opacity-75 grayscale"
+              src={logo.image}
+              alt={`${logo.name} logo`}
+              width={logo.width}
+              height={logo.height}
+            />
+          ))}
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-        <div className="overflow-hidden rounded-lg border border-black/10 bg-[#f7f8fa] p-4">
-          <Image
-            className="h-auto w-full rounded-md"
-            src={featuredTrack.image}
-            alt={featuredTrack.imageAlt}
-            width={900}
-            height={560}
-            unoptimized
-          />
+      <section className="mx-auto grid max-w-6xl gap-10 px-6 py-9 lg:grid-cols-[1.25fr_0.75fr] lg:items-start">
+        <div className="overflow-hidden rounded-lg border border-black/15 bg-white shadow-sm shadow-black/5">
+          <div className="bg-[#fbfbfb] p-6">
+            <Image
+              className="h-auto w-full rounded-md"
+              src={featuredTrack.image}
+              alt={featuredTrack.imageAlt}
+              width={900}
+              height={560}
+              unoptimized
+            />
+          </div>
+          <div className="flex items-center gap-4 border-t border-black/10 px-5 py-3 text-sm text-black/75">
+            <span aria-hidden="true" className="text-lg leading-none">
+              ▶
+            </span>
+            <span>0:04 / 0:12</span>
+            <div className="h-1 flex-1 rounded-full bg-black/15">
+              <div className="h-full w-[34%] rounded-full bg-[#1f65c1]" />
+            </div>
+            <span>1x</span>
+          </div>
         </div>
-        <div>
+
+        <div className="lg:pt-4">
           <h2 className="max-w-xl text-3xl font-semibold leading-tight md:text-4xl">
             Visual notes for learning the ideas, not just using the tools.
           </h2>
-          <p className="mt-5 max-w-xl leading-7 text-black/62">
-            The supporting repo includes notebooks, animations, exercises,
-            slides, and roadmaps. The new site can expose that material without
-            making the homepage carry all of it.
+          <p className="mt-4 max-w-xl leading-7 text-black/62">
+            Derivations, geometric intuition, and interactive visualizations
+            that build real understanding.
           </p>
-          <div className="mt-8 divide-y divide-black/10 border-y border-black/10">
-            {chapterTracks.map((track) => (
+
+          <div className="mt-7 divide-y divide-black/12 border-y border-black/12">
+            {resourceGroups.slice(0, 4).map((resource, index) => (
               <ResourceLink
-                key={track.title}
-                className="group grid gap-1 py-4 md:grid-cols-[150px_1fr]"
+                key={resource.title}
+                className="group flex items-center gap-4 py-4 text-black transition-colors hover:text-[#155fac]"
                 eventName="github_resource_clicked"
                 eventProperties={{
-                  location: "home_chapter_tracks",
-                  resource: track.title,
+                  location: "home_visual_resources",
+                  resource: resource.title,
                 }}
-                href={track.href}
+                href={resource.href}
                 target="_blank"
                 rel="noreferrer"
               >
-                <p className="font-mono text-sm text-black/45">
-                  {track.range}
-                </p>
-                <div>
-                  <h3 className="font-medium transition-colors group-hover:text-[#245b90]">
-                    {track.title}
-                  </h3>
-                  <p className="mt-1 text-sm leading-6 text-black/55">
-                    {track.description}
-                  </p>
-                </div>
+                <ResourceGlyph index={index} />
+                <span className="flex-1 font-medium">{resource.title}</span>
+                <span
+                  aria-hidden="true"
+                  className="text-xl leading-none text-black/55 transition-transform group-hover:translate-x-1"
+                >
+                  ›
+                </span>
               </ResourceLink>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-t border-black/10">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:py-20 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <h2 className="max-w-lg text-3xl font-semibold leading-tight md:text-4xl">
-              A clear route through a deep resource library.
-            </h2>
-            <p className="mt-5 max-w-xl leading-7 text-black/62">
-              Keep the homepage calm, then let focused pages do the heavier
-              lifting for chapters, notebooks, slides, exercises, and SEO.
-            </p>
-            <div className="mt-8 rounded-lg border border-black/10 bg-[#fafafa] p-4">
-              <div className="aspect-[16/10]">
-                <Image
-                  className="h-full w-full rounded-md object-contain"
-                  src={featuredRoadmap.image}
-                  alt={featuredRoadmap.imageAlt}
-                  width={1200}
-                  height={800}
-                />
-              </div>
-              <p className="mt-4 text-sm font-medium">{featuredRoadmap.title}</p>
-              <p className="mt-1 text-sm leading-6 text-black/55">
-                {featuredRoadmap.description}
-              </p>
-            </div>
-          </div>
-
-          <div className="lg:pt-2">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-black/45">
-              Resources
-            </p>
-            <div className="mt-5 divide-y divide-black/10 border-y border-black/10">
-              {resourceGroups.slice(0, 4).map((resource) => (
-                <ResourceLink
-                  key={resource.title}
-                  className="block py-5 transition-colors hover:bg-black/[0.02]"
-                  eventName="github_resource_clicked"
-                  eventProperties={{
-                    location: "home_resource_list",
-                    resource: resource.title,
-                  }}
-                  href={resource.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <h3 className="font-medium">{resource.title}</h3>
-                  <p className="mt-2 max-w-2xl text-sm leading-6 text-black/58">
-                    {resource.description}
-                  </p>
-                </ResourceLink>
-              ))}
-            </div>
-            <Link
-              className="mt-6 inline-flex text-sm font-medium text-black transition-colors hover:text-[#245b90]"
-              href="/resources"
-            >
-              Browse all resources
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-black/10 bg-[#111111] text-white">
-        <div className="mx-auto flex max-w-6xl flex-col justify-between gap-6 px-6 py-10 md:flex-row md:items-center">
-          <div>
-            <h2 className="text-2xl font-semibold">
-              Start with the book. Follow the code when you need it.
-            </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-white/60">
-              The homepage now points to the strongest next steps without trying
-              to explain the entire ecosystem at once.
-            </p>
-          </div>
-          <ResourceLink
-            className="inline-flex h-11 shrink-0 items-center justify-center rounded-md bg-white px-4 text-sm font-medium text-black transition-colors hover:bg-white/90"
-            eventName="github_resource_clicked"
-            eventProperties={{ location: "home_footer", resource: "repo" }}
-            href={siteConfig.githubRepo}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Open the repo
-          </ResourceLink>
-        </div>
-      </section>
+      <div className="mx-auto flex max-w-6xl items-center gap-5 px-6 pb-9">
+        <div className="h-px flex-1 bg-black/10" />
+        <Link
+          className="inline-flex items-center gap-2 text-sm font-medium text-black transition-colors hover:text-[#155fac]"
+          href="/chapters"
+        >
+          Continue to chapters
+          <span aria-hidden="true">⌄</span>
+        </Link>
+        <div className="h-px flex-1 bg-black/10" />
+      </div>
     </main>
   );
 }
