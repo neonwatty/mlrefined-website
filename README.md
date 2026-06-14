@@ -27,6 +27,18 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+## Quality Checks
+
+Run the same local gate used by CI:
+
+```bash
+npm run ci
+```
+
+The gate runs ESLint, TypeScript, Knip, unit tests, and the Next.js build. ESLint
+also enforces a 300-line limit for source files so page and content modules stay
+small enough to review.
+
 ## Initial Routes
 
 - `/` public homepage scaffold

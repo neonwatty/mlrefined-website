@@ -1,0 +1,18 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": [
+    "src/app/**/{layout,page,route,sitemap,robots}.{ts,tsx}",
+    "src/instrumentation-client.ts",
+    "next.config.ts",
+    "postcss.config.mjs",
+    "eslint.config.mjs",
+    "vitest.config.ts"
+  ],
+  "project": ["src/**/*.{ts,tsx}", "*.{ts,mjs}"],
+  "ignore": [".next/**", "coverage/**", "public/**"],
+  "ignoreDependencies": ["@tailwindcss/postcss"],
+  "ignoreExportsUsedInFile": {
+    "interface": true,
+    "type": true
+  }
+}
