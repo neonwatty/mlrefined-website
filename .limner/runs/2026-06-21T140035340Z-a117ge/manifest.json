@@ -1,0 +1,17 @@
+{
+  "runId": "2026-06-21T140035340Z-a117ge",
+  "command": "loop compare",
+  "target": "mlr-resource-discovery",
+  "mode": "image-mockup",
+  "comparisonMode": "image-reference",
+  "startedAt": "2026-06-21T14:00:35.340Z",
+  "status": "ok",
+  "artifacts": [
+    ".limner/runs/2026-06-21T140035340Z-a117ge/captures/reference.png",
+    ".limner/runs/2026-06-21T140035340Z-a117ge/captures/side-by-side.png",
+    ".limner/runs/2026-06-21T140035340Z-a117ge/agent-comparison/agent-prompt.md",
+    ".limner/runs/2026-06-21T140035340Z-a117ge/agent-comparison/agent-response.schema.json",
+    ".limner/runs/2026-06-21T140035340Z-a117ge/reports/comparison.md"
+  ],
+  "completedAt": "2026-06-21T14:00:36.366Z"
+}

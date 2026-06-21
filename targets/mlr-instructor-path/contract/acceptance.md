@@ -1,23 +1,7 @@
 # Acceptance Notes
 
-## Required Regions
+First-pass Limner mockup for `mlr-instructor-path`.
 
-- `reference-root`: the complete reference surface.
-
-## Intentional Differences
-
-- Record any visual or product-truth deviations here before treating the reference as approved.
-
-## Forbidden Affordances
-
-- Do not add fake navigation, forms, or actions that do not exist in the app implementation.
-
-## Top Failure Modes
-
-1. The reference HTML captures the rough layout but misses the visual hierarchy of the input image.
-2. The app implementation matches colors or copy while missing the actual region proportions.
-3. Disabled or unavailable actions look enabled.
-
-## Negative Checks
-
-- Confirm clipped text, overflow, and disabled affordances are explicitly reviewed.
+- Preserve the selected generated reference at full fidelity as the baseline visual target.
+- Next polish iteration should replace image-backed zones with editable DOM sections for navigation, hero/content panels, proof/resource modules, and responsive behavior.
+- Production implementation must use verified local assets, real copy, and real resource/adoption data rather than generated microcopy.

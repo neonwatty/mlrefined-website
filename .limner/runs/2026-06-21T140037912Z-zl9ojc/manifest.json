@@ -1,0 +1,17 @@
+{
+  "runId": "2026-06-21T140037912Z-zl9ojc",
+  "command": "loop compare",
+  "target": "mlr-reviews-adoption",
+  "mode": "image-mockup",
+  "comparisonMode": "image-reference",
+  "startedAt": "2026-06-21T14:00:37.912Z",
+  "status": "ok",
+  "artifacts": [
+    ".limner/runs/2026-06-21T140037912Z-zl9ojc/captures/reference.png",
+    ".limner/runs/2026-06-21T140037912Z-zl9ojc/captures/side-by-side.png",
+    ".limner/runs/2026-06-21T140037912Z-zl9ojc/agent-comparison/agent-prompt.md",
+    ".limner/runs/2026-06-21T140037912Z-zl9ojc/agent-comparison/agent-response.schema.json",
+    ".limner/runs/2026-06-21T140037912Z-zl9ojc/reports/comparison.md"
+  ],
+  "completedAt": "2026-06-21T14:00:39.001Z"
+}

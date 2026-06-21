@@ -20,3 +20,15 @@ Limner CLI `0.1.28` initialized five `image-mockup` trajectories and produced in
 ## Current State
 
 Every trajectory is active at `iter_001` with `maxIterations` set to `5`. Each initial comparison is awaiting a fresh agent response before any polish edits are applied.
+
+## First Polish Pass
+
+Each target scaffold was replaced with a first-pass image-backed editable reference shell. This preserves the selected generated image at full fidelity while establishing target-specific HTML regions and acceptance notes for the next iteration. The next Limner polish pass should replace image-backed regions with DOM modules.
+
+- `mlr-homepage-visual-lab`: actions `act_03964903cd494ef9` and `act_c0f716ae844b4a9b`, corrected run `.limner/runs/2026-06-21T140032642Z-apdxm9`, report `.limner/runs/2026-06-21T140032642Z-apdxm9/reports/comparison.md`, side-by-side `.limner/runs/2026-06-21T140032642Z-apdxm9/captures/side-by-side.png`.
+- `mlr-visual-gallery`: actions `act_03b32e262e3a430d` and `act_815369a5ba364f15`, corrected run `.limner/runs/2026-06-21T140034011Z-m5hroz`, report `.limner/runs/2026-06-21T140034011Z-m5hroz/reports/comparison.md`, side-by-side `.limner/runs/2026-06-21T140034011Z-m5hroz/captures/side-by-side.png`.
+- `mlr-resource-discovery`: actions `act_83586585290a4b10` and `act_b9fb105437b54553`, corrected run `.limner/runs/2026-06-21T140035340Z-a117ge`, report `.limner/runs/2026-06-21T140035340Z-a117ge/reports/comparison.md`, side-by-side `.limner/runs/2026-06-21T140035340Z-a117ge/captures/side-by-side.png`.
+- `mlr-instructor-path`: actions `act_b317ed122e414c34` and `act_a1b8f0c409ba4cf5`, corrected run `.limner/runs/2026-06-21T140036607Z-0ypst8`, report `.limner/runs/2026-06-21T140036607Z-0ypst8/reports/comparison.md`, side-by-side `.limner/runs/2026-06-21T140036607Z-0ypst8/captures/side-by-side.png`.
+- `mlr-reviews-adoption`: actions `act_ea5cf6123c9244f5` and `act_2e97ea451de84490`, corrected run `.limner/runs/2026-06-21T140037912Z-zl9ojc`, report `.limner/runs/2026-06-21T140037912Z-zl9ojc/reports/comparison.md`, side-by-side `.limner/runs/2026-06-21T140037912Z-zl9ojc/captures/side-by-side.png`.
+
+Superseded post-edit runs `2026-06-21T135816978Z-hc6qrt`, `2026-06-21T135818043Z-fuq2ab`, `2026-06-21T135819152Z-bgdi99`, `2026-06-21T135820214Z-fu8fmg`, and `2026-06-21T135821307Z-6suko9` captured a broken sibling-source image URL and were replaced by the corrected runs above.
