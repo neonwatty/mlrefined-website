@@ -1,0 +1,11 @@
+{
+  "regions": [
+    {
+      "id": "reference-root",
+      "label": "Reference Root",
+      "referenceSelector": "[data-limner-region='reference-root']",
+      "appSelector": "body",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    }
+  ]
+}

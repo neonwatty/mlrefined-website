@@ -1,0 +1,13 @@
+{
+  "runId": "2026-06-21T135043680Z-vbftm4",
+  "command": "init",
+  "target": "mlr-reviews-adoption",
+  "startedAt": "2026-06-21T13:50:43.680Z",
+  "status": "ok",
+  "artifacts": [
+    "targets/mlr-reviews-adoption/source/ig_09f8ccafb0b45a8e016a37e91005d08199ab5661081e3331f1.png",
+    "targets/mlr-reviews-adoption/reference/index.html",
+    "targets/mlr-reviews-adoption/.limner-scaffold.json"
+  ],
+  "completedAt": "2026-06-21T13:50:43.687Z"
+}
