@@ -7,7 +7,9 @@ Role name: `mlr-reviews-adoption`
 - Candidate 1: `/Users/neonwatty/.codex/generated_images/019eea5c-6d1e-7400-9ebd-de69077c3cb3/ig_09f8ccafb0b45a8e016a37e91005d08199ab5661081e3331f1.png`
 - Candidate 2: `/Users/neonwatty/.codex/generated_images/019eea5c-6d1e-7400-9ebd-de69077c3cb3/ig_09f8ccafb0b45a8e016a37e9acbacc8199a3a1fc335590a4d3.png`
 
-## Final Prompt: Candidate 1
+## Candidate 1
+
+Final prompt:
 
 ```text
 Use case: ui-mockup
@@ -24,7 +26,9 @@ Constraints: Make it feel like a serious proof library and editorial evidence pa
 Avoid: current mlrefined.com styling, Wix-like layout, purple gradients, decorative blobs/orbs, generic SaaS dashboard, stock academia photography, fantasy art, vague AI hype, oversized marketing cards, watermark.
 ```
 
-## Final Prompt: Candidate 2
+## Candidate 2
+
+Final prompt:
 
 ```text
 Use case: ui-mockup
@@ -54,7 +58,9 @@ Avoid: current mlrefined.com styling, purple gradients, decorative blobs/orbs, g
 
 Candidate 1 is the stronger page-family reference. It feels like an editorial proof archive: the book remains visible, the 100+ university claim is prominent but not shouty, the institution grid has real weight, and professor endorsements and reader reviews are clearly segmented. It also preserves the Visual Learning Lab language through paper surfaces, crisp rules, margin equations, and restrained academic color. Its main caveat is that the generated logo library expands beyond the local asset set with plausible extra institutions, so later implementation should constrain the final logo grid to verified local or public-site proof assets. Candidate 2 is visually energetic and useful as a workbench alternative, with strong ML motifs and clearer adoption-context modules, but it drifts slightly toward dashboard/product UI and invents numeric teaching-context metrics that should not be used without evidence.
 
-## Mobile Behavior Notes
+## Mobile Behavior
+
+Mobile behavior notes:
 
 - Candidate 1 should stack into a mobile sequence of headline and adoption claim, book/resource context, horizontally scrollable or two-column logo grid, professor endorsements, then reader reviews.
 - Candidate 1's side book/context rail should become an inline "Adoption context" section under the page intro rather than remaining a fixed sidebar.
