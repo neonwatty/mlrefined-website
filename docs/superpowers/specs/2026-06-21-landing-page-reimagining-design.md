@@ -209,14 +209,24 @@ include desktop composition and mobile behavior notes.
    page families above.
 2. Workers produce Codex image-generation prompts and ideal screen candidates.
 3. Select or merge the strongest candidates into canonical reference images.
-4. Use Limner `image-mockup` mode to convert selected images into editable
+4. Register selected generated images in Limner as durable visual assets before
+   using them as references. Use Limner asset provenance labels such as
+   `imagegen_original` for first canonical generated copies and keep hashes,
+   dimensions, source labels, and lineage available for later comparison.
+5. Use Limner `image-mockup` mode to convert selected images into editable
    HTML/CSS mockups.
-5. Run Limner polish iterations until the mockups faithfully match the approved
+6. Run Limner polish iterations until the mockups faithfully match the approved
    references.
-6. Use Limner `mockup-implementation` mode after a Next.js implementation URL is
+7. Use Limner `mockup-implementation` mode after a Next.js implementation URL is
    available.
-7. Implement the approved mockups in the app after user approval of the design
+8. Implement the approved mockups in the app after user approval of the design
    and implementation plan.
+
+Limner is the durable reference system for approved generated images, not only
+the later mockup-polish tool. Codex-generated image files can remain in their
+original generated-image directory, but selected candidates must also be
+registered or copied into the Limner workflow so future agents can verify the
+exact image source instead of relying on an ad hoc local path.
 
 ## Verification Strategy
 
@@ -231,6 +241,9 @@ Top realistic failure modes:
 Evidence expected before accepting implementation:
 
 - Asset inventory checks for every referenced local image/GIF/roadmap/logo.
+- Limner asset provenance or reconciliation output for approved generated
+  reference images, including source label, checksum/hash, dimensions, and
+  lineage where applicable.
 - Browser screenshots for desktop and mobile homepage, gallery, resource,
   instructor, and reviews routes.
 - Direct rendered-link inspection for PDFs, notebooks, exercises, slides,
