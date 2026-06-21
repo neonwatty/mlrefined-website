@@ -41,11 +41,19 @@ Workers:
   - Binding: `binding-0781a891-ef05-4485-8fb8-25537292a057`
   - Manager session alias: `mlr-reimagining-manager-reviews-adoption`
 
-Status command:
+Status commands:
 
 ```bash
-conveyor status --path .codex-workers/workerctl.db
+conveyor app-loop-status 'mlr-homepage-visual-lab-image-brief' --path .codex-workers/workerctl.db --json
+conveyor app-loop-status 'mlr-visual-gallery-image-brief' --path .codex-workers/workerctl.db --json
+conveyor app-loop-status 'mlr-resource-discovery-image-brief' --path .codex-workers/workerctl.db --json
+conveyor app-loop-status 'mlr-instructor-path-image-brief' --path .codex-workers/workerctl.db --json
+conveyor app-loop-status 'mlr-reviews-adoption-image-brief' --path .codex-workers/workerctl.db --json
 ```
+
+The generic `conveyor status --path .codex-workers/workerctl.db` command is
+not valid for this installed Conveyor CLI; it exits with
+`Unsupported TypeScript runtime option for status`.
 
 Ledger verification query:
 
