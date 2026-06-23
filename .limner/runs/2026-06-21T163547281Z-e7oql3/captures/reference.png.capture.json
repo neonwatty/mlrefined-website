@@ -1,0 +1,228 @@
+{
+  "finalUrl": "http://127.0.0.1:49751/",
+  "readiness": {
+    "scope": "not_applicable",
+    "status": "not_applicable",
+    "finalUrl": "http://127.0.0.1:49751/",
+    "milestones": []
+  },
+  "hiddenOverlaySelectors": [
+    "[data-nextjs-toast]",
+    "[data-nextjs-dialog-overlay]",
+    "[data-nextjs-build-indicator]",
+    "[data-nextjs-dev-overlay]",
+    "#nextjs-portal",
+    "nextjs-portal",
+    ".__nextjs-build-watcher",
+    ".__nextjs-dev-overlay",
+    ".nextjs-toast",
+    ".nextjs-static-indicator-toast-wrapper",
+    "#bugdrop-host",
+    "[data-limner-capture-overlay]"
+  ],
+  "visibleText": {
+    "status": "available",
+    "source": "dom",
+    "totalCandidates": 14,
+    "shown": [
+      {
+        "text": "MACHINE LEARNING REFINED Foundations, Algorithms, and Applications Visual Gallery Chapters & Resources For Instructors Reviews & Adoption...",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1096
+        },
+        "tagName": "main",
+        "source": "dom"
+      },
+      {
+        "text": "MACHINE LEARNING REFINED Foundations, Algorithms, and Applications Visual Gallery Chapters & Resources For Instructors Reviews & Adoption...",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 70
+        },
+        "tagName": "header",
+        "source": "dom"
+      },
+      {
+        "text": "GitHub",
+        "bounds": {
+          "x": 1192,
+          "y": 14,
+          "width": 48,
+          "height": 42
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Get the book",
+        "bounds": {
+          "x": 1264,
+          "y": 14,
+          "width": 148,
+          "height": 42
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Machine Learning Refined home",
+        "bounds": {
+          "x": 28,
+          "y": 16,
+          "width": 360,
+          "height": 38
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "MACHINE LEARNING REFINED Foundations, Algorithms, and Applications",
+        "bounds": {
+          "x": 82,
+          "y": 16,
+          "width": 306,
+          "height": 38
+        },
+        "tagName": "span",
+        "source": "dom"
+      },
+      {
+        "text": "MACHINE LEARNING REFINED",
+        "bounds": {
+          "x": 82,
+          "y": 16,
+          "width": 306,
+          "height": 20
+        },
+        "tagName": "strong",
+        "source": "dom"
+      },
+      {
+        "text": "Primary",
+        "bounds": {
+          "x": 462,
+          "y": 26,
+          "width": 655,
+          "height": 17
+        },
+        "tagName": "nav",
+        "source": "dom"
+      },
+      {
+        "text": "Visual Gallery",
+        "bounds": {
+          "x": 462,
+          "y": 26,
+          "width": 97,
+          "height": 17
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Chapters & Resources",
+        "bounds": {
+          "x": 588,
+          "y": 26,
+          "width": 157,
+          "height": 17
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "For Instructors",
+        "bounds": {
+          "x": 773,
+          "y": 26,
+          "width": 105,
+          "height": 17
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Reviews & Adoption",
+        "bounds": {
+          "x": 906,
+          "y": 26,
+          "width": 140,
+          "height": 17
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "About",
+        "bounds": {
+          "x": 1075,
+          "y": 26,
+          "width": 43,
+          "height": 17
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Foundations, Algorithms, and Applications",
+        "bounds": {
+          "x": 82,
+          "y": 38,
+          "width": 306,
+          "height": 16
+        },
+        "tagName": "em",
+        "source": "dom"
+      }
+    ]
+  },
+  "regionEvidence": {
+    "status": "available",
+    "shown": [
+      {
+        "label": "sidebar",
+        "source": "selector",
+        "confidence": "medium",
+        "selector": "aside, nav, [class*=\"sidebar\" i], [class*=\"side-nav\" i]",
+        "bounds": {
+          "x": 462,
+          "y": 26,
+          "width": 655,
+          "height": 17
+        },
+        "text": "Visual Gallery Chapters & Resources For Instructors Reviews & Adoption About"
+      },
+      {
+        "label": "header",
+        "source": "selector",
+        "confidence": "medium",
+        "selector": "header, [role=\"banner\"], [class*=\"topbar\" i], [class*=\"header\" i]",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 70
+        },
+        "text": "MACHINE LEARNING REFINED Foundations, Algorithms, and Applications Visual Gallery Chapters & Resources For Instructor..."
+      },
+      {
+        "label": "main-list",
+        "source": "selector",
+        "confidence": "low",
+        "selector": "main table, main ul, [role=\"list\"], [class*=\"list\" i]",
+        "bounds": {
+          "x": 678,
+          "y": 153,
+          "width": 727,
+          "height": 44
+        },
+        "text": "Intuition Visualization Derivation Python"
+      }
+    ]
+  }
+}

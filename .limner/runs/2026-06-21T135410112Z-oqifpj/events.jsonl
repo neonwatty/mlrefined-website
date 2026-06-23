@@ -1,0 +1,7 @@
+{"type":"command.started","command":"loop compare","target":"mlr-reviews-adoption","mode":"image-mockup","ts":"2026-06-21T13:54:10.113Z"}
+{"type":"artifact.written","path":".limner/runs/2026-06-21T135410112Z-oqifpj/captures/reference.png","kind":"screenshot","command":"loop compare","target":"mlr-reviews-adoption","mode":"image-mockup","ts":"2026-06-21T13:54:10.938Z"}
+{"type":"artifact.written","path":".limner/runs/2026-06-21T135410112Z-oqifpj/captures/side-by-side.png","kind":"side-by-side","command":"loop compare","target":"mlr-reviews-adoption","mode":"image-mockup","ts":"2026-06-21T13:54:10.938Z"}
+{"type":"artifact.written","path":".limner/runs/2026-06-21T135410112Z-oqifpj/agent-comparison/agent-prompt.md","kind":"agent-comparison-prompt","command":"loop compare","target":"mlr-reviews-adoption","mode":"image-mockup","ts":"2026-06-21T13:54:10.938Z"}
+{"type":"artifact.written","path":".limner/runs/2026-06-21T135410112Z-oqifpj/agent-comparison/agent-response.schema.json","kind":"agent-comparison-schema","command":"loop compare","target":"mlr-reviews-adoption","mode":"image-mockup","ts":"2026-06-21T13:54:10.938Z"}
+{"type":"artifact.written","path":".limner/runs/2026-06-21T135410112Z-oqifpj/reports/comparison.md","kind":"report","command":"loop compare","target":"mlr-reviews-adoption","mode":"image-mockup","ts":"2026-06-21T13:54:10.939Z"}
+{"type":"command.completed","status":"ok","command":"loop compare","target":"mlr-reviews-adoption","mode":"image-mockup","ts":"2026-06-21T13:54:10.939Z"}

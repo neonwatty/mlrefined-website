@@ -1,0 +1,229 @@
+{
+  "finalUrl": "http://127.0.0.1:49820/",
+  "readiness": {
+    "scope": "not_applicable",
+    "status": "not_applicable",
+    "finalUrl": "http://127.0.0.1:49820/",
+    "milestones": []
+  },
+  "hiddenOverlaySelectors": [
+    "[data-nextjs-toast]",
+    "[data-nextjs-dialog-overlay]",
+    "[data-nextjs-build-indicator]",
+    "[data-nextjs-dev-overlay]",
+    "#nextjs-portal",
+    "nextjs-portal",
+    ".__nextjs-build-watcher",
+    ".__nextjs-dev-overlay",
+    ".nextjs-toast",
+    ".nextjs-static-indicator-toast-wrapper",
+    "#bugdrop-host",
+    "[data-limner-capture-overlay]"
+  ],
+  "visibleText": {
+    "status": "available",
+    "source": "dom",
+    "totalCandidates": 14,
+    "shown": [
+      {
+        "text": "E[x] = mu Var(x) = sigma² ML Machine Learning Refined THE BOOK VISUAL LEARNING LAB RESOURCES PROOFS LIBRARY REVIEWS & ADOPTION ABOUT ADOP...",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1001
+        },
+        "tagName": "main",
+        "source": "dom"
+      },
+      {
+        "text": "E[x] = mu Var(x) = sigma²",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 44,
+          "height": 1001
+        },
+        "tagName": "aside",
+        "source": "dom"
+      },
+      {
+        "text": "Reviews and adoption reference page",
+        "bounds": {
+          "x": 44,
+          "y": 0,
+          "width": 1354,
+          "height": 1001
+        },
+        "tagName": "section",
+        "source": "dom"
+      },
+      {
+        "text": "Primary",
+        "bounds": {
+          "x": 45,
+          "y": 0,
+          "width": 1352,
+          "height": 64
+        },
+        "tagName": "nav",
+        "source": "dom"
+      },
+      {
+        "text": "Foundations Models Algorithms Improvements Appendices",
+        "bounds": {
+          "x": 1398,
+          "y": 0,
+          "width": 42,
+          "height": 1001
+        },
+        "tagName": "aside",
+        "source": "dom"
+      },
+      {
+        "text": "Page links",
+        "bounds": {
+          "x": 656,
+          "y": 1,
+          "width": 651,
+          "height": 61
+        },
+        "tagName": "div",
+        "source": "dom"
+      },
+      {
+        "text": "THE BOOK",
+        "bounds": {
+          "x": 656,
+          "y": 1,
+          "width": 57,
+          "height": 61
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "VISUAL LEARNING LAB",
+        "bounds": {
+          "x": 741,
+          "y": 1,
+          "width": 126,
+          "height": 61
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "RESOURCES",
+        "bounds": {
+          "x": 895,
+          "y": 1,
+          "width": 68,
+          "height": 61
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "PROOFS LIBRARY",
+        "bounds": {
+          "x": 991,
+          "y": 1,
+          "width": 97,
+          "height": 61
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "REVIEWS & ADOPTION",
+        "bounds": {
+          "x": 1116,
+          "y": 1,
+          "width": 124,
+          "height": 61
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "ABOUT",
+        "bounds": {
+          "x": 1268,
+          "y": 1,
+          "width": 39,
+          "height": 61
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Machine Learning Refined home",
+        "bounds": {
+          "x": 73,
+          "y": 15,
+          "width": 559,
+          "height": 34
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "ML",
+        "bounds": {
+          "x": 73,
+          "y": 15,
+          "width": 34,
+          "height": 34
+        },
+        "tagName": "span",
+        "source": "dom"
+      }
+    ]
+  },
+  "regionEvidence": {
+    "status": "available",
+    "shown": [
+      {
+        "label": "sidebar",
+        "source": "selector",
+        "confidence": "medium",
+        "selector": "aside, nav, [class*=\"sidebar\" i], [class*=\"side-nav\" i]",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 44,
+          "height": 1001
+        },
+        "text": "E[x] = mu Var(x) = sigma²"
+      },
+      {
+        "label": "header",
+        "source": "selector",
+        "confidence": "medium",
+        "selector": "header, [role=\"banner\"], [class*=\"topbar\" i], [class*=\"header\" i]",
+        "bounds": {
+          "x": 341,
+          "y": 102,
+          "width": 1016,
+          "height": 184
+        },
+        "text": "Reviews & Adoption Used as a reference text at 100+ universities and colleges L(theta) = sum log p(y | x, theta)"
+      },
+      {
+        "label": "repeated-rows",
+        "source": "heuristic",
+        "confidence": "low",
+        "selector": "[class*=\"row\" i]",
+        "count": 3,
+        "bounds": {
+          "x": 976,
+          "y": 601,
+          "width": 381,
+          "height": 106
+        },
+        "text": "a Amazon ★★★★★ Reader-review channel referenced by the current proof library."
+      }
+    ]
+  }
+}

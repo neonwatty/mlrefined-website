@@ -1,0 +1,86 @@
+{
+  "summary": "The editable DOM structure now resembles the Reviews and Adoption reference, but all local book, logo, and portrait images are broken because the reference server cannot resolve the relative public asset paths. Fixing asset delivery is the highest-value next step before layout polish.",
+  "score": {
+    "overall": 0.46,
+    "layout": 0.66,
+    "hierarchy": 0.62,
+    "typography": 0.58,
+    "color": 0.68,
+    "spacing": 0.54,
+    "structure": 0.74,
+    "semantics": 0.72
+  },
+  "confidence": 0.93,
+  "majorDiffAreas": [
+    {
+      "id": "broken-local-assets",
+      "title": "Book cover, logo, and portrait assets are not loading",
+      "category": "component-anatomy",
+      "severity": "high",
+      "priority": 1,
+      "expected": "The reference should show the actual local book cover, verified university logos, and professor portrait assets that replace the generated image content.",
+      "actual": "The screenshot shows alt text and missing-image icons for the book cover, logo grid, and professor portraits.",
+      "impact": "The page cannot prove verified asset usage or match the ideal visual weight until these real proof assets render.",
+      "evidence": [
+        {
+          "source": "side-by-side capture",
+          "observation": "Right-side reference shows missing image icons and alt text such as 'Machine Learning Refined second edition book cover' and university names instead of rendered images."
+        },
+        {
+          "source": "comparison report visible text inventory",
+          "observation": "The rebuilt DOM is captured, but the visual proof assets are absent from the screenshot."
+        }
+      ],
+      "fixTarget": {
+        "surface": "mockup",
+        "region": "asset-library",
+        "likelyFiles": [
+          "targets/mlr-reviews-adoption/reference/index.html",
+          "targets/mlr-reviews-adoption/reference/assets/"
+        ],
+        "selectors": [
+          ".book-card img",
+          ".logo-grid img",
+          ".endorsement img"
+        ]
+      },
+      "recommendedChange": "Copy the existing verified public assets into the target reference assets folder and update image src attributes to local ./assets paths that Limner can serve."
+    }
+  ],
+  "matches": [
+    "The generated source image is no longer rendered as the production reference surface.",
+    "The main DOM sections for masthead, adoption rail, hero, logo library, endorsements, and reader reviews are present."
+  ],
+  "remarks": {
+    "matches": [
+      "Editorial paper palette and overall information architecture are moving toward the source image."
+    ],
+    "uncertainties": [],
+    "possibleIntentionalDeviations": [
+      "The logo library intentionally uses nine verified local logos, not the generated source's larger fictionalized logo grid."
+    ]
+  },
+  "systemFeedback": {
+    "inputQuality": [],
+    "missingContext": [],
+    "suggestedLimnerImprovements": []
+  },
+  "nextIteration": {
+    "focus": "Fix verified local asset loading in the editable reference.",
+    "steps": [
+      "Copy existing book, logo, and portrait files into target reference assets.",
+      "Update the HTML image paths to point at ./assets files.",
+      "Rerun Limner compare and verify that the images render."
+    ],
+    "avoidForNow": [
+      "Do not generate new images.",
+      "Do not add unverified institution logos or stock assets."
+    ]
+  },
+  "rationale": "The structure exists but the visual proof layer is absent because local assets are not served from the current paths. Asset loading must be fixed before meaningful fidelity assessment.",
+  "kind": "image-vs-image",
+  "inputs": {
+    "expectedImagePath": "targets/mlr-reviews-adoption/source/ig_09f8ccafb0b45a8e016a37e91005d08199ab5661081e3331f1.png",
+    "actualImagePath": ".limner/runs/2026-06-21T163630424Z-ch1ays/captures/reference.png"
+  }
+}

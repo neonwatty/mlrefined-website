@@ -1,0 +1,7 @@
+{"type":"command.started","command":"loop compare","target":"mlr-instructor-path","mode":"image-mockup","ts":"2026-06-21T13:54:09.044Z"}
+{"type":"artifact.written","path":".limner/runs/2026-06-21T135409044Z-hh1fb5/captures/reference.png","kind":"screenshot","command":"loop compare","target":"mlr-instructor-path","mode":"image-mockup","ts":"2026-06-21T13:54:09.861Z"}
+{"type":"artifact.written","path":".limner/runs/2026-06-21T135409044Z-hh1fb5/captures/side-by-side.png","kind":"side-by-side","command":"loop compare","target":"mlr-instructor-path","mode":"image-mockup","ts":"2026-06-21T13:54:09.861Z"}
+{"type":"artifact.written","path":".limner/runs/2026-06-21T135409044Z-hh1fb5/agent-comparison/agent-prompt.md","kind":"agent-comparison-prompt","command":"loop compare","target":"mlr-instructor-path","mode":"image-mockup","ts":"2026-06-21T13:54:09.861Z"}
+{"type":"artifact.written","path":".limner/runs/2026-06-21T135409044Z-hh1fb5/agent-comparison/agent-response.schema.json","kind":"agent-comparison-schema","command":"loop compare","target":"mlr-instructor-path","mode":"image-mockup","ts":"2026-06-21T13:54:09.862Z"}
+{"type":"artifact.written","path":".limner/runs/2026-06-21T135409044Z-hh1fb5/reports/comparison.md","kind":"report","command":"loop compare","target":"mlr-instructor-path","mode":"image-mockup","ts":"2026-06-21T13:54:09.862Z"}
+{"type":"command.completed","status":"ok","command":"loop compare","target":"mlr-instructor-path","mode":"image-mockup","ts":"2026-06-21T13:54:09.862Z"}

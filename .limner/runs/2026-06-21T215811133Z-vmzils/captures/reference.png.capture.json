@@ -1,0 +1,255 @@
+{
+  "finalUrl": "http://127.0.0.1:55971/",
+  "readiness": {
+    "scope": "not_applicable",
+    "status": "not_applicable",
+    "finalUrl": "http://127.0.0.1:55971/",
+    "milestones": []
+  },
+  "hiddenOverlaySelectors": [
+    "[data-nextjs-toast]",
+    "[data-nextjs-dialog-overlay]",
+    "[data-nextjs-build-indicator]",
+    "[data-nextjs-dev-overlay]",
+    "#nextjs-portal",
+    "nextjs-portal",
+    ".__nextjs-build-watcher",
+    ".__nextjs-dev-overlay",
+    ".nextjs-toast",
+    ".nextjs-static-indicator-toast-wrapper",
+    "#bugdrop-host",
+    "[data-limner-capture-overlay]"
+  ],
+  "visibleText": {
+    "status": "available",
+    "source": "dom",
+    "totalCandidates": 14,
+    "shown": [
+      {
+        "text": "MLR MACHINE LEARNING REFINED Overview Book Resources Instructor Path Exercises Community Request sample copy Contact INSTRUCTOR ADOPTION...",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1188
+        },
+        "tagName": "main",
+        "source": "dom"
+      },
+      {
+        "text": "MLR MACHINE LEARNING REFINED Overview Book Resources Instructor Path Exercises Community Request sample copy Contact",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 67
+        },
+        "tagName": "header",
+        "source": "dom"
+      },
+      {
+        "text": "Primary navigation",
+        "bounds": {
+          "x": 374,
+          "y": 8,
+          "width": 704,
+          "height": 50
+        },
+        "tagName": "nav",
+        "source": "dom"
+      },
+      {
+        "text": "Overview",
+        "bounds": {
+          "x": 448,
+          "y": 8,
+          "width": 63,
+          "height": 50
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Book",
+        "bounds": {
+          "x": 540,
+          "y": 8,
+          "width": 34,
+          "height": 50
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Resources",
+        "bounds": {
+          "x": 603,
+          "y": 8,
+          "width": 69,
+          "height": 50
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Instructor Path",
+        "bounds": {
+          "x": 701,
+          "y": 8,
+          "width": 103,
+          "height": 50
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Exercises",
+        "bounds": {
+          "x": 832,
+          "y": 8,
+          "width": 63,
+          "height": 50
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Community",
+        "bounds": {
+          "x": 924,
+          "y": 8,
+          "width": 80,
+          "height": 50
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Machine Learning Refined home",
+        "bounds": {
+          "x": 24,
+          "y": 14,
+          "width": 330,
+          "height": 38
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "MLR",
+        "bounds": {
+          "x": 24,
+          "y": 14,
+          "width": 38,
+          "height": 38
+        },
+        "tagName": "span",
+        "source": "dom"
+      },
+      {
+        "text": "Request sample copy Contact",
+        "bounds": {
+          "x": 1098,
+          "y": 16,
+          "width": 318,
+          "height": 34
+        },
+        "tagName": "div",
+        "source": "dom"
+      },
+      {
+        "text": "Request sample copy",
+        "bounds": {
+          "x": 1098,
+          "y": 16,
+          "width": 209,
+          "height": 34
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "MACHINE LEARNING REFINED",
+        "bounds": {
+          "x": 74,
+          "y": 17,
+          "width": 260,
+          "height": 33
+        },
+        "tagName": "span",
+        "source": "dom"
+      }
+    ]
+  },
+  "regionEvidence": {
+    "status": "available",
+    "shown": [
+      {
+        "label": "sidebar",
+        "source": "selector",
+        "confidence": "medium",
+        "selector": "aside, nav, [class*=\"sidebar\" i], [class*=\"side-nav\" i]",
+        "bounds": {
+          "x": 374,
+          "y": 8,
+          "width": 704,
+          "height": 50
+        },
+        "text": "Overview Book Resources Instructor Path Exercises Community"
+      },
+      {
+        "label": "header",
+        "source": "selector",
+        "confidence": "medium",
+        "selector": "header, [role=\"banner\"], [class*=\"topbar\" i], [class*=\"header\" i]",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 67
+        },
+        "text": "MLR MACHINE LEARNING REFINED Overview Book Resources Instructor Path Exercises Community Request sample copy Contact"
+      },
+      {
+        "label": "toolbar",
+        "source": "selector",
+        "confidence": "low",
+        "selector": "[role=\"toolbar\"], [class*=\"toolbar\" i], [class*=\"actions\" i]",
+        "bounds": {
+          "x": 1098,
+          "y": 16,
+          "width": 318,
+          "height": 34
+        },
+        "text": "Request sample copy Contact"
+      },
+      {
+        "label": "main-list",
+        "source": "selector",
+        "confidence": "low",
+        "selector": "main table, main ul, [role=\"list\"], [class*=\"list\" i]",
+        "bounds": {
+          "x": 36,
+          "y": 285,
+          "width": 369,
+          "height": 99
+        },
+        "text": "Rigorous modern coverage from fundamentals to deep learning Course-ready resources designed to save setup time Flexib..."
+      },
+      {
+        "label": "repeated-rows",
+        "source": "heuristic",
+        "confidence": "low",
+        "selector": "main li",
+        "count": 6,
+        "bounds": {
+          "x": 36,
+          "y": 285,
+          "width": 369,
+          "height": 34
+        },
+        "text": "Rigorous modern coverage from fundamentals to deep learning"
+      }
+    ]
+  }
+}

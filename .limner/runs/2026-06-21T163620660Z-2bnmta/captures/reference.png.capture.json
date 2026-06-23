@@ -1,0 +1,243 @@
+{
+  "finalUrl": "http://127.0.0.1:49807/",
+  "readiness": {
+    "scope": "not_applicable",
+    "status": "not_applicable",
+    "finalUrl": "http://127.0.0.1:49807/",
+    "milestones": []
+  },
+  "hiddenOverlaySelectors": [
+    "[data-nextjs-toast]",
+    "[data-nextjs-dialog-overlay]",
+    "[data-nextjs-build-indicator]",
+    "[data-nextjs-dev-overlay]",
+    "#nextjs-portal",
+    "nextjs-portal",
+    ".__nextjs-build-watcher",
+    ".__nextjs-dev-overlay",
+    ".nextjs-toast",
+    ".nextjs-static-indicator-toast-wrapper",
+    "#bugdrop-host",
+    "[data-limner-capture-overlay]"
+  ],
+  "visibleText": {
+    "status": "available",
+    "source": "dom",
+    "totalCandidates": 14,
+    "shown": [
+      {
+        "text": "MLR Machine Learning Refined Chapters & Resources Roadmap Study Guides Community About Search chapters, topics, resources Cmd K Machine L...",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1478
+        },
+        "tagName": "main",
+        "source": "dom"
+      },
+      {
+        "text": "Primary",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 55
+        },
+        "tagName": "header",
+        "source": "dom"
+      },
+      {
+        "text": "Machine Learning Refined home",
+        "bounds": {
+          "x": 18,
+          "y": 10,
+          "width": 300,
+          "height": 34
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "MLR",
+        "bounds": {
+          "x": 18,
+          "y": 10,
+          "width": 34,
+          "height": 34
+        },
+        "tagName": "span",
+        "source": "dom"
+      },
+      {
+        "text": "Site sections",
+        "bounds": {
+          "x": 338,
+          "y": 11,
+          "width": 684,
+          "height": 33
+        },
+        "tagName": "nav",
+        "source": "dom"
+      },
+      {
+        "text": "Chapters & Resources",
+        "bounds": {
+          "x": 395,
+          "y": 11,
+          "width": 158,
+          "height": 33
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Roadmap",
+        "bounds": {
+          "x": 583,
+          "y": 11,
+          "width": 69,
+          "height": 33
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Study Guides",
+        "bounds": {
+          "x": 682,
+          "y": 11,
+          "width": 95,
+          "height": 33
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Community",
+        "bounds": {
+          "x": 807,
+          "y": 11,
+          "width": 85,
+          "height": 33
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "About",
+        "bounds": {
+          "x": 922,
+          "y": 11,
+          "width": 44,
+          "height": 33
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Search chapters, topics, resources Cmd K",
+        "bounds": {
+          "x": 1042,
+          "y": 11,
+          "width": 380,
+          "height": 33
+        },
+        "tagName": "form",
+        "role": "search",
+        "source": "dom"
+      },
+      {
+        "text": "Machine Learning Refined",
+        "bounds": {
+          "x": 62,
+          "y": 17,
+          "width": 246,
+          "height": 21
+        },
+        "tagName": "span",
+        "source": "dom"
+      },
+      {
+        "text": "Cmd K",
+        "bounds": {
+          "x": 1362,
+          "y": 18,
+          "width": 51,
+          "height": 19
+        },
+        "tagName": "kbd",
+        "source": "dom"
+      },
+      {
+        "text": "Machine Learning Refined by Michael Watty LEARNING GOAL ID Independent Learner IN Instructor PR Practitioner Refresh FILTER CHAPTERS All...",
+        "bounds": {
+          "x": 0,
+          "y": 55,
+          "width": 1440,
+          "height": 1423
+        },
+        "tagName": "div",
+        "source": "dom"
+      }
+    ]
+  },
+  "regionEvidence": {
+    "status": "available",
+    "shown": [
+      {
+        "label": "sidebar",
+        "source": "selector",
+        "confidence": "medium",
+        "selector": "aside, nav, [class*=\"sidebar\" i], [class*=\"side-nav\" i]",
+        "bounds": {
+          "x": 338,
+          "y": 11,
+          "width": 684,
+          "height": 33
+        },
+        "text": "Chapters & Resources Roadmap Study Guides Community About"
+      },
+      {
+        "label": "header",
+        "source": "selector",
+        "confidence": "medium",
+        "selector": "header, [role=\"banner\"], [class*=\"topbar\" i], [class*=\"header\" i]",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 55
+        },
+        "text": "MLR Machine Learning Refined Chapters & Resources Roadmap Study Guides Community About Search chapters, topics, resou..."
+      },
+      {
+        "label": "main-list",
+        "source": "selector",
+        "confidence": "low",
+        "selector": "main table, main ul, [role=\"list\"], [class*=\"list\" i]",
+        "bounds": {
+          "x": 33,
+          "y": 427,
+          "width": 224,
+          "height": 130
+        },
+        "text": "ID Independent Learner IN Instructor PR Practitioner Refresh"
+      },
+      {
+        "label": "repeated-rows",
+        "source": "heuristic",
+        "confidence": "medium",
+        "selector": "[role=\"row\"]",
+        "count": 13,
+        "bounds": {
+          "x": 294,
+          "y": 335,
+          "width": 820,
+          "height": 32
+        },
+        "text": "CHAPTER DESCRIPTION RESOURCES"
+      }
+    ]
+  }
+}
