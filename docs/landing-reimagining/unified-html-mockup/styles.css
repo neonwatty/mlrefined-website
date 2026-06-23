@@ -917,6 +917,15 @@ h3 {
   font-weight: 800;
 }
 
+.proof-copy {
+  display: grid;
+  gap: 10px;
+}
+
+.proof-copy .action-row {
+  margin-top: 0;
+}
+
 .logo-row {
   display: grid;
   grid-template-columns: repeat(8, minmax(70px, 1fr));
@@ -1088,7 +1097,49 @@ button.source-link {
 }
 
 .static-atlas {
+  display: grid;
+  gap: 14px;
   margin-bottom: 12px;
+}
+
+.resources-atlas {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.figure-coverage {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.figure-coverage button {
+  display: grid;
+  gap: 3px;
+  min-height: 54px;
+  padding: 8px;
+  border: 1px solid var(--line-cool);
+  border-radius: 7px;
+  background: #fff;
+  color: var(--navy);
+  text-align: left;
+}
+
+.figure-coverage button.is-selected {
+  border-color: var(--gold);
+  background: #fff6de;
+}
+
+.figure-coverage strong {
+  color: var(--blue);
+  font-size: 0.74rem;
+}
+
+.figure-coverage span {
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.25;
 }
 
 .static-atlas-grid {
@@ -1367,13 +1418,27 @@ body.has-popover {
 
 .resource-control-bar {
   display: grid;
-  grid-template-columns: minmax(220px, 0.55fr) minmax(320px, 1fr);
+  grid-template-columns: minmax(220px, 0.7fr) minmax(260px, 0.9fr) minmax(360px, 1.2fr);
   gap: 12px;
   margin-bottom: 12px;
   padding: 12px;
   border: 1px solid rgba(221, 207, 173, 0.82);
   border-radius: 8px;
   background: rgba(255, 253, 248, 0.86);
+}
+
+.control-group {
+  display: grid;
+  align-content: end;
+  gap: 6px;
+}
+
+.control-group > span {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .rail h2,
@@ -2251,6 +2316,7 @@ body.has-popover {
   .home-gif-grid,
   .endorsement-grid,
   .chapter-figure-grid,
+  .figure-coverage,
   .course-toolkit-grid,
   .figure-inspector,
   .chapter-hub,
@@ -2360,6 +2426,7 @@ body.has-popover {
   .review-list,
   .book-promise ol,
   .chapter-figure-grid,
+  .figure-coverage,
   .chapter-eleven-grid,
   .course-toolkit-grid {
     grid-template-columns: 1fr;

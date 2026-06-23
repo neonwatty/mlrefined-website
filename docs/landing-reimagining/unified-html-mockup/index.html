@@ -20,7 +20,7 @@
           <a href="#home" data-route="home">Home</a>
           <a href="#notebooks" data-route="notebooks">Notebooks</a>
           <a href="#resources" data-route="resources">Chapters</a>
-          <a href="#instructor" data-route="instructor">Instructor Path</a>
+          <a href="#instructor" data-route="instructor">Instructors</a>
           <a href="#reviews" data-route="reviews">Reviews</a>
         </nav>
       </header>
@@ -34,7 +34,7 @@
               <p class="lead">A visual, first-principles path through modern machine learning.</p>
               <div class="action-row">
                 <button class="button primary" type="button" data-route-button="resources">Browse chapters</button>
-                <button class="button" type="button" data-route-button="notebooks">Browse notebooks</button>
+                <button class="button" type="button" data-route-button="notebooks">Open notebooks</button>
               </div>
             </div>
             <figure class="book-stage">
@@ -54,10 +54,6 @@
                   <li><strong>Run</strong><span>Continue in a Colab notebook.</span></li>
                 </ol>
               </div>
-              <div class="action-row">
-                <button class="button primary" type="button" data-route-button="resources">Browse chapters</button>
-                <button class="button" type="button" data-route-button="notebooks">Open notebooks</button>
-              </div>
             </div>
             <div class="visual-funnel-grid">
               <div class="figure-spotlight" data-figure-spotlight></div>
@@ -74,7 +70,7 @@
                   <h3 id="chapter-eleven-title">Dynamic figures that make learned features visible</h3>
                   <p>Feature learning is one of the book's most visual chapters: transformations, validation grids, nonlinear boundaries, and model behavior side by side, with one vivid multiclass view from Chapter 7.</p>
                 </div>
-                <button class="button primary" type="button" data-route-button="resources" data-chapter-jump="11">Open Chapter 11</button>
+                <button class="button primary" type="button" data-route-button="resources" data-chapter-jump="11">Chapter 11 resources</button>
               </div>
               <div class="chapter-eleven-grid" data-chapter-eleven-showcase></div>
             </div>
@@ -95,43 +91,25 @@
           </section>
 
           <section class="logo-band" aria-label="Selected university proof logos">
-            <p>Used as a reference text at 100+ universities and colleges</p>
-            <div class="logo-row">
-              <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/university-of-michigan.png" alt="University of Michigan">
-              <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/university-of-toronto.png" alt="University of Toronto">
-              <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/texas-am.png" alt="Texas A&amp;M University">
-              <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/penn-state.png" alt="Penn State">
-              <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/nyu.png" alt="New York University">
-              <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/purdue.png" alt="Purdue University">
-              <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/georgia-tech.png" alt="Georgia Tech">
-              <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/asu.png" alt="Arizona State University">
-            </div>
-          </section>
-        </section>
-
-        <section class="page-view gallery-view" data-view="gallery" aria-labelledby="gallery-title" hidden>
-          <div class="view-heading">
-            <div>
-              <p class="section-label">Companions to the book</p>
-              <h1 id="gallery-title">Gallery</h1>
-              <p class="lead">A searchable chapter-by-chapter atlas for the book: source-backed static figures from the note assets repo and requisite chapter links.</p>
-            </div>
-            <label class="local-search">
-              <span>Search figures</span>
-              <input type="search" data-search="widgets" placeholder="Search figures, topics, chapters">
-            </label>
-          </div>
-          <div class="filter-row" data-widget-filters></div>
-          <section class="static-atlas" aria-labelledby="static-atlas-title">
-            <div class="section-heading-inline">
-              <div>
-                <p class="section-label">Static figure atlas</p>
-                <h2 id="static-atlas-title">Book figures by chapter</h2>
+            <div class="proof-copy">
+              <p>Used as a reference text at 100+ universities and colleges</p>
+              <div class="action-row">
+                <button class="button" type="button" data-route-button="instructor">For instructors</button>
+                <button class="button quiet-link" type="button" data-route-button="reviews">See adoption proof</button>
               </div>
-              <span>From notes-assets</span>
             </div>
-            <section class="figure-inspector" data-figure-inspector aria-label="Selected figure detail"></section>
-            <div class="static-atlas-grid" data-static-atlas></div>
+            <div>
+              <div class="logo-row">
+                <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/university-of-michigan.png" alt="University of Michigan">
+                <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/university-of-toronto.png" alt="University of Toronto">
+                <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/texas-am.png" alt="Texas A&amp;M University">
+                <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/penn-state.png" alt="Penn State">
+                <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/nyu.png" alt="New York University">
+                <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/purdue.png" alt="Purdue University">
+                <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/georgia-tech.png" alt="Georgia Tech">
+                <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/asu.png" alt="Arizona State University">
+              </div>
+            </div>
           </section>
         </section>
 
@@ -181,14 +159,54 @@
                   <h1 id="resources-title">Find the chapter, then open the exact resource</h1>
                 </div>
               </div>
+              <section class="resource-control-bar" aria-label="Chapter discovery controls">
+                <label class="local-search">
+                  <span>Search chapters</span>
+                  <input type="search" data-search="chapters" placeholder="Search chapters, topics, resources">
+                </label>
+                <div class="control-group">
+                  <span>Audience</span>
+                  <div class="segmented" aria-label="Audience filter">
+                    <button class="is-selected" type="button" data-goal="all">All</button>
+                    <button type="button" data-goal="learner">Learners</button>
+                    <button type="button" data-goal="instructor">Instructors</button>
+                  </div>
+                </div>
+                <div class="control-group wide">
+                  <span>Resource type</span>
+                  <div class="segmented" aria-label="Resource type filter">
+                    <button class="is-selected" type="button" data-resource-type="all">All</button>
+                    <button type="button" data-resource-type="figures">Figures</button>
+                    <button type="button" data-resource-type="notebooks">Notebooks</button>
+                    <button type="button" data-resource-type="exercises">Exercises</button>
+                    <button type="button" data-resource-type="slides">Slides</button>
+                  </div>
+                </div>
+              </section>
               <ul class="summary-strip">
-                <li><strong>12</strong><span>Chapters shown</span></li>
+                <li><strong>14</strong><span>Chapters shown</span></li>
                 <li><strong>84</strong><span>Note notebooks</span></li>
                 <li><strong>13</strong><span>Exercise sets</span></li>
                 <li><strong>13</strong><span>PPTX chapters</span></li>
               </ul>
               <section class="chapter-hub" data-chapter-hub aria-label="Selected chapter package"></section>
               <section class="chapter-list" data-chapter-list aria-label="Chapter resources"></section>
+              <section class="static-atlas resources-atlas" aria-labelledby="static-atlas-title">
+                <div class="section-heading-inline">
+                  <div>
+                    <p class="section-label">Static figure atlas</p>
+                    <h2 id="static-atlas-title">Book figures by chapter</h2>
+                    <p>Search source-backed figures from the notes-assets repository, then inspect the image or jump back to its chapter package.</p>
+                  </div>
+                  <label class="local-search">
+                    <span>Search figures</span>
+                    <input type="search" data-search="figures" placeholder="Search figures, topics, chapters">
+                  </label>
+                </div>
+                <div class="figure-coverage" data-figure-coverage aria-label="Figure coverage by chapter"></div>
+                <section class="figure-inspector" data-figure-inspector aria-label="Selected figure detail"></section>
+                <div class="static-atlas-grid" data-static-atlas></div>
+              </section>
             </div>
           </div>
         </section>

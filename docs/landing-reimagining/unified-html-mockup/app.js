@@ -79,9 +79,9 @@ const widgets = [
     chapter: "Ch. 14",
     image: `${ROOT}/mlr-visual-gallery/reference/assets/widgets/regression-tree.gif`,
     alt: "Animated regression tree visualization",
-    description: "Piecewise predictions and split diagrams for interpretable learners.",
-    notebook: links.notes,
-    colab: links.notes
+    description: "Piecewise predictions and split diagrams paired with the tree-based learners exercise notebook.",
+    notebook: "https://github.com/neonwatty/machine-learning-refined/blob/main/exercises/chapter_14/chapter_14_exercises.ipynb",
+    colab: "https://colab.research.google.com/github/neonwatty/machine-learning-refined/blob/main/exercises/chapter_14/chapter_14_exercises.ipynb"
   },
   {
     title: "Taylor Series",
@@ -517,6 +517,18 @@ const chapters = [
   },
   {
     part: "Part III Nonlinear Learning",
+    number: "12",
+    title: "Kernel Methods",
+    description: "Fixed-shape universal approximators, the kernel trick, similarity measures, and kernelized optimization.",
+    tags: ["learner", "instructor"],
+    resources: {
+      pdf: links.pdfs,
+      exercise: "https://github.com/neonwatty/machine-learning-refined/blob/main/exercises/chapter_12/chapter_12_exercises.ipynb",
+      slides: links.slides
+    }
+  },
+  {
+    part: "Part III Nonlinear Learning",
     number: "13",
     title: "Fully Connected Neural Networks",
     description: "MLPs, backpropagation, initialization, regularization, and training.",
@@ -525,6 +537,18 @@ const chapters = [
       pdf: links.pdfs,
       notebook: "https://github.com/neonwatty/machine-learning-refined/blob/main/notes/13_Multilayer_perceptrons/13_2_Multi_layer_perceptrons.ipynb",
       exercise: "https://github.com/neonwatty/machine-learning-refined/tree/main/exercises/chapter_13",
+      slides: links.slides
+    }
+  },
+  {
+    part: "Part III Nonlinear Learning",
+    number: "14",
+    title: "Tree-Based Learners",
+    description: "Regression trees, classification trees, gradient boosting, random forests, and validation for recursive learners.",
+    tags: ["learner", "instructor"],
+    resources: {
+      pdf: links.pdfs,
+      exercise: "https://github.com/neonwatty/machine-learning-refined/blob/main/exercises/chapter_14/chapter_14_exercises.ipynb",
       slides: links.slides
     }
   },
@@ -544,6 +568,8 @@ const chapters = [
 const sourceEvidence = [
   ["A_3_Normalized.ipynb", "Optimization notebook", "https://github.com/neonwatty/machine-learning-refined/blob/main/notes/3_First_order_methods/A_3_Normalized.ipynb"],
   ["chapter_3_exercises.ipynb", "Exercise notebook", "https://github.com/neonwatty/machine-learning-refined/blob/main/exercises/chapter_3/chapter_3_exercises.ipynb"],
+  ["chapter_12_exercises.ipynb", "Kernel methods exercise notebook", "https://github.com/neonwatty/machine-learning-refined/blob/main/exercises/chapter_12/chapter_12_exercises.ipynb"],
+  ["chapter_14_exercises.ipynb", "Tree-based learners exercise notebook", "https://github.com/neonwatty/machine-learning-refined/blob/main/exercises/chapter_14/chapter_14_exercises.ipynb"],
   ["chapter_pdfs/README.md", "Dropbox PDF collection", links.pdfs],
   ["presentations/README.md", "Dropbox PPTX collection", links.slides]
 ];
@@ -588,7 +614,9 @@ const tracks = [
       ["9", "Feature engineering", "scaling", "regularization"],
       ["10", "Nonlinear features", "basis functions", "kernels"],
       ["11", "Feature learning", "validation", "ensembles"],
+      ["12", "Kernel methods", "kernel trick", "similarity"],
       ["13", "Neural networks", "MLPs", "backpropagation"],
+      ["14", "Tree-based learners", "boosting", "random forests"],
       ["C", "Linear algebra appendix", "norms", "decompositions"]
     ]
   },
@@ -659,7 +687,7 @@ const reviews = [
 
 let activeWidgetTopic = "All";
 let activeFeaturedWidgetTitle = widgets[0].title;
-let widgetQuery = "";
+let figureQuery = "";
 let chapterQuery = "";
 let resourceGoal = "all";
 let resourceType = "all";
@@ -707,6 +735,10 @@ function itemChapterNumber(item) {
   return item.chapter.replace("Ch. ", "").replace("Appendix ", "");
 }
 
+function chapterDisplayName(number) {
+  return number === "C" ? "Appendix C" : `Chapter ${number}`;
+}
+
 function slugify(value) {
   return value.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
@@ -734,7 +766,14 @@ function roadmapMatches(number) {
 }
 
 function primaryChapterHref(chapter) {
-  return chapter.resources.notebook || chapter.resources.pdf || links.pdfs;
+  return chapter.resources.notebook || chapter.resources.exercise || chapter.resources.pdf || links.pdfs;
+}
+
+function primaryChapterActionLabel(chapter) {
+  if (chapter.resources.notebook) return "Open notes";
+  if (chapter.resources.exercise) return "Open exercises";
+  if (chapter.resources.pdf) return "Open PDF";
+  return "Open resource";
 }
 
 function chapterHasResourceType(chapter, type) {
@@ -771,7 +810,7 @@ function renderFigureSpotlight() {
   const { visual, index } = current;
   const chapterNumber = itemChapterNumber(visual);
   bySelector("[data-figure-spotlight]").innerHTML = `
-    <button class="spotlight-stage" type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}" aria-label="Open ${visual.chapter} chapter package">
+    <button class="spotlight-stage" type="button" data-image-popover-open="${index}" aria-label="Inspect ${visual.title}">
       <img src="${visual.image}" alt="${visual.alt}">
     </button>
     <div class="spotlight-copy">
@@ -783,7 +822,7 @@ function renderFigureSpotlight() {
         <button type="button" data-spotlight-next>Next</button>
       </div>
       <div class="chip-row">
-        <button type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">Open chapter package</button>
+        <button type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">Chapter resources</button>
         <button type="button" data-image-popover-open="${index}">Inspect image</button>
       </div>
       <div class="spotlight-thumbs" aria-label="Choose spotlight figure">
@@ -814,7 +853,7 @@ function renderChapterElevenShowcase() {
           <p>${visual.description}</p>
           <div class="chip-row">
             <button type="button" data-image-popover-open="${index}">Inspect image</button>
-            <button type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">${visual.chapter}</button>
+            <button type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">Chapter resources</button>
           </div>
         </div>
       </article>
@@ -854,7 +893,7 @@ function renderFeaturedWidget() {
         <span><b>Live</b> visual reference</span>
       </div>
       <div class="action-row">
-        <button class="button" type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">Chapter package</button>
+        <button class="button" type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">Chapter resources</button>
         <a class="button" href="${widget.notebook}">Source notebook</a>
         <a class="button primary" href="${widget.colab}">Open in Colab</a>
       </div>
@@ -887,9 +926,9 @@ function renderWidgets() {
       <h3>${widget.title}</h3>
       <p>${widget.description}</p>
       <div class="chip-row">
-        <button type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">Chapter package</button>
+        <button type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">Chapter resources</button>
         <a href="${widget.notebook}">Source notebook</a>
-        <a href="${widget.colab}">Colab</a>
+        <a href="${widget.colab}">Open in Colab</a>
       </div>
     </article>
   `;
@@ -912,7 +951,7 @@ function renderFigureInspector() {
         <a href="${visual.href}">Source file</a>
         <a href="${visual.noteHref}">Chapter notes</a>
         ${relatedWidget ? `<button type="button" data-route-button="notebooks" data-topic-jump="${relatedWidget.topic}">Related notebook</button>` : ""}
-        <button type="button" data-route-button="resources" data-chapter-jump="${itemChapterNumber(visual)}">Chapter package</button>
+        <button type="button" data-route-button="resources" data-chapter-jump="${itemChapterNumber(visual)}">Chapter resources</button>
       </div>
     </div>
   `;
@@ -932,7 +971,7 @@ function openImagePopover(index) {
       <div class="chip-row">
         <a href="${visual.href}">Source file</a>
         <a href="${visual.noteHref}">Chapter notes</a>
-        <button type="button" data-route-button="resources" data-chapter-jump="${itemChapterNumber(visual)}">Chapter package</button>
+        <button type="button" data-route-button="resources" data-chapter-jump="${itemChapterNumber(visual)}">Chapter resources</button>
       </div>
     </div>
   `;
@@ -947,8 +986,7 @@ function closeImagePopover() {
 
 function renderStaticAtlas() {
   const filtered = staticVisuals.filter((visual) => {
-    const topicMatch = activeWidgetTopic === "All" || visual.topic === activeWidgetTopic;
-    return topicMatch && matchesQuery(visual, widgetQuery);
+    return matchesQuery(visual, figureQuery);
   });
   const groups = filtered.reduce((memo, visual) => {
     memo[visual.chapter] = memo[visual.chapter] || [];
@@ -979,6 +1017,7 @@ function renderStaticAtlas() {
                 <div class="figure-link-row">
                   <button type="button" data-image-popover-open="${index}">Inspect image</button>
                   <a href="${visual.noteHref}">Chapter notes</a>
+                  <button type="button" data-route-button="resources" data-chapter-jump="${itemChapterNumber(visual)}">Chapter resources</button>
                 </div>
               </div>
             </article>
@@ -988,6 +1027,22 @@ function renderStaticAtlas() {
       </section>
     `;
   }).join("") || `<p class="empty-state">No static figures match this search.</p>`;
+  renderFigureCoverage(filtered);
+}
+
+function renderFigureCoverage(figures = staticVisuals) {
+  const container = bySelector("[data-figure-coverage]");
+  if (!container) return;
+  const counts = chapters.map((chapter) => {
+    const count = figures.filter((visual) => visual.chapter === chapterLabel(chapter.number)).length;
+    return { chapter, count };
+  });
+  container.innerHTML = counts.map(({ chapter, count }) => `
+    <button class="${chapter.number === activeChapterNumber ? "is-selected" : ""}" type="button" data-route-button="resources" data-chapter-jump="${chapter.number}">
+      <strong>${chapterDisplayName(chapter.number)}</strong>
+      <span>${count ? `${count} figure${count === 1 ? "" : "s"}` : "No curated figure yet"}</span>
+    </button>
+  `).join("");
 }
 
 function renderSourceLists() {
@@ -997,12 +1052,12 @@ function renderSourceLists() {
   const bundle = [
     ["Source notebook", widget.notebook, widget.notebook.split("/").pop()],
     ["Open in Colab", widget.colab, "Runnable notebook path"],
-    ["Chapter package", `#resources`, `Chapter ${chapterNumber}: ${chapter?.title || widget.topic}`],
+    ["Chapter resources", `#resources`, `${chapterDisplayName(chapterNumber)}: ${chapter?.title || widget.topic}`],
     ["Chapter PDFs", links.pdfs, "Canonical PDF collection"]
   ];
   bySelector("[data-source-list]").innerHTML = bundle.map(([label, href, detail]) => {
-    const routeAttrs = label === "Chapter package" ? ` data-route-button="resources" data-chapter-jump="${chapterNumber}"` : "";
-    const tag = label === "Chapter package" ? "button" : "a";
+    const routeAttrs = label === "Chapter resources" ? ` data-route-button="resources" data-chapter-jump="${chapterNumber}"` : "";
+    const tag = label === "Chapter resources" ? "button" : "a";
     const hrefAttr = tag === "a" ? ` href="${href}"` : "";
     return `
       <${tag} class="source-link"${hrefAttr}${routeAttrs}>
@@ -1042,7 +1097,7 @@ function renderChapters() {
     return `
       ${partHeader}
       <article class="chapter-row ${isSelected ? "is-selected" : ""}" data-chapter-select="${chapter.number}" tabindex="0">
-        <div class="chapter-number"><span>Chapter</span>${chapter.number}</div>
+        <div class="chapter-number"><span>${chapter.number === "C" ? "Appendix" : "Chapter"}</span>${chapter.number}</div>
         <div>
           <h3>${chapter.title}</h3>
           <p>${chapter.description}</p>
@@ -1054,8 +1109,8 @@ function renderChapters() {
           </div>
         </div>
         <div class="chapter-row-actions">
-          <a class="button primary" href="${primaryChapterHref(chapter)}">Start here</a>
-          <button class="button" type="button" data-chapter-select="${chapter.number}">${isSelected ? "Viewing resources" : "View resources"}</button>
+          <a class="button primary" href="${primaryChapterHref(chapter)}">${primaryChapterActionLabel(chapter)}</a>
+          <button class="button" type="button" data-chapter-select="${chapter.number}">${isSelected ? "Viewing resources" : "Chapter resources"}</button>
           ${isSelected ? `<div class="chip-row compact-links">
             ${resourceLink("PDF", chapter.resources.pdf)}
             ${resourceLink("Notes", chapter.resources.notebook)}
@@ -1083,10 +1138,10 @@ function renderChapterHub(fallbackChapter) {
   bySelector("[data-chapter-hub]").innerHTML = `
     <div class="chapter-hub-main">
       <p class="section-label">Selected chapter package</p>
-      <h2>Chapter ${chapter.number}: ${chapter.title}</h2>
+      <h2>${chapterDisplayName(chapter.number)}: ${chapter.title}</h2>
       <p>${chapter.description}</p>
       <div class="chapter-start-row">
-        <a class="button primary" href="${primaryChapterHref(chapter)}">Start here</a>
+        <a class="button primary" href="${primaryChapterHref(chapter)}">${primaryChapterActionLabel(chapter)}</a>
         ${resourceLink("Learn: PDF", chapter.resources.pdf)}
         ${resourceLink("Learn: Notes", chapter.resources.notebook)}
         ${resourceLink("Practice: Exercises", chapter.resources.exercise)}
@@ -1216,10 +1271,10 @@ function renderTracks() {
                 <span>${topicOne}</span>
                 <span>${topicTwo}</span>
               </div>
-              <button class="button roadmap-toggle" type="button" data-roadmap-chapter="${number}">${isOpen ? "Hide resources" : "View resources"}</button>
+              <button class="button roadmap-toggle" type="button" data-roadmap-chapter="${number}">${isOpen ? "Hide resources" : "Show resources"}</button>
               ${isOpen ? `<div class="chip-row roadmap-links">
                 ${roadmapResourceLinks(chapter)}
-                <button type="button" data-route-button="resources" data-chapter-jump="${number}">Chapter package</button>
+                <button type="button" data-route-button="resources" data-chapter-jump="${number}">Chapter resources</button>
               </div>` : ""}
             </div>
           </article>
@@ -1406,16 +1461,9 @@ function bindEvents() {
     }
   });
 
-  all("[data-search='widgets']").forEach((input) => {
-    input.addEventListener("input", (event) => {
-      widgetQuery = event.target.value;
-      all("[data-search='widgets']").forEach((field) => {
-        if (field !== event.target) field.value = widgetQuery;
-      });
-      renderStaticAtlas();
-      renderWidgets();
-      renderSourceLists();
-    });
+  bySelector("[data-search='figures']")?.addEventListener("input", (event) => {
+    figureQuery = event.target.value;
+    renderStaticAtlas();
   });
 
   bySelector("[data-search='chapters']")?.addEventListener("input", (event) => {
