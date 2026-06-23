@@ -3,13 +3,57 @@ name: CI
 on:
   pull_request:
     branches: [main]
+    types: [opened, synchronize, reopened, labeled, unlabeled]
   push:
     branches: [main]
+  merge_group:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+concurrency:
+  group: ci-${{ github.head_ref || github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
+  dependabot-gate:
+    name: Dependabot Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Check Dependabot CI admission
+        if: >-
+          github.event.pull_request.user.login == 'dependabot[bot]' &&
+          !contains(github.event.pull_request.labels.*.name, 'ci-ok')
+        run: |
+          echo "::error::Dependabot PRs require the ci-ok label before full CI runs."
+          echo "Add ci-ok after a human has reviewed the dependency update."
+          exit 1
+
+      - name: Report CI admission
+        run: |
+          if [ "$ACTOR" = "dependabot[bot]" ]; then
+            echo "Dependabot PR has ci-ok; full CI may run."
+          else
+            echo "Not a Dependabot PR; full CI may run."
+          fi
+        env:
+          ACTOR: ${{ github.event.pull_request.user.login }}
+
   quality:
     name: Lint, Typecheck, Knip, Test, Build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: >-
+      github.event_name == 'merge_group' ||
+      github.event_name != 'pull_request' ||
+      github.event.pull_request.user.login != 'dependabot[bot]' ||
+      contains(github.event.pull_request.labels.*.name, 'ci-ok')
 
     steps:
       - name: Checkout code
@@ -18,11 +62,33 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: "20"
+          node-version: "24"
           cache: npm
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Cache ESLint results
+        uses: actions/cache@v5
+        with:
+          path: .eslintcache
+          key: eslint-${{ hashFiles('package-lock.json', 'eslint.config.*', '.eslintrc*') }}-${{ github.sha }}
+          restore-keys: |
+            eslint-${{ hashFiles('package-lock.json', 'eslint.config.*', '.eslintrc*') }}-
+            eslint-
+
+      - name: Cache TypeScript build info
+        uses: actions/cache@v5
+        with:
+          path: tsconfig.tsbuildinfo
+          key: tsbuildinfo-${{ hashFiles('tsconfig.json', 'package-lock.json') }}-${{ github.sha }}
+          restore-keys: |
+            tsbuildinfo-${{ hashFiles('tsconfig.json', 'package-lock.json') }}-
+            tsbuildinfo-
+
+      - name: Audit production dependencies
+        continue-on-error: true
+        run: npm audit --audit-level=critical --omit=dev
 
       - name: Run ESLint
         run: npm run lint
