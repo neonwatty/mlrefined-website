@@ -815,32 +815,40 @@ function pauseSpotlightAfterManualAction() {
   restartSpotlightAutoplay();
 }
 
-function renderFigureSpotlight() {
-  const figures = spotlightFigures();
-  const current = figures[activeSpotlightIndex] || figures[0];
-  if (!current) return;
-  const { visual, index } = current;
-  const chapterNumber = itemChapterNumber(visual);
-  bySelector("[data-figure-spotlight]").innerHTML = `
-    <button class="spotlight-stage" type="button" data-image-popover-open="${index}" aria-label="Inspect ${visual.title}">
-      <img src="${visual.image}" alt="${visual.alt}">
+function replaySpotlightTransition() {
+  const image = bySelector("[data-spotlight-image]");
+  const copy = bySelector("[data-spotlight-copy]");
+  [image, copy].forEach((element) => {
+    if (!element) return;
+    element.classList.remove("is-transitioning");
+    void element.offsetWidth;
+    element.classList.add("is-transitioning");
+  });
+}
+
+function renderSpotlightShell(figures) {
+  const container = bySelector("[data-figure-spotlight]");
+  if (!container || bySelector("[data-spotlight-stage]")) return;
+  container.innerHTML = `
+    <button class="spotlight-stage" type="button" data-spotlight-stage>
+      <img data-spotlight-image alt="">
     </button>
-    <div class="spotlight-copy">
-      <p class="section-label">${visual.chapter} / ${visual.topic}</p>
-      <h3>${visual.title}</h3>
-      <p>${visual.description}</p>
+    <div class="spotlight-copy" data-spotlight-copy>
+      <p class="section-label" data-spotlight-meta></p>
+      <h3 data-spotlight-title></h3>
+      <p data-spotlight-description></p>
       <div class="spotlight-controls">
         <button type="button" data-spotlight-prev>Previous</button>
         <button type="button" data-spotlight-next>Next</button>
-        <button type="button" data-spotlight-toggle aria-pressed="${isSpotlightPaused ? "true" : "false"}">${isSpotlightPaused ? "Resume" : "Pause"}</button>
+        <button type="button" data-spotlight-toggle>Pause</button>
       </div>
       <div class="chip-row">
-        <button type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">Chapter resources</button>
-        <button type="button" data-image-popover-open="${index}">Inspect image</button>
+        <button type="button" data-route-button="resources" data-spotlight-resource>Chapter resources</button>
+        <button type="button" data-spotlight-inspect>Inspect image</button>
       </div>
       <div class="spotlight-thumbs" aria-label="Choose spotlight figure">
         ${figures.map(({ visual: thumb }, position) => `
-          <button class="${position === activeSpotlightIndex ? "is-selected" : ""}" type="button" data-spotlight-select="${position}" aria-current="${position === activeSpotlightIndex ? "true" : "false"}" aria-pressed="${position === activeSpotlightIndex ? "true" : "false"}" aria-label="Show ${thumb.title}, ${chapterLabel(itemChapterNumber(thumb))}">
+          <button type="button" data-spotlight-select="${position}" aria-label="Show ${thumb.title}, ${chapterLabel(itemChapterNumber(thumb))}">
             <img src="${thumb.image}" alt="">
             <span>${chapterLabel(itemChapterNumber(thumb))}</span>
           </button>
@@ -848,6 +856,51 @@ function renderFigureSpotlight() {
       </div>
     </div>
   `;
+}
+
+function renderFigureSpotlight(options = {}) {
+  const figures = spotlightFigures();
+  const current = figures[activeSpotlightIndex] || figures[0];
+  if (!current) return;
+  const { visual, index } = current;
+  const chapterNumber = itemChapterNumber(visual);
+  renderSpotlightShell(figures);
+
+  const stage = bySelector("[data-spotlight-stage]");
+  const image = bySelector("[data-spotlight-image]");
+  const meta = bySelector("[data-spotlight-meta]");
+  const title = bySelector("[data-spotlight-title]");
+  const description = bySelector("[data-spotlight-description]");
+  const resource = bySelector("[data-spotlight-resource]");
+  const inspect = bySelector("[data-spotlight-inspect]");
+  const toggle = bySelector("[data-spotlight-toggle]");
+
+  if (stage) {
+    stage.dataset.imagePopoverOpen = String(index);
+    stage.setAttribute("aria-label", `Inspect ${visual.title}`);
+  }
+  if (image) {
+    image.src = visual.image;
+    image.alt = visual.alt;
+  }
+  if (meta) meta.textContent = `${visual.chapter} / ${visual.topic}`;
+  if (title) title.textContent = visual.title;
+  if (description) description.textContent = visual.description;
+  if (resource) resource.dataset.chapterJump = chapterNumber;
+  if (inspect) inspect.dataset.imagePopoverOpen = String(index);
+  if (toggle) {
+    toggle.textContent = isSpotlightPaused ? "Resume" : "Pause";
+    toggle.setAttribute("aria-pressed", isSpotlightPaused ? "true" : "false");
+  }
+
+  all("[data-spotlight-select]").forEach((button) => {
+    const isSelected = Number(button.dataset.spotlightSelect) === activeSpotlightIndex;
+    button.classList.toggle("is-selected", isSelected);
+    button.setAttribute("aria-current", isSelected ? "true" : "false");
+    button.setAttribute("aria-pressed", isSelected ? "true" : "false");
+  });
+
+  if (options.animate !== false) replaySpotlightTransition();
 }
 
 function renderFeaturedWidget() {
@@ -1371,7 +1424,7 @@ function bindEvents() {
     if (spotlightToggle) {
       isSpotlightPaused = !isSpotlightPaused;
       isSpotlightExplicitlyResumed = !isSpotlightPaused;
-      renderFigureSpotlight();
+      renderFigureSpotlight({ animate: false });
       restartSpotlightAutoplay();
     }
 

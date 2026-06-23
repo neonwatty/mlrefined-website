@@ -672,6 +672,9 @@ h3 {
   max-height: 100%;
   object-fit: contain;
   padding: 12px;
+}
+
+.spotlight-stage img.is-transitioning {
   animation: spotlight-image-in 520ms ease both;
 }
 
@@ -681,6 +684,9 @@ h3 {
   gap: 10px;
   height: clamp(390px, 34vw, 500px);
   min-width: 0;
+}
+
+.spotlight-copy.is-transitioning {
   animation: spotlight-copy-in 460ms ease both;
 }
 
@@ -777,8 +783,8 @@ h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .spotlight-stage img,
-  .spotlight-copy {
+  .spotlight-stage img.is-transitioning,
+  .spotlight-copy.is-transitioning {
     animation: none;
   }
 
