@@ -18,7 +18,7 @@ export function VisualFunnel() {
             Intuitive visuals and animations that pull you into each chapter
           </h2>
           <p className="mt-4 max-w-3xl leading-7 text-[#526070]">
-            Static figures reveal the geometry. Animated notebooks show the
+            Static figures reveal the geometry. Colab notebooks show the
             algorithm in motion. Every preview routes back to the chapter
             resources.
           </p>
@@ -89,7 +89,7 @@ function AnimationRail() {
   return (
     <aside className="rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-4 shadow-xl shadow-[#071326]/10">
       <p className="mb-1 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
-        Animated notebooks
+        Colab notebooks
       </p>
       <h3 className="font-serif text-2xl font-black text-[#0b2545]">
         Algorithms in motion

@@ -10,7 +10,7 @@ export const pedagogySteps = [
 export const visualPath = [
   ["Look", "Start with a real book figure."],
   ["Learn", "Open the chapter package behind it."],
-  ["Run", "Continue in an animated notebook."],
+  ["Run", "Continue in a Colab notebook."],
 ] as const;
 
 export const featuredFigures = [
@@ -72,14 +72,14 @@ export const homeAnimations = [
     title: learningWidgets[1].title,
     meta: learningWidgets[1].topic,
     image: learningWidgets[1].image,
-    imageAlt: `${learningWidgets[1].title} animated notebook preview`,
+    imageAlt: `${learningWidgets[1].title} Colab notebook preview`,
     href: learningWidgets[1].href,
   },
   {
     title: learningWidgets[2].title,
     meta: learningWidgets[2].topic,
     image: learningWidgets[2].image,
-    imageAlt: `${learningWidgets[2].title} animated notebook preview`,
+    imageAlt: `${learningWidgets[2].title} Colab notebook preview`,
     href: learningWidgets[2].href,
   },
 ];
