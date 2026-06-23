@@ -5,6 +5,8 @@ Modern Vercel-backed website and analytics surface for
 
 The book resources remain canonical in
 [neonwatty/machine-learning-refined](https://github.com/neonwatty/machine-learning-refined).
+Static notebook/book figure assets are maintained separately in
+[neonwatty/machine-learning-refined-notes-assets](https://github.com/neonwatty/machine-learning-refined-notes-assets).
 This app exposes those resources through crawlable, mobile-friendly routes and
 adds the measurement layer needed to improve technical and content SEO.
 

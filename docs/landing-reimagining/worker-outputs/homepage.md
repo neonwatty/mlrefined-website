@@ -83,3 +83,59 @@ Mobile behavior notes: Preserve the content order as title, short positioning, C
 - Confirmed generated image checksums with `md5`.
 
 Recommended candidate: /Users/neonwatty/.codex/generated_images/019eea5c-12ac-7e60-8a84-5e879d11de1f/ig_0df464ee8e4366cc016a37e95159208198bfe02a469e9a919d.png
+
+## Limner Editable Mockup Update
+
+Date: 2026-06-21
+
+Trajectory: `traj_fcc1f7b39a213a3e`
+
+Final Limner run: `.limner/runs/2026-06-21T163837081Z-simfjs`
+
+Comparison report: `.limner/runs/2026-06-21T163837081Z-simfjs/reports/comparison.md`
+
+Reference screenshot: `.limner/runs/2026-06-21T163837081Z-simfjs/captures/reference.png`
+
+Side-by-side screenshot: `.limner/runs/2026-06-21T163837081Z-simfjs/captures/side-by-side.png`
+
+Summary: Converted the screenshot-backed first-pass target into editable HTML/CSS for the top navigation, Visual Learning Lab hero, book cover identity, learning-lab panels, resource rail, university proof band, and accolade summaries. The selected generated PNG remains only in `targets/mlr-homepage-visual-lab/source/` as visual guidance; it is no longer rendered as the page asset.
+
+Assets used:
+
+- `public/book-cover-2nd.png`
+- `public/learning-visuals/widgets/normalized-gradient-descent.gif`
+- `public/learning-visuals/widgets/logistic-regression.gif`
+- `public/learning-visuals/widgets/function-approx-nn.gif`
+- `public/learning-visuals/widgets/regression-tree.gif`
+- `public/learning-visuals/widgets/kmeans.gif`
+- `public/learning-visuals/widgets/taylor-series.gif`
+- `public/learning-visuals/widgets/feature-normalization.gif`
+- `public/social-proof/logos/university-of-michigan.png`
+- `public/social-proof/logos/university-of-toronto.png`
+- `public/social-proof/logos/texas-am.png`
+- `public/social-proof/logos/penn-state.png`
+- `public/social-proof/logos/nyu.png`
+- `public/social-proof/logos/kindai.png`
+- `public/social-proof/logos/purdue.png`
+- `public/social-proof/logos/georgia-tech.png`
+- `public/social-proof/logos/asu.png`
+- `public/social-proof/people/david-duvenaud.jpg`
+- `public/social-proof/people/john-proakis.jpeg`
+- `public/social-proof/people/kimiaki-shirahama.png`
+- `public/social-proof/people/osvaldo-simeone.jpeg`
+
+Content sources used: existing resource group and learning track language from `src/content/book-resources.ts`, `src/content/book-learning.ts`, and social-proof summary language from `src/content/book-social-proof.ts`.
+
+Checks run:
+
+- `limner loop response submit --trajectory traj_fcc1f7b39a213a3e --from-run 2026-06-21T140032642Z-apdxm9 --file /tmp/limner-homepage-response.json`
+- `limner loop task --trajectory traj_fcc1f7b39a213a3e --executor subagent --format json`
+- `limner loop action start` / `limner loop action complete` for action `act_885c7a7a41e94239`
+- `limner loop compare --trajectory traj_fcc1f7b39a213a3e` produced run `.limner/runs/2026-06-21T163547281Z-e7oql3`
+- `limner loop response submit --trajectory traj_fcc1f7b39a213a3e --from-run 2026-06-21T163547281Z-e7oql3 --file /tmp/limner-homepage-response-2.json`
+- `limner loop action start` / `limner loop action complete` for action `act_bf5036124f574f59`
+- `limner loop compare --trajectory traj_fcc1f7b39a213a3e` produced final run `.limner/runs/2026-06-21T163837081Z-simfjs`
+- `cat .limner/runs/2026-06-21T163837081Z-simfjs/captures/reference.png.console.json` returned `[]`
+- `LC_ALL=C grep -n '[^ -~]' targets/mlr-homepage-visual-lab/reference/index.html targets/mlr-homepage-visual-lab/reference/styles.css targets/mlr-homepage-visual-lab/contract/acceptance.md targets/mlr-homepage-visual-lab/contract/regions.json targets/mlr-homepage-visual-lab/contract/tokens.json || true` returned no matches
+
+Remaining fidelity gaps: the editable panels use real local GIF assets rather than matching every generated chart still exactly; the hero/book/lab geometry is close but not pixel-perfect; final Next.js implementation still needs real routing, analytics, focus states, and deeper responsive QA.

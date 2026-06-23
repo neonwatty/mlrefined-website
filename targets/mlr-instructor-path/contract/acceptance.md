@@ -1,7 +1,8 @@
 # Acceptance Notes
 
-First-pass Limner mockup for `mlr-instructor-path`.
+Editable Limner mockup for `mlr-instructor-path`.
 
-- Preserve the selected generated reference at full fidelity as the baseline visual target.
-- Next polish iteration should replace image-backed zones with editable DOM sections for navigation, hero/content panels, proof/resource modules, and responsive behavior.
-- Production implementation must use verified local assets, real copy, and real resource/adoption data rather than generated microcopy.
+- The image-backed first-pass shell has been replaced with real HTML/CSS sections for navigation, hero, verified instructor CTA, adoption proof, course-planning workbench, teaching resources, and adoption support.
+- Production implementation must continue to use verified local assets and real source content rather than generated microcopy, generated university marks, or the generated reference PNG as a production asset.
+- The sample-copy and verified-instructor language remains product-direction placeholder copy until publisher/instructor eligibility details are confirmed.
+- Next polish iteration should tighten pixel fidelity against the selected reference, especially hero art proportions, the proof-strip vertical rhythm, and the course timeline density.

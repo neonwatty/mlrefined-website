@@ -86,3 +86,99 @@ Recommended candidate: /Users/neonwatty/.codex/generated_images/019eea5c-55a0-7b
 - Verified local roadmap and proof asset inventory with `rg --files public/learning-visuals public/social-proof docs/superpowers/specs | sort`.
 - Verified generated PNG dimensions with `sips -g pixelWidth -g pixelHeight`.
 - Visually inspected both generated PNGs before selecting the recommendation.
+
+## Limner Editable Mockup Update
+
+Date: 2026-06-21
+
+Trajectory: `traj_81224d1d0bec1a4f`
+
+Final Limner run: `.limner/runs/2026-06-21T163604269Z-lx1sbe`
+
+Comparison report: `.limner/runs/2026-06-21T163604269Z-lx1sbe/reports/comparison.md`
+
+Side-by-side artifact: `.limner/runs/2026-06-21T163604269Z-lx1sbe/captures/side-by-side.png`
+
+Reference screenshot: `.limner/runs/2026-06-21T163604269Z-lx1sbe/captures/reference.png`
+
+Implementation summary: Replaced the image-backed first-pass shell with editable HTML/CSS modules for the top navigation, instructor hero, verified-instructor CTA, adoption proof strip, course-planning workbench, roadmap selector, teaching resources, and adoption support. The selected generated image remains visual guidance only and is not referenced by the new HTML.
+
+Assets used in the editable reference:
+
+- `targets/mlr-instructor-path/reference/assets/book-cover-2nd.png`, copied from `public/book-cover-2nd.png`.
+- `targets/mlr-instructor-path/reference/assets/roadmaps/essentials-roadmap.png`, copied from `public/learning-visuals/roadmaps/essentials-roadmap.png`.
+- `targets/mlr-instructor-path/reference/assets/roadmaps/full-treatment-roadmap.png`, copied from `public/learning-visuals/roadmaps/full-treatment-roadmap.png`.
+- `targets/mlr-instructor-path/reference/assets/roadmaps/optimization-roadmap.png`, copied from `public/learning-visuals/roadmaps/optimization-roadmap.png`.
+- `targets/mlr-instructor-path/reference/assets/roadmaps/deep-learning-roadmap.png`, copied from `public/learning-visuals/roadmaps/deep-learning-roadmap.png`.
+- `targets/mlr-instructor-path/reference/assets/logos/university-of-michigan.png`, `university-of-toronto.png`, `texas-am.png`, `penn-state.png`, `nyu.png`, `purdue.png`, `georgia-tech.png`, and `asu.png`, copied from `public/social-proof/logos/`.
+
+Content sources used: `src/content/book-facts.ts` for the `100+` adoption proof and resource-repo counts, `src/content/book-resources.ts` for Chapter PDFs, Colab/Jupyter notebooks, Exercises, and Slides/roadmaps copy, and `src/content/book-social-proof.ts` for verified university logo names.
+
+Remaining fidelity gaps: The editable reference is taller than the generated ideal, so the teaching-resource band appears lower in the captured viewport. The hero art is recreated with real cover art and CSS-drawn notes/diagrams rather than the generated open-book composition, so proportions differ. Verified-instructor/sample-copy copy remains product-direction placeholder text until publisher eligibility details are confirmed.
+
+## Manager Follow-up Polish
+
+Date: 2026-06-21
+
+Reason: Manager review confirmed the worker-noted issue was actionable: the hero/right verification card consumed too much vertical space, so the course-planning workbench and teaching resources landed lower than the ideal first viewport.
+
+Response and action evidence:
+
+- Fresh Limner response: `resp_b99d8ef55a194e07`
+- Action: `act_0ce64cfde36e4881`
+- Edited file: `targets/mlr-instructor-path/reference/styles.css`
+
+Updated final Limner run: `.limner/runs/2026-06-21T213233776Z-bqt2fy`
+
+Updated comparison report: `.limner/runs/2026-06-21T213233776Z-bqt2fy/reports/comparison.md`
+
+Updated side-by-side: `.limner/runs/2026-06-21T213233776Z-bqt2fy/captures/side-by-side.png`
+
+Polish summary: Reduced topbar/hero height, tightened the verified-instructor card, shrank the book/course-stage art, compressed the proof strip, and tightened the workbench/resource spacing. No content or asset provenance changed.
+
+Post-polish evidence:
+
+- `limner loop compare --trajectory traj_81224d1d0bec1a4f`: succeeded.
+- `.limner/runs/2026-06-21T213233776Z-bqt2fy/captures/reference.png.console.json`: `[]`.
+- `sips -g pixelWidth -g pixelHeight .limner/runs/2026-06-21T213233776Z-bqt2fy/captures/reference.png`: `1440 x 900`.
+
+Remaining gaps after manager polish: hero art is still a real-cover/CSS reconstruction rather than the generated open-book composition; verified-instructor/sample-copy copy remains product-direction placeholder text until publisher eligibility details are confirmed.
+
+## Source Repository HTML Polish
+
+Date: 2026-06-21
+
+Reason: Manager follow-up confirmed the instructor reference should ground resource cards and CTAs in exact book/source repository anchors.
+
+Action evidence:
+
+- Source-repo response: `resp_5bf00f48d39b4436`
+- Action: `act_d2fc46430b23410b`
+- Edited file: `targets/mlr-instructor-path/reference/index.html`
+- Final Limner run: `.limner/runs/2026-06-21T215811133Z-vmzils`
+- Final comparison report: `.limner/runs/2026-06-21T215811133Z-vmzils/reports/comparison.md`
+- Final side-by-side: `.limner/runs/2026-06-21T215811133Z-vmzils/captures/side-by-side.png`
+
+Source assets and anchors used:
+
+- Existing target-local copy of `public/book-cover-2nd.png`.
+- Existing target-local roadmap images from `public/learning-visuals/roadmaps/`.
+- Existing target-local proof logos from `public/social-proof/logos/`.
+- `README.md#instructors`
+- Publisher sample-copy URL from the source README.
+- `chapter_pdfs/README.md`
+- `presentations/README.md`
+- `notes/3_First_order_methods/A_3_Normalized.ipynb`
+- `notes/6_Linear_twoclass_classification/6_2_Cross_entropy.ipynb`
+- `notes/13_Multilayer_perceptrons/13_2_Multi_layer_perceptrons.ipynb`
+- `exercises/chapter_3/chapter_3_exercises.ipynb`
+
+Polish summary: Replaced placeholder links with repository or publisher anchors, changed the standalone datasets card to "Notebook-linked data" after source inspection found no local dataset directory, and made the source package panel point to README/PPTX/notebook resources.
+
+Post-polish evidence:
+
+- `limner loop compare --trajectory traj_81224d1d0bec1a4f --format json`: succeeded.
+- `.limner/runs/2026-06-21T215811133Z-vmzils/captures/reference.png.console.json`: `[]`.
+- `sips -g pixelWidth -g pixelHeight .limner/runs/2026-06-21T215811133Z-vmzils/captures/reference.png`: `1440 x 900`.
+
+Remaining gaps after source polish: the course timeline remains illustrative rather than generated from a canonical syllabus file; Colab example URL was formatted from an exact notebook path but not opened live.

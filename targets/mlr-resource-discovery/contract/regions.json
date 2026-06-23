@@ -6,6 +6,41 @@
       "referenceSelector": "[data-limner-region='reference-root']",
       "appSelector": "body",
       "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "top-nav",
+      "label": "Top Navigation",
+      "referenceSelector": "[data-limner-region='top-nav']",
+      "appSelector": "header",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "learning-filters",
+      "label": "Learning Filters",
+      "referenceSelector": "[data-limner-region='learning-filters']",
+      "appSelector": "[aria-label='Learning filters']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "chapter-index",
+      "label": "Grouped Chapter Resource Index",
+      "referenceSelector": "[data-limner-region='chapter-index']",
+      "appSelector": "#chapters",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "repository-panel",
+      "label": "Repository Connection Panel",
+      "referenceSelector": "[data-limner-region='repository-panel']",
+      "appSelector": "[aria-label='Repository and widgets']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "widget-preview",
+      "label": "Learning Widget Preview",
+      "referenceSelector": "[data-limner-region='widget-preview']",
+      "appSelector": "[aria-labelledby='widget-title']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
     }
   ]
 }

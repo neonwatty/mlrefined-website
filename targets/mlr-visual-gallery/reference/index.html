@@ -7,14 +7,238 @@
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
-    <main data-limner-region="reference-root" class="reference-shell page-mlr-visual-gallery">
-      <header data-limner-region="reference-context" class="reference-context">
-        <p class="eyebrow">Machine Learning Refined</p>
-        <h1>Visual Gallery</h1>
-        <p>Featured optimization workbench, learning path, filters, and widget cards</p>
+    <main data-limner-region="reference-root" class="gallery-page">
+      <header data-limner-region="global-header" class="site-header">
+        <a class="brand" href="https://github.com/neonwatty/machine-learning-refined" aria-label="Machine Learning Refined repository">
+          <img src="./assets/book-cover-2nd.png" alt="Machine Learning Refined second edition book cover">
+          <span>
+            <strong>Machine Learning Refined</strong>
+            <small>Visual learning lab</small>
+          </span>
+        </a>
+        <nav class="top-nav" aria-label="Primary">
+          <a href="https://github.com/neonwatty/machine-learning-refined/tree/main/chapter_pdfs">Chapters</a>
+          <a class="is-active" href="#gallery">Visual Gallery</a>
+          <a href="https://github.com/neonwatty/machine-learning-refined/tree/main/notes">Notebooks</a>
+          <a href="https://github.com/neonwatty/machine-learning-refined/tree/main/exercises">Exercises</a>
+          <a href="https://github.com/neonwatty/machine-learning-refined">GitHub</a>
+        </nav>
+        <a class="header-cta" href="https://github.com/neonwatty/machine-learning-refined/tree/main/notes">Open resources</a>
       </header>
-      <section data-limner-region="source-reference" class="source-frame" aria-label="Selected generated reference image">
-        <img src="./source-reference.png" alt="Visual Gallery selected generated reference">
+
+      <section data-limner-region="hero" class="hero">
+        <div>
+          <p class="kicker">Interactive companions to the book</p>
+          <h1>Visual Gallery</h1>
+          <p class="lead">See, derive, and implement machine learning ideas through the book's optimization, classification, clustering, validation, tree, network, and Taylor-series widgets.</p>
+        </div>
+        <form class="search" role="search">
+          <label for="gallery-search">Search gallery</label>
+          <input id="gallery-search" type="search" value="" placeholder="Search widgets, chapters, topics">
+        </form>
+      </section>
+
+      <section data-limner-region="featured-workbench" class="workbench" aria-labelledby="workbench-title">
+        <article class="featured-card">
+          <div class="card-copy">
+            <p class="section-label">Featured optimization workbench</p>
+            <h2 id="workbench-title">Normalized Gradient Descent</h2>
+            <p>Follow the path of a first-order method across level sets and connect step size, conditioning, and convergence behavior to the book's optimization foundations.</p>
+            <div class="metric-row" aria-label="Workbench controls">
+              <span><b>Iter.</b> 18 / 60</span>
+              <span><b>Step</b> adaptive</span>
+              <span><b>Trace</b> visible</span>
+            </div>
+            <div class="action-row">
+              <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/chapter_pdfs/README.md">Chapter PDFs</a>
+              <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/notes/3_First_order_methods/A_3_Normalized.ipynb">Jupyter notebook</a>
+              <a class="dark" href="https://colab.research.google.com/github/neonwatty/machine-learning-refined/blob/main/notes/3_First_order_methods/A_3_Normalized.ipynb">Open in Colab</a>
+            </div>
+          </div>
+          <figure class="feature-visual">
+            <img src="./assets/widgets/normalized-gradient-descent.gif" alt="Animated normalized gradient descent contour visualization">
+            <figcaption>Contour path from the local normalized-gradient-descent widget.</figcaption>
+          </figure>
+        </article>
+
+        <aside data-limner-region="learning-path" class="learning-path" aria-labelledby="path-title">
+          <div class="path-head">
+            <p class="section-label">Learning path</p>
+            <h2 id="path-title">From geometry to models</h2>
+          </div>
+          <ol>
+            <li>
+              <span>Ch. 2-4</span>
+              <strong>Optimization foundations</strong>
+              <small>Zero-, first-, and second-order methods.</small>
+            </li>
+            <li>
+              <span>Ch. 5-8</span>
+              <strong>Linear learning</strong>
+              <small>Regression, classification, PCA, and K-means.</small>
+            </li>
+            <li>
+              <span>Ch. 10-14</span>
+              <strong>Feature learning and networks</strong>
+              <small>Nonlinear features, trees, kernels, and MLPs.</small>
+            </li>
+          </ol>
+          <a class="path-link" href="https://github.com/neonwatty/machine-learning-refined">View canonical repository</a>
+        </aside>
+      </section>
+
+      <section data-limner-region="source-provenance" class="source-strip" aria-labelledby="source-title">
+        <div>
+          <p class="section-label">Source-backed previews</p>
+          <h2 id="source-title">Editable HTML backed by real notebooks</h2>
+        </div>
+        <article>
+          <strong>A_3_Normalized.ipynb</strong>
+          <span>Normalized gradient descent notebook from `notes/3_First_order_methods`.</span>
+          <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/notes/3_First_order_methods/A_3_Normalized.ipynb">Open source</a>
+        </article>
+        <article>
+          <strong>6_2_Cross_entropy.ipynb</strong>
+          <span>Logistic regression and cross entropy source notebook.</span>
+          <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/notes/6_Linear_twoclass_classification/6_2_Cross_entropy.ipynb">Open source</a>
+        </article>
+        <article>
+          <strong>8_5_Kmeans.ipynb</strong>
+          <span>K-means clustering notebook from linear unsupervised learning.</span>
+          <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/notes/8_Linear_unsupervised_learning/8_5_Kmeans.ipynb">Open source</a>
+        </article>
+      </section>
+
+      <section data-limner-region="gallery-controls" class="gallery-controls" id="gallery">
+        <div class="tabs" aria-label="Topic filters">
+          <button class="is-selected">All</button>
+          <button>Optimization</button>
+          <button>Classification</button>
+          <button>Clustering</button>
+          <button>Features</button>
+          <button>Networks</button>
+          <button>Validation</button>
+          <button>Trees</button>
+          <button>Series</button>
+        </div>
+        <div class="sort-control">
+          <span>Sort</span>
+          <strong>Featured</strong>
+        </div>
+      </section>
+
+      <section data-limner-region="widget-gallery" class="widget-grid" aria-label="Learning widgets">
+        <article class="widget-card feature">
+          <img src="./assets/widgets/normalized-gradient-descent.gif" alt="Normalized gradient descent widget animation">
+          <div>
+            <p class="topic">Optimization</p>
+            <h3>Normalized Gradient Descent</h3>
+            <p>Contours, path history, and convergence intuition for first-order methods.</p>
+          </div>
+          <nav aria-label="Normalized Gradient Descent resources">
+            <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/chapter_pdfs/README.md">Chapter</a>
+            <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/notes/3_First_order_methods/A_3_Normalized.ipynb">Notebook</a>
+            <a href="https://colab.research.google.com/github/neonwatty/machine-learning-refined/blob/main/notes/3_First_order_methods/A_3_Normalized.ipynb">Colab</a>
+          </nav>
+        </article>
+
+        <article class="widget-card">
+          <img src="./assets/widgets/logistic-regression.gif" alt="Logistic regression classification widget animation">
+          <div>
+            <p class="topic">Classification</p>
+            <h3>Logistic Regression</h3>
+            <p>Decision boundaries and probability curves for two-class learning.</p>
+          </div>
+          <nav aria-label="Logistic Regression resources">
+            <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/chapter_pdfs/README.md">Chapter</a>
+            <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/notes/6_Linear_twoclass_classification/6_2_Cross_entropy.ipynb">Notebook</a>
+            <a href="https://colab.research.google.com/github/neonwatty/machine-learning-refined/blob/main/notes/6_Linear_twoclass_classification/6_2_Cross_entropy.ipynb">Colab</a>
+          </nav>
+        </article>
+
+        <article class="widget-card">
+          <img src="./assets/widgets/kmeans.gif" alt="K-means clustering widget animation">
+          <div>
+            <p class="topic">Clustering</p>
+            <h3>K-Means Clustering</h3>
+            <p>Centroids and cluster assignments from the linear unsupervised learning notes.</p>
+          </div>
+          <nav aria-label="K-Means Clustering resources">
+            <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/chapter_pdfs/README.md">Chapter</a>
+            <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/notes/8_Linear_unsupervised_learning/8_5_Kmeans.ipynb">Notebook</a>
+            <a href="https://colab.research.google.com/github/neonwatty/machine-learning-refined/blob/main/notes/8_Linear_unsupervised_learning/8_5_Kmeans.ipynb">Colab</a>
+          </nav>
+        </article>
+
+        <article class="widget-card">
+          <img src="./assets/widgets/feature-normalization.gif" alt="Feature normalization widget animation">
+          <div>
+            <p class="topic">Features</p>
+            <h3>Feature Normalization</h3>
+            <p>Before-and-after scaling views for stable model fitting and conditioning.</p>
+          </div>
+          <nav aria-label="Feature Normalization resources">
+            <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/chapter_pdfs/README.md">Chapter</a>
+            <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/notes/9_Feature_engineer_select/9_3_Scaling.ipynb">Notebook</a>
+            <a href="https://colab.research.google.com/github/neonwatty/machine-learning-refined/blob/main/notes/9_Feature_engineer_select/9_3_Scaling.ipynb">Colab</a>
+          </nav>
+        </article>
+
+        <article class="widget-card">
+          <img src="./assets/widgets/function-approx-nn.gif" alt="Neural network function approximation widget animation">
+          <div>
+            <p class="topic">Networks</p>
+            <h3>Neural Network Approximation</h3>
+            <p>A small multilayer perceptron fitting a nonlinear function.</p>
+          </div>
+          <nav aria-label="Neural Network Approximation resources">
+            <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/chapter_pdfs/README.md">Chapter</a>
+            <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/notes/13_Multilayer_perceptrons/13_2_Multi_layer_perceptrons.ipynb">Notebook</a>
+            <a href="https://colab.research.google.com/github/neonwatty/machine-learning-refined/blob/main/notes/13_Multilayer_perceptrons/13_2_Multi_layer_perceptrons.ipynb">Colab</a>
+          </nav>
+        </article>
+
+        <article class="widget-card">
+          <img src="./assets/widgets/cross-validation-regression.gif" alt="Cross-validation regression widget animation">
+          <div>
+            <p class="topic">Validation</p>
+            <h3>Cross-Validation</h3>
+            <p>Holdout folds and regression error estimates for model comparison.</p>
+          </div>
+          <nav aria-label="Cross-Validation resources">
+            <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/chapter_pdfs/README.md">Chapter</a>
+            <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/notes/11_Feature_learning/11_10_Kfolds.ipynb">Notebook</a>
+            <a href="https://colab.research.google.com/github/neonwatty/machine-learning-refined/blob/main/notes/11_Feature_learning/11_10_Kfolds.ipynb">Colab</a>
+          </nav>
+        </article>
+
+        <article class="widget-card">
+          <img src="./assets/widgets/regression-tree.gif" alt="Regression tree widget animation">
+          <div>
+            <p class="topic">Trees</p>
+            <h3>Regression Trees</h3>
+            <p>Piecewise predictions and split diagrams for interpretable learners.</p>
+          </div>
+          <nav aria-label="Regression Trees resources">
+            <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/chapter_pdfs/README.md">Chapter</a>
+            <a href="https://github.com/neonwatty/machine-learning-refined/tree/main/notes">Notebook</a>
+            <a href="https://github.com/neonwatty/machine-learning-refined/tree/main/notes">Colab</a>
+          </nav>
+        </article>
+
+        <article class="widget-card">
+          <img src="./assets/widgets/taylor-series.gif" alt="Taylor series widget animation">
+          <div>
+            <p class="topic">Series</p>
+            <h3>Taylor Series</h3>
+            <p>Local polynomial approximations that support optimization geometry.</p>
+          </div>
+          <nav aria-label="Taylor Series resources">
+            <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/chapter_pdfs/README.md">Chapter</a>
+            <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/notes/3_First_order_methods/3_3_Geometry.ipynb">Notebook</a>
+            <a href="https://colab.research.google.com/github/neonwatty/machine-learning-refined/blob/main/notes/3_First_order_methods/3_3_Geometry.ipynb">Colab</a>
+          </nav>
+        </article>
       </section>
     </main>
   </body>

@@ -1,32 +1,28 @@
-# Image To Reference Report
+# Agent Comparison Report
 
-Target: `mlr-homepage-visual-lab`
+Profile: `ideal-to-mockup`
+Comparison mode: `image-mockup`
 
-## Artifacts
+## Status
 
-- Ideal image: `targets/mlr-homepage-visual-lab/source/ig_0df464ee8e4366cc016a37e95159208198bfe02a469e9a919d.png`
-- Reference screenshot: `.limner/runs/2026-06-21T140032642Z-apdxm9/captures/reference.png`
-- Side-by-side: `.limner/runs/2026-06-21T140032642Z-apdxm9/captures/side-by-side.png`
-
-
-- Agent comparison prompt: `.limner/runs/2026-06-21T140032642Z-apdxm9/agent-comparison/agent-prompt.md`
-- Codex comparison prompt: `.limner/runs/2026-06-21T140032642Z-apdxm9/agent-comparison/agent-prompt.codex.md`
-- Claude comparison prompt: `.limner/runs/2026-06-21T140032642Z-apdxm9/agent-comparison/agent-prompt.claude.md`
-- Agent comparison schema: `.limner/runs/2026-06-21T140032642Z-apdxm9/agent-comparison/agent-response.schema.json`
-- Minimal response template: `.limner/runs/2026-06-21T140032642Z-apdxm9/agent-comparison/agent-response.minimal.json`
-- Agent comparison response store: local SQLite ledger
+- Status: validated.
+- Freshness: fresh.
+- Image score: 0.58
+- Top fix: Replace the screenshot-backed scaffold with editable homepage DOM modules.
 
 ## Scaffold State
 
 - customized scaffold; 3/6 files match templates
 
+## Inputs
 
+- Expected image: `targets/mlr-homepage-visual-lab/source/ig_0df464ee8e4366cc016a37e95159208198bfe02a469e9a919d.png`
+- Actual image: `.limner/runs/2026-06-21T140032642Z-apdxm9/captures/reference.png`
 
 ## Capture Readiness
 
 - Expected: not captured.
 - Actual: not_applicable; final URL: `http://127.0.0.1:59095/`; requested: none
-
 
 ## Visible Text Inventory
 
@@ -38,31 +34,14 @@ Target: `mlr-homepage-visual-lab`
   - "Visual Learning Lab hero, resource rail, and proof band" <p> @ 285,75 1120x22
   - "Selected generated reference image" <section> @ 18,124 1404x791
 
-
 ## Region Evidence
 
 - Expected: no region evidence detected.
 - Actual: 1 region hint(s) shown.
   - header (selector, medium) @ 18,18 1404x92 text="MACHINE LEARNING REFINED Machine Learning Refined Homepage Visual Learning Lab hero, resource rail, and proof band"
 
+## Artifacts
 
-## Agent Critique
-
-- Hierarchy:
-- Density:
-- Typography:
-- Color and tokens:
-- Component anatomy:
-- Intentional deviations:
-
-## Next Fix
-
-- Record the highest-value scoped fix here.
-
-
-
-
-## Agent Comparison
-
-- Status: awaiting agent response.
-- Next step: have an agent inspect the comparison prompt, then submit JSON with `limner loop response submit`.
+- Image comparison: `.limner/runs/2026-06-21T140032642Z-apdxm9/captures/image-comparison.json`
+- Comparison summary: `.limner/runs/2026-06-21T140032642Z-apdxm9/captures/comparison-summary.json`
+- Agent comparison response store: local SQLite ledger

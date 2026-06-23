@@ -7,14 +7,209 @@
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
-    <main data-limner-region="reference-root" class="reference-shell page-mlr-homepage-visual-lab">
-      <header data-limner-region="reference-context" class="reference-context">
-        <p class="eyebrow">Machine Learning Refined</p>
-        <h1>Machine Learning Refined Homepage</h1>
-        <p>Visual Learning Lab hero, resource rail, and proof band</p>
+    <main data-limner-region="reference-root" class="homepage">
+      <header data-limner-region="navigation" class="site-header">
+        <a class="brand" href="#" aria-label="Machine Learning Refined home">
+          <span class="brand-mark" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+          </span>
+          <span>
+            <strong>Machine Learning Refined</strong>
+            <em>Foundations, Algorithms, and Applications</em>
+          </span>
+        </a>
+        <nav class="top-nav" aria-label="Primary">
+          <a href="#">Visual Gallery</a>
+          <a href="#">Chapters &amp; Resources</a>
+          <a href="#">For Instructors</a>
+          <a href="#">Reviews &amp; Adoption</a>
+          <a href="#">About</a>
+        </nav>
+        <a class="github-link" href="https://github.com/neonwatty/machine-learning-refined">GitHub</a>
+        <a class="book-link" href="https://www.cambridge.org/us/academic/subjects/engineering/communications-and-signal-processing/machine-learning-refined-foundations-algorithms-and-applications-2nd-edition?format=HB">Get the book</a>
       </header>
-      <section data-limner-region="source-reference" class="source-frame" aria-label="Selected generated reference image">
-        <img src="./source-reference.png" alt="Machine Learning Refined Homepage selected generated reference">
+
+      <section data-limner-region="hero" class="hero">
+        <div data-limner-region="hero-copy" class="hero-copy">
+          <p class="kicker">Visual Learning Lab</p>
+          <h1>Machine Learning Refined</h1>
+          <p class="hero-rule" aria-hidden="true"></p>
+          <p class="lede">
+            Intuition, visualization, derivation, and Python implementation for every major concept.
+          </p>
+          <div class="cta-stack" aria-label="Primary actions">
+            <a class="button button-primary" href="https://github.com/neonwatty/machine-learning-refined/tree/main/chapter_pdfs">
+              <span aria-hidden="true">PDF</span>
+              Download chapter PDFs
+            </a>
+            <a class="button" href="#visual-notes">
+              <span aria-hidden="true">VIS</span>
+              Explore visual notes
+            </a>
+            <a class="button" href="https://github.com/neonwatty/machine-learning-refined">
+              <span aria-hidden="true">GH</span>
+              View GitHub repo
+            </a>
+          </div>
+        </div>
+
+        <figure data-limner-region="book-cover" class="book-card">
+          <img src="./assets/book/book-cover-2nd.png" alt="Machine Learning Refined second edition book cover">
+        </figure>
+
+        <div data-limner-region="learning-lab" id="visual-notes" class="lab-surface" aria-label="Visual learning lab panels">
+          <div class="lab-tabs" role="list" aria-label="Learning modes">
+            <span class="active" role="listitem">Intuition</span>
+            <span role="listitem">Visualization</span>
+            <span role="listitem">Derivation</span>
+            <span role="listitem">Python</span>
+          </div>
+
+          <div class="lab-main">
+            <article class="panel panel-plot">
+              <div class="panel-head">
+                <strong>Gradient Descent</strong>
+                <span>Chapter 3</span>
+              </div>
+              <img src="./assets/widgets/normalized-gradient-descent.gif" alt="Animated normalized gradient descent visualization">
+            </article>
+            <article class="panel panel-plot">
+              <div class="panel-head">
+                <strong>Logistic Regression</strong>
+                <span>Chapter 6</span>
+              </div>
+              <img src="./assets/widgets/logistic-regression.gif" alt="Animated logistic regression decision boundary visualization">
+            </article>
+            <article class="panel panel-code">
+              <div class="panel-head">
+                <strong>Python</strong>
+                <span>scikit-learn</span>
+              </div>
+              <pre><code>from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+X_train, X_test, y_train, y_test = train_test_split(X, y)
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
+accuracy_score(y_test, model.predict(X_test))</code></pre>
+              <p class="code-output">Accuracy: 0.921</p>
+            </article>
+          </div>
+
+          <div class="lab-grid">
+            <article class="mini-panel">
+              <strong>Neural Network</strong>
+              <span>Function Approximation</span>
+              <img src="./assets/widgets/function-approx-nn.gif" alt="Animated neural network function approximation visualization">
+            </article>
+            <article class="mini-panel">
+              <strong>Regression Tree</strong>
+              <span>Feature rules</span>
+              <img src="./assets/widgets/regression-tree.gif" alt="Animated regression tree visualization">
+            </article>
+            <article class="mini-panel">
+              <strong>K-Means Clustering</strong>
+              <span>Unsupervised learning</span>
+              <img src="./assets/widgets/kmeans.gif" alt="Animated k-means clustering visualization">
+            </article>
+            <article class="mini-panel">
+              <strong>Taylor Series</strong>
+              <span>Optimization geometry</span>
+              <img src="./assets/widgets/taylor-series.gif" alt="Animated Taylor series approximation visualization">
+            </article>
+            <article class="mini-panel">
+              <strong>Feature Normalization</strong>
+              <span>Before and after</span>
+              <img src="./assets/widgets/feature-normalization.gif" alt="Animated feature normalization visualization">
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section data-limner-region="resource-rail" class="resource-rail" aria-label="Book resources">
+        <a href="https://github.com/neonwatty/machine-learning-refined/tree/main/chapter_pdfs">
+          <span>PDF</span>
+          <strong>PDF</strong>
+          <em>Chapter PDFs</em>
+        </a>
+        <a href="https://github.com/neonwatty/machine-learning-refined/tree/main/notes">
+          <span>NB</span>
+          <strong>Notebook</strong>
+          <em>Jupyter &amp; Colab</em>
+        </a>
+        <a href="https://github.com/neonwatty/machine-learning-refined/tree/main/exercises">
+          <span>EX</span>
+          <strong>Exercise</strong>
+          <em>Practice problems</em>
+        </a>
+        <a href="https://github.com/neonwatty/machine-learning-refined/tree/main/presentations">
+          <span>SL</span>
+          <strong>Slides</strong>
+          <em>Teaching ready</em>
+        </a>
+        <a href="https://github.com/neonwatty/machine-learning-refined">
+          <span>CO</span>
+          <strong>Colab</strong>
+          <em>Run in the cloud</em>
+        </a>
+        <a href="https://github.com/neonwatty/machine-learning-refined">
+          <span>GH</span>
+          <strong>GitHub</strong>
+          <em>Open resources</em>
+        </a>
+        <a href="#proof">
+          <span>IR</span>
+          <strong>Instructor Resources</strong>
+          <em>Adopt the book</em>
+        </a>
+      </section>
+
+      <section data-limner-region="proof-band" id="proof" class="proof-band">
+        <div class="proof-copy">
+          <p>Used as a reference text at</p>
+          <strong>100+ universities and colleges</strong>
+        </div>
+        <div class="logo-strip" aria-label="University proof logos">
+          <img src="./assets/logos/university-of-michigan.png" alt="University of Michigan logo">
+          <img src="./assets/logos/university-of-toronto.png" alt="University of Toronto logo">
+          <img src="./assets/logos/texas-am.png" alt="Texas A&amp;M University logo">
+          <img src="./assets/logos/penn-state.png" alt="Penn State logo">
+          <img src="./assets/logos/nyu.png" alt="New York University logo">
+          <img src="./assets/logos/kindai.png" alt="Kindai University logo">
+          <img src="./assets/logos/purdue.png" alt="Purdue University logo">
+          <img src="./assets/logos/georgia-tech.png" alt="Georgia Tech logo">
+          <img src="./assets/logos/asu.png" alt="Arizona State University logo">
+        </div>
+      </section>
+
+      <section data-limner-region="testimonials" class="testimonials" aria-label="Accolades">
+        <article>
+          <img src="./assets/people/david-duvenaud.jpg" alt="David Duvenaud">
+          <p>Praises the steady build-up of tools, examples, runnable code, and detail.</p>
+          <strong>David Duvenaud</strong>
+          <span>Associate Professor, University of Toronto</span>
+        </article>
+        <article>
+          <img src="./assets/people/john-proakis.jpeg" alt="John G. Proakis">
+          <p>Highlights the book's path from basic principles to practical implementation.</p>
+          <strong>John G. Proakis</strong>
+          <span>Professor Emeritus, Northeastern University</span>
+        </article>
+        <article>
+          <img src="./assets/people/kimiaki-shirahama.png" alt="Kimiaki Shirahama">
+          <p>Emphasizes the unified optimization viewpoint and visual explanations.</p>
+          <strong>Kimiaki Shirahama</strong>
+          <span>Professor, Doshisha University</span>
+        </article>
+        <article>
+          <img src="./assets/people/osvaldo-simeone.jpeg" alt="Osvaldo Simeone">
+          <p>Points to the first-principles presentation, geometric intuition, and Python exercises.</p>
+          <strong>Osvaldo Simeone</strong>
+          <span>Professor, King's College London</span>
+        </article>
       </section>
     </main>
   </body>

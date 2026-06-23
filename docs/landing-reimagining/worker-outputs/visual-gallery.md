@@ -80,3 +80,79 @@ Mobile behavior notes: Lead with the title, search, and featured workbench; stac
 ## Recommendation
 
 Recommended candidate: /Users/neonwatty/.codex/generated_images/019eea5c-2cdc-7363-ba17-5361cd3dd6d5/ig_09deac95aeabce3a016a37e9913230819b9a148e19b149a1d2.png
+
+## Limner Implementation Update
+
+- Trajectory: `traj_8a3e81be4482dbc4`
+- Action: `act_9294eafe434346af`
+- Follow-up action: `act_0c0a1c88b4b6490d`
+- Final Limner run: `.limner/runs/2026-06-21T164031152Z-lvt8n8`
+- Final comparison report: `.limner/runs/2026-06-21T164031152Z-lvt8n8/reports/comparison.md`
+- Final side-by-side: `.limner/runs/2026-06-21T164031152Z-lvt8n8/captures/side-by-side.png`
+- Scope completed: replaced the image-backed reference shell with editable HTML/CSS for the Visual Gallery page family, including global header, hero, featured optimization workbench, learning path, topic filters, and eight widget cards.
+- Existing assets used: `public/book-cover-2nd.png`, `public/learning-visuals/widgets/normalized-gradient-descent.gif`, `public/learning-visuals/widgets/logistic-regression.gif`, `public/learning-visuals/widgets/kmeans.gif`, `public/learning-visuals/widgets/feature-normalization.gif`, `public/learning-visuals/widgets/function-approx-nn.gif`, `public/learning-visuals/widgets/cross-validation-regression.gif`, `public/learning-visuals/widgets/regression-tree.gif`, and `public/learning-visuals/widgets/taylor-series.gif`.
+- Remaining gaps: static mockup only; filters/search do not execute; some resource links use canonical repository folders until a complete per-widget resource index is available.
+
+## Manager Follow-up Polish
+
+Date: 2026-06-21
+
+Reason: Manager review of the final side-by-side found one actionable fidelity issue: the featured workbench was too vertically sparse and pushed the widget gallery too low in the first viewport.
+
+Response and action evidence:
+
+- Fresh Limner response: `resp_e311c8bc53304aa8`
+- Action: `act_addb7d8ba8864599`
+- Edited file: `targets/mlr-visual-gallery/reference/styles.css`
+
+Updated final Limner run: `.limner/runs/2026-06-21T213233501Z-uh9edw`
+
+Updated comparison report: `.limner/runs/2026-06-21T213233501Z-uh9edw/reports/comparison.md`
+
+Updated side-by-side: `.limner/runs/2026-06-21T213233501Z-uh9edw/captures/side-by-side.png`
+
+Polish summary: Compressed the header/hero/workbench spacing, reduced the featured panel height, constrained the feature visual, and pulled the gallery controls/cards into the first viewport while keeping the same verified local widget assets.
+
+Post-polish evidence:
+
+- `limner loop compare --trajectory traj_8a3e81be4482dbc4`: succeeded.
+- `.limner/runs/2026-06-21T213233501Z-uh9edw/captures/reference.png.console.json`: `[]`.
+- `sips -g pixelWidth -g pixelHeight .limner/runs/2026-06-21T213233501Z-uh9edw/captures/reference.png`: `1440 x 900`.
+
+Remaining gaps after manager polish: static mockup only; filters/search do not execute; some resource links use canonical repository folders until a complete per-widget resource index is available; the real GIF crop differs from the generated still but is asset-grounded.
+
+## Source Repository HTML Polish
+
+Date: 2026-06-21
+
+Reason: Manager follow-up confirmed the editable gallery should make its source grounding more explicit before production implementation.
+
+Action evidence:
+
+- Source-repo response: `resp_c441b9c15045463d`
+- Action: `act_ec3e15d9c4144601`
+- Edited files: `targets/mlr-visual-gallery/reference/index.html`, `targets/mlr-visual-gallery/reference/styles.css`
+- Final Limner run: `.limner/runs/2026-06-21T215759397Z-f15zym`
+- Final comparison report: `.limner/runs/2026-06-21T215759397Z-f15zym/reports/comparison.md`
+- Final side-by-side: `.limner/runs/2026-06-21T215759397Z-f15zym/captures/side-by-side.png`
+
+Source assets and anchors used:
+
+- Existing target-local copies of `public/book-cover-2nd.png` and the eight local widget GIFs.
+- `notes/3_First_order_methods/A_3_Normalized.ipynb`
+- `notes/6_Linear_twoclass_classification/6_2_Cross_entropy.ipynb`
+- `notes/8_Linear_unsupervised_learning/8_5_Kmeans.ipynb`
+- `notes/9_Feature_engineer_select/9_3_Scaling.ipynb`
+- `notes/11_Feature_learning/11_10_Kfolds.ipynb`
+- `notes/13_Multilayer_perceptrons/13_2_Multi_layer_perceptrons.ipynb`
+- `chapter_pdfs/README.md`
+
+Polish summary: Added a compact source-backed preview strip and replaced generic folder links on key cards with exact GitHub notebook paths plus Colab-formatted notebook URLs.
+
+Post-polish evidence:
+
+- `limner loop compare --trajectory traj_8a3e81be4482dbc4 --format json`: succeeded.
+- `.limner/runs/2026-06-21T215759397Z-f15zym/captures/reference.png.console.json`: `[]`.
+- `sips -g pixelWidth -g pixelHeight .limner/runs/2026-06-21T215759397Z-f15zym/captures/reference.png`: `1440 x 900`.
+
+Remaining gaps after source polish: static mockup only; filters/search still do not execute; regression-tree source notebook remains a folder-level repository link until an exact canonical notebook is selected.

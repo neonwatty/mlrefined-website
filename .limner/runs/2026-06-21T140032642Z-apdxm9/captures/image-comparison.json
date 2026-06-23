@@ -1,0 +1,127 @@
+{
+  "summary": "The actual mockup is still a framed screenshot of the expected homepage plus an extra context header, so it preserves the visual reference but does not yet provide editable page structure.",
+  "score": {
+    "overall": 0.58,
+    "layout": 0.55,
+    "hierarchy": 0.52,
+    "typography": 0.45,
+    "color": 0.72,
+    "spacing": 0.55,
+    "structure": 0.18,
+    "semantics": 0.22
+  },
+  "confidence": 0.86,
+  "majorDiffAreas": [
+    {
+      "id": "screenshot-backed-reference",
+      "title": "Visible page is still a screenshot-backed reference",
+      "category": "structure",
+      "severity": "high",
+      "priority": 1,
+      "expected": "An editable homepage mockup with DOM sections for navigation, hero, book identity, learning-lab panels, resource rail, and proof band.",
+      "actual": "The mockup contains a context header and a single source-reference section with the selected generated image embedded as an img.",
+      "impact": "The target cannot be tuned as real HTML/CSS until the screenshot is replaced by editable modules using verified assets and real content.",
+      "evidence": [
+        {
+          "source": "targets/mlr-homepage-visual-lab/reference/index.html",
+          "observation": "The visible reference body is a header plus section[data-limner-region='source-reference'] containing img src='./source-reference.png'."
+        },
+        {
+          "source": ".limner/runs/2026-06-21T140032642Z-apdxm9/captures/side-by-side.png",
+          "observation": "The actual screenshot shows the ideal page inset below a separate target context header rather than rebuilt as the whole browser viewport."
+        }
+      ],
+      "fixTarget": {
+        "surface": "mockup",
+        "region": "reference-root",
+        "likelyFiles": [
+          "targets/mlr-homepage-visual-lab/reference/index.html",
+          "targets/mlr-homepage-visual-lab/reference/styles.css",
+          "targets/mlr-homepage-visual-lab/contract/regions.json",
+          "targets/mlr-homepage-visual-lab/contract/tokens.json",
+          "targets/mlr-homepage-visual-lab/contract/acceptance.md"
+        ],
+        "selectors": [
+          "[data-limner-region='reference-root']",
+          "[data-limner-region='source-reference']",
+          ".reference-context",
+          ".source-frame"
+        ]
+      },
+      "recommendedChange": "Replace the context-header and source-frame scaffold with real editable DOM for the homepage: top nav, hero title/CTAs, book cover asset, learning visualization panels, resource rail, university proof strip, and accolade cards."
+    },
+    {
+      "id": "source-image-scale-and-chrome",
+      "title": "Extra wrapper chrome changes the first-viewport proportions",
+      "category": "layout",
+      "severity": "medium",
+      "priority": 2,
+      "expected": "The homepage design fills the viewport with the nav, hero, resource rail, and proof band directly in the page flow.",
+      "actual": "The page adds an outer scaffold header, border, padding, and screenshot frame, shrinking the homepage concept and delaying the proof band visually.",
+      "impact": "Even before editability, the screenshot is not occupying the same composition or attention flow as the canonical reference.",
+      "evidence": [
+        {
+          "source": ".limner/runs/2026-06-21T140032642Z-apdxm9/reports/comparison.md",
+          "observation": "Visible text inventory includes only the scaffold header text and 'Selected generated reference image', not the actual homepage content as editable text."
+        }
+      ],
+      "fixTarget": {
+        "surface": "mockup",
+        "region": "reference-root",
+        "likelyFiles": [
+          "targets/mlr-homepage-visual-lab/reference/index.html",
+          "targets/mlr-homepage-visual-lab/reference/styles.css"
+        ],
+        "selectors": [
+          ".reference-shell",
+          ".reference-context",
+          ".source-frame"
+        ]
+      },
+      "recommendedChange": "Remove the scaffold header and make the editable homepage itself the root viewport, using the generated image only as off-page guidance."
+    }
+  ],
+  "matches": [
+    "The selected source image is present and scaled clearly enough for visual reference.",
+    "The mockup already uses the intended warm paper, navy, gold, and academic blue palette direction."
+  ],
+  "remarks": {
+    "matches": [
+      "The visual reference is correctly associated with the homepage target.",
+      "The first pass avoided inventing production assets beyond the generated reference."
+    ],
+    "uncertainties": [
+      "Small quote text and exact source-site wording should be constrained to verified local or current-site assets in later implementation."
+    ],
+    "possibleIntentionalDeviations": [
+      "The screenshot-backed shell appears intentional as a first-pass reference scaffold, but it should now be replaced by editable DOM."
+    ]
+  },
+  "systemFeedback": {
+    "inputQuality": [
+      "The comparison artifacts are sufficient to identify the scaffold-vs-editable-page gap."
+    ],
+    "missingContext": [],
+    "suggestedLimnerImprovements": []
+  },
+  "nextIteration": {
+    "focus": "Convert the screenshot-backed homepage reference into editable HTML/CSS modules using verified local assets and real resource/proof content.",
+    "steps": [
+      "Replace the scaffold header and source image section with an editable nav, hero, visual lab, resource rail, and proof band.",
+      "Use public/book-cover-2nd.png, local widget GIFs, local university logos, and proof portraits instead of generated marks.",
+      "Update target regions and tokens so Limner can inspect the new DOM sections."
+    ],
+    "avoidForNow": [
+      "Do not generate new imagery.",
+      "Do not use the generated reference image as a production page asset.",
+      "Do not invent fake university logos or endorsements."
+    ],
+    "expectedImprovement": "The next capture should expose real homepage text and component geometry, enabling meaningful pixel and structure comparison against the ideal image."
+  },
+  "rationale": "The current actual screenshot contains the source image, but the editable surface is almost empty. The highest-value fix is to build the real HTML/CSS composition so subsequent Limner loops can tune layout, typography, and component fidelity.",
+  "kind": "image-vs-image",
+  "inputs": {
+    "expectedImagePath": "targets/mlr-homepage-visual-lab/source/ig_0df464ee8e4366cc016a37e95159208198bfe02a469e9a919d.png",
+    "actualImagePath": ".limner/runs/2026-06-21T140032642Z-apdxm9/captures/reference.png"
+  }
+}

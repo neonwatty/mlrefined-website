@@ -74,3 +74,17 @@ Mobile behavior notes:
 - Failure mode checked: app code edited accidentally. Evidence before writing this receipt: `git status --short` showed no modified files in the worktree.
 
 Recommended candidate: /Users/neonwatty/.codex/generated_images/019eea5c-6d1e-7400-9ebd-de69077c3cb3/ig_09f8ccafb0b45a8e016a37e91005d08199ab5661081e3331f1.png
+
+## Limner Editable Reference Pass
+
+- Target: `mlr-reviews-adoption`
+- Trajectory: `traj_104d71d1e4351794`
+- Starting corrected run: `.limner/runs/2026-06-21T140037912Z-zl9ojc`
+- Final run: `.limner/runs/2026-06-21T163927698Z-v2h3tm`
+- Final comparison report: `.limner/runs/2026-06-21T163927698Z-v2h3tm/reports/comparison.md`
+- Final side-by-side: `.limner/runs/2026-06-21T163927698Z-v2h3tm/captures/side-by-side.png`
+- Local responsive screenshots: `targets/mlr-reviews-adoption/reference/screenshots/desktop.png` and `targets/mlr-reviews-adoption/reference/screenshots/mobile.png`
+- Action: replaced the image-backed scaffold with editable HTML/CSS modules for masthead, adoption context, hero proof claim, verified university logo library, professor endorsements, reader-review source modules, paper margins, and responsive stacking.
+- Verified assets used: `public/book-cover-2nd.png`, all nine files in `public/social-proof/logos/`, and all four files in `public/social-proof/people/`; copies were placed under `targets/mlr-reviews-adoption/reference/assets/` only so Limner can serve them in the static reference.
+- Source-backed content used: `src/content/book-facts.ts`, `src/content/book-social-proof.ts`, `src/content/book-resources.ts`, and the current-site proof source `https://www.mlrefined.com/`.
+- Remaining gaps: the generated reference shows a larger logo library than the verified local logo set, the reader-review text remains conservative source-channel copy rather than exact long review excerpts, and the next Limner pass should polish spacing, right-side tabs, and background equation details.

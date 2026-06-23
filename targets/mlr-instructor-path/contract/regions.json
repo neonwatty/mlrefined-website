@@ -6,6 +6,42 @@
       "referenceSelector": "[data-limner-region='reference-root']",
       "appSelector": "body",
       "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "global-nav",
+      "label": "Global Navigation",
+      "referenceSelector": "[data-limner-region='global-nav']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "hero",
+      "label": "Instructor Hero",
+      "referenceSelector": "[data-limner-region='hero']",
+      "checks": ["bounds", "visible", "computed-style", "text", "image"]
+    },
+    {
+      "id": "verified-instructor",
+      "label": "Verified Instructor CTA",
+      "referenceSelector": "[data-limner-region='verified-instructor']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "proof-strip",
+      "label": "Adoption Proof Strip",
+      "referenceSelector": "[data-limner-region='proof-strip']",
+      "checks": ["bounds", "visible", "computed-style", "text", "image"]
+    },
+    {
+      "id": "course-workbench",
+      "label": "Course Planning Workbench",
+      "referenceSelector": "[data-limner-region='course-workbench']",
+      "checks": ["bounds", "visible", "computed-style", "text", "image"]
+    },
+    {
+      "id": "teaching-resources",
+      "label": "Teaching Resources And Adoption Support",
+      "referenceSelector": "[data-limner-region='teaching-resources']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
     }
   ]
 }

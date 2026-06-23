@@ -1,32 +1,28 @@
-# Image To Reference Report
+# Agent Comparison Report
 
-Target: `mlr-reviews-adoption`
+Profile: `ideal-to-mockup`
+Comparison mode: `image-mockup`
 
-## Artifacts
+## Status
 
-- Ideal image: `targets/mlr-reviews-adoption/source/ig_09f8ccafb0b45a8e016a37e91005d08199ab5661081e3331f1.png`
-- Reference screenshot: `.limner/runs/2026-06-21T140037912Z-zl9ojc/captures/reference.png`
-- Side-by-side: `.limner/runs/2026-06-21T140037912Z-zl9ojc/captures/side-by-side.png`
-
-
-- Agent comparison prompt: `.limner/runs/2026-06-21T140037912Z-zl9ojc/agent-comparison/agent-prompt.md`
-- Codex comparison prompt: `.limner/runs/2026-06-21T140037912Z-zl9ojc/agent-comparison/agent-prompt.codex.md`
-- Claude comparison prompt: `.limner/runs/2026-06-21T140037912Z-zl9ojc/agent-comparison/agent-prompt.claude.md`
-- Agent comparison schema: `.limner/runs/2026-06-21T140037912Z-zl9ojc/agent-comparison/agent-response.schema.json`
-- Minimal response template: `.limner/runs/2026-06-21T140037912Z-zl9ojc/agent-comparison/agent-response.minimal.json`
-- Agent comparison response store: local SQLite ledger
+- Status: validated.
+- Freshness: fresh.
+- Image score: 0.55
+- Top fix: Replace the image-backed reference with editable DOM modules that preserve the selected Reviews and Adoption composition using verified book/proof assets.
 
 ## Scaffold State
 
 - customized scaffold; 3/6 files match templates
 
+## Inputs
 
+- Expected image: `targets/mlr-reviews-adoption/source/ig_09f8ccafb0b45a8e016a37e91005d08199ab5661081e3331f1.png`
+- Actual image: `.limner/runs/2026-06-21T140037912Z-zl9ojc/captures/reference.png`
 
 ## Capture Readiness
 
 - Expected: not captured.
 - Actual: not_applicable; final URL: `http://127.0.0.1:59114/`; requested: none
-
 
 ## Visible Text Inventory
 
@@ -38,31 +34,14 @@ Target: `mlr-reviews-adoption`
   - "Adoption context, institution proof library, professor endorsements, and reader reviews" <p> @ 285,75 1120x22
   - "Selected generated reference image" <section> @ 18,124 1404x791
 
-
 ## Region Evidence
 
 - Expected: no region evidence detected.
 - Actual: 1 region hint(s) shown.
   - header (selector, medium) @ 18,18 1404x92 text="MACHINE LEARNING REFINED Reviews & Adoption Adoption context, institution proof library, professor endorsements, and..."
 
+## Artifacts
 
-## Agent Critique
-
-- Hierarchy:
-- Density:
-- Typography:
-- Color and tokens:
-- Component anatomy:
-- Intentional deviations:
-
-## Next Fix
-
-- Record the highest-value scoped fix here.
-
-
-
-
-## Agent Comparison
-
-- Status: awaiting agent response.
-- Next step: have an agent inspect the comparison prompt, then submit JSON with `limner loop response submit`.
+- Image comparison: `.limner/runs/2026-06-21T140037912Z-zl9ojc/captures/image-comparison.json`
+- Comparison summary: `.limner/runs/2026-06-21T140037912Z-zl9ojc/captures/comparison-summary.json`
+- Agent comparison response store: local SQLite ledger

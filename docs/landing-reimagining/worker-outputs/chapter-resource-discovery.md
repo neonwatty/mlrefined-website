@@ -93,3 +93,109 @@ Rationale: Candidate 1 is the better canonical implementation reference because 
 - Verified canonical repository reachability with `git ls-remote https://github.com/neonwatty/machine-learning-refined.git HEAD`, returning HEAD `7edb5a0572f87d300520ac36cb688310b8d2876a`.
 - Cloned the canonical resource repository to `/tmp/mlr-resource-repo` for direct inspection of chapter PDF, presentation, exercise, and notebook structure.
 - Did not edit app code.
+
+## Editable Reference Implementation Pass
+
+Date: 2026-06-21.
+
+Trajectory: `traj_28d6039a71a6b223`.
+
+Final Limner run: `.limner/runs/2026-06-21T163852979Z-xjmts0`.
+
+Comparison report: `.limner/runs/2026-06-21T163852979Z-xjmts0/reports/comparison.md`.
+
+Side-by-side screenshot: `.limner/runs/2026-06-21T163852979Z-xjmts0/captures/side-by-side.png`.
+
+Reference screenshot: `.limner/runs/2026-06-21T163852979Z-xjmts0/captures/reference.png`.
+
+Implementation summary:
+
+- Replaced the generated-image-backed shell in `targets/mlr-resource-discovery/reference/index.html` with editable HTML modules for top navigation, book/filter rail, grouped chapter/resource table, repository connection panel, resource-type summary, and widget preview rail.
+- Rebuilt `targets/mlr-resource-discovery/reference/styles.css` for the editable mockup, including desktop table density and stacked mobile behavior.
+- Expanded `targets/mlr-resource-discovery/contract/regions.json`, `tokens.json`, and `acceptance.md` so future Limner passes can inspect the real module regions.
+- Submitted a schema-valid response for run `.limner/runs/2026-06-21T140035340Z-a117ge` at `targets/mlr-resource-discovery/limner-response-2026-06-21T140035340Z-a117ge.json`.
+
+Assets used:
+
+- `public/book-cover-2nd.png`, copied to `targets/mlr-resource-discovery/reference/assets/book-cover-2nd.png`.
+- `public/learning-visuals/widgets/normalized-gradient-descent.gif`, copied to `targets/mlr-resource-discovery/reference/assets/normalized-gradient-descent.gif`.
+- `public/learning-visuals/widgets/logistic-regression.gif`, copied to `targets/mlr-resource-discovery/reference/assets/logistic-regression.gif`.
+- `public/learning-visuals/widgets/kmeans.gif`, copied to `targets/mlr-resource-discovery/reference/assets/kmeans.gif`.
+- `public/learning-visuals/widgets/feature-normalization.gif`, copied to `targets/mlr-resource-discovery/reference/assets/feature-normalization.gif`.
+- `public/learning-visuals/widgets/cross-validation-regression.gif`, copied to `targets/mlr-resource-discovery/reference/assets/cross-validation-regression.gif`.
+
+Resource data used:
+
+- `/tmp/mlr-resource-repo/chapter_pdfs/README.md`: chapter and appendix PDF listings.
+- `/tmp/mlr-resource-repo/presentations/README.md`: presentations for Chapters 2-14.
+- `/tmp/mlr-resource-repo/exercises`: exercise notebooks for Chapters 2-14.
+- `/tmp/mlr-resource-repo/notes`: notebook topic folders where available.
+- `https://github.com/neonwatty/machine-learning-refined`: canonical repository link.
+
+Evidence and checks:
+
+- `limner loop response submit --trajectory traj_28d6039a71a6b223 --from-run 2026-06-21T140035340Z-a117ge --file targets/mlr-resource-discovery/limner-response-2026-06-21T140035340Z-a117ge.json --format json`: passed with `status: validated`, `freshness: fresh`.
+- `limner loop task --trajectory traj_28d6039a71a6b223 --executor subagent --format json`: returned top fix to replace the generated-image frame with editable HTML/CSS modules.
+- `limner loop action start` / `complete` actions recorded: `act_060748fd7ecf470f`, `act_5f75d53251c34b3a`, and `act_b79c4ca66dab4bcd`.
+- `limner loop compare --trajectory traj_28d6039a71a6b223 --format json`: final run `.limner/runs/2026-06-21T163852979Z-xjmts0`; capture succeeded, fresh agent comparison awaiting response.
+- `.limner/runs/2026-06-21T163852979Z-xjmts0/captures/reference.png.console.json`: `[]`, no capture console errors.
+- Temporary Playwright verifier at `/tmp/mlr-resource-pw/check.spec.js`: `npx playwright test --config=/tmp/mlr-resource-pw/playwright.config.js --reporter=line`, 2 passed. Covered desktop 1440x900 and mobile 390x844, page title, visible primary heading, GitHub link, all images loaded, no horizontal overflow, search input fill, and Instructor link hash navigation.
+- Playwright screenshots: `/tmp/mlr-resource-discovery-desktop.png` and `/tmp/mlr-resource-discovery-mobile.png`.
+- `rg -n "source-reference|generated_images|ig_0553e087|source/ig_|source-reference\\.png" targets/mlr-resource-discovery/reference targets/mlr-resource-discovery/contract || true`: no matches, so the editable reference and contract no longer depend on the generated image.
+- `find targets/mlr-resource-discovery/reference/assets -maxdepth 1 -type f -print | sort | xargs -n1 file`: verified copied PNG/GIF assets and dimensions.
+- Canonical repo count check: `rg -c '^### (Chapter|Appendix)' /tmp/mlr-resource-repo/chapter_pdfs/README.md` returned 17; `rg -c '^### Chapter' /tmp/mlr-resource-repo/presentations/README.md` returned 13; `find /tmp/mlr-resource-repo/exercises -mindepth 2 -maxdepth 2 -name '*_exercises.ipynb' | wc -l` returned 13; `find /tmp/mlr-resource-repo/notes -mindepth 1 -maxdepth 1 -type d | wc -l` returned 12.
+- `npm run lint`: passed.
+- `npm run typecheck`: passed.
+- `npm run knip:production`: passed.
+- `npm run test:unit`: passed, 2 files and 4 tests.
+- `npm run build`: passed, Next.js 16.2.9 production build.
+- `npm run ci`: passed.
+
+Browser validation note:
+
+- The in-app Browser plugin path was attempted first and failed during setup with `codex/sandbox-state-meta: missing field sandboxPolicy`. Regular Playwright was used as fallback for rendered verification.
+
+Remaining fidelity gaps:
+
+- The editable mockup uses the verified local second-edition cover, which differs visually from the generated reference cover treatment.
+- The main heading and spacing are larger than the reference image; future polish can compress the top content to match the denser screenshot more closely.
+- The resource table is representative rather than exhaustive. It deliberately shows selected chapters and conservative availability states instead of all repository entries.
+- Notebook-to-Colab equivalence remains represented as topic-folder availability; exact live Colab launch links were not verified in this pass.
+
+## Source Repository HTML Polish
+
+Date: 2026-06-21
+
+Reason: Manager follow-up confirmed the resource discovery reference should expose exact source evidence instead of only category-level resource badges.
+
+Action evidence:
+
+- Source-repo response: `resp_5366e2be904e4992`
+- Action: `act_4e909dfd204f44ba`
+- Edited files: `targets/mlr-resource-discovery/reference/index.html`, `targets/mlr-resource-discovery/reference/styles.css`
+- Final Limner run: `.limner/runs/2026-06-21T215805120Z-wofisp`
+- Final comparison report: `.limner/runs/2026-06-21T215805120Z-wofisp/reports/comparison.md`
+- Final side-by-side: `.limner/runs/2026-06-21T215805120Z-wofisp/captures/side-by-side.png`
+
+Source assets and anchors used:
+
+- Existing target-local copies of `public/book-cover-2nd.png` and the five local widget GIFs.
+- `notes/3_First_order_methods/A_3_Normalized.ipynb`
+- `notes/3_First_order_methods/3_5_Descent.ipynb`
+- `notes/6_Linear_twoclass_classification/6_2_Cross_entropy.ipynb`
+- `notes/8_Linear_unsupervised_learning/8_5_Kmeans.ipynb`
+- `exercises/chapter_3/chapter_3_exercises.ipynb`
+- `exercises/chapter_6/chapter_6_exercises.ipynb`
+- `exercises/chapter_8/chapter_8_exercises.ipynb`
+- `chapter_pdfs/README.md`
+- `presentations/README.md`
+
+Polish summary: Updated the sidebar and summary counts to the verified source inventory, added a source evidence rail, and normalized old `tree/master` links to `main` or README-backed anchors.
+
+Post-polish evidence:
+
+- `limner loop compare --trajectory traj_28d6039a71a6b223 --format json`: succeeded.
+- `.limner/runs/2026-06-21T215805120Z-wofisp/captures/reference.png.console.json`: `[]`.
+- `sips -g pixelWidth -g pixelHeight .limner/runs/2026-06-21T215805120Z-wofisp/captures/reference.png`: `1440 x 900`.
+
+Remaining gaps after source polish: the table is still representative rather than exhaustive; not every chapter row has been converted to an exact notebook file; Colab URLs were formatted from source paths but not opened live.

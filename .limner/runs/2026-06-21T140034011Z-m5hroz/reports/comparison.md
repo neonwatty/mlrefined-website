@@ -1,32 +1,28 @@
-# Image To Reference Report
+# Agent Comparison Report
 
-Target: `mlr-visual-gallery`
+Profile: `ideal-to-mockup`
+Comparison mode: `image-mockup`
 
-## Artifacts
+## Status
 
-- Ideal image: `targets/mlr-visual-gallery/source/ig_09deac95aeabce3a016a37e9913230819b9a148e19b149a1d2.png`
-- Reference screenshot: `.limner/runs/2026-06-21T140034011Z-m5hroz/captures/reference.png`
-- Side-by-side: `.limner/runs/2026-06-21T140034011Z-m5hroz/captures/side-by-side.png`
-
-
-- Agent comparison prompt: `.limner/runs/2026-06-21T140034011Z-m5hroz/agent-comparison/agent-prompt.md`
-- Codex comparison prompt: `.limner/runs/2026-06-21T140034011Z-m5hroz/agent-comparison/agent-prompt.codex.md`
-- Claude comparison prompt: `.limner/runs/2026-06-21T140034011Z-m5hroz/agent-comparison/agent-prompt.claude.md`
-- Agent comparison schema: `.limner/runs/2026-06-21T140034011Z-m5hroz/agent-comparison/agent-response.schema.json`
-- Minimal response template: `.limner/runs/2026-06-21T140034011Z-m5hroz/agent-comparison/agent-response.minimal.json`
-- Agent comparison response store: local SQLite ledger
+- Status: validated.
+- Freshness: fresh.
+- Image score: 0.22
+- Top fix: Replace the image-backed reference with editable Visual Gallery DOM modules using verified local assets.
 
 ## Scaffold State
 
 - customized scaffold; 3/6 files match templates
 
+## Inputs
 
+- Expected image: `targets/mlr-visual-gallery/source/ig_09deac95aeabce3a016a37e9913230819b9a148e19b149a1d2.png`
+- Actual image: `.limner/runs/2026-06-21T140034011Z-m5hroz/captures/reference.png`
 
 ## Capture Readiness
 
 - Expected: not captured.
 - Actual: not_applicable; final URL: `http://127.0.0.1:59098/`; requested: none
-
 
 ## Visible Text Inventory
 
@@ -38,31 +34,14 @@ Target: `mlr-visual-gallery`
   - "Featured optimization workbench, learning path, filters, and widget cards" <p> @ 285,75 1120x22
   - "Selected generated reference image" <section> @ 18,124 1404x791
 
-
 ## Region Evidence
 
 - Expected: no region evidence detected.
 - Actual: 1 region hint(s) shown.
   - header (selector, medium) @ 18,18 1404x92 text="MACHINE LEARNING REFINED Visual Gallery Featured optimization workbench, learning path, filters, and widget cards"
 
+## Artifacts
 
-## Agent Critique
-
-- Hierarchy:
-- Density:
-- Typography:
-- Color and tokens:
-- Component anatomy:
-- Intentional deviations:
-
-## Next Fix
-
-- Record the highest-value scoped fix here.
-
-
-
-
-## Agent Comparison
-
-- Status: awaiting agent response.
-- Next step: have an agent inspect the comparison prompt, then submit JSON with `limner loop response submit`.
+- Image comparison: `.limner/runs/2026-06-21T140034011Z-m5hroz/captures/image-comparison.json`
+- Comparison summary: `.limner/runs/2026-06-21T140034011Z-m5hroz/captures/comparison-summary.json`
+- Agent comparison response store: local SQLite ledger

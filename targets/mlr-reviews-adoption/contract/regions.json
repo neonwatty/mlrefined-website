@@ -6,6 +6,42 @@
       "referenceSelector": "[data-limner-region='reference-root']",
       "appSelector": "body",
       "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "masthead",
+      "label": "Top Navigation",
+      "referenceSelector": "[data-limner-region='masthead']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "adoption-rail",
+      "label": "Adoption Context Rail",
+      "referenceSelector": "[data-limner-region='adoption-rail']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "hero",
+      "label": "Reviews Hero",
+      "referenceSelector": "[data-limner-region='hero']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "logo-library",
+      "label": "University Logo Library",
+      "referenceSelector": "[data-limner-region='logo-library']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "professor-endorsements",
+      "label": "Professor Endorsements",
+      "referenceSelector": "[data-limner-region='professor-endorsements']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "reader-reviews",
+      "label": "Reader Reviews",
+      "referenceSelector": "[data-limner-region='reader-reviews']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
     }
   ]
 }

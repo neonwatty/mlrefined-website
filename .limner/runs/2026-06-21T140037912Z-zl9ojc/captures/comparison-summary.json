@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "generatedBy": "agent",
+  "profile": "ideal-to-mockup",
+  "inputFingerprint": {
+    "expectedImageSha256": "8fb0fe16e42c5dcb2b3184fd7468097cc08bd1ac4a846e20e66887253962dcd9",
+    "actualImageSha256": "080027234ec691bdc5d61495b2b1a8ff3063ba6f766dc98acd649525043c8849"
+  },
+  "imageComparison": {
+    "summary": "The current reference visually preserves the selected source by embedding the generated image, but it is still a wrapper around a bitmap rather than an editable Reviews and Adoption page. The next mockup pass should replace the source image region with real DOM modules for the masthead, adoption context, university logo library, professor endorsements, and reader reviews while keeping the editorial paper-workbench composition.",
+    "score": {
+      "overall": 0.55,
+      "layout": 0.62,
+      "hierarchy": 0.52,
+      "typography": 0.45,
+      "color": 0.58,
+      "spacing": 0.48,
+      "structure": 0.25,
+      "semantics": 0.2
+    },
+    "confidence": 0.86,
+    "majorDiffAreas": [
+      {
+        "id": "image-backed-reference",
+        "title": "Source image is still embedded instead of rebuilt as editable page modules",
+        "category": "structure",
+        "severity": "high",
+        "priority": 1,
+        "expected": "An editable HTML/CSS facsimile of the Reviews and Adoption screen: compact masthead, left adoption/book rail, institution logo grid, professor endorsement section, reader review section, margin tabs, and paper/equation background details.",
+        "actual": "The mockup contains a small context header plus one large image element labeled as the selected generated reference image.",
+        "impact": "The visual reference cannot yet be adapted, inspected, made responsive, or constrained to verified assets; it also adds an extra wrapper header not present in the ideal image.",
+        "evidence": [
+          {
+            "source": "comparison report visible text inventory",
+            "observation": "Actual text inventory lists only five blocks, including the wrapper header and 'Selected generated reference image', rather than the many page sections visible in the ideal."
+          },
+          {
+            "source": "side-by-side capture",
+            "observation": "Actual screenshot shows the source PNG nested inside a bordered frame below an additional page header, reducing the ideal page scale and leaving all proof sections non-editable."
+          }
+        ],
+        "fixTarget": {
+          "surface": "mockup",
+          "region": "reference-root",
+          "likelyFiles": [
+            "targets/mlr-reviews-adoption/reference/index.html",
+            "targets/mlr-reviews-adoption/reference/styles.css",
+            "targets/mlr-reviews-adoption/contract/regions.json",
+            "targets/mlr-reviews-adoption/contract/tokens.json",
+            "targets/mlr-reviews-adoption/contract/acceptance.md"
+          ],
+          "selectors": [
+            "[data-limner-region='reference-root']",
+            ".source-frame",
+            ".reference-context"
+          ]
+        },
+        "recommendedChange": "Replace the image frame with DOM sections that mirror the ideal page layout and use only verified local book cover, logo, and portrait assets; keep the generated image out of the rendered production reference except as offscreen guidance if needed."
+      }
+    ],
+    "matches": [
+      "The selected source image is present and scaled within the current reference capture.",
+      "The current wrapper uses warm paper, navy, and gold colors that broadly align with the campaign palette."
+    ],
+    "remarks": {
+      "matches": [
+        "The selected source image identity and page family are correct."
+      ],
+      "uncertainties": [
+        "Exact public-site quote wording should remain conservative unless verified in source content; use names, roles, and short evidence-backed snippets rather than generated long quotes."
+      ],
+      "possibleIntentionalDeviations": [
+        "Use verified local logos only, even though the ideal image includes additional generated institution marks."
+      ]
+    },
+    "systemFeedback": {
+      "inputQuality": [],
+      "missingContext": [],
+      "suggestedLimnerImprovements": []
+    },
+    "nextIteration": {
+      "focus": "Convert the image-backed reference into editable HTML/CSS proof-library modules using verified assets.",
+      "steps": [
+        "Remove the generated reference image from the rendered mockup surface.",
+        "Build a desktop editorial layout with masthead, adoption/book rail, university logo grid, professor endorsements, reader reviews, and margin tabs.",
+        "Update regions/tokens/acceptance notes so Limner can inspect the new DOM structure."
+      ],
+      "avoidForNow": [
+        "Do not invent additional university logos, review statistics, or long quote copy that is not source-backed.",
+        "Do not generate new images or use stock imagery."
+      ]
+    },
+    "rationale": "The selected reference is visually correct as a source, but the current mockup has not yet translated it into the editable page family requested by the campaign. Rebuilding the key modules in DOM is the highest-impact scoped fix before pixel polish.",
+    "kind": "image-vs-image",
+    "inputs": {
+      "expectedImagePath": "targets/mlr-reviews-adoption/source/ig_09f8ccafb0b45a8e016a37e91005d08199ab5661081e3331f1.png",
+      "actualImagePath": ".limner/runs/2026-06-21T140037912Z-zl9ojc/captures/reference.png"
+    }
+  },
+  "recommendation": {
+    "topFix": "Replace the image-backed reference with editable DOM modules that preserve the selected Reviews and Adoption composition using verified book/proof assets.",
+    "why": "This unlocks fidelity, responsive behavior, and asset truth checks; pixel-level refinements can follow once the page exists as HTML/CSS."
+  }
+}

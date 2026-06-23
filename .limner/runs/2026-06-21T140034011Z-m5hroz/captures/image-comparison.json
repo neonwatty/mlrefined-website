@@ -1,0 +1,94 @@
+{
+  "summary": "The current reference preserves the selected generated image as a screenshot but does not yet implement the visual-gallery screen as editable HTML/CSS. The ideal shows a complete learning-lab interface with top navigation, featured optimization workbench, learning path, topic filters, widget cards, and resource affordances; the actual screenshot is a minimal wrapper with a header and one image-backed section.",
+  "score": {
+    "overall": 0.22,
+    "layout": 0.2,
+    "hierarchy": 0.2,
+    "typography": 0.35,
+    "color": 0.35,
+    "spacing": 0.25,
+    "structure": 0.1,
+    "semantics": 0.1
+  },
+  "confidence": 0.92,
+  "majorDiffAreas": [
+    {
+      "id": "image-backed-reference",
+      "title": "Reference is still image-backed instead of editable gallery UI",
+      "category": "structure",
+      "severity": "high",
+      "priority": 1,
+      "expected": "Editable DOM sections should recreate the Visual Gallery page: brand/navigation, hero title, featured optimization workbench, learning path, filters, widget cards, and notebook/Colab/chapter actions.",
+      "actual": "The mockup contains a compact context header and a single section whose main content is the selected generated reference image.",
+      "impact": "The target cannot be used for downstream implementation polish because Limner can only compare a screenshot facsimile, not editable UI regions or real asset usage.",
+      "evidence": [
+        {
+          "source": "visible text inventory",
+          "observation": "Only five text blocks are detected, including 'Selected generated reference image', while the ideal contains many page modules and controls."
+        },
+        {
+          "source": "targets/mlr-visual-gallery/reference/index.html",
+          "observation": "The source-reference section contains only an img tag pointing at source-reference.png."
+        }
+      ],
+      "fixTarget": {
+        "surface": "mockup",
+        "region": "reference-root",
+        "likelyFiles": [
+          "targets/mlr-visual-gallery/reference/index.html",
+          "targets/mlr-visual-gallery/reference/styles.css",
+          "targets/mlr-visual-gallery/contract/regions.json",
+          "targets/mlr-visual-gallery/contract/acceptance.md"
+        ],
+        "selectors": [
+          "[data-limner-region='reference-root']",
+          "[data-limner-region='source-reference']"
+        ]
+      },
+      "recommendedChange": "Replace the image-backed source frame with editable HTML/CSS modules using the verified book cover and local widget GIFs, preserving the ideal's guided-workbench hierarchy and resource affordances."
+    }
+  ],
+  "matches": [
+    "The current palette already gestures toward warm paper, navy, and gold.",
+    "The title and target identity match the selected Visual Gallery page family."
+  ],
+  "remarks": {
+    "matches": [
+      "The reference shell uses the correct selected generated image as visual guidance.",
+      "The current wrapper uses an academic serif heading and restrained color palette."
+    ],
+    "uncertainties": [
+      "Exact chapter mapping for every widget should remain conservative because the local chapter data is partial."
+    ],
+    "possibleIntentionalDeviations": [
+      "The screenshot-backed frame was an intentional first-pass scaffold, but it now needs replacement with DOM modules."
+    ]
+  },
+  "systemFeedback": {
+    "inputQuality": [
+      "Comparison inputs are sufficient for the next scoped mockup edit."
+    ],
+    "missingContext": [],
+    "suggestedLimnerImprovements": []
+  },
+  "nextIteration": {
+    "focus": "Convert the Visual Gallery reference from screenshot-backed scaffold to real editable HTML/CSS.",
+    "steps": [
+      "Build a full page shell with visible Machine Learning Refined identity and top navigation.",
+      "Create a featured optimization workbench using the local normalized-gradient-descent GIF and real Chapter/Notebook/Colab affordances.",
+      "Create a learning path, topic filters, and eight widget cards using only local widget GIF assets and verified resource labels."
+    ],
+    "avoidForNow": [
+      "Do not generate new images.",
+      "Do not invent fake chapter counts, fake recommendations, or fake screenshots.",
+      "Do not use the generated reference image as a production asset."
+    ],
+    "expectedImprovement": "The next comparison should expose real DOM structure and visual regions corresponding to the selected reference instead of a single screenshot-backed image."
+  },
+  "rationale": "The acceptance notes explicitly require replacing image-backed zones with editable DOM sections. The current implementation has the right target image but lacks the key page anatomy needed for Limner's next iteration.",
+  "kind": "image-vs-image",
+  "inputs": {
+    "expectedImagePath": "targets/mlr-visual-gallery/source/ig_09deac95aeabce3a016a37e9913230819b9a148e19b149a1d2.png",
+    "actualImagePath": ".limner/runs/2026-06-21T140034011Z-m5hroz/captures/reference.png"
+  }
+}
