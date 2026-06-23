@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "generatedBy": "agent",
+  "profile": "ideal-to-mockup",
+  "inputFingerprint": {
+    "expectedImageSha256": "6718474f96e3135d3c06424c15bb494c3cb95ba16b48f5995507cee9c643fad8",
+    "actualImageSha256": "5f51115b894fb80a1b9d328429de2d5b6cb8a06113a1d1a7857659fd18c9e159"
+  },
+  "imageComparison": {
+    "kind": "image-vs-image",
+    "inputs": {
+      "expectedImagePath": "targets/mlr-visual-gallery/source/ig_09deac95aeabce3a016a37e9913230819b9a148e19b149a1d2.png",
+      "actualImagePath": ".limner/runs/2026-06-21T164031152Z-lvt8n8/captures/reference.png"
+    },
+    "summary": "The screens preserve the same overall layout, with hierarchy and typography drift.",
+    "score": {
+      "overall": 0.82,
+      "layout": 0.9,
+      "hierarchy": 0.74,
+      "typography": 0.76,
+      "color": 0.85,
+      "spacing": 0.8
+    },
+    "confidence": 0.78,
+    "majorDiffAreas": [
+      {
+        "id": "hero-heading",
+        "title": "Hero heading lacks visual dominance",
+        "category": "typography",
+        "severity": "medium",
+        "priority": 1,
+        "expected": "Large, bold, visually dominant heading.",
+        "actual": "Slightly smaller heading with weaker emphasis.",
+        "impact": "The primary hierarchy is less forceful.",
+        "evidence": [
+          {
+            "source": "expected-image",
+            "observation": "Heading is the strongest element in the upper content region."
+          }
+        ],
+        "fixTarget": {
+          "surface": "mockup",
+          "region": "hero",
+          "likelyFiles": [],
+          "selectors": []
+        },
+        "recommendedChange": "Increase heading size and weight, then compare again."
+      }
+    ],
+    "matches": [
+      "Primary content appears in the same broad region."
+    ],
+    "remarks": {
+      "matches": [
+        "Overall single-column composition is similar."
+      ],
+      "uncertainties": [
+        "Exact font family cannot be determined from screenshots alone."
+      ],
+      "possibleIntentionalDeviations": []
+    },
+    "systemFeedback": {
+      "inputQuality": [
+        "Both screenshots are readable and appear to use the same viewport."
+      ],
+      "missingContext": [],
+      "suggestedLimnerImprovements": [
+        "Include computed font metrics for the hero region when available."
+      ]
+    },
+    "nextIteration": {
+      "focus": "Tune the hero heading size, weight, and contrast.",
+      "steps": [
+        "Increase heading font size by one scale step.",
+        "Use a heavier font weight."
+      ],
+      "avoidForNow": [
+        "Do not spend the next iteration on tiny border-radius differences."
+      ],
+      "expectedImprovement": "This should improve hierarchy more than small spacing changes."
+    },
+    "rationale": "The composition is close, but visual priority differs enough to warrant another iteration."
+  },
+  "recommendation": {}
+}

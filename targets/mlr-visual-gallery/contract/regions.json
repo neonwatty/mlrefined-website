@@ -1,0 +1,53 @@
+{
+  "regions": [
+    {
+      "id": "reference-root",
+      "label": "Reference Root",
+      "referenceSelector": "[data-limner-region='reference-root']",
+      "appSelector": "body",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "global-header",
+      "label": "Global Header",
+      "referenceSelector": "[data-limner-region='global-header']",
+      "appSelector": "header",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "hero",
+      "label": "Visual Gallery Hero",
+      "referenceSelector": "[data-limner-region='hero']",
+      "appSelector": "[data-section='visual-gallery-hero']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "featured-workbench",
+      "label": "Featured Optimization Workbench",
+      "referenceSelector": "[data-limner-region='featured-workbench']",
+      "appSelector": "[data-section='featured-workbench']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "learning-path",
+      "label": "Learning Path",
+      "referenceSelector": "[data-limner-region='learning-path']",
+      "appSelector": "[data-section='learning-path']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "gallery-controls",
+      "label": "Topic Filters",
+      "referenceSelector": "[data-limner-region='gallery-controls']",
+      "appSelector": "[data-section='gallery-controls']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "widget-gallery",
+      "label": "Widget Gallery",
+      "referenceSelector": "[data-limner-region='widget-gallery']",
+      "appSelector": "[data-section='widget-gallery']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    }
+  ]
+}

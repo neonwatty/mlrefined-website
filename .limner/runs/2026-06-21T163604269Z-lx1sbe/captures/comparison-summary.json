@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "generatedBy": "agent",
+  "profile": "ideal-to-mockup",
+  "inputFingerprint": {
+    "expectedImageSha256": "029679e725ba6bbede88b6dbf1cc896f42949cda8b9ab5d8b0c8b1adcb690aff",
+    "actualImageSha256": "a7a68b38bd03b68d4bff11eddab3bc0beedc70546a592189c36049f272c5f4f9"
+  },
+  "imageComparison": {
+    "summary": "The instructor path is editable and grounded in real assets, but the hero and verified-instructor card are too tall, causing the course workbench and teaching resources to land lower than the ideal.",
+    "score": {
+      "overall": 0.7,
+      "layout": 0.64,
+      "hierarchy": 0.78,
+      "typography": 0.76,
+      "color": 0.86,
+      "spacing": 0.56
+    },
+    "confidence": 0.87,
+    "majorDiffAreas": [
+      {
+        "id": "hero-depth-and-right-card",
+        "title": "Hero/right verification card consume too much vertical space",
+        "category": "layout",
+        "severity": "medium",
+        "priority": 1,
+        "expected": "The source image shows a compact instructor hero, proof strip, and the workbench/resources in the first viewport.",
+        "actual": "The editable mockup has a tall hero band and large verified-instructor card; the workbench appears lower and the teaching-resource band is mostly out of view.",
+        "impact": "The instructor workflow feels less immediately course-planning oriented and less faithful to the dense reference composition.",
+        "evidence": [
+          {
+            "source": "side-by-side",
+            "observation": "Actual screenshot spends more height on the hero and right card before the workbench than the expected image."
+          },
+          {
+            "source": "worker-receipt",
+            "observation": "Receipt notes the editable reference is taller than the generated ideal and the teaching-resource band appears lower."
+          }
+        ],
+        "fixTarget": {
+          "surface": "mockup",
+          "region": "hero",
+          "likelyFiles": [
+            "targets/mlr-instructor-path/reference/styles.css"
+          ],
+          "selectors": [
+            ".hero-grid",
+            ".book-stage",
+            ".verify-card",
+            ".proof-strip",
+            ".workbench"
+          ]
+        },
+        "recommendedChange": "Reduce topbar/hero height, make the verification card denser, shrink book-stage art slightly, and tighten gaps before the workbench."
+      }
+    ],
+    "matches": [
+      "Real cover, roadmap, and logo assets load",
+      "Instructor navigation, proof strip, roadmap workbench, and resource sections exist as DOM"
+    ],
+    "remarks": {
+      "matches": [
+        "The academic navy/gold palette is close"
+      ],
+      "uncertainties": [
+        "Verified instructor eligibility copy remains product-direction placeholder text"
+      ],
+      "possibleIntentionalDeviations": [
+        "The real cover/CSS note art replaces generated open-book imagery by design"
+      ]
+    },
+    "systemFeedback": {
+      "inputQuality": [
+        "Both captures are readable and same viewport"
+      ],
+      "missingContext": [],
+      "suggestedLimnerImprovements": []
+    },
+    "nextIteration": {
+      "focus": "Compress instructor first-viewport layout while preserving verified assets.",
+      "steps": [
+        "Reduce hero-grid min-height and padding",
+        "Condense verify-card typography and spacing",
+        "Shorten book-stage art",
+        "Tighten proof/workbench spacing"
+      ],
+      "avoidForNow": [
+        "Do not invent publisher verification details or new images"
+      ]
+    },
+    "rationale": "The mockup is already editable; a focused CSS density pass addresses the visible fidelity blocker without changing content provenance.",
+    "kind": "image-vs-image",
+    "inputs": {
+      "expectedImagePath": "targets/mlr-instructor-path/source/ig_0df1de113427452a016a37e93b699c819ab46fe912af9c90f2.png",
+      "actualImagePath": ".limner/runs/2026-06-21T163604269Z-lx1sbe/captures/reference.png"
+    }
+  },
+  "recommendation": {
+    "topFix": "Compress hero and verified-card vertical rhythm",
+    "why": "It brings the course-planning workbench and teaching resources closer to the source image's first-viewport layout."
+  }
+}

@@ -21,8 +21,13 @@
 /build
 
 # misc
+.worktrees/
 .DS_Store
 *.pem
+
+# local agent/workflow artifacts
+.codex-workers/
+.superpowers/
 
 # debug
 npm-debug.log*

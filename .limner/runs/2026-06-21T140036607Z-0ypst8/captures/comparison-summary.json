@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "generatedBy": "agent",
+  "profile": "ideal-to-mockup",
+  "inputFingerprint": {
+    "expectedImageSha256": "029679e725ba6bbede88b6dbf1cc896f42949cda8b9ab5d8b0c8b1adcb690aff",
+    "actualImageSha256": "416e87eac6b503e2fc6d5fcc7facfa0f5f597600dcdfe1c12222a9074f5d8b3a"
+  },
+  "imageComparison": {
+    "summary": "The current reference preserves the selected ideal mostly as a large image-backed frame, with only a small editable context header above it. The ideal calls for the full instructor adoption page to be recreated as editable modules: nav, hero, verified instructor card, proof strip, course-planning workbench, teaching resources, and adoption support.",
+    "score": {
+      "overall": 0.32,
+      "layout": 0.42,
+      "hierarchy": 0.34,
+      "typography": 0.28,
+      "color": 0.56,
+      "spacing": 0.36,
+      "structure": 0.18,
+      "semantics": 0.2
+    },
+    "confidence": 0.9,
+    "majorDiffAreas": [
+      {
+        "id": "image-backed-shell",
+        "title": "Reference is still image-backed instead of editable",
+        "category": "structure",
+        "severity": "high",
+        "priority": 1,
+        "expected": "The ideal is a dense editable instructor page with separate navigation, hero, proof strip, roadmap selector, timeline, resource cards, and adoption panels.",
+        "actual": "The mockup shows a small editable header and a single large embedded source reference image, so nearly all visual content is not represented by DOM structure.",
+        "impact": "The target cannot be used as an editable HTML/CSS reference or later implementation source until the image-backed content is converted into real sections.",
+        "evidence": [
+          {
+            "source": "comparison visible text inventory",
+            "observation": "Actual screenshot exposes only five visible text blocks outside the image-backed reference frame."
+          },
+          {
+            "source": "targets/mlr-instructor-path/reference/index.html",
+            "observation": "The main content is a source-frame section containing source-reference.png rather than structured page modules."
+          }
+        ],
+        "fixTarget": {
+          "surface": "mockup",
+          "region": "reference-root",
+          "likelyFiles": [
+            "targets/mlr-instructor-path/reference/index.html",
+            "targets/mlr-instructor-path/reference/styles.css",
+            "targets/mlr-instructor-path/contract/regions.json",
+            "targets/mlr-instructor-path/contract/tokens.json"
+          ],
+          "selectors": [
+            "[data-limner-region='reference-root']",
+            ".source-frame"
+          ]
+        },
+        "recommendedChange": "Replace the source-frame image shell with editable HTML/CSS sections that reconstruct the selected instructor path screen using verified local book, roadmap, and university logo assets."
+      }
+    ],
+    "matches": [
+      "The current shell uses the correct selected generated reference image.",
+      "The broad navy, gold, paper, and serif-heading direction aligns with the ideal palette."
+    ],
+    "remarks": {
+      "matches": [
+        "The selected source image is present and scaled clearly.",
+        "The mockup has an academic paper background and a navy/gold identity block."
+      ],
+      "uncertainties": [
+        "The generated ideal includes approximate logos and book details, so the editable mockup should substitute verified local assets rather than copy those pixels."
+      ],
+      "possibleIntentionalDeviations": [
+        "Using real local assets may differ slightly from the generated ideal while improving factual fidelity."
+      ]
+    },
+    "systemFeedback": {
+      "inputQuality": [],
+      "missingContext": [],
+      "suggestedLimnerImprovements": []
+    },
+    "nextIteration": {
+      "focus": "Convert the image-backed instructor page into editable DOM modules.",
+      "steps": [
+        "Replace the embedded reference image with structured nav, hero, proof, roadmap, resource, and adoption-support sections.",
+        "Use verified local assets for the book cover, four roadmap previews, and university logo strip.",
+        "Update region contracts so Limner can inspect the newly editable sections."
+      ],
+      "avoidForNow": [
+        "Do not add new generated images or stock imagery.",
+        "Do not chase pixel-perfect logo reproduction from the generated ideal."
+      ]
+    },
+    "rationale": "The largest fidelity gap is not a small style mismatch; it is that the reference is still an image-backed scaffold. Converting the page body into real HTML/CSS unlocks meaningful future Limner comparisons.",
+    "kind": "image-vs-image",
+    "inputs": {
+      "expectedImagePath": "targets/mlr-instructor-path/source/ig_0df1de113427452a016a37e93b699c819ab46fe912af9c90f2.png",
+      "actualImagePath": ".limner/runs/2026-06-21T140036607Z-0ypst8/captures/reference.png"
+    }
+  },
+  "recommendation": {
+    "topFix": "Replace the source-reference image shell with editable instructor-path page modules using verified local assets.",
+    "why": "This is the highest-impact change because the current mockup cannot be meaningfully polished or implemented while most content is just an embedded image."
+  }
+}

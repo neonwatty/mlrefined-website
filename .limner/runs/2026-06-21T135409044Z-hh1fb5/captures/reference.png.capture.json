@@ -1,0 +1,89 @@
+{
+  "finalUrl": "http://127.0.0.1:58755/",
+  "readiness": {
+    "scope": "not_applicable",
+    "status": "not_applicable",
+    "finalUrl": "http://127.0.0.1:58755/",
+    "milestones": []
+  },
+  "hiddenOverlaySelectors": [
+    "[data-nextjs-toast]",
+    "[data-nextjs-dialog-overlay]",
+    "[data-nextjs-build-indicator]",
+    "[data-nextjs-dev-overlay]",
+    "#nextjs-portal",
+    "nextjs-portal",
+    ".__nextjs-build-watcher",
+    ".__nextjs-dev-overlay",
+    ".nextjs-toast",
+    ".nextjs-static-indicator-toast-wrapper",
+    "#bugdrop-host",
+    "[data-limner-capture-overlay]"
+  ],
+  "visibleText": {
+    "status": "available",
+    "source": "dom",
+    "totalCandidates": 5,
+    "shown": [
+      {
+        "text": "LIMNER REFERENCE Recreate the input image here Replace this scaffold with faithful HTML and CSS. Add data-limner-region attributes to reg...",
+        "bounds": {
+          "x": 340,
+          "y": 360,
+          "width": 760,
+          "height": 179
+        },
+        "tagName": "section",
+        "source": "dom"
+      },
+      {
+        "text": "LIMNER REFERENCE",
+        "bounds": {
+          "x": 369,
+          "y": 389,
+          "width": 702,
+          "height": 19
+        },
+        "tagName": "p",
+        "source": "dom"
+      },
+      {
+        "text": "Recreate the input image here",
+        "bounds": {
+          "x": 369,
+          "y": 416,
+          "width": 702,
+          "height": 35
+        },
+        "tagName": "h1",
+        "source": "dom"
+      },
+      {
+        "text": "Replace this scaffold with faithful HTML and CSS. Add data-limner-region attributes to regions that should be compared against app select...",
+        "bounds": {
+          "x": 369,
+          "y": 461,
+          "width": 702,
+          "height": 50
+        },
+        "tagName": "p",
+        "source": "dom"
+      },
+      {
+        "text": "data-limner-region",
+        "bounds": {
+          "x": 765,
+          "y": 467,
+          "width": 140,
+          "height": 15
+        },
+        "tagName": "code",
+        "source": "dom"
+      }
+    ]
+  },
+  "regionEvidence": {
+    "status": "available",
+    "shown": []
+  }
+}

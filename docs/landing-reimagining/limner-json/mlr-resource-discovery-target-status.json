@@ -1,0 +1,56 @@
+{
+  "ok": true,
+  "canRunComparison": true,
+  "workspaceRoot": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/landing-reimagining-campaign",
+  "target": "mlr-resource-discovery",
+  "checks": {
+    "cli": {
+      "status": "ok",
+      "message": "Limner CLI 0.1.28",
+      "details": {
+        "version": "0.1.28"
+      }
+    },
+    "workspace": {
+      "status": "ok",
+      "message": "Workspace root exists.",
+      "details": {
+        "root": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/landing-reimagining-campaign"
+      }
+    },
+    "target": {
+      "status": "ok",
+      "message": "Target exists.",
+      "details": {
+        "path": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/landing-reimagining-campaign/targets/mlr-resource-discovery"
+      }
+    },
+    "reference": {
+      "status": "ok",
+      "message": "Required reference/source files are present.",
+      "details": {
+        "referenceHtmlPath": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/landing-reimagining-campaign/targets/mlr-resource-discovery/reference/index.html",
+        "sourceImagePath": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/landing-reimagining-campaign/targets/mlr-resource-discovery/source/ig_0553e087e3834b88016a37e933bce48199a43e57b316216b4a.png"
+      }
+    },
+    "artifacts": {
+      "status": "ok",
+      "message": "Prior run artifacts found.",
+      "details": {
+        "runCount": 1
+      }
+    },
+    "implementation": {
+      "status": "not_requested",
+      "message": "No implementation URL provided."
+    },
+    "auth": {
+      "status": "not_requested",
+      "message": "No storage state provided."
+    },
+    "comparison": {
+      "status": "ok",
+      "message": "Comparison can run."
+    }
+  }
+}

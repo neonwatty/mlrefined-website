@@ -1,0 +1,103 @@
+{
+  "finalUrl": "http://127.0.0.1:59098/",
+  "readiness": {
+    "scope": "not_applicable",
+    "status": "not_applicable",
+    "finalUrl": "http://127.0.0.1:59098/",
+    "milestones": []
+  },
+  "hiddenOverlaySelectors": [
+    "[data-nextjs-toast]",
+    "[data-nextjs-dialog-overlay]",
+    "[data-nextjs-build-indicator]",
+    "[data-nextjs-dev-overlay]",
+    "#nextjs-portal",
+    "nextjs-portal",
+    ".__nextjs-build-watcher",
+    ".__nextjs-dev-overlay",
+    ".nextjs-toast",
+    ".nextjs-static-indicator-toast-wrapper",
+    "#bugdrop-host",
+    "[data-limner-capture-overlay]"
+  ],
+  "visibleText": {
+    "status": "available",
+    "source": "dom",
+    "totalCandidates": 5,
+    "shown": [
+      {
+        "text": "MACHINE LEARNING REFINED Visual Gallery Featured optimization workbench, learning path, filters, and widget cards",
+        "bounds": {
+          "x": 18,
+          "y": 18,
+          "width": 1404,
+          "height": 92
+        },
+        "tagName": "header",
+        "source": "dom"
+      },
+      {
+        "text": "MACHINE LEARNING REFINED",
+        "bounds": {
+          "x": 35,
+          "y": 31,
+          "width": 226,
+          "height": 66
+        },
+        "tagName": "p",
+        "source": "dom"
+      },
+      {
+        "text": "Visual Gallery",
+        "bounds": {
+          "x": 285,
+          "y": 31,
+          "width": 1120,
+          "height": 40
+        },
+        "tagName": "h1",
+        "source": "dom"
+      },
+      {
+        "text": "Featured optimization workbench, learning path, filters, and widget cards",
+        "bounds": {
+          "x": 285,
+          "y": 75,
+          "width": 1120,
+          "height": 22
+        },
+        "tagName": "p",
+        "source": "dom"
+      },
+      {
+        "text": "Selected generated reference image",
+        "bounds": {
+          "x": 18,
+          "y": 124,
+          "width": 1404,
+          "height": 791
+        },
+        "tagName": "section",
+        "source": "dom"
+      }
+    ]
+  },
+  "regionEvidence": {
+    "status": "available",
+    "shown": [
+      {
+        "label": "header",
+        "source": "selector",
+        "confidence": "medium",
+        "selector": "header, [role=\"banner\"], [class*=\"topbar\" i], [class*=\"header\" i]",
+        "bounds": {
+          "x": 18,
+          "y": 18,
+          "width": 1404,
+          "height": 92
+        },
+        "text": "MACHINE LEARNING REFINED Visual Gallery Featured optimization workbench, learning path, filters, and widget cards"
+      }
+    ]
+  }
+}

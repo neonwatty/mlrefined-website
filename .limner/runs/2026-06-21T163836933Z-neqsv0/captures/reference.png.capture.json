@@ -1,0 +1,229 @@
+{
+  "finalUrl": "http://127.0.0.1:50007/",
+  "readiness": {
+    "scope": "not_applicable",
+    "status": "not_applicable",
+    "finalUrl": "http://127.0.0.1:50007/",
+    "milestones": []
+  },
+  "hiddenOverlaySelectors": [
+    "[data-nextjs-toast]",
+    "[data-nextjs-dialog-overlay]",
+    "[data-nextjs-build-indicator]",
+    "[data-nextjs-dev-overlay]",
+    "#nextjs-portal",
+    "nextjs-portal",
+    ".__nextjs-build-watcher",
+    ".__nextjs-dev-overlay",
+    ".nextjs-toast",
+    ".nextjs-static-indicator-toast-wrapper",
+    "#bugdrop-host",
+    "[data-limner-capture-overlay]"
+  ],
+  "visibleText": {
+    "status": "available",
+    "source": "dom",
+    "totalCandidates": 14,
+    "shown": [
+      {
+        "text": "Machine Learning Refined VISUAL LEARNING LAB Chapters Visual Gallery Notebooks Exercises GitHub Open resources INTERACTIVE COMPANIONS TO...",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 1637
+        },
+        "tagName": "main",
+        "source": "dom"
+      },
+      {
+        "text": "Machine Learning Refined VISUAL LEARNING LAB Chapters Visual Gallery Notebooks Exercises GitHub Open resources",
+        "bounds": {
+          "x": 26,
+          "y": 18,
+          "width": 1388,
+          "height": 86
+        },
+        "tagName": "header",
+        "source": "dom"
+      },
+      {
+        "text": "Machine Learning Refined repository",
+        "bounds": {
+          "x": 41,
+          "y": 29,
+          "width": 476,
+          "height": 64
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Machine Learning Refined VISUAL LEARNING LAB",
+        "bounds": {
+          "x": 101,
+          "y": 41,
+          "width": 416,
+          "height": 40
+        },
+        "tagName": "span",
+        "source": "dom"
+      },
+      {
+        "text": "Machine Learning Refined",
+        "bounds": {
+          "x": 101,
+          "y": 41,
+          "width": 416,
+          "height": 22
+        },
+        "tagName": "strong",
+        "source": "dom"
+      },
+      {
+        "text": "Open resources",
+        "bounds": {
+          "x": 1253,
+          "y": 41,
+          "width": 146,
+          "height": 41
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Primary",
+        "bounds": {
+          "x": 539,
+          "y": 43,
+          "width": 692,
+          "height": 37
+        },
+        "tagName": "nav",
+        "source": "dom"
+      },
+      {
+        "text": "Chapters",
+        "bounds": {
+          "x": 646,
+          "y": 43,
+          "width": 85,
+          "height": 37
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Visual Gallery",
+        "bounds": {
+          "x": 737,
+          "y": 43,
+          "width": 114,
+          "height": 37
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Notebooks",
+        "bounds": {
+          "x": 857,
+          "y": 43,
+          "width": 96,
+          "height": 37
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "Exercises",
+        "bounds": {
+          "x": 960,
+          "y": 43,
+          "width": 87,
+          "height": 37
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "GitHub",
+        "bounds": {
+          "x": 1053,
+          "y": 43,
+          "width": 71,
+          "height": 37
+        },
+        "tagName": "a",
+        "source": "dom"
+      },
+      {
+        "text": "VISUAL LEARNING LAB",
+        "bounds": {
+          "x": 101,
+          "y": 68,
+          "width": 416,
+          "height": 13
+        },
+        "tagName": "small",
+        "source": "dom"
+      },
+      {
+        "text": "INTERACTIVE COMPANIONS TO THE BOOK Visual Gallery See, derive, and implement machine learning ideas through the book's optimization, clas...",
+        "bounds": {
+          "x": 26,
+          "y": 104,
+          "width": 1388,
+          "height": 205
+        },
+        "tagName": "section",
+        "source": "dom"
+      }
+    ]
+  },
+  "regionEvidence": {
+    "status": "available",
+    "shown": [
+      {
+        "label": "sidebar",
+        "source": "selector",
+        "confidence": "medium",
+        "selector": "aside, nav, [class*=\"sidebar\" i], [class*=\"side-nav\" i]",
+        "bounds": {
+          "x": 539,
+          "y": 43,
+          "width": 692,
+          "height": 37
+        },
+        "text": "Chapters Visual Gallery Notebooks Exercises GitHub"
+      },
+      {
+        "label": "header",
+        "source": "selector",
+        "confidence": "medium",
+        "selector": "header, [role=\"banner\"], [class*=\"topbar\" i], [class*=\"header\" i]",
+        "bounds": {
+          "x": 26,
+          "y": 18,
+          "width": 1388,
+          "height": 86
+        },
+        "text": "Machine Learning Refined VISUAL LEARNING LAB Chapters Visual Gallery Notebooks Exercises GitHub Open resources"
+      },
+      {
+        "label": "repeated-rows",
+        "source": "heuristic",
+        "confidence": "low",
+        "selector": "main li",
+        "count": 3,
+        "bounds": {
+          "x": 1075,
+          "y": 443,
+          "width": 318,
+          "height": 87
+        },
+        "text": "Ch. 2-4 Optimization foundations Zero-, first-, and second-order methods."
+      }
+    ]
+  }
+}

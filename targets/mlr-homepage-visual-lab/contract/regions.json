@@ -1,0 +1,67 @@
+{
+  "regions": [
+    {
+      "id": "reference-root",
+      "label": "Homepage Root",
+      "referenceSelector": "[data-limner-region='reference-root']",
+      "appSelector": "main",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "navigation",
+      "label": "Top Navigation",
+      "referenceSelector": "[data-limner-region='navigation']",
+      "appSelector": "header",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "hero",
+      "label": "Visual Learning Lab Hero",
+      "referenceSelector": "[data-limner-region='hero']",
+      "appSelector": "[data-home-region='hero']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "hero-copy",
+      "label": "Hero Copy And CTAs",
+      "referenceSelector": "[data-limner-region='hero-copy']",
+      "appSelector": "[data-home-region='hero-copy']",
+      "checks": ["bounds", "visible", "text"]
+    },
+    {
+      "id": "book-cover",
+      "label": "Book Cover Identity",
+      "referenceSelector": "[data-limner-region='book-cover']",
+      "appSelector": "[data-home-region='book-cover']",
+      "checks": ["bounds", "visible"]
+    },
+    {
+      "id": "learning-lab",
+      "label": "Learning Lab Panels",
+      "referenceSelector": "[data-limner-region='learning-lab']",
+      "appSelector": "[data-home-region='learning-lab']",
+      "checks": ["bounds", "visible", "computed-style", "text"]
+    },
+    {
+      "id": "resource-rail",
+      "label": "Resource Rail",
+      "referenceSelector": "[data-limner-region='resource-rail']",
+      "appSelector": "[data-home-region='resource-rail']",
+      "checks": ["bounds", "visible", "text"]
+    },
+    {
+      "id": "proof-band",
+      "label": "University Proof Band",
+      "referenceSelector": "[data-limner-region='proof-band']",
+      "appSelector": "[data-home-region='proof-band']",
+      "checks": ["bounds", "visible", "text"]
+    },
+    {
+      "id": "testimonials",
+      "label": "Accolade Summaries",
+      "referenceSelector": "[data-limner-region='testimonials']",
+      "appSelector": "[data-home-region='testimonials']",
+      "checks": ["bounds", "visible", "text"]
+    }
+  ]
+}

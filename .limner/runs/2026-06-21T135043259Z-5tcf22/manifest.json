@@ -1,0 +1,13 @@
+{
+  "runId": "2026-06-21T135043259Z-5tcf22",
+  "command": "init",
+  "target": "mlr-resource-discovery",
+  "startedAt": "2026-06-21T13:50:43.260Z",
+  "status": "ok",
+  "artifacts": [
+    "targets/mlr-resource-discovery/source/ig_0553e087e3834b88016a37e933bce48199a43e57b316216b4a.png",
+    "targets/mlr-resource-discovery/reference/index.html",
+    "targets/mlr-resource-discovery/.limner-scaffold.json"
+  ],
+  "completedAt": "2026-06-21T13:50:43.267Z"
+}

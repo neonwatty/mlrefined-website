@@ -1,0 +1,13 @@
+{
+  "runId": "2026-06-21T135042841Z-csprpw",
+  "command": "init",
+  "target": "mlr-homepage-visual-lab",
+  "startedAt": "2026-06-21T13:50:42.842Z",
+  "status": "ok",
+  "artifacts": [
+    "targets/mlr-homepage-visual-lab/source/ig_0df464ee8e4366cc016a37e95159208198bfe02a469e9a919d.png",
+    "targets/mlr-homepage-visual-lab/reference/index.html",
+    "targets/mlr-homepage-visual-lab/.limner-scaffold.json"
+  ],
+  "completedAt": "2026-06-21T13:50:42.852Z"
+}

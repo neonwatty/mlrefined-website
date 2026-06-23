@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "generatedBy": "agent",
+  "profile": "ideal-to-mockup",
+  "inputFingerprint": {
+    "expectedImageSha256": "070703a955e9c5d508e0f048670c10019bf8cb4a79f656f47ed6970856f0b36d",
+    "actualImageSha256": "8080de51db42df6da5d5b7b8032b26ca18083c6810a07b384637bcecbf195ea1"
+  },
+  "imageComparison": {
+    "summary": "The mockup is now editable DOM with real assets, but the hero and learning-lab panels are taller than the ideal, so the proof band is pushed too low and is clipped in the first viewport.",
+    "score": {
+      "overall": 0.7,
+      "layout": 0.62,
+      "hierarchy": 0.76,
+      "typography": 0.7,
+      "color": 0.82,
+      "spacing": 0.58,
+      "structure": 0.82,
+      "semantics": 0.8
+    },
+    "confidence": 0.84,
+    "majorDiffAreas": [
+      {
+        "id": "hero-too-tall",
+        "title": "Hero panels push proof band below the intended fold",
+        "category": "layout",
+        "severity": "medium",
+        "priority": 1,
+        "expected": "The resource rail and compact proof band appear directly below the hero within the desktop first viewport.",
+        "actual": "The editable hero, book cover, and lab panels are taller than the source composition; the proof claim begins near the bottom of the screenshot and is clipped.",
+        "impact": "The homepage loses the generated reference's immediate trust cue and the top fold feels more vertically stretched than the intended compact workbench.",
+        "evidence": [
+          {
+            "source": ".limner/runs/2026-06-21T163547281Z-e7oql3/captures/reference.png",
+            "observation": "The proof band starts near y=765 and the '100+ universities and colleges' line is cut off at the bottom of the 900px capture."
+          },
+          {
+            "source": ".limner/runs/2026-06-21T163547281Z-e7oql3/captures/side-by-side.png",
+            "observation": "Compared with the ideal, the right-side lab panel is much taller and the proof band is lower."
+          }
+        ],
+        "fixTarget": {
+          "surface": "mockup",
+          "region": "hero",
+          "likelyFiles": [
+            "targets/mlr-homepage-visual-lab/reference/styles.css"
+          ],
+          "selectors": [
+            ".hero",
+            ".book-card",
+            ".lab-main",
+            ".panel",
+            ".lab-grid",
+            ".resource-rail",
+            ".proof-band"
+          ]
+        },
+        "recommendedChange": "Compress the lab panel heights, book cover size, hero padding, and proof-band spacing so the proof claim and logos sit inside the first viewport."
+      }
+    ],
+    "matches": [
+      "The mockup now uses editable DOM instead of rendering the generated source image as the page.",
+      "The nav, title, CTAs, book cover, lab panels, resource rail, and proof assets are visible and mapped to real local assets.",
+      "The console capture reports no browser errors."
+    ],
+    "remarks": {
+      "matches": [
+        "Palette and content hierarchy are close enough for a compact polish pass.",
+        "Verified local logos and portraits replace generated social-proof marks."
+      ],
+      "uncertainties": [
+        "Exact ideal micro-chart shapes cannot be matched perfectly because the editable mockup uses existing GIF assets rather than the generated chart stills."
+      ],
+      "possibleIntentionalDeviations": [
+        "Using verified summary language instead of generated quote text is intentional."
+      ]
+    },
+    "systemFeedback": {
+      "inputQuality": [
+        "Artifacts are sufficient for the next scoped CSS height/spacing polish."
+      ],
+      "missingContext": [],
+      "suggestedLimnerImprovements": []
+    },
+    "nextIteration": {
+      "focus": "Compress the first viewport so the proof band appears immediately below the hero like the ideal.",
+      "steps": [
+        "Reduce lab main panel heights, mini-panel image heights, and the book cover width.",
+        "Tighten hero padding and proof-band padding.",
+        "Rerun Limner compare and inspect the side-by-side."
+      ],
+      "avoidForNow": [
+        "Do not replace verified assets with generated imagery.",
+        "Do not attempt pixel-perfect chart recreation in this pass."
+      ],
+      "expectedImprovement": "The next screenshot should keep the editable page structure while moving the proof claim and logo strip higher into the first viewport."
+    },
+    "rationale": "The major scaffold problem is fixed; the next highest-value fidelity issue is vertical density. A CSS-only compression pass should improve alignment without changing content or asset provenance.",
+    "kind": "image-vs-image",
+    "inputs": {
+      "expectedImagePath": "targets/mlr-homepage-visual-lab/source/ig_0df464ee8e4366cc016a37e95159208198bfe02a469e9a919d.png",
+      "actualImagePath": ".limner/runs/2026-06-21T163547281Z-e7oql3/captures/reference.png"
+    }
+  },
+  "recommendation": {
+    "topFix": "Compress the hero/lab vertical footprint so the proof band is visible within the first viewport.",
+    "why": "The page is now editable and asset-grounded, but the trust proof arrives too low compared with the selected reference.",
+    "expectedScoreLift": 0.08
+  }
+}

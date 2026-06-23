@@ -1,0 +1,24 @@
+{
+  "targets": [
+    {
+      "name": "mlr-homepage-visual-lab",
+      "path": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/landing-reimagining-campaign/targets/mlr-homepage-visual-lab"
+    },
+    {
+      "name": "mlr-instructor-path",
+      "path": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/landing-reimagining-campaign/targets/mlr-instructor-path"
+    },
+    {
+      "name": "mlr-resource-discovery",
+      "path": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/landing-reimagining-campaign/targets/mlr-resource-discovery"
+    },
+    {
+      "name": "mlr-reviews-adoption",
+      "path": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/landing-reimagining-campaign/targets/mlr-reviews-adoption"
+    },
+    {
+      "name": "mlr-visual-gallery",
+      "path": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/landing-reimagining-campaign/targets/mlr-visual-gallery"
+    }
+  ]
+}

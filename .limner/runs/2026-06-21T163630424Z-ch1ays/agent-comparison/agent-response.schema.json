@@ -1,0 +1,762 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "number",
+      "const": 1
+    },
+    "generatedBy": {
+      "type": "string",
+      "const": "agent"
+    },
+    "profile": {
+      "type": "string",
+      "enum": [
+        "ideal-to-mockup",
+        "mockup-to-implementation",
+        "ideal-to-implementation"
+      ]
+    },
+    "inputFingerprint": {
+      "type": "object",
+      "properties": {
+        "expectedImageSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "actualImageSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "expectedStructureSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "actualStructureSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "expectedImageSha256",
+        "actualImageSha256"
+      ],
+      "additionalProperties": false
+    },
+    "imageComparison": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "score": {
+          "type": "object",
+          "properties": {
+            "overall": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "layout": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "hierarchy": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "typography": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "color": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "spacing": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "structure": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "semantics": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "required": [
+            "overall"
+          ],
+          "additionalProperties": false
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "majorDiffAreas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "layout",
+                  "hierarchy",
+                  "typography",
+                  "color",
+                  "spacing",
+                  "structure",
+                  "component-anatomy",
+                  "copy-state",
+                  "attention-flow",
+                  "other"
+                ]
+              },
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "priority": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              "expected": {
+                "type": "string",
+                "minLength": 1
+              },
+              "actual": {
+                "type": "string",
+                "minLength": 1
+              },
+              "impact": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "source": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "observation": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "source",
+                    "observation"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "fixTarget": {
+                "type": "object",
+                "properties": {
+                  "surface": {
+                    "type": "string",
+                    "enum": [
+                      "mockup",
+                      "implementation",
+                      "unknown"
+                    ]
+                  },
+                  "region": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "likelyFiles": {
+                    "default": [],
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "selectors": {
+                    "default": [],
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "surface",
+                  "likelyFiles",
+                  "selectors"
+                ],
+                "additionalProperties": false
+              },
+              "recommendedChange": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "category",
+              "severity",
+              "priority",
+              "expected",
+              "actual",
+              "impact",
+              "evidence",
+              "recommendedChange"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "matches": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "remarks": {
+          "type": "object",
+          "properties": {
+            "matches": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "uncertainties": {
+              "default": [],
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "possibleIntentionalDeviations": {
+              "default": [],
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "matches",
+            "uncertainties",
+            "possibleIntentionalDeviations"
+          ],
+          "additionalProperties": false
+        },
+        "systemFeedback": {
+          "type": "object",
+          "properties": {
+            "inputQuality": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "missingContext": {
+              "default": [],
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "suggestedLimnerImprovements": {
+              "default": [],
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "inputQuality",
+            "missingContext",
+            "suggestedLimnerImprovements"
+          ],
+          "additionalProperties": false
+        },
+        "nextIteration": {
+          "type": "object",
+          "properties": {
+            "focus": {
+              "type": "string",
+              "minLength": 1
+            },
+            "steps": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "avoidForNow": {
+              "default": [],
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "expectedImprovement": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "focus",
+            "steps",
+            "avoidForNow"
+          ],
+          "additionalProperties": false
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "const": "image-vs-image"
+        },
+        "inputs": {
+          "type": "object",
+          "properties": {
+            "expectedImagePath": {
+              "type": "string",
+              "minLength": 1
+            },
+            "actualImagePath": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "expectedImagePath",
+            "actualImagePath"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "summary",
+        "score",
+        "confidence",
+        "majorDiffAreas",
+        "matches",
+        "remarks",
+        "systemFeedback",
+        "nextIteration",
+        "rationale",
+        "kind",
+        "inputs"
+      ],
+      "additionalProperties": false
+    },
+    "structureComparison": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "score": {
+          "type": "object",
+          "properties": {
+            "overall": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "layout": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "hierarchy": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "typography": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "color": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "spacing": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "structure": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "semantics": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "required": [
+            "overall"
+          ],
+          "additionalProperties": false
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "majorDiffAreas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "category": {
+                "type": "string",
+                "enum": [
+                  "layout",
+                  "hierarchy",
+                  "typography",
+                  "color",
+                  "spacing",
+                  "structure",
+                  "component-anatomy",
+                  "copy-state",
+                  "attention-flow",
+                  "other"
+                ]
+              },
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "priority": {
+                "type": "integer",
+                "exclusiveMinimum": 0,
+                "maximum": 9007199254740991
+              },
+              "expected": {
+                "type": "string",
+                "minLength": 1
+              },
+              "actual": {
+                "type": "string",
+                "minLength": 1
+              },
+              "impact": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "source": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "observation": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "source",
+                    "observation"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "fixTarget": {
+                "type": "object",
+                "properties": {
+                  "surface": {
+                    "type": "string",
+                    "enum": [
+                      "mockup",
+                      "implementation",
+                      "unknown"
+                    ]
+                  },
+                  "region": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "likelyFiles": {
+                    "default": [],
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "selectors": {
+                    "default": [],
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "surface",
+                  "likelyFiles",
+                  "selectors"
+                ],
+                "additionalProperties": false
+              },
+              "recommendedChange": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "category",
+              "severity",
+              "priority",
+              "expected",
+              "actual",
+              "impact",
+              "evidence",
+              "recommendedChange"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "matches": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "remarks": {
+          "type": "object",
+          "properties": {
+            "matches": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "uncertainties": {
+              "default": [],
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "possibleIntentionalDeviations": {
+              "default": [],
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "matches",
+            "uncertainties",
+            "possibleIntentionalDeviations"
+          ],
+          "additionalProperties": false
+        },
+        "systemFeedback": {
+          "type": "object",
+          "properties": {
+            "inputQuality": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "missingContext": {
+              "default": [],
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "suggestedLimnerImprovements": {
+              "default": [],
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "inputQuality",
+            "missingContext",
+            "suggestedLimnerImprovements"
+          ],
+          "additionalProperties": false
+        },
+        "nextIteration": {
+          "type": "object",
+          "properties": {
+            "focus": {
+              "type": "string",
+              "minLength": 1
+            },
+            "steps": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "avoidForNow": {
+              "default": [],
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "expectedImprovement": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "focus",
+            "steps",
+            "avoidForNow"
+          ],
+          "additionalProperties": false
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "const": "structure-vs-structure"
+        },
+        "inputs": {
+          "type": "object",
+          "properties": {
+            "expectedStructurePath": {
+              "type": "string",
+              "minLength": 1
+            },
+            "actualStructurePath": {
+              "type": "string",
+              "minLength": 1
+            },
+            "structureKind": {
+              "type": "string",
+              "enum": [
+                "visual-spec",
+                "dom-metrics",
+                "html",
+                "json-description"
+              ]
+            }
+          },
+          "required": [
+            "expectedStructurePath",
+            "actualStructurePath",
+            "structureKind"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "summary",
+        "score",
+        "confidence",
+        "majorDiffAreas",
+        "matches",
+        "remarks",
+        "systemFeedback",
+        "nextIteration",
+        "rationale",
+        "kind",
+        "inputs"
+      ],
+      "additionalProperties": false
+    },
+    "recommendation": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "topFix": {
+          "type": "string",
+          "minLength": 1
+        },
+        "why": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expectedScoreLift": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "version",
+    "generatedBy",
+    "profile",
+    "inputFingerprint",
+    "imageComparison",
+    "recommendation"
+  ],
+  "additionalProperties": false,
+  "not": {
+    "required": [
+      "structureComparison"
+    ]
+  }
+}

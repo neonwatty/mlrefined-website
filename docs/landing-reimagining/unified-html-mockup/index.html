@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Machine Learning Refined Unified HTML Mockup</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="app-shell" data-app>
+      <header class="app-header">
+        <a class="brand" href="#home" data-route="home" aria-label="Machine Learning Refined unified mockup home">
+          <span class="brand-mark">MLR</span>
+          <span>
+            <strong>Machine Learning Refined</strong>
+            <small>Unified page-system prototype</small>
+          </span>
+        </a>
+        <nav class="primary-nav" aria-label="Prototype sections">
+          <a href="#home" data-route="home">Home</a>
+          <a href="#notebooks" data-route="notebooks">Notebooks</a>
+          <a href="#resources" data-route="resources">Chapters</a>
+          <a href="#instructor" data-route="instructor">Instructors</a>
+          <a href="#reviews" data-route="reviews">Reviews</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="page-view home-view" data-view="home" aria-labelledby="home-title">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <h1 id="home-title">Machine Learning Refined <span>2nd Edition</span></h1>
+              <p class="book-subtitle">Foundations, Algorithms, and Applications</p>
+              <p class="lead">A second-edition textbook that teaches machine learning from intuition and geometry to derivations and executable Python resources.</p>
+              <div class="action-row">
+                <button class="button primary" type="button" data-route-button="resources">Explore chapter resources</button>
+                <button class="button" type="button" data-route-button="notebooks">Open Python notebooks</button>
+              </div>
+              <p class="hero-trust-line">Used as a reference text at 100+ universities and colleges.</p>
+            </div>
+            <figure class="book-stage">
+              <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/book/book-cover-2nd.png" alt="Machine Learning Refined second edition book cover">
+            </figure>
+          </div>
+
+          <section class="visual-funnel" aria-labelledby="visual-funnel-title">
+            <div class="section-heading-inline">
+              <div>
+                <p class="section-label">Visual learning system</p>
+                <h2 id="visual-funnel-title">Start with a figure, then open the chapter resources</h2>
+                <p>A focused carousel of source-backed book figures reveals the geometry behind each chapter, then routes readers straight into the chapter resources.</p>
+                <ol class="visual-path" aria-label="Visual learning path">
+                  <li><strong>Look</strong><span>Start with a real book figure.</span></li>
+                  <li><strong>Learn</strong><span>Open the chapter package behind it.</span></li>
+                  <li><strong>Explore</strong><span>Continue into chapters or notebooks.</span></li>
+                </ol>
+              </div>
+            </div>
+            <div class="visual-funnel-grid">
+              <div class="figure-spotlight" data-figure-spotlight></div>
+            </div>
+          </section>
+
+          <section class="book-promise" aria-labelledby="book-promise-title">
+            <div class="promise-copy">
+              <p class="section-label">The pedagogy</p>
+              <h2 id="book-promise-title">From picture to proof to Python</h2>
+              <p>Each topic moves from plain-language intuition to geometric visualization, mathematical derivation, and executable implementation.</p>
+            </div>
+            <ol class="promise-flow">
+              <li><span>01</span><strong>Intuition</strong><em>See the idea</em></li>
+              <li><span>02</span><strong>Visualization</strong><em>Watch the geometry</em></li>
+              <li><span>03</span><strong>Derivation</strong><em>Earn the notation</em></li>
+              <li><span>04</span><strong>Implementation</strong><em>Build it in Python</em></li>
+            </ol>
+          </section>
+
+          <section class="logo-band" aria-label="Selected university proof logos">
+            <div class="proof-copy">
+              <p>Used as a reference text at 100+ universities and colleges</p>
+              <div class="action-row">
+                <button class="button" type="button" data-route-button="instructor">For instructors</button>
+                <button class="button quiet-link" type="button" data-route-button="reviews">See adoption proof</button>
+              </div>
+            </div>
+            <div>
+              <div class="logo-row">
+                <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/university-of-michigan.png" alt="University of Michigan">
+                <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/university-of-toronto.png" alt="University of Toronto">
+                <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/texas-am.png" alt="Texas A&amp;M University">
+                <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/penn-state.png" alt="Penn State">
+                <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/nyu.png" alt="New York University">
+                <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/purdue.png" alt="Purdue University">
+                <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/georgia-tech.png" alt="Georgia Tech">
+                <img src="../../../targets/mlr-homepage-visual-lab/reference/assets/logos/asu.png" alt="Arizona State University">
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section class="page-view notebooks-view" data-view="notebooks" aria-labelledby="notebooks-title" hidden>
+          <div class="view-heading single-column">
+            <div>
+              <p class="section-label">Animated companions</p>
+              <h1 id="notebooks-title">Notebooks</h1>
+              <p class="lead">Eight curated animated previews tied to source notebooks, chapter PDFs, and Colab-ready paths.</p>
+            </div>
+          </div>
+          <div class="split-workbench">
+            <article class="featured-widget" data-featured-widget>
+            </article>
+            <aside class="source-panel">
+              <p class="section-label">Selected source bundle</p>
+              <h2>Everything behind the active notebook</h2>
+              <div data-source-list></div>
+            </aside>
+          </div>
+          <div class="section-heading-inline gallery-subhead">
+            <div>
+              <p class="section-label">Animated widgets</p>
+              <h2>Concept-by-concept notebooks</h2>
+            </div>
+          </div>
+          <section class="card-grid widget-grid" data-widget-grid aria-label="Widget gallery"></section>
+        </section>
+
+        <section class="page-view resources-view" data-view="resources" aria-labelledby="resources-title" hidden>
+          <div class="resource-layout">
+            <aside class="rail">
+              <img class="rail-book" src="../../../targets/mlr-resource-discovery/reference/assets/book-cover-2nd.png" alt="Machine Learning Refined second edition cover">
+              <section>
+                <h2>Verified Sources</h2>
+                <p>PDFs, slides, notebooks, and exercises link back to the book repository and publisher workflows.</p>
+                <details>
+                  <summary>Show source anchors</summary>
+                  <div data-resource-evidence></div>
+                </details>
+              </section>
+            </aside>
+            <div class="resource-main">
+              <div class="view-heading compact single-column">
+                <div>
+                  <p class="section-label">Chapter &amp; Resource Discovery</p>
+                  <h1 id="resources-title">Find the chapter, then open the exact resource</h1>
+                </div>
+              </div>
+              <section class="resource-control-bar" aria-label="Chapter discovery controls">
+                <label class="local-search">
+                  <span>Search chapters</span>
+                  <input type="search" data-search="chapters" placeholder="Search chapters, topics, resources">
+                </label>
+                <div class="control-group">
+                  <span>Audience</span>
+                  <div class="segmented" aria-label="Audience filter">
+                    <button class="is-selected" type="button" data-goal="all">All</button>
+                    <button type="button" data-goal="learner">Learners</button>
+                    <button type="button" data-goal="instructor">Instructors</button>
+                  </div>
+                </div>
+                <div class="control-group wide">
+                  <span>Resource type</span>
+                  <div class="segmented" aria-label="Resource type filter">
+                    <button class="is-selected" type="button" data-resource-type="all">All</button>
+                    <button type="button" data-resource-type="figures">Figures</button>
+                    <button type="button" data-resource-type="notebooks">Notebooks</button>
+                    <button type="button" data-resource-type="exercises">Exercises</button>
+                    <button type="button" data-resource-type="slides">Slides</button>
+                  </div>
+                </div>
+              </section>
+              <ul class="summary-strip">
+                <li><strong>14</strong><span>Chapters shown</span></li>
+                <li><strong>84</strong><span>Note notebooks</span></li>
+                <li><strong>13</strong><span>Exercise sets</span></li>
+                <li><strong>13</strong><span>PPTX chapters</span></li>
+              </ul>
+              <section class="chapter-hub" data-chapter-hub aria-label="Selected chapter package"></section>
+              <section class="chapter-list" data-chapter-list aria-label="Chapter resources"></section>
+              <section class="static-atlas resources-atlas" aria-labelledby="static-atlas-title">
+                <div class="section-heading-inline">
+                  <div>
+                    <p class="section-label">Static figure atlas</p>
+                    <h2 id="static-atlas-title">Book figures by chapter</h2>
+                    <p>Search source-backed figures from the notes-assets repository, then inspect the image or jump back to its chapter package.</p>
+                  </div>
+                  <label class="local-search">
+                    <span>Search figures</span>
+                    <input type="search" data-search="figures" placeholder="Search figures, topics, chapters">
+                  </label>
+                </div>
+                <div class="figure-coverage" data-figure-coverage aria-label="Figure coverage by chapter"></div>
+                <section class="figure-inspector" data-figure-inspector aria-label="Selected figure detail"></section>
+                <div class="static-atlas-grid" data-static-atlas></div>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section class="page-view instructor-view" data-view="instructor" aria-labelledby="instructor-title" hidden>
+          <div class="instructor-hero">
+            <div>
+              <p class="section-label">Instructor adoption</p>
+              <h1 id="instructor-title">Instructor Path</h1>
+              <p class="lead">Compare course roadmaps, then jump straight to the chapters, slides, exercises, and notebooks behind each path.</p>
+              <div class="action-row">
+                <button class="button primary" type="button" data-scroll-target="instructor-roadmaps">Choose roadmap</button>
+                <button class="button" type="button" data-scroll-target="instructor-support">Adoption support</button>
+              </div>
+              <p class="hero-trust-line">Support links stay one step away: preface, slides, sample-copy request, and GitHub questions.</p>
+            </div>
+          </div>
+          <nav class="instructor-jump-row" aria-label="Instructor page sections">
+            <button type="button" data-scroll-target="instructor-roadmaps">Roadmaps</button>
+            <button type="button" data-scroll-target="instructor-support">Support</button>
+          </nav>
+          <div class="starter-path-callout">
+            <strong>Most instructors start with Essentials</strong>
+            <span>Core optimization, linear learning, unsupervised learning, and validation in a 12 to 16 week path.</span>
+            <button class="button" type="button" data-route-button="instructor" data-track-jump="essentials">View Essentials roadmap</button>
+          </div>
+          <div class="track-layout" id="instructor-roadmaps">
+            <aside class="track-picker" data-track-picker></aside>
+            <section class="timeline-card" data-track-detail></section>
+            <aside class="source-package" id="instructor-support">
+              <h2>Adoption Support</h2>
+              <div data-track-support></div>
+              <a href="https://github.com/neonwatty/machine-learning-refined/blob/main/README.md#instructors"><strong>Instructor README</strong><span>Canonical teaching notes and support path</span></a>
+              <a href="http://cambridge.force.com/Samples?isbn=9781108480727&Title=Machine%20Learning%20Refined&Author=Watt/Borhani/Katsaggelos"><strong>Sample Copy</strong><span>Publisher workflow for evaluation copies</span></a>
+              <a href="https://github.com/neonwatty/machine-learning-refined/issues"><strong>Adoption Questions</strong><span>Ask resource and course-fit questions in public</span></a>
+            </aside>
+          </div>
+        </section>
+
+        <section class="page-view reviews-view" data-view="reviews" aria-labelledby="reviews-title" hidden>
+          <div class="reviews-layout">
+            <aside class="adoption-rail">
+              <p class="section-label">Adoption context</p>
+              <p>Machine Learning Refined is used as a reference text across engineering, computer science, data science, and applied mathematics.</p>
+              <img src="../../../targets/mlr-reviews-adoption/reference/assets/book-cover-2nd.png" alt="Machine Learning Refined second edition cover">
+              <a href="https://www.cambridge.org/us/academic/subjects/engineering/communications-and-signal-processing/machine-learning-refined-foundations-algorithms-and-applications-2nd-edition?format=HB">Publisher page</a>
+              <a href="https://github.com/neonwatty/machine-learning-refined">Resource repository</a>
+              <a href="https://www.goodreads.com/book/show/51183277-machine-learning-refined">Goodreads source</a>
+            </aside>
+            <div>
+              <div class="view-heading compact">
+                <div>
+                  <h1 id="reviews-title">Reviews &amp; Adoption</h1>
+                  <p class="lead">Used as a reference text at 100+ universities and colleges.</p>
+                </div>
+              </div>
+              <h2 class="proof-section-title">Selected Universities and Colleges</h2>
+              <section class="proof-logo-grid" data-proof-section="logos" aria-label="University proof logos"></section>
+              <h2 class="proof-section-title">Professor Endorsements</h2>
+              <section class="endorsement-grid" data-proof-section="endorsements" aria-label="Professor endorsements"></section>
+              <h2 class="proof-section-title">Reader Review Signals</h2>
+              <section class="review-list" data-proof-section="reviews" aria-label="Reader review signals"></section>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div class="image-popover" data-image-popover hidden>
+      <div class="image-popover-backdrop" data-image-popover-close></div>
+      <section class="image-popover-panel" role="dialog" aria-modal="true" aria-label="Book figure preview">
+        <button class="image-popover-close" type="button" data-image-popover-close>Close</button>
+        <div data-image-popover-content></div>
+      </section>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>

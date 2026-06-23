@@ -1,0 +1,56 @@
+{
+  "ok": true,
+  "canRunComparison": true,
+  "workspaceRoot": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/landing-reimagining-campaign",
+  "target": "mlr-reviews-adoption",
+  "checks": {
+    "cli": {
+      "status": "ok",
+      "message": "Limner CLI 0.1.28",
+      "details": {
+        "version": "0.1.28"
+      }
+    },
+    "workspace": {
+      "status": "ok",
+      "message": "Workspace root exists.",
+      "details": {
+        "root": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/landing-reimagining-campaign"
+      }
+    },
+    "target": {
+      "status": "ok",
+      "message": "Target exists.",
+      "details": {
+        "path": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/landing-reimagining-campaign/targets/mlr-reviews-adoption"
+      }
+    },
+    "reference": {
+      "status": "ok",
+      "message": "Required reference/source files are present.",
+      "details": {
+        "referenceHtmlPath": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/landing-reimagining-campaign/targets/mlr-reviews-adoption/reference/index.html",
+        "sourceImagePath": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/landing-reimagining-campaign/targets/mlr-reviews-adoption/source/ig_09f8ccafb0b45a8e016a37e91005d08199ab5661081e3331f1.png"
+      }
+    },
+    "artifacts": {
+      "status": "ok",
+      "message": "Prior run artifacts found.",
+      "details": {
+        "runCount": 1
+      }
+    },
+    "implementation": {
+      "status": "not_requested",
+      "message": "No implementation URL provided."
+    },
+    "auth": {
+      "status": "not_requested",
+      "message": "No storage state provided."
+    },
+    "comparison": {
+      "status": "ok",
+      "message": "Comparison can run."
+    }
+  }
+}

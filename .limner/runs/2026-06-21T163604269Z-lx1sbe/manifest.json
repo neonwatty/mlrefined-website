@@ -1,0 +1,17 @@
+{
+  "runId": "2026-06-21T163604269Z-lx1sbe",
+  "command": "loop compare",
+  "target": "mlr-instructor-path",
+  "mode": "image-mockup",
+  "comparisonMode": "image-reference",
+  "startedAt": "2026-06-21T16:36:04.269Z",
+  "status": "ok",
+  "artifacts": [
+    ".limner/runs/2026-06-21T163604269Z-lx1sbe/captures/reference.png",
+    ".limner/runs/2026-06-21T163604269Z-lx1sbe/captures/side-by-side.png",
+    ".limner/runs/2026-06-21T163604269Z-lx1sbe/agent-comparison/agent-prompt.md",
+    ".limner/runs/2026-06-21T163604269Z-lx1sbe/agent-comparison/agent-response.schema.json",
+    ".limner/runs/2026-06-21T163604269Z-lx1sbe/reports/comparison.md"
+  ],
+  "completedAt": "2026-06-21T16:36:05.200Z"
+}

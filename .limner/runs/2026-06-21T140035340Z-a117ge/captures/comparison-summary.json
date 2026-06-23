@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "generatedBy": "agent",
+  "profile": "ideal-to-mockup",
+  "inputFingerprint": {
+    "expectedImageSha256": "c9f139b889ea7b56cc181a2d12beec673abc6700ca5d76fa53d79579c74c97fa",
+    "actualImageSha256": "98f89e5bf9934c5fecf1bc1c919f4fcf7768baec311469afb703c03ff1fc7f0f"
+  },
+  "imageComparison": {
+    "summary": "The ideal is a full resource-discovery application with navigation, sidebar filters, a grouped chapter/resource table, repository status panels, and widget previews. The current reference preserves that ideal only as a large embedded image inside a generic shell, so the editable mockup has almost none of the page anatomy Limner needs to compare or iterate.",
+    "score": {
+      "overall": 0.22,
+      "layout": 0.2,
+      "hierarchy": 0.24,
+      "typography": 0.28,
+      "color": 0.34,
+      "spacing": 0.22,
+      "structure": 0.08,
+      "semantics": 0.08
+    },
+    "confidence": 0.9,
+    "majorDiffAreas": [
+      {
+        "id": "image-backed-shell",
+        "title": "Reference is still an embedded image instead of editable page modules",
+        "category": "structure",
+        "severity": "high",
+        "priority": 1,
+        "expected": "A real HTML/CSS resource finder with top navigation, left learning-goal filters, grouped chapter rows, compact resource badges, a GitHub repository panel, resource coverage summaries, and widget thumbnails.",
+        "actual": "The editable DOM contains a context header and a single source image frame; the actual resource finder is only visible inside the image asset.",
+        "impact": "The target cannot be polished, made responsive, audited for text/links, or moved toward production because the meaningful UI is not editable or semantically represented.",
+        "evidence": [
+          {
+            "source": "visible-text-inventory",
+            "observation": "Only five visible text blocks are detected, all from the generic context header or image-frame label rather than the intended resource finder."
+          },
+          {
+            "source": "side-by-side",
+            "observation": "The right screenshot shows the ideal page nested below a separate header, proving the current reference depends on the generated image for the real layout."
+          }
+        ],
+        "fixTarget": {
+          "surface": "mockup",
+          "region": "reference-root",
+          "likelyFiles": [
+            "targets/mlr-resource-discovery/reference/index.html",
+            "targets/mlr-resource-discovery/reference/styles.css"
+          ],
+          "selectors": [
+            "[data-limner-region='reference-root']",
+            ".source-frame"
+          ]
+        },
+        "recommendedChange": "Replace the source image frame with editable DOM that recreates the ideal page architecture using verified local book, widget, and repository resource data."
+      },
+      {
+        "id": "missing-resource-semantics",
+        "title": "Chapter and resource data are absent from the DOM",
+        "category": "copy-state",
+        "severity": "high",
+        "priority": 2,
+        "expected": "Representative real chapter rows grouped by Introduction, Part I Mathematical Optimization, Part II Linear Learning, Part III Nonlinear Learning, and Part IV Appendices, with PDF, Notebook, Colab, Exercise, Slides, and GitHub availability states.",
+        "actual": "No chapter rows, book part headings, resource badges, counts, or repository source link are present as editable text or links.",
+        "impact": "The mockup cannot prove resource truth or accessibility, and the visual density of the ideal cannot be judged independently from the generated image.",
+        "evidence": [
+          {
+            "source": "reference/index.html",
+            "observation": "The page contains only the generic page title, one sentence, and an image element."
+          }
+        ],
+        "fixTarget": {
+          "surface": "mockup",
+          "region": "chapter-index",
+          "likelyFiles": [
+            "targets/mlr-resource-discovery/reference/index.html",
+            "targets/mlr-resource-discovery/reference/styles.css"
+          ],
+          "selectors": [
+            ".chapter-index",
+            ".resource-badge"
+          ]
+        },
+        "recommendedChange": "Build the grouped chapter table and badge clusters from verified repository coverage notes instead of copying generated microcopy."
+      }
+    ],
+    "matches": [
+      "The color direction roughly echoes the ideal with warm paper, deep navy, gold accents, and academic blue."
+    ],
+    "remarks": {
+      "matches": [
+        "The selected generated image remains available as visual guidance."
+      ],
+      "uncertainties": [
+        "Exact notebook and Colab coverage should remain conservative unless verified directly from the canonical repository."
+      ],
+      "possibleIntentionalDeviations": [
+        "The initial shell intentionally preserved the source image for first-pass alignment, but this iteration should move to editable DOM."
+      ]
+    },
+    "systemFeedback": {
+      "inputQuality": [],
+      "missingContext": [],
+      "suggestedLimnerImprovements": []
+    },
+    "nextIteration": {
+      "focus": "Convert the image-backed reference into a real editable resource-discovery mockup.",
+      "steps": [
+        "Replace the source image frame with an HTML/CSS page shell matching the ideal architecture.",
+        "Use verified local book cover and widget GIF assets.",
+        "Populate representative chapter/resource rows from the canonical repository evidence, keeping unavailable or uncertain resources muted."
+      ],
+      "avoidForNow": [
+        "Do not generate new imagery, add stock imagery, or invent university logos, screenshots, or resource availability."
+      ]
+    },
+    "rationale": "The biggest visual and product gap is not a small polish issue; it is that the meaningful UI exists only as pixels. Converting the target into editable modules unlocks all later visual, responsive, SEO, and resource-truth verification.",
+    "kind": "image-vs-image",
+    "inputs": {
+      "expectedImagePath": "targets/mlr-resource-discovery/source/ig_0553e087e3834b88016a37e933bce48199a43e57b316216b4a.png",
+      "actualImagePath": ".limner/runs/2026-06-21T140035340Z-a117ge/captures/reference.png"
+    }
+  },
+  "recommendation": {
+    "topFix": "Replace the generated-image frame with editable HTML/CSS modules for the resource finder.",
+    "why": "This creates the page anatomy required by the target contract while preserving the ideal as visual guidance rather than a production asset."
+  }
+}

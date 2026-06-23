@@ -1,0 +1,86 @@
+{
+  "summary": "The editable gallery is structurally correct and asset-backed, but the featured workbench is too tall and sparse: the chart sits in a large blank panel and the widget cards begin below the ideal first-viewport position.",
+  "score": {
+    "overall": 0.72,
+    "layout": 0.68,
+    "hierarchy": 0.78,
+    "typography": 0.76,
+    "color": 0.84,
+    "spacing": 0.58
+  },
+  "confidence": 0.86,
+  "majorDiffAreas": [
+    {
+      "id": "workbench-vertical-density",
+      "title": "Featured workbench is too tall and pushes the gallery down",
+      "category": "spacing",
+      "severity": "medium",
+      "priority": 1,
+      "expected": "The source image keeps a compact interactive workbench and shows a full row of widget cards in the first viewport.",
+      "actual": "The editable mockup has a large empty feature visual area and only the top edge of the card grid is visible at the bottom of the 1440x900 capture.",
+      "impact": "The page reads less like a dense visual gallery and more like a hero with unused whitespace, weakening resource discovery.",
+      "evidence": [
+        {
+          "source": "side-by-side",
+          "observation": "In the actual screenshot, the feature image occupies a tall pale panel with large blank space below the plot; gallery cards start near the bottom edge."
+        },
+        {
+          "source": "comparison-report",
+          "observation": "The final report detects repeated rows in the right rail but not the lower widget grid as a prominent region."
+        }
+      ],
+      "fixTarget": {
+        "surface": "mockup",
+        "region": "featured-workbench",
+        "likelyFiles": [
+          "targets/mlr-visual-gallery/reference/styles.css"
+        ],
+        "selectors": [
+          ".workbench",
+          ".featured-card",
+          ".feature-visual",
+          ".widget-grid",
+          ".gallery-controls"
+        ]
+      },
+      "recommendedChange": "Compress the hero/workbench vertical rhythm, reduce the blank feature-visual panel, use a shorter feature image, and pull the controls/card grid upward."
+    }
+  ],
+  "matches": [
+    "Real widget GIF assets render",
+    "Overall header, hero, workbench, right learning path, tabs, and gallery structure are present"
+  ],
+  "remarks": {
+    "matches": [
+      "Palette and academic paper treatment are close enough for this pass"
+    ],
+    "uncertainties": [],
+    "possibleIntentionalDeviations": [
+      "Real GIF widgets replace generated chart stills by design"
+    ]
+  },
+  "systemFeedback": {
+    "inputQuality": [
+      "Both captures are readable and same viewport"
+    ],
+    "missingContext": [],
+    "suggestedLimnerImprovements": []
+  },
+  "nextIteration": {
+    "focus": "Tighten first-viewport density for the editable visual gallery.",
+    "steps": [
+      "Reduce workbench min-height and feature panel padding",
+      "Constrain feature image height",
+      "Pull gallery controls/card grid upward"
+    ],
+    "avoidForNow": [
+      "Do not change assets or invent new screenshots"
+    ]
+  },
+  "rationale": "The target is already editable and asset-backed, so a CSS-only density pass is the highest-value next improvement.",
+  "kind": "image-vs-image",
+  "inputs": {
+    "expectedImagePath": "targets/mlr-visual-gallery/source/ig_09deac95aeabce3a016a37e9913230819b9a148e19b149a1d2.png",
+    "actualImagePath": ".limner/runs/2026-06-21T164031152Z-lvt8n8/captures/reference.png"
+  }
+}

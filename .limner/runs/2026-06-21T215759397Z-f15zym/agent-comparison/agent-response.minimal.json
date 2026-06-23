@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "generatedBy": "agent",
+  "profile": "ideal-to-mockup",
+  "inputFingerprint": {
+    "expectedImageSha256": "6718474f96e3135d3c06424c15bb494c3cb95ba16b48f5995507cee9c643fad8",
+    "actualImageSha256": "d8eb371e76a7cee65deed1b91f8c0898f2346b3c65b69d5586e12092adfb573f"
+  },
+  "imageComparison": {
+    "kind": "image-vs-image",
+    "summary": "Replace this with a concise comparison summary.",
+    "score": {
+      "overall": 0.5
+    },
+    "confidence": 0.5,
+    "majorDiffAreas": [
+      {
+        "id": "replace-with-real-diff",
+        "title": "Replace with the highest-impact observed mismatch",
+        "category": "other",
+        "severity": "medium",
+        "priority": 1,
+        "expected": "Describe the expected visual or structural state.",
+        "actual": "Describe the actual visual or structural state.",
+        "impact": "Explain why this matters for fidelity or UX.",
+        "evidence": [
+          {
+            "source": "image-vs-image",
+            "observation": "Replace with concrete artifact evidence."
+          }
+        ],
+        "fixTarget": {
+          "surface": "mockup",
+          "likelyFiles": [],
+          "selectors": []
+        },
+        "recommendedChange": "Describe one scoped change for the next iteration."
+      }
+    ],
+    "matches": [],
+    "remarks": {
+      "matches": [],
+      "uncertainties": [],
+      "possibleIntentionalDeviations": []
+    },
+    "systemFeedback": {
+      "inputQuality": [],
+      "missingContext": [],
+      "suggestedLimnerImprovements": []
+    },
+    "nextIteration": {
+      "focus": "Make one focused polish change.",
+      "steps": [
+        "Replace with concrete next step."
+      ],
+      "avoidForNow": []
+    },
+    "rationale": "Replace this rationale with evidence from the comparison artifacts.",
+    "inputs": {
+      "expectedImagePath": "targets/mlr-visual-gallery/source/ig_09deac95aeabce3a016a37e9913230819b9a148e19b149a1d2.png",
+      "actualImagePath": ".limner/runs/2026-06-21T215759397Z-f15zym/captures/reference.png"
+    }
+  },
+  "recommendation": {
+    "topFix": "Verify the highest-impact visible mismatch, then make one scoped polish change.",
+    "why": "This minimal template is valid but should be replaced with concrete comparison evidence."
+  }
+}
