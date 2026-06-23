@@ -654,6 +654,7 @@ h3 {
 }
 
 .spotlight-stage {
+  position: relative;
   display: grid;
   place-items: center;
   height: clamp(390px, 34vw, 500px);
@@ -666,16 +667,36 @@ h3 {
 }
 
 .spotlight-stage img {
+  grid-area: 1 / 1;
   width: 100%;
   height: 100%;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
   padding: 12px;
+  transition: opacity 520ms ease, transform 520ms ease;
+  will-change: opacity, transform;
 }
 
-.spotlight-stage img.is-transitioning {
-  animation: spotlight-image-in 520ms ease both;
+.spotlight-image-current {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.spotlight-image-next {
+  opacity: 0;
+  transform: scale(0.992);
+  pointer-events: none;
+}
+
+.spotlight-stage.is-crossfading .spotlight-image-current {
+  opacity: 0;
+  transform: scale(0.992);
+}
+
+.spotlight-stage.is-crossfading .spotlight-image-next {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .spotlight-copy {
@@ -684,10 +705,6 @@ h3 {
   gap: 10px;
   height: clamp(390px, 34vw, 500px);
   min-width: 0;
-}
-
-.spotlight-copy.is-transitioning {
-  animation: spotlight-copy-in 460ms ease both;
 }
 
 .spotlight-copy h3 {
@@ -758,34 +775,9 @@ h3 {
   margin-top: 20px;
 }
 
-@keyframes spotlight-image-in {
-  from {
-    opacity: 0;
-    transform: scale(0.985);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes spotlight-copy-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .spotlight-stage img.is-transitioning,
-  .spotlight-copy.is-transitioning {
-    animation: none;
+  .spotlight-stage img {
+    transition: none;
   }
 
   .spotlight-thumbs button {

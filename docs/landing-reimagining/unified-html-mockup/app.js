@@ -690,6 +690,7 @@ let proofFilter = "all";
 let activeFigureIndex = 0;
 let activeSpotlightIndex = 0;
 let spotlightAutoplayId = null;
+let spotlightTransitionId = null;
 let isSpotlightPaused = false;
 let isSpotlightHeld = false;
 let isSpotlightExplicitlyResumed = false;
@@ -816,14 +817,22 @@ function pauseSpotlightAfterManualAction() {
 }
 
 function replaySpotlightTransition() {
+  const stage = bySelector("[data-spotlight-stage]");
   const image = bySelector("[data-spotlight-image]");
-  const copy = bySelector("[data-spotlight-copy]");
-  [image, copy].forEach((element) => {
-    if (!element) return;
-    element.classList.remove("is-transitioning");
-    void element.offsetWidth;
-    element.classList.add("is-transitioning");
-  });
+  const incoming = bySelector("[data-spotlight-image-next]");
+  if (!stage || !image || !incoming) return;
+  stage.classList.remove("is-crossfading");
+  void stage.offsetWidth;
+  stage.classList.add("is-crossfading");
+
+  if (spotlightTransitionId) window.clearTimeout(spotlightTransitionId);
+  spotlightTransitionId = window.setTimeout(() => {
+    image.src = incoming.src;
+    image.alt = incoming.dataset.nextAlt || image.alt;
+    incoming.removeAttribute("src");
+    incoming.dataset.nextAlt = "";
+    stage.classList.remove("is-crossfading");
+  }, 560);
 }
 
 function renderSpotlightShell(figures) {
@@ -831,7 +840,8 @@ function renderSpotlightShell(figures) {
   if (!container || bySelector("[data-spotlight-stage]")) return;
   container.innerHTML = `
     <button class="spotlight-stage" type="button" data-spotlight-stage>
-      <img data-spotlight-image alt="">
+      <img class="spotlight-image-current" data-spotlight-image alt="">
+      <img class="spotlight-image-next" data-spotlight-image-next alt="" aria-hidden="true">
     </button>
     <div class="spotlight-copy" data-spotlight-copy>
       <p class="section-label" data-spotlight-meta></p>
@@ -868,6 +878,7 @@ function renderFigureSpotlight(options = {}) {
 
   const stage = bySelector("[data-spotlight-stage]");
   const image = bySelector("[data-spotlight-image]");
+  const incoming = bySelector("[data-spotlight-image-next]");
   const meta = bySelector("[data-spotlight-meta]");
   const title = bySelector("[data-spotlight-title]");
   const description = bySelector("[data-spotlight-description]");
@@ -879,7 +890,21 @@ function renderFigureSpotlight(options = {}) {
     stage.dataset.imagePopoverOpen = String(index);
     stage.setAttribute("aria-label", `Inspect ${visual.title}`);
   }
-  if (image) {
+  if (image && incoming) {
+    const currentSrc = image.getAttribute("src");
+    const isSameImage = currentSrc === visual.image || image.src.endsWith(visual.image);
+    if (options.animate === false || !currentSrc || isSameImage) {
+      if (spotlightTransitionId) window.clearTimeout(spotlightTransitionId);
+      stage?.classList.remove("is-crossfading");
+      image.src = visual.image;
+      image.alt = visual.alt;
+      incoming.removeAttribute("src");
+      incoming.dataset.nextAlt = "";
+    } else {
+      incoming.src = visual.image;
+      incoming.dataset.nextAlt = visual.alt;
+    }
+  } else if (image) {
     image.src = visual.image;
     image.alt = visual.alt;
   }
@@ -900,7 +925,7 @@ function renderFigureSpotlight(options = {}) {
     button.setAttribute("aria-pressed", isSelected ? "true" : "false");
   });
 
-  if (options.animate !== false) replaySpotlightTransition();
+  if (options.animate !== false && incoming?.getAttribute("src")) replaySpotlightTransition();
 }
 
 function renderFeaturedWidget() {
@@ -1525,7 +1550,7 @@ function bindEvents() {
 }
 
 function init() {
-  renderFigureSpotlight();
+  renderFigureSpotlight({ animate: false });
   restartSpotlightAutoplay();
   renderWidgetFilters();
   renderFeaturedWidget();
