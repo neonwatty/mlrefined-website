@@ -2067,6 +2067,7 @@ body.has-popover {
 .proof-logo-grid figure {
   display: grid;
   gap: 8px;
+  grid-template-rows: 68px auto;
   place-items: center;
   min-height: 92px;
   margin: 0;
@@ -2076,31 +2077,49 @@ body.has-popover {
   background: #fff;
 }
 
+.proof-logo-frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 68px;
+  overflow: hidden;
+}
+
 .proof-logo-grid img {
-  max-height: 48px;
-  max-width: 82%;
+  max-height: 54px;
+  max-width: 86%;
   object-fit: contain;
 }
 
 .proof-logo-university-of-michigan {
-  width: 218px !important;
-  max-width: 94% !important;
+  position: absolute;
+  top: -58px;
+  left: 50%;
+  width: 320px !important;
+  max-width: none !important;
   max-height: none !important;
-  transform: none;
+  transform: translateX(-50%);
 }
 
 .proof-logo-university-of-toronto {
-  width: 218px !important;
-  max-width: 94% !important;
+  position: absolute;
+  top: -68px;
+  left: 50%;
+  width: 300px !important;
+  max-width: none !important;
   max-height: none !important;
-  transform: none;
+  transform: translateX(-50%);
 }
 
 .proof-logo-texas-aandm-university {
-  width: 172px !important;
-  max-width: 88% !important;
+  position: absolute;
+  top: -48px;
+  left: 50%;
+  width: 200px !important;
+  max-width: none !important;
   max-height: none !important;
-  transform: none;
+  transform: translateX(-50%);
 }
 
 .proof-logo-grid figcaption {

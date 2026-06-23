@@ -1398,7 +1398,7 @@ function renderProof() {
 
 function renderProofContent() {
   bySelector("[data-proof-section='logos']").innerHTML = logos.map(([name, file]) => `
-    <figure><img class="proof-logo proof-logo-${slugify(name)}" src="${ROOT}/mlr-reviews-adoption/reference/assets/logos/${file}" alt="${name}"><figcaption>${name}</figcaption></figure>
+    <figure><span class="proof-logo-frame"><img class="proof-logo proof-logo-${slugify(name)}" src="${ROOT}/mlr-reviews-adoption/reference/assets/logos/${file}" alt="${name}"></span><figcaption>${name}</figcaption></figure>
   `).join("");
   bySelector("[data-proof-section='endorsements']").innerHTML = endorsements.map(([name, role, copy, file]) => `
     <article class="endorsement-card">
