@@ -644,6 +644,7 @@ h3 {
   display: grid;
   grid-template-columns: minmax(360px, 1.15fr) minmax(300px, 0.85fr);
   gap: 14px;
+  align-items: stretch;
   padding: 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -654,7 +655,8 @@ h3 {
 .spotlight-stage {
   display: grid;
   place-items: center;
-  min-height: 350px;
+  height: clamp(390px, 34vw, 500px);
+  min-height: 0;
   overflow: hidden;
   border: 1px solid var(--line-cool);
   border-radius: 7px;
@@ -665,6 +667,8 @@ h3 {
 .spotlight-stage img {
   width: 100%;
   height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   padding: 12px;
   animation: spotlight-image-in 520ms ease both;
@@ -674,6 +678,8 @@ h3 {
   display: grid;
   align-content: center;
   gap: 10px;
+  height: clamp(390px, 34vw, 500px);
+  min-width: 0;
   animation: spotlight-copy-in 460ms ease both;
 }
 
@@ -2333,11 +2339,23 @@ body.has-popover {
   }
 
   .spotlight-stage {
-    min-height: 250px;
+    height: clamp(260px, 68vw, 360px);
+  }
+
+  .spotlight-copy {
+    align-content: start;
+    height: 430px;
   }
 
   .spotlight-thumbs {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .spotlight-thumbs button {
+    flex: 0 0 72px;
   }
 
   .summary-strip {
