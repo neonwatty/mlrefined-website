@@ -690,6 +690,9 @@ let proofFilter = "all";
 let activeFigureIndex = 0;
 let activeSpotlightIndex = 0;
 let spotlightAutoplayId = null;
+let isSpotlightPaused = false;
+let isSpotlightHeld = false;
+let isSpotlightExplicitlyResumed = false;
 const SPOTLIGHT_AUTOPLAY_MS = 4000;
 
 function bySelector(selector) {
@@ -800,9 +803,16 @@ function advanceSpotlight(direction = 1) {
 function restartSpotlightAutoplay() {
   if (spotlightAutoplayId) window.clearInterval(spotlightAutoplayId);
   spotlightAutoplayId = window.setInterval(() => {
-    if (document.hidden || document.body.classList.contains("has-popover")) return;
+    if (isSpotlightPaused || (!isSpotlightExplicitlyResumed && isSpotlightHeld) || document.hidden || document.body.classList.contains("has-popover")) return;
     advanceSpotlight(1);
   }, SPOTLIGHT_AUTOPLAY_MS);
+}
+
+function pauseSpotlightAfterManualAction() {
+  isSpotlightPaused = true;
+  isSpotlightExplicitlyResumed = false;
+  renderFigureSpotlight();
+  restartSpotlightAutoplay();
 }
 
 function renderFigureSpotlight() {
@@ -822,6 +832,7 @@ function renderFigureSpotlight() {
       <div class="spotlight-controls">
         <button type="button" data-spotlight-prev>Previous</button>
         <button type="button" data-spotlight-next>Next</button>
+        <button type="button" data-spotlight-toggle aria-pressed="${isSpotlightPaused ? "true" : "false"}">${isSpotlightPaused ? "Resume" : "Pause"}</button>
       </div>
       <div class="chip-row">
         <button type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">Chapter resources</button>
@@ -829,7 +840,7 @@ function renderFigureSpotlight() {
       </div>
       <div class="spotlight-thumbs" aria-label="Choose spotlight figure">
         ${figures.map(({ visual: thumb }, position) => `
-          <button class="${position === activeSpotlightIndex ? "is-selected" : ""}" type="button" data-spotlight-select="${position}" aria-label="Show ${thumb.title}">
+          <button class="${position === activeSpotlightIndex ? "is-selected" : ""}" type="button" data-spotlight-select="${position}" aria-current="${position === activeSpotlightIndex ? "true" : "false"}" aria-pressed="${position === activeSpotlightIndex ? "true" : "false"}" aria-label="Show ${thumb.title}, ${chapterLabel(itemChapterNumber(thumb))}">
             <img src="${thumb.image}" alt="">
             <span>${chapterLabel(itemChapterNumber(thumb))}</span>
           </button>
@@ -1341,19 +1352,26 @@ function bindEvents() {
     const spotlightSelect = event.target.closest("[data-spotlight-select]");
     if (spotlightSelect) {
       activeSpotlightIndex = Number(spotlightSelect.dataset.spotlightSelect);
-      renderFigureSpotlight();
-      restartSpotlightAutoplay();
+      pauseSpotlightAfterManualAction();
     }
 
     const spotlightPrev = event.target.closest("[data-spotlight-prev]");
     if (spotlightPrev) {
       advanceSpotlight(-1);
-      restartSpotlightAutoplay();
+      pauseSpotlightAfterManualAction();
     }
 
     const spotlightNext = event.target.closest("[data-spotlight-next]");
     if (spotlightNext) {
       advanceSpotlight(1);
+      pauseSpotlightAfterManualAction();
+    }
+
+    const spotlightToggle = event.target.closest("[data-spotlight-toggle]");
+    if (spotlightToggle) {
+      isSpotlightPaused = !isSpotlightPaused;
+      isSpotlightExplicitlyResumed = !isSpotlightPaused;
+      renderFigureSpotlight();
       restartSpotlightAutoplay();
     }
 
@@ -1434,6 +1452,21 @@ function bindEvents() {
   bySelector("[data-search='chapters']")?.addEventListener("input", (event) => {
     chapterQuery = event.target.value;
     renderChapters();
+  });
+
+  const spotlight = bySelector("[data-figure-spotlight]");
+  spotlight?.addEventListener("mouseenter", () => {
+    isSpotlightHeld = true;
+  });
+  spotlight?.addEventListener("mouseleave", () => {
+    isSpotlightHeld = false;
+    isSpotlightExplicitlyResumed = false;
+  });
+  spotlight?.addEventListener("focusin", () => {
+    isSpotlightHeld = true;
+  });
+  spotlight?.addEventListener("focusout", () => {
+    isSpotlightHeld = false;
   });
 
 }

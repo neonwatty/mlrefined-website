@@ -64,8 +64,8 @@ img {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: 2px;
+  outline: 3px solid #f0b83a;
+  outline-offset: 3px;
 }
 
 .app-shell {
@@ -133,6 +133,7 @@ input:focus-visible {
 
 .primary-nav {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 6px;
   min-width: 0;
@@ -140,7 +141,7 @@ input:focus-visible {
 }
 
 .primary-nav a {
-  min-height: 36px;
+  min-height: 40px;
   display: inline-flex;
   align-items: center;
   padding: 0 12px;
@@ -292,7 +293,7 @@ h3 {
 .chip-row span,
 .filter-row button,
 .segmented button {
-  min-height: 34px;
+  min-height: 40px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -704,8 +705,8 @@ h3 {
 }
 
 .spotlight-controls button {
-  min-height: 34px;
-  padding: 7px 12px;
+  min-height: 42px;
+  padding: 8px 12px;
 }
 
 .spotlight-thumbs {
@@ -2196,8 +2197,9 @@ body.has-popover {
 
   .primary-nav {
     grid-column: 1 / -1;
+    flex-wrap: wrap;
     justify-content: flex-start;
-    overflow-x: auto;
+    overflow-x: visible;
   }
 
   .featured-widget {
@@ -2245,6 +2247,17 @@ body.has-popover {
 
   .page-view {
     padding: 14px 12px 24px;
+  }
+
+  .primary-nav a,
+  .button,
+  .hero-copy .button.primary,
+  .chip-row a,
+  .chip-row button,
+  .filter-row button,
+  .segmented button,
+  .spotlight-controls button {
+    min-height: 44px;
   }
 
   h1 {
