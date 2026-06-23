@@ -358,22 +358,14 @@ const spotlightFigureTitles = [
   "Least Squares",
   "PCA Geometry",
   "Feature Transformations",
-  "Learned Decision Boundaries",
-  "Feature Learning Complexity",
-  "Boundary Families",
-  "Multiclass Histogram",
-  "Unfolded Network"
-];
-
-const chapterElevenShowcaseTitles = [
-  "Feature Transformations",
   "Validation Surface Grid",
   "Learned Decision Boundaries",
   "Feature Learning Complexity",
   "Regularized Feature Fits",
   "Model Families Compared",
   "Boundary Families",
-  "Multiclass Histogram"
+  "Multiclass Histogram",
+  "Unfolded Network"
 ];
 
 const chapters = [
@@ -697,6 +689,8 @@ let activeRoadmapChapter = tracks[0].chapters[0][0];
 let proofFilter = "all";
 let activeFigureIndex = 0;
 let activeSpotlightIndex = 0;
+let spotlightAutoplayId = null;
+const SPOTLIGHT_AUTOPLAY_MS = 4000;
 
 function bySelector(selector) {
   return document.querySelector(selector);
@@ -796,11 +790,19 @@ function spotlightFigures() {
     .map((visual) => ({ visual, index: staticVisuals.indexOf(visual) }));
 }
 
-function chapterElevenFigures() {
-  return chapterElevenShowcaseTitles
-    .map((title) => staticVisuals.find((visual) => visual.title === title))
-    .filter(Boolean)
-    .map((visual) => ({ visual, index: staticVisuals.indexOf(visual) }));
+function advanceSpotlight(direction = 1) {
+  const total = spotlightFigures().length;
+  if (!total) return;
+  activeSpotlightIndex = (activeSpotlightIndex + total + direction) % total;
+  renderFigureSpotlight();
+}
+
+function restartSpotlightAutoplay() {
+  if (spotlightAutoplayId) window.clearInterval(spotlightAutoplayId);
+  spotlightAutoplayId = window.setInterval(() => {
+    if (document.hidden || document.body.classList.contains("has-popover")) return;
+    advanceSpotlight(1);
+  }, SPOTLIGHT_AUTOPLAY_MS);
 }
 
 function renderFigureSpotlight() {
@@ -829,48 +831,12 @@ function renderFigureSpotlight() {
         ${figures.map(({ visual: thumb }, position) => `
           <button class="${position === activeSpotlightIndex ? "is-selected" : ""}" type="button" data-spotlight-select="${position}" aria-label="Show ${thumb.title}">
             <img src="${thumb.image}" alt="">
-            <span>${itemChapterNumber(thumb)}</span>
+            <span>${chapterLabel(itemChapterNumber(thumb))}</span>
           </button>
         `).join("")}
       </div>
     </div>
   `;
-}
-
-function renderChapterElevenShowcase() {
-  const container = bySelector("[data-chapter-eleven-showcase]");
-  if (!container) return;
-  container.innerHTML = chapterElevenFigures().map(({ visual, index }) => {
-    const chapterNumber = itemChapterNumber(visual);
-    return `
-      <article class="chapter-eleven-card">
-        <button type="button" data-image-popover-open="${index}" aria-label="Inspect ${visual.title}">
-          <img src="${visual.image}" alt="${visual.alt}">
-        </button>
-        <div>
-          <p class="section-label">${visual.chapter} / ${visual.topic}</p>
-          <h3>${visual.title}</h3>
-          <p>${visual.description}</p>
-          <div class="chip-row">
-            <button type="button" data-image-popover-open="${index}">Inspect image</button>
-            <button type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">Chapter resources</button>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join("");
-}
-
-function renderHomeGifGrid() {
-  bySelector("[data-home-gif-grid]").innerHTML = widgets.slice(0, 4).map((widget, index) => `
-    <button class="home-gif-card" type="button" data-route-button="notebooks" data-widget-jump="${index}" data-topic-jump="${widget.topic}">
-      <img src="${widget.image}" alt="${widget.alt}">
-      <span>
-        <small>${widget.chapter} / ${widget.topic}</small>
-        <strong>${widget.title}</strong>
-      </span>
-    </button>
-  `).join("");
 }
 
 function renderFeaturedWidget() {
@@ -1376,20 +1342,19 @@ function bindEvents() {
     if (spotlightSelect) {
       activeSpotlightIndex = Number(spotlightSelect.dataset.spotlightSelect);
       renderFigureSpotlight();
+      restartSpotlightAutoplay();
     }
 
     const spotlightPrev = event.target.closest("[data-spotlight-prev]");
     if (spotlightPrev) {
-      const total = spotlightFigures().length;
-      activeSpotlightIndex = (activeSpotlightIndex + total - 1) % total;
-      renderFigureSpotlight();
+      advanceSpotlight(-1);
+      restartSpotlightAutoplay();
     }
 
     const spotlightNext = event.target.closest("[data-spotlight-next]");
     if (spotlightNext) {
-      const total = spotlightFigures().length;
-      activeSpotlightIndex = (activeSpotlightIndex + 1) % total;
-      renderFigureSpotlight();
+      advanceSpotlight(1);
+      restartSpotlightAutoplay();
     }
 
     const widgetCard = event.target.closest("[data-widget-index]");
@@ -1475,8 +1440,7 @@ function bindEvents() {
 
 function init() {
   renderFigureSpotlight();
-  renderChapterElevenShowcase();
-  renderHomeGifGrid();
+  restartSpotlightAutoplay();
   renderWidgetFilters();
   renderFeaturedWidget();
   renderFigureInspector();
