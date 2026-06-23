@@ -69,7 +69,7 @@ jobs:
         run: npm ci
 
       - name: Cache ESLint results
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: .eslintcache
           key: eslint-${{ hashFiles('package-lock.json', 'eslint.config.*', '.eslintrc*') }}-${{ github.sha }}
@@ -78,7 +78,7 @@ jobs:
             eslint-
 
       - name: Cache TypeScript build info
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: tsconfig.tsbuildinfo
           key: tsbuildinfo-${{ hashFiles('tsconfig.json', 'package-lock.json') }}-${{ github.sha }}
