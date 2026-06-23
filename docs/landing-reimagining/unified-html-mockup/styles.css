@@ -679,24 +679,30 @@ h3 {
 }
 
 .spotlight-image-current {
+  z-index: 1;
   opacity: 1;
   transform: scale(1);
 }
 
 .spotlight-image-next {
+  z-index: 2;
   opacity: 0;
   transform: scale(0.992);
   pointer-events: none;
 }
 
 .spotlight-stage.is-crossfading .spotlight-image-current {
-  opacity: 0;
-  transform: scale(0.992);
+  opacity: 1;
+  transform: scale(1);
 }
 
 .spotlight-stage.is-crossfading .spotlight-image-next {
   opacity: 1;
   transform: scale(1);
+}
+
+.spotlight-stage.is-resetting img {
+  transition: none;
 }
 
 .spotlight-copy {

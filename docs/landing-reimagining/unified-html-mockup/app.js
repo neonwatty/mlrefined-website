@@ -691,6 +691,7 @@ let activeFigureIndex = 0;
 let activeSpotlightIndex = 0;
 let spotlightAutoplayId = null;
 let spotlightTransitionId = null;
+let spotlightPreloadId = 0;
 let isSpotlightPaused = false;
 let isSpotlightHeld = false;
 let isSpotlightExplicitlyResumed = false;
@@ -816,6 +817,20 @@ function pauseSpotlightAfterManualAction() {
   restartSpotlightAutoplay();
 }
 
+function resetSpotlightTransition(stage, image, incoming) {
+  stage.classList.add("is-resetting");
+  image.src = incoming.src;
+  image.alt = incoming.dataset.nextAlt || image.alt;
+  stage.classList.remove("is-crossfading");
+  incoming.removeAttribute("src");
+  incoming.dataset.nextAlt = "";
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      stage.classList.remove("is-resetting");
+    });
+  });
+}
+
 function replaySpotlightTransition() {
   const stage = bySelector("[data-spotlight-stage]");
   const image = bySelector("[data-spotlight-image]");
@@ -827,12 +842,38 @@ function replaySpotlightTransition() {
 
   if (spotlightTransitionId) window.clearTimeout(spotlightTransitionId);
   spotlightTransitionId = window.setTimeout(() => {
-    image.src = incoming.src;
-    image.alt = incoming.dataset.nextAlt || image.alt;
+    resetSpotlightTransition(stage, image, incoming);
+  }, 560);
+}
+
+function stageSpotlightImage(visual, image, incoming) {
+  const preloadId = ++spotlightPreloadId;
+  const preload = new Image();
+  let isSettled = false;
+  const completePreload = () => {
+    if (isSettled) return;
+    isSettled = true;
+    if (preloadId !== spotlightPreloadId) return;
+    incoming.src = visual.image;
+    incoming.dataset.nextAlt = visual.alt;
+    replaySpotlightTransition();
+  };
+  preload.onload = completePreload;
+  preload.onerror = () => {
+    if (isSettled) return;
+    isSettled = true;
+    if (preloadId !== spotlightPreloadId) return;
+    image.src = visual.image;
+    image.alt = visual.alt;
     incoming.removeAttribute("src");
     incoming.dataset.nextAlt = "";
-    stage.classList.remove("is-crossfading");
-  }, 560);
+  };
+  preload.src = visual.image;
+  if (preload.decode) {
+    preload.decode().then(completePreload).catch(() => {
+      if (preload.complete) completePreload();
+    });
+  }
 }
 
 function renderSpotlightShell(figures) {
@@ -894,15 +935,15 @@ function renderFigureSpotlight(options = {}) {
     const currentSrc = image.getAttribute("src");
     const isSameImage = currentSrc === visual.image || image.src.endsWith(visual.image);
     if (options.animate === false || !currentSrc || isSameImage) {
+      spotlightPreloadId += 1;
       if (spotlightTransitionId) window.clearTimeout(spotlightTransitionId);
-      stage?.classList.remove("is-crossfading");
+      stage?.classList.remove("is-crossfading", "is-resetting");
       image.src = visual.image;
       image.alt = visual.alt;
       incoming.removeAttribute("src");
       incoming.dataset.nextAlt = "";
     } else {
-      incoming.src = visual.image;
-      incoming.dataset.nextAlt = visual.alt;
+      stageSpotlightImage(visual, image, incoming);
     }
   } else if (image) {
     image.src = visual.image;
@@ -925,7 +966,6 @@ function renderFigureSpotlight(options = {}) {
     button.setAttribute("aria-pressed", isSelected ? "true" : "false");
   });
 
-  if (options.animate !== false && incoming?.getAttribute("src")) replaySpotlightTransition();
 }
 
 function renderFeaturedWidget() {
