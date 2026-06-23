@@ -79,9 +79,9 @@ const widgets = [
     chapter: "Ch. 14",
     image: `${ROOT}/mlr-visual-gallery/reference/assets/widgets/regression-tree.gif`,
     alt: "Animated regression tree visualization",
-    description: "Piecewise predictions and split diagrams for interpretable learners.",
-    notebook: links.notes,
-    colab: links.notes
+    description: "Piecewise predictions and split diagrams paired with the tree-based learners exercise notebook.",
+    notebook: "https://github.com/neonwatty/machine-learning-refined/blob/main/exercises/chapter_14/chapter_14_exercises.ipynb",
+    colab: "https://colab.research.google.com/github/neonwatty/machine-learning-refined/blob/main/exercises/chapter_14/chapter_14_exercises.ipynb"
   },
   {
     title: "Taylor Series",
@@ -358,22 +358,14 @@ const spotlightFigureTitles = [
   "Least Squares",
   "PCA Geometry",
   "Feature Transformations",
-  "Learned Decision Boundaries",
-  "Feature Learning Complexity",
-  "Boundary Families",
-  "Multiclass Histogram",
-  "Unfolded Network"
-];
-
-const chapterElevenShowcaseTitles = [
-  "Feature Transformations",
   "Validation Surface Grid",
   "Learned Decision Boundaries",
   "Feature Learning Complexity",
   "Regularized Feature Fits",
   "Model Families Compared",
   "Boundary Families",
-  "Multiclass Histogram"
+  "Multiclass Histogram",
+  "Unfolded Network"
 ];
 
 const chapters = [
@@ -517,6 +509,18 @@ const chapters = [
   },
   {
     part: "Part III Nonlinear Learning",
+    number: "12",
+    title: "Kernel Methods",
+    description: "Fixed-shape universal approximators, the kernel trick, similarity measures, and kernelized optimization.",
+    tags: ["learner", "instructor"],
+    resources: {
+      pdf: links.pdfs,
+      exercise: "https://github.com/neonwatty/machine-learning-refined/blob/main/exercises/chapter_12/chapter_12_exercises.ipynb",
+      slides: links.slides
+    }
+  },
+  {
+    part: "Part III Nonlinear Learning",
     number: "13",
     title: "Fully Connected Neural Networks",
     description: "MLPs, backpropagation, initialization, regularization, and training.",
@@ -525,6 +529,18 @@ const chapters = [
       pdf: links.pdfs,
       notebook: "https://github.com/neonwatty/machine-learning-refined/blob/main/notes/13_Multilayer_perceptrons/13_2_Multi_layer_perceptrons.ipynb",
       exercise: "https://github.com/neonwatty/machine-learning-refined/tree/main/exercises/chapter_13",
+      slides: links.slides
+    }
+  },
+  {
+    part: "Part III Nonlinear Learning",
+    number: "14",
+    title: "Tree-Based Learners",
+    description: "Regression trees, classification trees, gradient boosting, random forests, and validation for recursive learners.",
+    tags: ["learner", "instructor"],
+    resources: {
+      pdf: links.pdfs,
+      exercise: "https://github.com/neonwatty/machine-learning-refined/blob/main/exercises/chapter_14/chapter_14_exercises.ipynb",
       slides: links.slides
     }
   },
@@ -544,6 +560,8 @@ const chapters = [
 const sourceEvidence = [
   ["A_3_Normalized.ipynb", "Optimization notebook", "https://github.com/neonwatty/machine-learning-refined/blob/main/notes/3_First_order_methods/A_3_Normalized.ipynb"],
   ["chapter_3_exercises.ipynb", "Exercise notebook", "https://github.com/neonwatty/machine-learning-refined/blob/main/exercises/chapter_3/chapter_3_exercises.ipynb"],
+  ["chapter_12_exercises.ipynb", "Kernel methods exercise notebook", "https://github.com/neonwatty/machine-learning-refined/blob/main/exercises/chapter_12/chapter_12_exercises.ipynb"],
+  ["chapter_14_exercises.ipynb", "Tree-based learners exercise notebook", "https://github.com/neonwatty/machine-learning-refined/blob/main/exercises/chapter_14/chapter_14_exercises.ipynb"],
   ["chapter_pdfs/README.md", "Dropbox PDF collection", links.pdfs],
   ["presentations/README.md", "Dropbox PPTX collection", links.slides]
 ];
@@ -588,7 +606,9 @@ const tracks = [
       ["9", "Feature engineering", "scaling", "regularization"],
       ["10", "Nonlinear features", "basis functions", "kernels"],
       ["11", "Feature learning", "validation", "ensembles"],
+      ["12", "Kernel methods", "kernel trick", "similarity"],
       ["13", "Neural networks", "MLPs", "backpropagation"],
+      ["14", "Tree-based learners", "boosting", "random forests"],
       ["C", "Linear algebra appendix", "norms", "decompositions"]
     ]
   },
@@ -659,7 +679,7 @@ const reviews = [
 
 let activeWidgetTopic = "All";
 let activeFeaturedWidgetTitle = widgets[0].title;
-let widgetQuery = "";
+let figureQuery = "";
 let chapterQuery = "";
 let resourceGoal = "all";
 let resourceType = "all";
@@ -669,6 +689,13 @@ let activeRoadmapChapter = tracks[0].chapters[0][0];
 let proofFilter = "all";
 let activeFigureIndex = 0;
 let activeSpotlightIndex = 0;
+let spotlightAutoplayId = null;
+let spotlightTransitionId = null;
+let spotlightPreloadId = 0;
+let isSpotlightPaused = false;
+let isSpotlightHeld = false;
+let isSpotlightExplicitlyResumed = false;
+const SPOTLIGHT_AUTOPLAY_MS = 4000;
 
 function bySelector(selector) {
   return document.querySelector(selector);
@@ -707,6 +734,10 @@ function itemChapterNumber(item) {
   return item.chapter.replace("Ch. ", "").replace("Appendix ", "");
 }
 
+function chapterDisplayName(number) {
+  return number === "C" ? "Appendix C" : `Chapter ${number}`;
+}
+
 function slugify(value) {
   return value.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
@@ -734,7 +765,14 @@ function roadmapMatches(number) {
 }
 
 function primaryChapterHref(chapter) {
-  return chapter.resources.notebook || chapter.resources.pdf || links.pdfs;
+  return chapter.resources.notebook || chapter.resources.exercise || chapter.resources.pdf || links.pdfs;
+}
+
+function primaryChapterActionLabel(chapter) {
+  if (chapter.resources.notebook) return "Open notes";
+  if (chapter.resources.exercise) return "Open exercises";
+  if (chapter.resources.pdf) return "Open PDF";
+  return "Open resource";
 }
 
 function chapterHasResourceType(chapter, type) {
@@ -757,40 +795,113 @@ function spotlightFigures() {
     .map((visual) => ({ visual, index: staticVisuals.indexOf(visual) }));
 }
 
-function chapterElevenFigures() {
-  return chapterElevenShowcaseTitles
-    .map((title) => staticVisuals.find((visual) => visual.title === title))
-    .filter(Boolean)
-    .map((visual) => ({ visual, index: staticVisuals.indexOf(visual) }));
+function advanceSpotlight(direction = 1) {
+  const total = spotlightFigures().length;
+  if (!total) return;
+  activeSpotlightIndex = (activeSpotlightIndex + total + direction) % total;
+  renderFigureSpotlight();
 }
 
-function renderFigureSpotlight() {
-  const figures = spotlightFigures();
-  const current = figures[activeSpotlightIndex] || figures[0];
-  if (!current) return;
-  const { visual, index } = current;
-  const chapterNumber = itemChapterNumber(visual);
-  bySelector("[data-figure-spotlight]").innerHTML = `
-    <button class="spotlight-stage" type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}" aria-label="Open ${visual.chapter} chapter package">
-      <img src="${visual.image}" alt="${visual.alt}">
+function restartSpotlightAutoplay() {
+  if (spotlightAutoplayId) window.clearInterval(spotlightAutoplayId);
+  spotlightAutoplayId = window.setInterval(() => {
+    if (isSpotlightPaused || (!isSpotlightExplicitlyResumed && isSpotlightHeld) || document.hidden || document.body.classList.contains("has-popover")) return;
+    advanceSpotlight(1);
+  }, SPOTLIGHT_AUTOPLAY_MS);
+}
+
+function pauseSpotlightAfterManualAction() {
+  isSpotlightPaused = true;
+  isSpotlightExplicitlyResumed = false;
+  renderFigureSpotlight();
+  restartSpotlightAutoplay();
+}
+
+function resetSpotlightTransition(stage, image, incoming) {
+  stage.classList.add("is-resetting");
+  image.src = incoming.src;
+  image.alt = incoming.dataset.nextAlt || image.alt;
+  stage.classList.remove("is-crossfading");
+  incoming.removeAttribute("src");
+  incoming.dataset.nextAlt = "";
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      stage.classList.remove("is-resetting");
+    });
+  });
+}
+
+function replaySpotlightTransition() {
+  const stage = bySelector("[data-spotlight-stage]");
+  const image = bySelector("[data-spotlight-image]");
+  const incoming = bySelector("[data-spotlight-image-next]");
+  if (!stage || !image || !incoming) return;
+  stage.classList.remove("is-crossfading");
+  void stage.offsetWidth;
+  stage.classList.add("is-crossfading");
+
+  if (spotlightTransitionId) window.clearTimeout(spotlightTransitionId);
+  spotlightTransitionId = window.setTimeout(() => {
+    resetSpotlightTransition(stage, image, incoming);
+  }, 560);
+}
+
+function stageSpotlightImage(visual, image, incoming) {
+  const preloadId = ++spotlightPreloadId;
+  const preload = new Image();
+  let isSettled = false;
+  const completePreload = () => {
+    if (isSettled) return;
+    isSettled = true;
+    if (preloadId !== spotlightPreloadId) return;
+    incoming.src = visual.image;
+    incoming.dataset.nextAlt = visual.alt;
+    replaySpotlightTransition();
+  };
+  preload.onload = completePreload;
+  preload.onerror = () => {
+    if (isSettled) return;
+    isSettled = true;
+    if (preloadId !== spotlightPreloadId) return;
+    image.src = visual.image;
+    image.alt = visual.alt;
+    incoming.removeAttribute("src");
+    incoming.dataset.nextAlt = "";
+  };
+  preload.src = visual.image;
+  if (preload.decode) {
+    preload.decode().then(completePreload).catch(() => {
+      if (preload.complete) completePreload();
+    });
+  }
+}
+
+function renderSpotlightShell(figures) {
+  const container = bySelector("[data-figure-spotlight]");
+  if (!container || bySelector("[data-spotlight-stage]")) return;
+  container.innerHTML = `
+    <button class="spotlight-stage" type="button" data-spotlight-stage>
+      <img class="spotlight-image-current" data-spotlight-image alt="">
+      <img class="spotlight-image-next" data-spotlight-image-next alt="" aria-hidden="true">
     </button>
-    <div class="spotlight-copy">
-      <p class="section-label">${visual.chapter} / ${visual.topic}</p>
-      <h3>${visual.title}</h3>
-      <p>${visual.description}</p>
+    <div class="spotlight-copy" data-spotlight-copy>
+      <p class="section-label" data-spotlight-meta></p>
+      <h3 data-spotlight-title></h3>
+      <p data-spotlight-description></p>
       <div class="spotlight-controls">
         <button type="button" data-spotlight-prev>Previous</button>
         <button type="button" data-spotlight-next>Next</button>
+        <button type="button" data-spotlight-toggle>Pause</button>
       </div>
       <div class="chip-row">
-        <button type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">Open chapter package</button>
-        <button type="button" data-image-popover-open="${index}">Inspect image</button>
+        <button type="button" data-route-button="resources" data-spotlight-resource>Chapter resources</button>
+        <button type="button" data-spotlight-inspect>Inspect image</button>
       </div>
       <div class="spotlight-thumbs" aria-label="Choose spotlight figure">
         ${figures.map(({ visual: thumb }, position) => `
-          <button class="${position === activeSpotlightIndex ? "is-selected" : ""}" type="button" data-spotlight-select="${position}" aria-label="Show ${thumb.title}">
+          <button type="button" data-spotlight-select="${position}" aria-label="Show ${thumb.title}, ${chapterLabel(itemChapterNumber(thumb))}">
             <img src="${thumb.image}" alt="">
-            <span>${itemChapterNumber(thumb)}</span>
+            <span>${chapterLabel(itemChapterNumber(thumb))}</span>
           </button>
         `).join("")}
       </div>
@@ -798,40 +909,63 @@ function renderFigureSpotlight() {
   `;
 }
 
-function renderChapterElevenShowcase() {
-  const container = bySelector("[data-chapter-eleven-showcase]");
-  if (!container) return;
-  container.innerHTML = chapterElevenFigures().map(({ visual, index }) => {
-    const chapterNumber = itemChapterNumber(visual);
-    return `
-      <article class="chapter-eleven-card">
-        <button type="button" data-image-popover-open="${index}" aria-label="Inspect ${visual.title}">
-          <img src="${visual.image}" alt="${visual.alt}">
-        </button>
-        <div>
-          <p class="section-label">${visual.chapter} / ${visual.topic}</p>
-          <h3>${visual.title}</h3>
-          <p>${visual.description}</p>
-          <div class="chip-row">
-            <button type="button" data-image-popover-open="${index}">Inspect image</button>
-            <button type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">${visual.chapter}</button>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join("");
-}
+function renderFigureSpotlight(options = {}) {
+  const figures = spotlightFigures();
+  const current = figures[activeSpotlightIndex] || figures[0];
+  if (!current) return;
+  const { visual, index } = current;
+  const chapterNumber = itemChapterNumber(visual);
+  renderSpotlightShell(figures);
 
-function renderHomeGifGrid() {
-  bySelector("[data-home-gif-grid]").innerHTML = widgets.slice(0, 4).map((widget, index) => `
-    <button class="home-gif-card" type="button" data-route-button="notebooks" data-widget-jump="${index}" data-topic-jump="${widget.topic}">
-      <img src="${widget.image}" alt="${widget.alt}">
-      <span>
-        <small>${widget.chapter} / ${widget.topic}</small>
-        <strong>${widget.title}</strong>
-      </span>
-    </button>
-  `).join("");
+  const stage = bySelector("[data-spotlight-stage]");
+  const image = bySelector("[data-spotlight-image]");
+  const incoming = bySelector("[data-spotlight-image-next]");
+  const meta = bySelector("[data-spotlight-meta]");
+  const title = bySelector("[data-spotlight-title]");
+  const description = bySelector("[data-spotlight-description]");
+  const resource = bySelector("[data-spotlight-resource]");
+  const inspect = bySelector("[data-spotlight-inspect]");
+  const toggle = bySelector("[data-spotlight-toggle]");
+
+  if (stage) {
+    stage.dataset.imagePopoverOpen = String(index);
+    stage.setAttribute("aria-label", `Inspect ${visual.title}`);
+  }
+  if (image && incoming) {
+    const currentSrc = image.getAttribute("src");
+    const isSameImage = currentSrc === visual.image || image.src.endsWith(visual.image);
+    if (options.animate === false || !currentSrc || isSameImage) {
+      spotlightPreloadId += 1;
+      if (spotlightTransitionId) window.clearTimeout(spotlightTransitionId);
+      stage?.classList.remove("is-crossfading", "is-resetting");
+      image.src = visual.image;
+      image.alt = visual.alt;
+      incoming.removeAttribute("src");
+      incoming.dataset.nextAlt = "";
+    } else {
+      stageSpotlightImage(visual, image, incoming);
+    }
+  } else if (image) {
+    image.src = visual.image;
+    image.alt = visual.alt;
+  }
+  if (meta) meta.textContent = `${visual.chapter} / ${visual.topic}`;
+  if (title) title.textContent = visual.title;
+  if (description) description.textContent = visual.description;
+  if (resource) resource.dataset.chapterJump = chapterNumber;
+  if (inspect) inspect.dataset.imagePopoverOpen = String(index);
+  if (toggle) {
+    toggle.textContent = isSpotlightPaused ? "Resume" : "Pause";
+    toggle.setAttribute("aria-pressed", isSpotlightPaused ? "true" : "false");
+  }
+
+  all("[data-spotlight-select]").forEach((button) => {
+    const isSelected = Number(button.dataset.spotlightSelect) === activeSpotlightIndex;
+    button.classList.toggle("is-selected", isSelected);
+    button.setAttribute("aria-current", isSelected ? "true" : "false");
+    button.setAttribute("aria-pressed", isSelected ? "true" : "false");
+  });
+
 }
 
 function renderFeaturedWidget() {
@@ -854,7 +988,7 @@ function renderFeaturedWidget() {
         <span><b>Live</b> visual reference</span>
       </div>
       <div class="action-row">
-        <button class="button" type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">Chapter package</button>
+        <button class="button" type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">Chapter resources</button>
         <a class="button" href="${widget.notebook}">Source notebook</a>
         <a class="button primary" href="${widget.colab}">Open in Colab</a>
       </div>
@@ -887,9 +1021,9 @@ function renderWidgets() {
       <h3>${widget.title}</h3>
       <p>${widget.description}</p>
       <div class="chip-row">
-        <button type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">Chapter package</button>
+        <button type="button" data-route-button="resources" data-chapter-jump="${chapterNumber}">Chapter resources</button>
         <a href="${widget.notebook}">Source notebook</a>
-        <a href="${widget.colab}">Colab</a>
+        <a href="${widget.colab}">Open in Colab</a>
       </div>
     </article>
   `;
@@ -912,7 +1046,7 @@ function renderFigureInspector() {
         <a href="${visual.href}">Source file</a>
         <a href="${visual.noteHref}">Chapter notes</a>
         ${relatedWidget ? `<button type="button" data-route-button="notebooks" data-topic-jump="${relatedWidget.topic}">Related notebook</button>` : ""}
-        <button type="button" data-route-button="resources" data-chapter-jump="${itemChapterNumber(visual)}">Chapter package</button>
+        <button type="button" data-route-button="resources" data-chapter-jump="${itemChapterNumber(visual)}">Chapter resources</button>
       </div>
     </div>
   `;
@@ -932,7 +1066,7 @@ function openImagePopover(index) {
       <div class="chip-row">
         <a href="${visual.href}">Source file</a>
         <a href="${visual.noteHref}">Chapter notes</a>
-        <button type="button" data-route-button="resources" data-chapter-jump="${itemChapterNumber(visual)}">Chapter package</button>
+        <button type="button" data-route-button="resources" data-chapter-jump="${itemChapterNumber(visual)}">Chapter resources</button>
       </div>
     </div>
   `;
@@ -947,8 +1081,7 @@ function closeImagePopover() {
 
 function renderStaticAtlas() {
   const filtered = staticVisuals.filter((visual) => {
-    const topicMatch = activeWidgetTopic === "All" || visual.topic === activeWidgetTopic;
-    return topicMatch && matchesQuery(visual, widgetQuery);
+    return matchesQuery(visual, figureQuery);
   });
   const groups = filtered.reduce((memo, visual) => {
     memo[visual.chapter] = memo[visual.chapter] || [];
@@ -979,6 +1112,7 @@ function renderStaticAtlas() {
                 <div class="figure-link-row">
                   <button type="button" data-image-popover-open="${index}">Inspect image</button>
                   <a href="${visual.noteHref}">Chapter notes</a>
+                  <button type="button" data-route-button="resources" data-chapter-jump="${itemChapterNumber(visual)}">Chapter resources</button>
                 </div>
               </div>
             </article>
@@ -988,6 +1122,22 @@ function renderStaticAtlas() {
       </section>
     `;
   }).join("") || `<p class="empty-state">No static figures match this search.</p>`;
+  renderFigureCoverage(filtered);
+}
+
+function renderFigureCoverage(figures = staticVisuals) {
+  const container = bySelector("[data-figure-coverage]");
+  if (!container) return;
+  const counts = chapters.map((chapter) => {
+    const count = figures.filter((visual) => visual.chapter === chapterLabel(chapter.number)).length;
+    return { chapter, count };
+  });
+  container.innerHTML = counts.map(({ chapter, count }) => `
+    <button class="${chapter.number === activeChapterNumber ? "is-selected" : ""}" type="button" data-route-button="resources" data-chapter-jump="${chapter.number}">
+      <strong>${chapterDisplayName(chapter.number)}</strong>
+      <span>${count ? `${count} figure${count === 1 ? "" : "s"}` : "No curated figure yet"}</span>
+    </button>
+  `).join("");
 }
 
 function renderSourceLists() {
@@ -997,12 +1147,12 @@ function renderSourceLists() {
   const bundle = [
     ["Source notebook", widget.notebook, widget.notebook.split("/").pop()],
     ["Open in Colab", widget.colab, "Runnable notebook path"],
-    ["Chapter package", `#resources`, `Chapter ${chapterNumber}: ${chapter?.title || widget.topic}`],
+    ["Chapter resources", `#resources`, `${chapterDisplayName(chapterNumber)}: ${chapter?.title || widget.topic}`],
     ["Chapter PDFs", links.pdfs, "Canonical PDF collection"]
   ];
   bySelector("[data-source-list]").innerHTML = bundle.map(([label, href, detail]) => {
-    const routeAttrs = label === "Chapter package" ? ` data-route-button="resources" data-chapter-jump="${chapterNumber}"` : "";
-    const tag = label === "Chapter package" ? "button" : "a";
+    const routeAttrs = label === "Chapter resources" ? ` data-route-button="resources" data-chapter-jump="${chapterNumber}"` : "";
+    const tag = label === "Chapter resources" ? "button" : "a";
     const hrefAttr = tag === "a" ? ` href="${href}"` : "";
     return `
       <${tag} class="source-link"${hrefAttr}${routeAttrs}>
@@ -1042,7 +1192,7 @@ function renderChapters() {
     return `
       ${partHeader}
       <article class="chapter-row ${isSelected ? "is-selected" : ""}" data-chapter-select="${chapter.number}" tabindex="0">
-        <div class="chapter-number"><span>Chapter</span>${chapter.number}</div>
+        <div class="chapter-number"><span>${chapter.number === "C" ? "Appendix" : "Chapter"}</span>${chapter.number}</div>
         <div>
           <h3>${chapter.title}</h3>
           <p>${chapter.description}</p>
@@ -1054,8 +1204,8 @@ function renderChapters() {
           </div>
         </div>
         <div class="chapter-row-actions">
-          <a class="button primary" href="${primaryChapterHref(chapter)}">Start here</a>
-          <button class="button" type="button" data-chapter-select="${chapter.number}">${isSelected ? "Viewing resources" : "View resources"}</button>
+          <a class="button primary" href="${primaryChapterHref(chapter)}">${primaryChapterActionLabel(chapter)}</a>
+          <button class="button" type="button" data-chapter-select="${chapter.number}">${isSelected ? "Viewing resources" : "Chapter resources"}</button>
           ${isSelected ? `<div class="chip-row compact-links">
             ${resourceLink("PDF", chapter.resources.pdf)}
             ${resourceLink("Notes", chapter.resources.notebook)}
@@ -1083,10 +1233,10 @@ function renderChapterHub(fallbackChapter) {
   bySelector("[data-chapter-hub]").innerHTML = `
     <div class="chapter-hub-main">
       <p class="section-label">Selected chapter package</p>
-      <h2>Chapter ${chapter.number}: ${chapter.title}</h2>
+      <h2>${chapterDisplayName(chapter.number)}: ${chapter.title}</h2>
       <p>${chapter.description}</p>
       <div class="chapter-start-row">
-        <a class="button primary" href="${primaryChapterHref(chapter)}">Start here</a>
+        <a class="button primary" href="${primaryChapterHref(chapter)}">${primaryChapterActionLabel(chapter)}</a>
         ${resourceLink("Learn: PDF", chapter.resources.pdf)}
         ${resourceLink("Learn: Notes", chapter.resources.notebook)}
         ${resourceLink("Practice: Exercises", chapter.resources.exercise)}
@@ -1216,10 +1366,10 @@ function renderTracks() {
                 <span>${topicOne}</span>
                 <span>${topicTwo}</span>
               </div>
-              <button class="button roadmap-toggle" type="button" data-roadmap-chapter="${number}">${isOpen ? "Hide resources" : "View resources"}</button>
+              <button class="button roadmap-toggle" type="button" data-roadmap-chapter="${number}">${isOpen ? "Hide resources" : "Show resources"}</button>
               ${isOpen ? `<div class="chip-row roadmap-links">
                 ${roadmapResourceLinks(chapter)}
-                <button type="button" data-route-button="resources" data-chapter-jump="${number}">Chapter package</button>
+                <button type="button" data-route-button="resources" data-chapter-jump="${number}">Chapter resources</button>
               </div>` : ""}
             </div>
           </article>
@@ -1248,7 +1398,7 @@ function renderProof() {
 
 function renderProofContent() {
   bySelector("[data-proof-section='logos']").innerHTML = logos.map(([name, file]) => `
-    <figure><img class="proof-logo proof-logo-${slugify(name)}" src="${ROOT}/mlr-reviews-adoption/reference/assets/logos/${file}" alt="${name}"><figcaption>${name}</figcaption></figure>
+    <figure><span class="proof-logo-frame"><img class="proof-logo proof-logo-${slugify(name)}" src="${ROOT}/mlr-reviews-adoption/reference/assets/logos/${file}" alt="${name}"></span><figcaption>${name}</figcaption></figure>
   `).join("");
   bySelector("[data-proof-section='endorsements']").innerHTML = endorsements.map(([name, role, copy, file]) => `
     <article class="endorsement-card">
@@ -1320,21 +1470,27 @@ function bindEvents() {
     const spotlightSelect = event.target.closest("[data-spotlight-select]");
     if (spotlightSelect) {
       activeSpotlightIndex = Number(spotlightSelect.dataset.spotlightSelect);
-      renderFigureSpotlight();
+      pauseSpotlightAfterManualAction();
     }
 
     const spotlightPrev = event.target.closest("[data-spotlight-prev]");
     if (spotlightPrev) {
-      const total = spotlightFigures().length;
-      activeSpotlightIndex = (activeSpotlightIndex + total - 1) % total;
-      renderFigureSpotlight();
+      advanceSpotlight(-1);
+      pauseSpotlightAfterManualAction();
     }
 
     const spotlightNext = event.target.closest("[data-spotlight-next]");
     if (spotlightNext) {
-      const total = spotlightFigures().length;
-      activeSpotlightIndex = (activeSpotlightIndex + 1) % total;
-      renderFigureSpotlight();
+      advanceSpotlight(1);
+      pauseSpotlightAfterManualAction();
+    }
+
+    const spotlightToggle = event.target.closest("[data-spotlight-toggle]");
+    if (spotlightToggle) {
+      isSpotlightPaused = !isSpotlightPaused;
+      isSpotlightExplicitlyResumed = !isSpotlightPaused;
+      renderFigureSpotlight({ animate: false });
+      restartSpotlightAutoplay();
     }
 
     const widgetCard = event.target.closest("[data-widget-index]");
@@ -1406,16 +1562,9 @@ function bindEvents() {
     }
   });
 
-  all("[data-search='widgets']").forEach((input) => {
-    input.addEventListener("input", (event) => {
-      widgetQuery = event.target.value;
-      all("[data-search='widgets']").forEach((field) => {
-        if (field !== event.target) field.value = widgetQuery;
-      });
-      renderStaticAtlas();
-      renderWidgets();
-      renderSourceLists();
-    });
+  bySelector("[data-search='figures']")?.addEventListener("input", (event) => {
+    figureQuery = event.target.value;
+    renderStaticAtlas();
   });
 
   bySelector("[data-search='chapters']")?.addEventListener("input", (event) => {
@@ -1423,12 +1572,26 @@ function bindEvents() {
     renderChapters();
   });
 
+  const spotlight = bySelector("[data-figure-spotlight]");
+  spotlight?.addEventListener("mouseenter", () => {
+    isSpotlightHeld = true;
+  });
+  spotlight?.addEventListener("mouseleave", () => {
+    isSpotlightHeld = false;
+    isSpotlightExplicitlyResumed = false;
+  });
+  spotlight?.addEventListener("focusin", () => {
+    isSpotlightHeld = true;
+  });
+  spotlight?.addEventListener("focusout", () => {
+    isSpotlightHeld = false;
+  });
+
 }
 
 function init() {
-  renderFigureSpotlight();
-  renderChapterElevenShowcase();
-  renderHomeGifGrid();
+  renderFigureSpotlight({ animate: false });
+  restartSpotlightAutoplay();
   renderWidgetFilters();
   renderFeaturedWidget();
   renderFigureInspector();

@@ -64,8 +64,8 @@ img {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible {
-  outline: 2px solid var(--blue);
-  outline-offset: 2px;
+  outline: 3px solid #f0b83a;
+  outline-offset: 3px;
 }
 
 .app-shell {
@@ -133,6 +133,7 @@ input:focus-visible {
 
 .primary-nav {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 6px;
   min-width: 0;
@@ -140,7 +141,7 @@ input:focus-visible {
 }
 
 .primary-nav a {
-  min-height: 36px;
+  min-height: 40px;
   display: inline-flex;
   align-items: center;
   padding: 0 12px;
@@ -292,7 +293,7 @@ h3 {
 .chip-row span,
 .filter-row button,
 .segmented button {
-  min-height: 34px;
+  min-height: 40px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -644,6 +645,7 @@ h3 {
   display: grid;
   grid-template-columns: minmax(360px, 1.15fr) minmax(300px, 0.85fr);
   gap: 14px;
+  align-items: stretch;
   padding: 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -652,9 +654,11 @@ h3 {
 }
 
 .spotlight-stage {
+  position: relative;
   display: grid;
   place-items: center;
-  min-height: 350px;
+  height: clamp(390px, 34vw, 500px);
+  min-height: 0;
   overflow: hidden;
   border: 1px solid var(--line-cool);
   border-radius: 7px;
@@ -663,16 +667,50 @@ h3 {
 }
 
 .spotlight-stage img {
+  grid-area: 1 / 1;
   width: 100%;
   height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   padding: 12px;
+  transition: opacity 520ms ease, transform 520ms ease;
+  will-change: opacity, transform;
+}
+
+.spotlight-image-current {
+  z-index: 1;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.spotlight-image-next {
+  z-index: 2;
+  opacity: 0;
+  transform: scale(0.992);
+  pointer-events: none;
+}
+
+.spotlight-stage.is-crossfading .spotlight-image-current {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.spotlight-stage.is-crossfading .spotlight-image-next {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.spotlight-stage.is-resetting img {
+  transition: none;
 }
 
 .spotlight-copy {
   display: grid;
   align-content: center;
   gap: 10px;
+  height: clamp(390px, 34vw, 500px);
+  min-width: 0;
 }
 
 .spotlight-copy h3 {
@@ -696,8 +734,8 @@ h3 {
 }
 
 .spotlight-controls button {
-  min-height: 34px;
-  padding: 7px 12px;
+  min-height: 42px;
+  padding: 8px 12px;
 }
 
 .spotlight-thumbs {
@@ -713,11 +751,13 @@ h3 {
   min-height: 54px;
   overflow: hidden;
   padding: 4px;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
 .spotlight-thumbs button.is-selected {
   border-color: var(--blue);
   box-shadow: 0 0 0 1px var(--blue) inset;
+  transform: translateY(-1px);
 }
 
 .spotlight-thumbs img {
@@ -741,163 +781,20 @@ h3 {
   margin-top: 20px;
 }
 
-.chapter-eleven-showcase {
-  margin-top: 20px;
-  padding: 16px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 253, 248, 0.92);
-  box-shadow: 0 12px 28px rgba(7, 19, 38, 0.06);
-}
+@media (prefers-reduced-motion: reduce) {
+  .spotlight-stage img {
+    transition: none;
+  }
 
-.chapter-eleven-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.chapter-eleven-card {
-  display: grid;
-  grid-template-rows: 320px auto;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 10px 24px rgba(7, 19, 38, 0.06);
-}
-
-.chapter-eleven-card > button {
-  display: grid;
-  place-items: center;
-  width: 100%;
-  min-height: 320px;
-  overflow: hidden;
-  padding: 8px;
-  border: 0;
-  border-bottom: 1px solid var(--line-cool);
-  background: #fff;
-}
-
-.chapter-eleven-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.chapter-eleven-card > div {
-  display: grid;
-  align-content: start;
-  gap: 6px;
-  padding: 12px;
-}
-
-.chapter-eleven-card h3 {
-  margin-bottom: 0;
-  color: var(--navy-2);
-  font-size: 1.05rem;
-}
-
-.chapter-eleven-card p:not(.section-label) {
-  color: var(--muted);
-  font-size: 0.82rem;
-  line-height: 1.34;
+  .spotlight-thumbs button {
+    transition: none;
+  }
 }
 
 .visual-funnel-grid {
   display: grid;
-  grid-template-columns: minmax(700px, 1fr) minmax(280px, 350px);
-  gap: 14px;
-  align-items: stretch;
-}
-
-.animation-rail {
-  min-width: 0;
-  padding: 16px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 253, 248, 0.96);
-  box-shadow: 0 12px 28px rgba(7, 19, 38, 0.07);
-}
-
-.animation-rail .section-label {
-  margin-bottom: 4px;
-}
-
-.animation-rail h3 {
-  margin-bottom: 14px;
-  color: var(--navy-2);
-  font-size: 1.35rem;
-}
-
-.home-gif-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.animation-rail .home-gif-grid {
   grid-template-columns: 1fr;
-  gap: 9px;
-}
-
-.home-gif-card {
-  display: grid;
-  grid-template-rows: 145px auto;
-  gap: 9px;
-  padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: rgba(255, 253, 248, 0.96);
-  color: var(--navy);
-  text-align: left;
-  box-shadow: 0 12px 28px rgba(7, 19, 38, 0.07);
-}
-
-.animation-rail .home-gif-card {
-  grid-template-columns: 102px minmax(0, 1fr);
-  grid-template-rows: auto;
-  align-items: center;
-  min-height: 104px;
-  padding: 8px;
-  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
-}
-
-.animation-rail .home-gif-card:hover {
-  border-color: rgba(22, 75, 143, 0.45);
-  box-shadow: 0 16px 30px rgba(7, 19, 38, 0.12);
-  transform: translateY(-1px);
-}
-
-.home-gif-card img {
-  width: 100%;
-  height: 145px;
-  object-fit: contain;
-  padding: 6px;
-  border: 1px solid var(--line-cool);
-  border-radius: 6px;
-  background: #fff;
-}
-
-.animation-rail .home-gif-card img {
-  height: 86px;
-  padding: 4px;
-}
-
-.home-gif-card span {
-  display: grid;
-  gap: 3px;
-}
-
-.home-gif-card small {
-  color: var(--blue);
-  font-size: 0.7rem;
-  font-weight: 850;
-  text-transform: uppercase;
-}
-
-.home-gif-card strong {
-  color: var(--navy-2);
-  font-family: var(--serif);
+  align-items: stretch;
 }
 
 .logo-band {
@@ -915,6 +812,15 @@ h3 {
   margin-bottom: 0;
   font-family: var(--serif);
   font-weight: 800;
+}
+
+.proof-copy {
+  display: grid;
+  gap: 10px;
+}
+
+.proof-copy .action-row {
+  margin-top: 0;
 }
 
 .logo-row {
@@ -1088,7 +994,49 @@ button.source-link {
 }
 
 .static-atlas {
+  display: grid;
+  gap: 14px;
   margin-bottom: 12px;
+}
+
+.resources-atlas {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.figure-coverage {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.figure-coverage button {
+  display: grid;
+  gap: 3px;
+  min-height: 54px;
+  padding: 8px;
+  border: 1px solid var(--line-cool);
+  border-radius: 7px;
+  background: #fff;
+  color: var(--navy);
+  text-align: left;
+}
+
+.figure-coverage button.is-selected {
+  border-color: var(--gold);
+  background: #fff6de;
+}
+
+.figure-coverage strong {
+  color: var(--blue);
+  font-size: 0.74rem;
+}
+
+.figure-coverage span {
+  color: var(--muted);
+  font-size: 0.68rem;
+  line-height: 1.25;
 }
 
 .static-atlas-grid {
@@ -1367,13 +1315,27 @@ body.has-popover {
 
 .resource-control-bar {
   display: grid;
-  grid-template-columns: minmax(220px, 0.55fr) minmax(320px, 1fr);
+  grid-template-columns: minmax(220px, 0.7fr) minmax(260px, 0.9fr) minmax(360px, 1.2fr);
   gap: 12px;
   margin-bottom: 12px;
   padding: 12px;
   border: 1px solid rgba(221, 207, 173, 0.82);
   border-radius: 8px;
   background: rgba(255, 253, 248, 0.86);
+}
+
+.control-group {
+  display: grid;
+  align-content: end;
+  gap: 6px;
+}
+
+.control-group > span {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .rail h2,
@@ -2105,6 +2067,7 @@ body.has-popover {
 .proof-logo-grid figure {
   display: grid;
   gap: 8px;
+  grid-template-rows: 68px auto;
   place-items: center;
   min-height: 92px;
   margin: 0;
@@ -2114,31 +2077,49 @@ body.has-popover {
   background: #fff;
 }
 
+.proof-logo-frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 68px;
+  overflow: hidden;
+}
+
 .proof-logo-grid img {
-  max-height: 48px;
-  max-width: 82%;
+  max-height: 54px;
+  max-width: 86%;
   object-fit: contain;
 }
 
 .proof-logo-university-of-michigan {
-  width: 218px !important;
-  max-width: 94% !important;
+  position: absolute;
+  top: -58px;
+  left: 50%;
+  width: 320px !important;
+  max-width: none !important;
   max-height: none !important;
-  transform: none;
+  transform: translateX(-50%);
 }
 
 .proof-logo-university-of-toronto {
-  width: 218px !important;
-  max-width: 94% !important;
+  position: absolute;
+  top: -68px;
+  left: 50%;
+  width: 300px !important;
+  max-width: none !important;
   max-height: none !important;
-  transform: none;
+  transform: translateX(-50%);
 }
 
 .proof-logo-texas-aandm-university {
-  width: 172px !important;
-  max-width: 88% !important;
+  position: absolute;
+  top: -48px;
+  left: 50%;
+  width: 200px !important;
+  max-width: none !important;
   max-height: none !important;
-  transform: none;
+  transform: translateX(-50%);
 }
 
 .proof-logo-grid figcaption {
@@ -2239,8 +2220,9 @@ body.has-popover {
 
   .primary-nav {
     grid-column: 1 / -1;
+    flex-wrap: wrap;
     justify-content: flex-start;
-    overflow-x: auto;
+    overflow-x: visible;
   }
 
   .featured-widget {
@@ -2248,9 +2230,9 @@ body.has-popover {
   }
 
   .card-grid,
-  .home-gif-grid,
   .endorsement-grid,
   .chapter-figure-grid,
+  .figure-coverage,
   .course-toolkit-grid,
   .figure-inspector,
   .chapter-hub,
@@ -2288,6 +2270,17 @@ body.has-popover {
 
   .page-view {
     padding: 14px 12px 24px;
+  }
+
+  .primary-nav a,
+  .button,
+  .hero-copy .button.primary,
+  .chip-row a,
+  .chip-row button,
+  .filter-row button,
+  .segmented button,
+  .spotlight-controls button {
+    min-height: 44px;
   }
 
   h1 {
@@ -2354,13 +2347,12 @@ body.has-popover {
 
   .meta-row,
   .card-grid,
-  .home-gif-grid,
   .proof-logo-grid,
   .endorsement-grid,
   .review-list,
   .book-promise ol,
   .chapter-figure-grid,
-  .chapter-eleven-grid,
+  .figure-coverage,
   .course-toolkit-grid {
     grid-template-columns: 1fr;
   }
@@ -2383,11 +2375,23 @@ body.has-popover {
   }
 
   .spotlight-stage {
-    min-height: 250px;
+    height: clamp(260px, 68vw, 360px);
+  }
+
+  .spotlight-copy {
+    align-content: start;
+    height: 430px;
   }
 
   .spotlight-thumbs {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .spotlight-thumbs button {
+    flex: 0 0 72px;
   }
 
   .summary-strip {
@@ -2442,7 +2446,4 @@ body.has-popover {
     flex: 0 0 100px;
   }
 
-  .chapter-eleven-card {
-    grid-template-rows: 260px auto;
-  }
 }
