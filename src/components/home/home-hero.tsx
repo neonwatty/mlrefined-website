@@ -9,7 +9,15 @@ import { primaryNav, siteConfig } from "@/lib/site";
 import { GitHubMark } from "./icons";
 
 export function HomeHero() {
-  const heroFigures = featuredFigures.slice(5, 8);
+  const heroFigureTitles = [
+    "Feature Transformations",
+    "Model Families Compared",
+    "Boundary Families",
+  ];
+  const heroFigures = heroFigureTitles.flatMap((title) =>
+    featuredFigures.filter((figure) => figure.title === title),
+  );
+  const mobilePreviewFigure = heroFigures[2] ?? heroFigures[0];
 
   return (
     <>
@@ -28,7 +36,7 @@ export function HomeHero() {
               </span>
             </span>
           </Link>
-          <div className="hidden items-center gap-8 text-sm font-bold text-[#fffaf0]/78 md:flex">
+          <div className="hidden items-center gap-2 text-sm font-bold text-[#fffaf0]/78 md:flex lg:gap-4">
             {primaryNav.map((item) => (
               <Link
                 key={item.href}
@@ -44,11 +52,11 @@ export function HomeHero() {
             ))}
           </div>
         </nav>
-        <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-5 pb-3 text-sm font-bold text-[#fffaf0]/78 md:hidden">
+        <div className="mx-auto grid max-w-7xl grid-cols-3 gap-2 px-5 pb-3 text-xs font-bold leading-tight text-[#fffaf0]/78 md:hidden">
           {primaryNav.map((item) => (
             <Link
               key={item.href}
-              className={`inline-flex min-h-10 shrink-0 items-center justify-center rounded-md px-4 transition-colors ${
+              className={`inline-flex min-h-9 items-center justify-center rounded-md px-2 text-center transition-colors ${
                 item.href === "/"
                   ? "bg-[#c79222] text-[#06172d]"
                   : "bg-white/5 hover:bg-white/10 hover:text-white"
@@ -67,7 +75,7 @@ export function HomeHero() {
           <p className="mb-4 w-fit border-l-4 border-[#c79222] bg-white/70 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
             Foundations, Algorithms, and Applications
           </p>
-          <h1 className="max-w-4xl font-serif text-5xl font-black leading-[0.92] tracking-normal sm:text-6xl md:text-7xl">
+          <h1 className="max-w-4xl font-serif text-4xl font-black leading-[0.95] tracking-normal sm:text-6xl md:text-7xl">
             Machine Learning Refined
             {" "}
             <span className="mt-3 block font-sans text-2xl font-black leading-tight text-[#164b8f] md:text-3xl">
@@ -77,6 +85,37 @@ export function HomeHero() {
           <p className="mt-5 max-w-2xl text-lg leading-8 text-[#526070]">
             A visual, first-principles path into modern machine learning.
           </p>
+
+          {mobilePreviewFigure ? (
+            <ResourceLink
+              className="mt-5 grid min-h-28 grid-cols-[118px_minmax(0,1fr)] gap-3 rounded-lg border border-[#ddcfad] bg-white p-2.5 shadow-lg shadow-[#071326]/5 transition-colors hover:border-[#164b8f]/50 lg:hidden"
+              eventName="home_visual_clicked"
+              eventProperties={{
+                chapter: mobilePreviewFigure.chapter,
+                location: "home_hero_mobile_visual",
+                resource: mobilePreviewFigure.title,
+              }}
+              href={mobilePreviewFigure.href}
+              rel="noreferrer"
+              target="_blank"
+            >
+              <Image
+                className="h-full min-h-24 w-full rounded-md border border-[#d9e2ec] bg-[#fbfaf4] object-contain p-1.5"
+                src={mobilePreviewFigure.image}
+                alt={mobilePreviewFigure.alt}
+                width={280}
+                height={180}
+              />
+              <span className="grid content-center gap-1">
+                <span className="text-[0.68rem] font-black uppercase tracking-[0.14em] text-[#8a6519]">
+                  {mobilePreviewFigure.chapter}
+                </span>
+                <strong className="font-serif text-lg font-black leading-tight text-[#0b2545]">
+                  {mobilePreviewFigure.title}
+                </strong>
+              </span>
+            </ResourceLink>
+          ) : null}
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <TrackedLink className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-5 text-sm font-black text-[#06172d] shadow-lg shadow-[#c79222]/15 transition-colors hover:bg-[#d7a02b]" eventName="primary_cta_clicked" eventProperties={{ location: "home_hero", label: "Browse chapters" }} href="/chapters">
@@ -117,7 +156,7 @@ export function HomeHero() {
             {heroFigures.map((figure) => (
               <ResourceLink
                 key={figure.title}
-                className="grid min-h-28 grid-cols-[112px_minmax(0,1fr)] gap-3 rounded-lg border border-[#ddcfad] bg-white p-3 shadow-lg shadow-[#071326]/5 transition-colors hover:border-[#164b8f]/50"
+                className="grid min-h-32 grid-cols-[132px_minmax(0,1fr)] gap-3 rounded-lg border border-[#ddcfad] bg-white p-2.5 shadow-lg shadow-[#071326]/5 transition-colors hover:border-[#164b8f]/50"
                 eventName="home_visual_clicked"
                 eventProperties={{
                   chapter: figure.chapter,
@@ -129,7 +168,7 @@ export function HomeHero() {
                 target="_blank"
               >
                 <Image
-                  className="h-full min-h-24 w-full rounded-md border border-[#d9e2ec] object-contain p-2"
+                  className="h-full min-h-28 w-full rounded-md border border-[#d9e2ec] bg-[#fbfaf4] object-contain p-1.5"
                   src={figure.image}
                   alt={figure.alt}
                   width={280}

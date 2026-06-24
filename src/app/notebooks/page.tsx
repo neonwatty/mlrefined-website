@@ -15,7 +15,7 @@ export default function NotebooksPage() {
     <main className="min-h-screen bg-[#fbfaf4] text-[#071326]">
       <PageHeader activeHref="/notebooks" />
       <div className="mx-auto max-w-7xl px-5 py-10 md:px-8 md:py-12">
-        <section className="mt-6 grid gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.7fr)] lg:items-end">
+        <section className="mt-4 grid gap-5 md:mt-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.7fr)] lg:items-end">
           <div>
             <p className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
               Visual notebooks
@@ -23,7 +23,7 @@ export default function NotebooksPage() {
             <h1 className="font-serif text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
               Notebooks
             </h1>
-            <p className="mt-4 max-w-3xl text-lg leading-8 text-[#526070]">
+            <p className="mt-3 max-w-3xl text-base leading-7 text-[#526070] md:mt-4 md:text-lg md:leading-8">
               Move from visual intuition to runnable code through curated
               notebook previews, source notebooks, Colab paths, and chapter
               packages.

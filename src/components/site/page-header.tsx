@@ -23,14 +23,14 @@ export function PageHeader({ activeHref }: PageHeaderProps) {
             </span>
           </span>
         </Link>
-        <div className="flex gap-2 overflow-x-auto text-sm font-bold text-[#fffaf0]/78 lg:justify-end">
+        <div className="grid grid-cols-3 gap-2 text-xs font-bold leading-tight text-[#fffaf0]/78 sm:flex sm:flex-wrap sm:text-sm lg:justify-end">
           {primaryNav.map((item) => {
             const isActive = item.href === activeHref;
 
             return (
               <Link
                 key={item.href}
-                className={`inline-flex min-h-10 shrink-0 items-center justify-center rounded-md px-4 transition-colors lg:justify-start ${
+                className={`inline-flex min-h-9 items-center justify-center rounded-md px-2 text-center transition-colors sm:min-h-10 sm:px-3 lg:justify-start ${
                   isActive
                     ? "bg-[#c79222] text-[#06172d]"
                     : "bg-white/5 hover:bg-white/10 hover:text-white"
