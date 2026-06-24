@@ -29,10 +29,10 @@ export function NotebookWorkbench({ chapters, widgets }: NotebookWorkbenchProps)
   if (!selectedWidget) return null;
 
   return (
-    <div className="mt-10 grid gap-8">
+    <div className="mt-6 grid gap-8 md:mt-10">
       <section className="grid gap-5 rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-4 shadow-xl shadow-[#071326]/10 lg:grid-cols-[minmax(320px,0.85fr)_minmax(0,1.15fr)]">
         <Image
-          className="h-full min-h-[300px] w-full rounded-md border border-[#d9e2ec] bg-white object-contain p-3"
+          className="h-full min-h-[220px] w-full rounded-md border border-[#d9e2ec] bg-white object-contain p-3 sm:min-h-[300px]"
           src={selectedWidget.image}
           alt={selectedWidget.imageAlt}
           width={760}

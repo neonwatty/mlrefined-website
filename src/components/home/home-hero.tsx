@@ -2,12 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ResourceLink } from "@/components/analytics/resource-link";
+import { featuredFigures } from "@/content/home-page";
 import { TrackedLink } from "@/components/analytics/tracked-link";
 import { primaryNav, siteConfig } from "@/lib/site";
 
 import { GitHubMark } from "./icons";
 
 export function HomeHero() {
+  const heroFigures = featuredFigures.slice(5, 8);
+
   return (
     <>
       <header className="sticky top-0 z-20 border-b border-[#ead4a4]/40 bg-[#06172d] text-[#fffaf0] shadow-lg shadow-[#071326]/15">
@@ -41,11 +44,11 @@ export function HomeHero() {
             ))}
           </div>
         </nav>
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-2 px-5 pb-4 text-sm font-bold text-[#fffaf0]/78 min-[420px]:grid-cols-3 md:hidden">
+        <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-5 pb-3 text-sm font-bold text-[#fffaf0]/78 md:hidden">
           {primaryNav.map((item) => (
             <Link
               key={item.href}
-              className={`inline-flex min-h-10 items-center justify-center rounded-md px-3 transition-colors ${
+              className={`inline-flex min-h-10 shrink-0 items-center justify-center rounded-md px-4 transition-colors ${
                 item.href === "/"
                   ? "bg-[#c79222] text-[#06172d]"
                   : "bg-white/5 hover:bg-white/10 hover:text-white"
@@ -59,15 +62,15 @@ export function HomeHero() {
         </div>
       </header>
 
-      <section className="mx-auto grid min-h-[calc(100vh-82px)] max-w-7xl items-center gap-10 px-5 py-12 md:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(260px,430px)] lg:py-16">
-        <div>
+      <section className="mx-auto grid max-w-7xl items-center gap-8 px-5 py-10 md:px-8 lg:min-h-[680px] lg:grid-cols-[minmax(0,0.88fr)_minmax(520px,0.82fr)] lg:py-12">
+        <div className="lg:max-w-2xl">
           <p className="mb-4 w-fit border-l-4 border-[#c79222] bg-white/70 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
             Foundations, Algorithms, and Applications
           </p>
-          <h1 className="max-w-4xl font-serif text-6xl font-black leading-[0.9] tracking-normal md:text-8xl">
+          <h1 className="max-w-4xl font-serif text-5xl font-black leading-[0.92] tracking-normal sm:text-6xl md:text-7xl">
             Machine Learning Refined
             {" "}
-            <span className="mt-3 block font-sans text-2xl font-black leading-tight text-[#164b8f] md:text-4xl">
+            <span className="mt-3 block font-sans text-2xl font-black leading-tight text-[#164b8f] md:text-3xl">
               2nd Edition
             </span>
           </h1>
@@ -90,16 +93,60 @@ export function HomeHero() {
           </ResourceLink>
         </div>
 
-        <figure className="mx-auto w-full max-w-[430px] lg:justify-self-end">
-          <Image
-            className="h-auto w-full border border-[#ead4a4] shadow-2xl shadow-[#071326]/20"
-            src="/book-cover-2nd.png"
-            alt="Machine Learning Refined second edition book cover"
-            width={760}
-            height={1000}
-            priority
-          />
-        </figure>
+        <div className="grid gap-4 sm:grid-cols-[minmax(180px,0.62fr)_minmax(0,1fr)] lg:justify-self-end">
+          <figure className="mx-auto w-full max-w-[300px] sm:max-w-none">
+            <Image
+              className="h-auto w-full border border-[#ead4a4] shadow-2xl shadow-[#071326]/20"
+              src="/book-cover-2nd.png"
+              alt="Machine Learning Refined second edition book cover"
+              width={760}
+              height={1000}
+              priority
+            />
+          </figure>
+
+          <div className="grid gap-3">
+            <div className="rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-4 shadow-xl shadow-[#071326]/10">
+              <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
+                Inside the book
+              </p>
+              <p className="mt-2 font-serif text-2xl font-black leading-tight text-[#0b2545]">
+                Geometry first, then the algorithm.
+              </p>
+            </div>
+            {heroFigures.map((figure) => (
+              <ResourceLink
+                key={figure.title}
+                className="grid min-h-28 grid-cols-[112px_minmax(0,1fr)] gap-3 rounded-lg border border-[#ddcfad] bg-white p-3 shadow-lg shadow-[#071326]/5 transition-colors hover:border-[#164b8f]/50"
+                eventName="home_visual_clicked"
+                eventProperties={{
+                  chapter: figure.chapter,
+                  location: "home_hero_visual_stack",
+                  resource: figure.title,
+                }}
+                href={figure.href}
+                rel="noreferrer"
+                target="_blank"
+              >
+                <Image
+                  className="h-full min-h-24 w-full rounded-md border border-[#d9e2ec] object-contain p-2"
+                  src={figure.image}
+                  alt={figure.alt}
+                  width={280}
+                  height={180}
+                />
+                <span className="grid content-center gap-1">
+                  <span className="text-[0.68rem] font-black uppercase tracking-[0.14em] text-[#8a6519]">
+                    {figure.chapter}
+                  </span>
+                  <strong className="font-serif text-lg font-black leading-tight text-[#0b2545]">
+                    {figure.title}
+                  </strong>
+                </span>
+              </ResourceLink>
+            ))}
+          </div>
+        </div>
       </section>
     </>
   );

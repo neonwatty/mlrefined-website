@@ -71,7 +71,14 @@ export function SelectedChapterPanel({
   return (
     <section className="grid content-start gap-5 rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-5">
       <div>
-        <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">Selected chapter package</p>
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">Selected chapter package</p>
+          {chapter.number === "11" ? (
+            <span className="rounded-md bg-[#f7fbff] px-2 py-1 text-xs font-black uppercase tracking-[0.12em] text-[#164b8f]">
+              Featured visual chapter
+            </span>
+          ) : null}
+        </div>
         <h2 className="mt-2 font-serif text-3xl font-black text-[#0b2545]">
           {chapter.number === "C" ? "Appendix C" : `Chapter ${chapter.number}`}: {chapter.title}
         </h2>
