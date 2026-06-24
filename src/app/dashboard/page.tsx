@@ -37,7 +37,8 @@ export default function DashboardPage() {
             <div key={section} className="rounded-lg border border-black/10 p-5">
               <h2 className="font-medium">{section}</h2>
               <p className="mt-2 text-sm text-black/55">
-                Planned for the next implementation pass.
+                Ready to connect once live analytics credentials and launch
+                traffic are available.
               </p>
             </div>
           ))}

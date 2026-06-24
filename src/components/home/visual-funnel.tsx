@@ -1,5 +1,4 @@
-import Link from "next/link";
-
+import { TrackedLink } from "@/components/analytics/tracked-link";
 import { featuredFigures, visualPath } from "@/content/home-page";
 
 import { FigureCarousel } from "./figure-carousel";
@@ -31,12 +30,12 @@ export function VisualFunnel() {
           </ol>
         </div>
         <div className="flex flex-wrap gap-3">
-          <Link className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-5 text-sm font-black text-[#06172d] transition-colors hover:bg-[#d7a02b]" href="/chapters">
+          <TrackedLink className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-5 text-sm font-black text-[#06172d] transition-colors hover:bg-[#d7a02b]" eventName="primary_cta_clicked" eventProperties={{ location: "visual_funnel", label: "Browse chapters" }} href="/chapters">
             Browse chapters
-          </Link>
-          <Link className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-5 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" href="/notebooks">
+          </TrackedLink>
+          <TrackedLink className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-5 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" eventName="primary_cta_clicked" eventProperties={{ location: "visual_funnel", label: "Browse notebooks" }} href="/notebooks">
             Browse notebooks
-          </Link>
+          </TrackedLink>
         </div>
       </div>
 
