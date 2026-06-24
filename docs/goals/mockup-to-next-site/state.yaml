@@ -67,7 +67,7 @@ visual_board:
     url: "http://goalbuddy.localhost:41737/mockup-to-next-site/"
     command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal /Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site"
 
-active_task: T090
+active_task: T999
 
 tasks:
   - id: T001
@@ -621,7 +621,7 @@ tasks:
   - id: T090
     type: worker
     assignee: Worker
-    status: active
+    status: done
     reasoning_hint: medium
     objective: "Prepare the implementation branch for review: final checks, concise README or docs updates if needed, PR summary, and evidence receipt."
     allowed_files:
@@ -640,12 +640,31 @@ tasks:
       - "Quality checks fail."
       - "Unrelated dirty worktree changes would be swept into the PR."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit:coverage"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "gh pr checks 21"
+          status: pass
+      summary: "Prepared PR #21 for review by confirming README already succinctly links the canonical book and notes-assets repositories, updating the PR body with the current route implementation, source-backed assets, SEO/accessibility/analytics polish, GoalBuddy state, and verification evidence, and confirming the draft PR is clean with both GitHub checks passing."
 
   - id: T999
     type: judge
     assignee: Judge
-    status: queued
+    status: active
     reasoning_hint: high
     objective: "Audit whether the Next.js implementation satisfies the original mockup-to-site outcome."
     inputs:
@@ -670,14 +689,12 @@ checks:
   dirty_fingerprint: unknown
   last_verification:
     result: pass
-    task: T080
+    task: T090
     commands:
       - "git diff --check"
       - "npm run lint"
       - "npm run typecheck"
-      - "npm run test:unit"
       - "npm run test:unit:coverage"
       - "npm run build"
       - "npm run ci"
-      - "Playwright visual QA for primary routes at 1440x1100 and 390x900"
-      - "gh pr checks 21 --watch"
+      - "gh pr checks 21"
