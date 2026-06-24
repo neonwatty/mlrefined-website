@@ -3,6 +3,25 @@ import { PageHeader } from "@/components/site/page-header";
 import { bookLinks, resourceGroups } from "@/content/book";
 import { createPageMetadata } from "@/lib/site";
 
+const resourceCues = {
+  "Chapter PDFs": {
+    count: "PDFs",
+    cue: "Best for reading offline or assigning chapter excerpts.",
+  },
+  "Colab and Jupyter notebooks": {
+    count: "Notes + notebooks",
+    cue: "Best for moving from the page into runnable examples.",
+  },
+  Exercises: {
+    count: "Practice sets",
+    cue: "Best for homework, labs, and self-checks.",
+  },
+  "Slides and roadmaps": {
+    count: "Course materials",
+    cue: "Best for planning a syllabus or lecture sequence.",
+  },
+} as const;
+
 export const metadata = createPageMetadata({
   title: "Resources",
   description:
@@ -49,27 +68,44 @@ export default function ResourcesPage() {
           </ResourceLink>
         </div>
         <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {resourceGroups.map((resource) => (
-            <ResourceLink
-              key={resource.title}
-              className="group rounded-lg border border-[#ddcfad] bg-white p-5 shadow-lg shadow-[#071326]/5 transition-all hover:-translate-y-0.5 hover:border-[#164b8f]/45 hover:shadow-[#071326]/10"
-              eventName="github_resource_clicked"
-              eventProperties={{ location: "resources_page", resource: resource.title }}
-              href={resource.href}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <h2 className="font-serif text-2xl font-black text-[#0b2545]">
-                {resource.title}
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-[#526070]">
-                {resource.description}
-              </p>
-              <span className="mt-4 inline-flex text-sm font-black text-[#164b8f] transition-transform group-hover:translate-x-1">
-                Open resource
-              </span>
-            </ResourceLink>
-          ))}
+          {resourceGroups.map((resource) => {
+            const cue = resourceCues[resource.title as keyof typeof resourceCues];
+
+            return (
+              <ResourceLink
+                key={resource.title}
+                className="group rounded-lg border border-[#ddcfad] bg-white p-5 shadow-lg shadow-[#071326]/5 transition-all hover:-translate-y-0.5 hover:border-[#164b8f]/45 hover:shadow-[#071326]/10"
+                eventName="github_resource_clicked"
+                eventProperties={{
+                  location: "resources_page",
+                  resource: resource.title,
+                }}
+                href={resource.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {cue ? (
+                  <span className="mb-3 inline-flex rounded-md bg-[#f7fbff] px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-[#164b8f]">
+                    {cue.count}
+                  </span>
+                ) : null}
+                <h2 className="font-serif text-2xl font-black text-[#0b2545]">
+                  {resource.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-[#526070]">
+                  {resource.description}
+                </p>
+                {cue ? (
+                  <p className="mt-3 text-sm font-black leading-6 text-[#0b2545]">
+                    {cue.cue}
+                  </p>
+                ) : null}
+                <span className="mt-4 inline-flex text-sm font-black text-[#164b8f] transition-transform group-hover:translate-x-1">
+                  Open resource
+                </span>
+              </ResourceLink>
+            );
+          })}
         </div>
       </div>
     </main>

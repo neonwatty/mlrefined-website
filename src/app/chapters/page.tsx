@@ -41,8 +41,8 @@ export default function ChaptersPage() {
             </p>
             <p className="text-sm leading-6 text-[#526070]">
               This hub uses real repository paths and real static figures from
-              the book asset sources. Chapters without curated figures still
-              route to their verified resource package.
+              the book asset sources. Chapter 11 opens first because it has one
+              of the richest visual sets; every chapter remains one click away.
             </p>
           </div>
         </section>

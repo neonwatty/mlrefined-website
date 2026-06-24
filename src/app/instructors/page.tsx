@@ -50,12 +50,13 @@ export default function InstructorsPage() {
 
           <div className="grid gap-3 rounded-lg border border-[#ddcfad] bg-white p-4">
             <p className="font-serif text-xl font-black text-[#0b2545]">
-              Start with fit, then inspect materials
+              Course planning loop
             </p>
-            <p className="text-sm leading-6 text-[#526070]">
-              The paths below are sourced from the book repository guidance and
-              tied directly to chapter packages for adoption planning.
-            </p>
+            <div className="grid grid-cols-3 gap-2 text-center text-sm font-black text-[#164b8f]">
+              <span className="rounded-md bg-[#f7fbff] px-2 py-3">Fit</span>
+              <span className="rounded-md bg-[#f7fbff] px-2 py-3">Path</span>
+              <span className="rounded-md bg-[#f7fbff] px-2 py-3">Materials</span>
+            </div>
           </div>
         </section>
 
