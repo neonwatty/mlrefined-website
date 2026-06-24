@@ -5,7 +5,7 @@ goal:
   slug: "mockup-to-next-site"
   kind: existing_plan
   tranche: "Implement the approved unified HTML mockup direction as the real Next.js website through successive verified vertical slices."
-  status: active
+  status: done
   oracle:
     signal: "A desktop and mobile browser walkthrough of the real Next.js app proves the landing, chapters, notebooks, instructors, and reviews paths work with real assets, stable imagery, accessible navigation, and no console/image-load regressions, while npm run ci passes."
     cadence: "after each Worker package and at final audit"
@@ -67,13 +67,13 @@ visual_board:
     url: "http://goalbuddy.localhost:41737/mockup-to-next-site/"
     command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal /Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site"
 
-active_task: T001
+active_task: null
 
 tasks:
   - id: T001
     type: scout
     assignee: Scout
-    status: active
+    status: done
     reasoning_hint: medium
     objective: "Map the current Next.js app, approved HTML mockup, asset sources, routes, verification commands, and migration risks before any implementation."
     inputs:
@@ -100,12 +100,30 @@ tasks:
       - "Next.js docs/conventions that affect implementation."
       - "Verification command list."
       - "Top risks and first recommended Worker slice."
-    receipt: null
+    receipt:
+      result: done
+      note: "notes/T001-scout-map.md"
+      summary: "Mapped the current Next.js app, approved mockup inventory, production/mockup asset gap, relevant local Next docs, verification commands, risks, and recommended a shared content/asset foundation as the first Worker slice."
+      evidence:
+        - "src/app/layout.tsx"
+        - "src/app/page.tsx"
+        - "src/app/chapters/page.tsx"
+        - "src/app/resources/page.tsx"
+        - "src/lib/site.ts"
+        - "src/content/"
+        - "public/"
+        - "docs/landing-reimagining/unified-html-mockup/README.md"
+        - "docs/landing-reimagining/unified-html-mockup/app.js"
+        - "node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md"
+        - "node_modules/next/dist/docs/01-app/01-getting-started/05-server-and-client-components.md"
+        - "node_modules/next/dist/docs/01-app/01-getting-started/12-images.md"
+      spawned_tasks:
+        - T002
 
   - id: T002
     type: judge
     assignee: Judge
-    status: queued
+    status: done
     reasoning_hint: high
     objective: "Review T001 findings and choose the first implementation slice by impact, reversibility, and verification strength."
     inputs:
@@ -124,147 +142,529 @@ tasks:
       - "verify."
       - "stop_if."
       - "Deferred or blocked tasks."
-    receipt: null
+    receipt:
+      result: done
+      decision: approved
+      full_outcome_complete: false
+      rationale: "The largest safe useful first slice is the shared content and asset foundation. It is required before the landing, chapters, notebooks, instructors, and reviews pages can be implemented from reusable source-backed data, and it directly addresses the current production gaps in chapter coverage, static figures, nav/routes, reviews, and roadmap data."
+      worker_task: T010
+      allowed_files:
+        - "src/lib/site.ts"
+        - "src/content/**"
+        - "public/learning-visuals/book-figures/**"
+        - "docs/goals/mockup-to-next-site/**"
+      verify:
+        - "git diff --check"
+        - "npm run lint"
+        - "npm run typecheck"
+        - "npm run test:unit"
+      stop_if:
+        - "Need app route/component edits outside the content/asset foundation."
+        - "Need to fetch external repositories or copy files from outside the approved existing mockup/book asset sources."
+        - "A source-backed claim, review excerpt, figure path, or external link cannot be verified."
+        - "Verification fails twice for the same reason."
+      deferred_tasks:
+        - T020
+        - T030
+        - T040
+        - T050
+        - T060
+        - T070
+        - T080
+        - T090
 
   - id: T010
     type: worker
     assignee: Worker
-    status: queued
+    status: done
     reasoning_hint: medium
     objective: "Build the shared Next.js content and asset foundation selected by Judge, including typed/structured data for navigation, chapters, notebook entries, landing carousel items, instructor resources, and reviews/adoption content."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "src/lib/site.ts"
+      - "src/content/**"
+      - "public/learning-visuals/book-figures/**"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
     stop_if:
       - "Need files outside allowed_files."
+      - "Need app route/component edits outside the content/asset foundation."
       - "Source-backed content cannot be verified."
       - "External asset repo access or licensing/source questions block real asset use."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "src/lib/site.ts"
+        - "src/content/book.types.ts"
+        - "src/content/book-links.ts"
+        - "src/content/book-chapters.ts"
+        - "src/content/book-learning.ts"
+        - "src/content/book-visuals.ts"
+        - "src/content/book-social-proof.ts"
+        - "src/content/home-page.ts"
+        - "src/content/book.ts"
+        - "src/content/book.test.ts"
+        - "public/learning-visuals/book-figures/*.png"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+      summary: "Built the shared typed content and asset foundation: full chapter/resource model, canonical book links, eight visual notebook widgets, four instructor roadmaps, 24 static visual records, source-backed reader reviews, approved future nav model, public copies of curated book figures, and unit tests proving local assets and canonical links."
 
   - id: T020
     type: worker
     assignee: Worker
-    status: queued
+    status: done
     reasoning_hint: medium
     objective: "Implement the landing page funnel in Next.js from the approved mockup direction: concise hero, primary CTAs, stable rotating visual carousel with real assets, and clear paths to chapters/notebooks."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "src/app/page.tsx"
+      - "src/app/notebooks/page.tsx"
+      - "src/components/home/**"
+      - "src/content/**"
+      - "src/lib/site.ts"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
     stop_if:
       - "Need files outside allowed_files."
       - "Carousel cannot be made stable without changing the approved interaction direction."
       - "Image load failures or layout shift remain after two fix attempts."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "src/lib/site.ts"
+        - "src/app/notebooks/page.tsx"
+        - "src/components/home/home-hero.tsx"
+        - "src/components/home/figure-carousel.tsx"
+        - "src/components/home/visual-funnel.tsx"
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Playwright QA at http://localhost:3020/ and /notebooks for 1440x1100 and 390x900"
+          status: pass
+      summary: "Implemented the simplified landing funnel: concise hero copy, Browse chapters/Browse notebooks CTAs, reduced nav, stable rotating static-figure carousel from real assets, and a minimal /notebooks route so the CTA is real. Browser QA proved carousel rotation, stable dimensions, no broken images, no horizontal overflow, no console errors, and 8 notebook cards on desktop/mobile."
+      remaining_risks:
+        - "The /notebooks route is intentionally a shell; full guided workbench remains T040."
+        - "Next reported a non-failing LCP suggestion for a notebook GIF during dev-server QA."
 
   - id: T030
     type: worker
     assignee: Worker
-    status: queued
+    status: done
     reasoning_hint: medium
     objective: "Implement the chapters/resources experience as the production chapters route, with searchable or scannable chapter cards, source-backed chapter links, representative real figures, and responsive layout."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "src/app/chapters/page.tsx"
+      - "src/components/chapters/**"
+      - "src/content/**"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Browser QA for /chapters on desktop and mobile"
     stop_if:
       - "Need files outside allowed_files."
       - "Chapter source data is ambiguous or missing."
       - "Mobile layout cannot be verified."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "src/app/chapters/page.tsx"
+        - "src/components/chapters/chapter-browser.tsx"
+        - "src/components/chapters/chapter-panels.tsx"
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Playwright QA for /chapters at 1440x1100 and 390x900"
+          status: pass
+      summary: "Replaced the scaffolded Chapters route with a source-backed chapter browser: search, resource filters, selected chapter package, real PDF/notes/Colab/exercise/slides links, representative static figures, related notebook/roadmap lists, and a responsive figure atlas. Browser QA verified Kernel and Feature Learning searches, the Figures filter, selected figure-to-chapter updates, no broken images after scroll, no horizontal overflow, no console errors, and visible resource links on desktop/mobile."
 
   - id: T040
     type: worker
     assignee: Worker
-    status: queued
+    status: done
     reasoning_hint: medium
     objective: "Implement the notebooks experience with real notebook/resource entries, clear Colab/source links, useful grouping, and no decorative tags that do not help users."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "src/app/notebooks/page.tsx"
+      - "src/components/notebooks/**"
+      - "src/content/**"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Browser QA for /notebooks on desktop and mobile"
     stop_if:
       - "Need files outside allowed_files."
       - "Notebook inventory cannot be verified."
       - "External links are stale or ambiguous."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "src/app/notebooks/page.tsx"
+        - "src/components/notebooks/notebook-workbench.tsx"
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Playwright QA for /notebooks at 1440x1100 and 390x900"
+          status: pass
+      summary: "Replaced the route shell with a guided Notebooks workbench: featured animated preview, four concept steps, source notebook/Colab/chapter/PDF bundle, and eight selectable source-backed notebook cards. Browser QA verified card selection updates the workbench, 4 concept steps render, 8 cards render, source and Colab links are visible, no broken images, no horizontal overflow, and no console errors on desktop/mobile."
 
   - id: T050
     type: worker
     assignee: Worker
-    status: queued
+    status: done
     reasoning_hint: medium
     objective: "Implement the instructors path with source-backed course-fit copy, clickable chapter/resource roadmap, preface/course guidance links when verified, and simplified instructor-specific CTAs."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "src/app/instructors/page.tsx"
+      - "src/components/instructors/**"
+      - "src/content/**"
+      - "src/lib/site.ts"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Browser QA for /instructors on desktop and mobile"
     stop_if:
       - "Need files outside allowed_files."
       - "Recommended course guidance cannot be verified from the book/site sources."
       - "The roadmap duplicates adjacent content or becomes visually cluttered."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "src/app/instructors/page.tsx"
+        - "src/components/instructors/instructor-roadmap.tsx"
+        - "src/lib/site.ts"
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Playwright QA for /instructors at 1440x1100 and 390x900"
+          status: pass
+      summary: "Implemented the source-backed Instructors path: concise course-fit copy, four roadmap selectors, clickable roadmap chapter nodes, chapter resource links, preface link, and support links to repository roadmap guidance, teaching decks, and exercises. Browser QA verified 4 roadmap buttons, Deep Learning path selection, Chapter 13 resource expansion, support/preface links, no broken images, no horizontal overflow, and no console errors on desktop/mobile."
 
   - id: T060
     type: worker
     assignee: Worker
-    status: queued
+    status: done
     reasoning_hint: medium
     objective: "Implement the reviews/adoption experience with simplified layout, larger readable institution logos where source-backed, and only real linked review/accolade content."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "src/app/reviews/page.tsx"
+      - "src/components/reviews/**"
+      - "src/content/**"
+      - "src/lib/site.ts"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Browser QA for /reviews on desktop and mobile"
     stop_if:
       - "Need files outside allowed_files."
       - "Actual review text cannot be sourced or quoted compliantly."
       - "Logo source/rights are unclear."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "src/app/reviews/page.tsx"
+        - "src/components/reviews/reviews-proof.tsx"
+        - "src/lib/site.ts"
+        - "docs/goals/mockup-to-next-site/notes/reviews-desktop.png"
+        - "docs/goals/mockup-to-next-site/notes/reviews-mobile.png"
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Playwright QA for /reviews at 1440x1100 and 390x900"
+          status: pass
+      artifacts:
+        - "docs/goals/mockup-to-next-site/notes/reviews-desktop.png"
+        - "docs/goals/mockup-to-next-site/notes/reviews-mobile.png"
+      summary: "Implemented the source-backed Reviews path: a simplified proof page with no filter buttons or boxed count strip, larger readable institution logos, the book cover source rail, repository/Amazon/Goodreads links, four named professor endorsements, and three short linked reader-review excerpts from the existing proof library. Browser QA verified 9 logos, 4 endorsement cards, 3 review cards, source links, no broken images, no horizontal overflow, and no console/page errors on desktop/mobile."
 
   - id: T070
     type: worker
     assignee: Worker
-    status: queued
+    status: done
     reasoning_hint: medium
     objective: "Add SEO, metadata, accessibility, and analytics-readiness polish across the implemented Next.js routes without introducing unsupported claims."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "src/app/layout.tsx"
+      - "src/app/page.tsx"
+      - "src/app/chapters/page.tsx"
+      - "src/app/notebooks/page.tsx"
+      - "src/app/instructors/page.tsx"
+      - "src/app/reviews/page.tsx"
+      - "src/app/resources/page.tsx"
+      - "src/app/dashboard/page.tsx"
+      - "src/app/robots.ts"
+      - "src/app/sitemap.ts"
+      - "src/app/sitemap.test.ts"
+      - "src/components/**"
+      - "src/content/**"
+      - "src/lib/site.ts"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Browser QA for implemented routes on desktop and mobile"
+      - "Metadata/sitemap/robots inspection for implemented routes"
     stop_if:
       - "Need files outside allowed_files."
       - "Metadata or analytics assumptions require credentials or owner decisions."
       - "Accessibility regression remains after two fix attempts."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "src/app/layout.tsx"
+        - "src/app/chapters/page.tsx"
+        - "src/app/notebooks/page.tsx"
+        - "src/app/instructors/page.tsx"
+        - "src/app/reviews/page.tsx"
+        - "src/app/resources/page.tsx"
+        - "src/app/dashboard/page.tsx"
+        - "src/components/home/figure-carousel.tsx"
+        - "src/components/chapters/chapter-browser.tsx"
+        - "src/components/chapters/chapter-panels.tsx"
+        - "src/components/notebooks/notebook-workbench.tsx"
+        - "src/components/instructors/instructor-roadmap.tsx"
+        - "src/components/reviews/reviews-proof.tsx"
+        - "src/lib/site.ts"
+        - "docs/goals/mockup-to-next-site/notes/t070-browser-seo-qa.json"
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Playwright metadata/sitemap/robots/browser QA for /, /chapters, /notebooks, /instructors, /reviews, /resources, and /dashboard at 1440x1100 and 390x900"
+          status: pass
+      artifacts:
+        - "docs/goals/mockup-to-next-site/notes/t070-browser-seo-qa.json"
+      summary: "Added shared SEO metadata helpers, canonical URLs, Open Graph and Twitter metadata with the real book cover image, corrected route titles to avoid duplicated site names, and verified sitemap/robots output. Added ARIA selected/expanded state to interactive route controls and wired outbound source/proof links through the PostHog-ready ResourceLink component. Browser QA after scrolling every route verified route metadata, no broken images, no horizontal overflow, no console/page errors, sitemap coverage for all public routes including /reviews, and robots sitemap output."
 
   - id: T080
     type: worker
     assignee: Worker
-    status: queued
+    status: done
     reasoning_hint: medium
     objective: "Run browser QA and visual verification on desktop and mobile, fixing regressions in navigation, image loading, carousel stability, mobile layout, console errors, and main funnel paths."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "src/app/**"
+      - "src/components/**"
+      - "src/content/**"
+      - "src/lib/**"
+      - "public/**"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "npm run ci"
+      - "Desktop and mobile browser QA for all implemented primary routes"
+      - "Visual screenshots for home, chapters, notebooks, instructors, and reviews"
     stop_if:
       - "Need files outside allowed_files."
       - "A failure requires redesign approval rather than implementation cleanup."
       - "Browser tooling or dev server cannot be started after recovery attempts."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "src/app/sitemap.test.ts"
+        - "docs/goals/mockup-to-next-site/notes/t080-visual-qa.json"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-home.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-chapters.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-notebooks.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-instructors.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-reviews.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-home.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-chapters.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-notebooks.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-instructors.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-reviews.png"
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run test:unit:coverage"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Playwright visual QA for /, /chapters, /notebooks, /instructors, and /reviews at 1440x1100 and 390x900"
+          status: pass
+        - cmd: "gh pr checks 21 --watch"
+          status: pass
+      artifacts:
+        - "docs/goals/mockup-to-next-site/notes/t080-visual-qa.json"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-home.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-chapters.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-notebooks.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-instructors.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-reviews.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-home.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-chapters.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-notebooks.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-instructors.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-reviews.png"
+      summary: "Ran desktop and mobile visual QA across the five primary implemented routes. Verified home carousel shell dimensions remain stable across rotation, home CTAs are present, chapter search/select flow works, notebook selection updates the workbench, instructor roadmap selection and expanded resource state work, reviews renders 9 logos/4 endorsements/3 review cards, and all primary routes have no broken images after scroll, no horizontal overflow, no console/page errors, and exactly one h1. Added the metadata helper coverage test required by CI."
 
   - id: T090
     type: worker
     assignee: Worker
-    status: queued
+    status: done
     reasoning_hint: medium
     objective: "Prepare the implementation branch for review: final checks, concise README or docs updates if needed, PR summary, and evidence receipt."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "README.md"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit:coverage"
+      - "npm run build"
+      - "npm run ci"
+      - "gh pr checks 21 --watch"
     stop_if:
       - "Need files outside allowed_files."
       - "Quality checks fail."
       - "Unrelated dirty worktree changes would be swept into the PR."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit:coverage"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "gh pr checks 21"
+          status: pass
+      summary: "Prepared PR #21 for review by confirming README already succinctly links the canonical book and notes-assets repositories, updating the PR body with the current route implementation, source-backed assets, SEO/accessibility/analytics polish, GoalBuddy state, and verification evidence, and confirming the draft PR is clean with both GitHub checks passing."
 
   - id: T999
     type: judge
     assignee: Judge
-    status: queued
+    status: done
     reasoning_hint: high
     objective: "Audit whether the Next.js implementation satisfies the original mockup-to-site outcome."
     inputs:
@@ -283,11 +683,188 @@ tasks:
       - "full_outcome_complete: true | false"
       - "Evidence mapped to the goal oracle."
       - "Missing evidence or next task if not complete."
-    receipt: null
+    receipt:
+      result: done
+      decision: not_complete
+      full_outcome_complete: false
+      rationale: "Implementation, local checks, browser evidence, and remote PR checks satisfy the technical oracle, but PR #21 is still marked draft and its body says draft remains intentional until final audit. Complete a final PR-ready handoff before the true completion audit."
+      evidence:
+        - "gh pr view 21 --json isDraft,mergeStateStatus,statusCheckRollup,url,headRefName,baseRefName"
+        - "docs/goals/mockup-to-next-site/notes/t070-browser-seo-qa.json"
+        - "docs/goals/mockup-to-next-site/notes/t080-visual-qa.json"
+      spawned_tasks:
+        - T091
+        - T092
+
+  - id: T091
+    type: worker
+    assignee: Worker
+    status: done
+    reasoning_hint: low
+    objective: "Finalize PR #21 for review now that implementation and visual QA are complete."
+    allowed_files:
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "gh pr view 21 --json isDraft,mergeStateStatus,statusCheckRollup,body"
+      - "gh pr checks 21"
+      - "git diff --check"
+    stop_if:
+      - "PR cannot be marked ready."
+      - "PR checks are failing."
+      - "Need implementation changes."
+    receipt:
+      result: done
+      changed_files:
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "gh pr edit 21 --body ... && gh pr ready 21"
+          status: pass
+        - cmd: "gh pr view 21 --json isDraft,mergeStateStatus,statusCheckRollup,body,url"
+          status: pass
+        - cmd: "gh pr checks 21"
+          status: pass
+        - cmd: "git diff --check"
+          status: pass
+      summary: "Finalized PR #21 for review: removed stale draft language from the body, kept the current implementation/evidence summary, marked the PR ready for review, and verified isDraft=false, mergeStateStatus=CLEAN, and both GitHub checks passing."
+
+  - id: T092
+    type: judge
+    assignee: Judge
+    status: done
+    reasoning_hint: high
+    objective: "Final audit after PR #21 is ready for review."
+    inputs:
+      - "All done task receipts."
+      - "Final PR ready state and checks."
+      - "T070 and T080 browser evidence artifacts."
+      - "Current git status."
+    constraints:
+      - "Read-only."
+      - "Reject completion if any required Worker task is queued or active."
+      - "Reject completion if the PR is still draft or checks are red."
+    expected_output:
+      - "complete | not_complete"
+      - "full_outcome_complete: true | false"
+      - "Evidence mapped to the goal oracle."
+    receipt:
+      result: done
+      decision: not_complete
+      full_outcome_complete: false
+      evidence:
+        - "PR #21: https://github.com/neonwatty/mlrefined-website/pull/21"
+        - "gh pr view 21 --json isDraft,mergeStateStatus,statusCheckRollup,url,headRefName,baseRefName: isDraft=false, mergeStateStatus=CLEAN, Dependabot Gate=SUCCESS, Lint/Typecheck/Knip/Test/Build=SUCCESS"
+        - "docs/goals/mockup-to-next-site/notes/t070-browser-seo-qa.json: desktop/mobile metadata, canonical, sitemap, robots, no broken images after scroll, no overflow, no console/page errors across /, /chapters, /notebooks, /instructors, /reviews, /resources, /dashboard"
+        - "docs/goals/mockup-to-next-site/notes/t080-visual-qa.json: desktop/mobile visual QA for /, /chapters, /notebooks, /instructors, /reviews with zero failures and stable home carousel dimensions"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-home.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-home.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-chapters.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-chapters.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-notebooks.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-notebooks.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-instructors.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-instructors.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-reviews.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-reviews.png"
+      summary: "The approved unified HTML mockup direction has been converted into the real Next.js implementation and PR #21 is ready with green checks, but final dev-server shutdown surfaced non-fatal Next Image warnings for review logo aspect-ratio classes and the notebooks LCP GIF. Resolve those warnings before calling the goal complete."
+      remaining_risks:
+        - "Fix and re-verify image warnings, then rerun final audit."
+
+  - id: T093
+    type: worker
+    assignee: Worker
+    status: done
+    reasoning_hint: low
+    objective: "Fix the final browser image warnings discovered during audit cleanup."
+    allowed_files:
+      - "src/components/notebooks/notebook-workbench.tsx"
+      - "src/components/reviews/reviews-proof.tsx"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit:coverage"
+      - "npm run build"
+      - "Browser console warning check for /notebooks and /reviews"
+      - "gh pr checks 21"
+    stop_if:
+      - "Warnings require design or asset changes outside allowed files."
+      - "Quality checks fail twice."
+    receipt:
+      result: done
+      changed_files:
+        - "src/components/notebooks/notebook-workbench.tsx"
+        - "src/components/reviews/reviews-proof.tsx"
+        - "docs/goals/mockup-to-next-site/notes/t093-warning-cleanup.json"
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit:coverage"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Browser console warning check for /notebooks and /reviews at 1440x1100 and 390x900"
+          status: pass
+      artifacts:
+        - "docs/goals/mockup-to-next-site/notes/t093-warning-cleanup.json"
+      summary: "Fixed the final Next Image warnings by adding priority loading to the active notebook preview image and explicit auto sizing to default review logo images. Focused browser console verification for /notebooks and /reviews on desktop/mobile found no Image warnings, no broken images, no overflow, and no page errors; dev-server terminal output stayed clean during the check."
+
+  - id: T094
+    type: judge
+    assignee: Judge
+    status: done
+    reasoning_hint: high
+    objective: "Final audit after image-warning cleanup."
+    inputs:
+      - "All done task receipts."
+      - "T093 warning-cleanup receipt."
+      - "Final PR ready state and checks."
+      - "T070/T080/T093 browser evidence artifacts."
+    constraints:
+      - "Read-only."
+      - "Reject completion if any required Worker task is queued or active."
+      - "Reject completion if image warnings remain."
+    expected_output:
+      - "complete | not_complete"
+      - "full_outcome_complete: true | false"
+      - "Evidence mapped to the goal oracle."
+    receipt:
+      result: done
+      decision: complete
+      full_outcome_complete: true
+      evidence:
+        - "PR #21: https://github.com/neonwatty/mlrefined-website/pull/21"
+        - "gh pr view 21 --json isDraft,mergeStateStatus,statusCheckRollup,url,headRefName,baseRefName: isDraft=false, mergeStateStatus=CLEAN, Dependabot Gate=SUCCESS, Lint/Typecheck/Knip/Test/Build=SUCCESS"
+        - "docs/goals/mockup-to-next-site/notes/t070-browser-seo-qa.json: desktop/mobile metadata, canonical, sitemap, robots, no broken images after scroll, no overflow, no console/page errors across /, /chapters, /notebooks, /instructors, /reviews, /resources, /dashboard"
+        - "docs/goals/mockup-to-next-site/notes/t080-visual-qa.json: desktop/mobile visual QA for /, /chapters, /notebooks, /instructors, /reviews with zero failures and stable home carousel dimensions"
+        - "docs/goals/mockup-to-next-site/notes/t093-warning-cleanup.json: desktop/mobile /notebooks and /reviews console-warning cleanup evidence with zero failures"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-home.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-home.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-chapters.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-chapters.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-notebooks.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-notebooks.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-instructors.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-instructors.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-reviews.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-reviews.png"
+      summary: "The approved unified HTML mockup direction has been converted into the real Next.js implementation for the landing funnel, Chapters, Notebooks, Instructors, and Reviews. The implementation uses source-backed book/site assets and canonical repository links, includes SEO metadata/canonical/OG/Twitter/sitemap/robots readiness, adds ARIA state and PostHog-ready outbound resource tracking, passes local and remote quality gates, has desktop/mobile browser and visual evidence, has no remaining focused Image warnings from the final cleanup check, and PR #21 is ready for review. No required Worker tasks remain."
+      remaining_risks:
+        - "PR #21 is ready but not merged or deployed; merge/deploy remains an owner action."
 
 checks:
   dirty_fingerprint: unknown
   last_verification:
-    result: unknown
-    task: null
-    commands: []
+    result: pass
+    task: T094
+    commands:
+      - "gh pr view 21 --json isDraft,mergeStateStatus,statusCheckRollup,url,headRefName,baseRefName"
+      - "node inspection of docs/goals/mockup-to-next-site/notes/t070-browser-seo-qa.json, t080-visual-qa.json, and t093-warning-cleanup.json"
+      - "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/scripts/check-goal-state.mjs docs/goals/mockup-to-next-site/state.yaml"

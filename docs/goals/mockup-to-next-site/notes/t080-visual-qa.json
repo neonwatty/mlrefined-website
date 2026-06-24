@@ -1,0 +1,207 @@
+{
+  "results": [
+    {
+      "viewport": "desktop",
+      "route": "/",
+      "screenshot": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site/notes/t080-desktop-home.png",
+      "h1": "Machine Learning Refined 2nd Edition",
+      "h1Count": 1,
+      "imageCount": 33,
+      "brokenImages": [],
+      "overflow": false,
+      "activeAriaPressed": 0,
+      "routeProbe": {
+        "carouselStable": true,
+        "carouselBefore": {
+          "width": 670,
+          "height": 378
+        },
+        "carouselAfter": {
+          "width": 670,
+          "height": 378
+        },
+        "ctas": [
+          "Browse chapters",
+          "Browse notebooks",
+          "Open source resources",
+          "Browse chapters",
+          "Browse notebooks"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "route": "/chapters",
+      "screenshot": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site/notes/t080-desktop-chapters.png",
+      "h1": "Chapters",
+      "h1Count": 1,
+      "imageCount": 1,
+      "brokenImages": [],
+      "overflow": false,
+      "activeAriaPressed": 1,
+      "routeProbe": {
+        "kernelSearchVisible": true,
+        "selectedPackageVisible": true
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "route": "/notebooks",
+      "screenshot": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site/notes/t080-desktop-notebooks.png",
+      "h1": "Notebooks",
+      "h1Count": 1,
+      "imageCount": 9,
+      "brokenImages": [],
+      "overflow": false,
+      "activeAriaPressed": 1,
+      "routeProbe": {
+        "selectedTaylor": true,
+        "sourceBundleLinks": 4
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "route": "/instructors",
+      "screenshot": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site/notes/t080-desktop-instructors.png",
+      "h1": "Instructors",
+      "h1Count": 1,
+      "imageCount": 0,
+      "brokenImages": [],
+      "overflow": false,
+      "activeAriaPressed": 1,
+      "routeProbe": {
+        "deepLearningVisible": false,
+        "expandedRoadmapButtons": 1,
+        "supportLinks": 4
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "desktop",
+      "route": "/reviews",
+      "screenshot": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site/notes/t080-desktop-reviews.png",
+      "h1": "Trusted in classrooms and by independent readers",
+      "h1Count": 1,
+      "imageCount": 14,
+      "brokenImages": [],
+      "overflow": false,
+      "activeAriaPressed": 0,
+      "routeProbe": {
+        "logoCount": 9,
+        "endorsementCount": 4,
+        "reviewCount": 3
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "route": "/",
+      "screenshot": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site/notes/t080-mobile-home.png",
+      "h1": "Machine Learning Refined 2nd Edition",
+      "h1Count": 1,
+      "imageCount": 33,
+      "brokenImages": [],
+      "overflow": false,
+      "activeAriaPressed": 0,
+      "routeProbe": {
+        "carouselStable": true,
+        "carouselBefore": {
+          "width": 316,
+          "height": 360
+        },
+        "carouselAfter": {
+          "width": 316,
+          "height": 360
+        },
+        "ctas": [
+          "Browse chapters",
+          "Browse notebooks",
+          "Open source resources",
+          "Browse chapters",
+          "Browse notebooks"
+        ]
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "route": "/chapters",
+      "screenshot": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site/notes/t080-mobile-chapters.png",
+      "h1": "Chapters",
+      "h1Count": 1,
+      "imageCount": 1,
+      "brokenImages": [],
+      "overflow": false,
+      "activeAriaPressed": 1,
+      "routeProbe": {
+        "kernelSearchVisible": true,
+        "selectedPackageVisible": true
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "route": "/notebooks",
+      "screenshot": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site/notes/t080-mobile-notebooks.png",
+      "h1": "Notebooks",
+      "h1Count": 1,
+      "imageCount": 9,
+      "brokenImages": [],
+      "overflow": false,
+      "activeAriaPressed": 1,
+      "routeProbe": {
+        "selectedTaylor": true,
+        "sourceBundleLinks": 4
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "route": "/instructors",
+      "screenshot": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site/notes/t080-mobile-instructors.png",
+      "h1": "Instructors",
+      "h1Count": 1,
+      "imageCount": 0,
+      "brokenImages": [],
+      "overflow": false,
+      "activeAriaPressed": 1,
+      "routeProbe": {
+        "deepLearningVisible": false,
+        "expandedRoadmapButtons": 1,
+        "supportLinks": 4
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "viewport": "mobile",
+      "route": "/reviews",
+      "screenshot": "/Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site/notes/t080-mobile-reviews.png",
+      "h1": "Trusted in classrooms and by independent readers",
+      "h1Count": 1,
+      "imageCount": 14,
+      "brokenImages": [],
+      "overflow": false,
+      "activeAriaPressed": 0,
+      "routeProbe": {
+        "logoCount": 9,
+        "endorsementCount": 4,
+        "reviewCount": 3
+      },
+      "consoleErrors": [],
+      "pageErrors": []
+    }
+  ],
+  "failures": []
+}

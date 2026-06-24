@@ -1,22 +1,17 @@
 import Link from "next/link";
 
-import { ChapterBrowser } from "@/components/chapters/chapter-browser";
-import {
-  chapters,
-  instructorRoadmaps,
-  learningWidgets,
-  staticVisuals,
-} from "@/content/book";
+import { NotebookWorkbench } from "@/components/notebooks/notebook-workbench";
+import { chapters, learningWidgets } from "@/content/book";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
-  title: "Chapters",
+  title: "Notebooks",
   description:
-    "Browse Machine Learning Refined chapters with source-backed notebooks, exercises, slides, and representative book figures.",
-  path: "/chapters",
+    "Curated visual notebook previews for Machine Learning Refined chapters, with source notebook and Colab links.",
+  path: "/notebooks",
 });
 
-export default function ChaptersPage() {
+export default function NotebooksPage() {
   return (
     <main className="min-h-screen bg-[#fbfaf4] px-5 py-12 text-[#071326] md:px-8">
       <div className="mx-auto max-w-7xl">
@@ -27,36 +22,30 @@ export default function ChaptersPage() {
         <section className="mt-8 grid gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.7fr)] lg:items-end">
           <div>
             <p className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
-              Chapter resource hub
+              Visual notebooks
             </p>
             <h1 className="font-serif text-5xl font-black leading-tight md:text-6xl">
-              Chapters
+              Notebooks
             </h1>
             <p className="mt-4 max-w-3xl text-lg leading-8 text-[#526070]">
-              Move through the book chapter-by-chapter: scan the concepts,
-              inspect representative figures, and jump to the canonical PDFs,
-              notes, notebooks, exercises, and teaching materials.
+              Move from intuition to runnable code through curated animated
+              notebook previews. Each workbench points back to the source
+              notebook, Colab path, and chapter package.
             </p>
           </div>
 
           <div className="grid gap-3 rounded-lg border border-[#ddcfad] bg-white p-4">
             <p className="font-serif text-xl font-black text-[#0b2545]">
-              Source-backed coverage
+              Eight visual notebooks
             </p>
             <p className="text-sm leading-6 text-[#526070]">
-              This hub uses real repository paths and real static figures from
-              the book asset sources. Chapters without curated figures still
-              route to their verified resource package.
+              A curated set of high-signal animations from the book resources,
+              not a decorative tag wall or fabricated inventory.
             </p>
           </div>
         </section>
 
-        <ChapterBrowser
-          chapters={chapters}
-          visuals={staticVisuals}
-          widgets={learningWidgets}
-          roadmaps={instructorRoadmaps}
-        />
+        <NotebookWorkbench chapters={chapters} widgets={learningWidgets} />
       </div>
     </main>
   );

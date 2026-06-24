@@ -2,12 +2,14 @@ import Link from "next/link";
 
 import { ResourceLink } from "@/components/analytics/resource-link";
 import { resourceGroups } from "@/content/book";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata = {
-  title: "Resources | Machine Learning Refined",
+export const metadata = createPageMetadata({
+  title: "Resources",
   description:
     "Machine Learning Refined resources, including PDFs, notebooks, exercises, presentations, and GitHub source links.",
-};
+  path: "/resources",
+});
 
 export default function ResourcesPage() {
   return (
