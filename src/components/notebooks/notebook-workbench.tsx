@@ -86,6 +86,7 @@ export function NotebookWorkbench({ chapters, widgets }: NotebookWorkbenchProps)
               alt={widget.imageAlt}
               width={320}
               height={220}
+              loading={widget.title === selectedWidget.title ? "eager" : "lazy"}
               unoptimized
             />
             <span className="text-xs font-black uppercase tracking-[0.14em] text-[#164b8f]">

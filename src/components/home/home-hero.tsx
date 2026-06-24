@@ -40,11 +40,11 @@ export function HomeHero() {
             ))}
           </div>
         </nav>
-        <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-5 pb-4 text-sm font-bold text-[#fffaf0]/78 md:hidden">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-2 px-5 pb-4 text-sm font-bold text-[#fffaf0]/78 min-[420px]:grid-cols-3 md:hidden">
           {primaryNav.map((item) => (
             <Link
               key={item.href}
-              className={`inline-flex min-h-10 shrink-0 items-center rounded-md px-3 transition-colors ${
+              className={`inline-flex min-h-10 items-center justify-center rounded-md px-3 transition-colors ${
                 item.href === "/"
                   ? "bg-[#c79222] text-[#06172d]"
                   : "bg-white/5 hover:bg-white/10 hover:text-white"
