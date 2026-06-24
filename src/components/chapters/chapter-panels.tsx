@@ -116,7 +116,7 @@ export function FigureAtlas({
               type="button"
               onClick={() => setSelectedNumber(number)}
             >
-              <Image className="h-44 w-full object-contain" src={visual.image} alt={visual.alt} width={520} height={320} unoptimized />
+              <Image className="h-44 w-full object-contain" src={visual.image} alt={visual.alt} width={520} height={320} loading={number === selectedNumber ? "eager" : "lazy"} unoptimized />
               <span className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">{visual.chapter} / {visual.topic}</span>
               <strong className="font-serif text-xl font-black text-[#0b2545]">{visual.title}</strong>
             </button>
@@ -141,7 +141,7 @@ function VisualPreview({ visual }: { visual: StaticVisual }) {
       rel="noreferrer"
       target="_blank"
     >
-      <Image className="h-64 w-full object-contain" src={visual.image} alt={visual.alt} width={900} height={560} loading="eager" unoptimized />
+      <Image className="h-64 w-full object-contain" src={visual.image} alt={visual.alt} width={900} height={560} loading="eager" priority unoptimized />
       <span>
         <strong className="block font-serif text-xl font-black text-[#0b2545]">{visual.title}</strong>
         <span className="mt-1 block text-sm leading-6 text-[#526070]">{visual.description}</span>

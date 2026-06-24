@@ -79,5 +79,4 @@ export const publicRoutes = [
   "/instructors",
   "/reviews",
   "/resources",
-  "/dashboard",
 ];

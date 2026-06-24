@@ -25,6 +25,7 @@ describe("sitemap metadata route", () => {
 
     expect(sitemapPaths).toEqual(publicRoutes);
     expect(sitemapPaths).not.toContain("/chapters/introduction-to-machine-learning");
+    expect(sitemapPaths).not.toContain("/dashboard");
 
     for (const route of sitemapPaths) {
       expect(fs.existsSync(pageFileForRoute(route)), route).toBe(true);
