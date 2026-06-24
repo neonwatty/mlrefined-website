@@ -84,6 +84,7 @@ export function ChapterBrowser({
                   ? "border-[#c79222] bg-[#c79222] text-[#06172d]"
                   : "border-[#ddcfad] bg-white text-[#164b8f] hover:bg-[#fff7e7]"
               }`}
+              aria-pressed={resourceKind === filter.key}
               type="button"
               onClick={() => setResourceKind(filter.key)}
             >

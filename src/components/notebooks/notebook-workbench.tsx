@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useMemo, useState } from "react";
 
+import { ResourceLink } from "@/components/analytics/resource-link";
 import type { BookChapter, LearningWidget } from "@/content/book";
 
 type NotebookWorkbenchProps = {
@@ -75,6 +75,7 @@ export function NotebookWorkbench({ chapters, widgets }: NotebookWorkbenchProps)
                 ? "border-[#164b8f]"
                 : "border-[#ddcfad] hover:-translate-y-0.5 hover:border-[#164b8f]/50"
             }`}
+            aria-pressed={widget.title === selectedWidget.title}
             type="button"
             onClick={() => setSelectedTitle(widget.title)}
           >
@@ -113,13 +114,33 @@ function SourceBundle({
 
   return (
     <div className="grid gap-2 rounded-md border border-[#ddcfad] bg-white p-3 sm:grid-cols-2">
-      <SourceLink href={widget.href} label="Source notebook" detail={fileName(widget.href)} />
-      <SourceLink href={widget.colab} label="Open in Colab" detail="Runnable notebook path" />
+      <SourceLink
+        detail={fileName(widget.href)}
+        href={widget.href}
+        label="Source notebook"
+        resource={widget.title}
+      />
+      <SourceLink
+        detail="Runnable notebook path"
+        href={widget.colab}
+        label="Open in Colab"
+        resource={widget.title}
+      />
       {chapterHref ? (
-        <SourceLink href={chapterHref} label="Chapter package" detail={chapter?.title ?? widget.topic} />
+        <SourceLink
+          detail={chapter?.title ?? widget.topic}
+          href={chapterHref}
+          label="Chapter package"
+          resource={widget.title}
+        />
       ) : null}
       {chapter?.resources.pdf ? (
-        <SourceLink href={chapter.resources.pdf} label="Chapter PDFs" detail="Canonical PDF collection" />
+        <SourceLink
+          detail="Canonical PDF collection"
+          href={chapter.resources.pdf}
+          label="Chapter PDFs"
+          resource={widget.title}
+        />
       ) : null}
     </div>
   );
@@ -129,16 +150,25 @@ function SourceLink({
   detail,
   href,
   label,
+  resource,
 }: {
   detail: string;
   href: string;
   label: string;
+  resource: string;
 }) {
   return (
-    <Link className="rounded-md border border-[#d9e2ec] p-3 transition-colors hover:border-[#164b8f]/50 hover:bg-[#f7fbff]" href={href}>
+    <ResourceLink
+      className="rounded-md border border-[#d9e2ec] p-3 transition-colors hover:border-[#164b8f]/50 hover:bg-[#f7fbff]"
+      eventName="notebook_resource_clicked"
+      eventProperties={{ location: "notebook_workbench", resource, type: label }}
+      href={href}
+      rel="noreferrer"
+      target="_blank"
+    >
       <strong className="block text-sm font-black text-[#164b8f]">{label}</strong>
       <span className="mt-1 block text-xs leading-5 text-[#526070]">{detail}</span>
-    </Link>
+    </ResourceLink>
   );
 }
 

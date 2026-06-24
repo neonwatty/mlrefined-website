@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
+import { bookCoverImage, siteConfig } from "@/lib/site";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,20 +16,33 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.mlrefined.com"),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Machine Learning Refined",
-    template: "%s | Machine Learning Refined",
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "Machine Learning Refined: Foundations, Algorithms, and Applications. Book resources, notebooks, exercises, and analytics for improving the site.",
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Machine Learning Refined",
-    description:
-      "Foundations, Algorithms, and Applications. Book resources, notebooks, exercises, and analytics for improving the site.",
-    url: "https://www.mlrefined.com",
-    siteName: "Machine Learning Refined",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     type: "website",
+    images: [bookCoverImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [bookCoverImage.url],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

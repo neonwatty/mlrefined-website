@@ -8,12 +8,14 @@ import {
   testimonials,
   universityLogos,
 } from "@/content/book";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata = {
-  title: "Reviews | Machine Learning Refined",
+export const metadata = createPageMetadata({
+  title: "Reviews",
   description:
     "Source-backed adoption context, university proof logos, professor endorsements, and linked reader review excerpts for Machine Learning Refined.",
-};
+  path: "/reviews",
+});
 
 export default function ReviewsPage() {
   const adoptionStat = bookStats.find((stat) =>

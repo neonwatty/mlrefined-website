@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 
+import { ResourceLink } from "@/components/analytics/resource-link";
 import type {
   ReaderReview,
   SocialProofLogo,
@@ -51,20 +51,31 @@ export function ReviewsProof({
           click from its source.
         </p>
         <div className="grid gap-2 text-sm font-black">
-          <Link
+          <ResourceLink
             className="rounded-md border border-[#ddcfad] bg-white px-3 py-2 text-[#164b8f] transition-colors hover:border-[#164b8f]/50"
+            eventName="proof_source_clicked"
+            eventProperties={{ location: "reviews_source_rail", resource: "repo" }}
             href={repoHref}
+            rel="noreferrer"
+            target="_blank"
           >
             Resource repository
-          </Link>
+          </ResourceLink>
           {sourceLinks.map((link) => (
-            <Link
+            <ResourceLink
               key={link.source}
               className="rounded-md border border-[#ddcfad] bg-white px-3 py-2 text-[#164b8f] transition-colors hover:border-[#164b8f]/50"
+              eventName="proof_source_clicked"
+              eventProperties={{
+                location: "reviews_source_rail",
+                resource: link.source,
+              }}
               href={hrefForSource(link.source)}
+              rel="noreferrer"
+              target="_blank"
             >
               {link.label}
-            </Link>
+            </ResourceLink>
           ))}
         </div>
       </aside>
@@ -185,12 +196,20 @@ export function ReviewsProof({
                 <p className="text-lg font-black leading-7 text-[#071326]">
                   &ldquo;{review.excerpt}&rdquo;
                 </p>
-                <Link
+                <ResourceLink
                   className="text-sm font-black text-[#164b8f] underline-offset-4 hover:underline"
+                  eventName="reader_review_source_clicked"
+                  eventProperties={{
+                    location: "reviews_reader_reviews",
+                    resource: review.source,
+                    reviewer: review.name,
+                  }}
                   href={review.href}
+                  rel="noreferrer"
+                  target="_blank"
                 >
                   Open {review.source} source
-                </Link>
+                </ResourceLink>
               </article>
             ))}
           </div>

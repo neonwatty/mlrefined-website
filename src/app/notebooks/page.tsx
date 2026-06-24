@@ -2,12 +2,14 @@ import Link from "next/link";
 
 import { NotebookWorkbench } from "@/components/notebooks/notebook-workbench";
 import { chapters, learningWidgets } from "@/content/book";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata = {
-  title: "Notebooks | Machine Learning Refined",
+export const metadata = createPageMetadata({
+  title: "Notebooks",
   description:
     "Curated visual notebook previews for Machine Learning Refined chapters, with source notebook and Colab links.",
-};
+  path: "/notebooks",
+});
 
 export default function NotebooksPage() {
   return (

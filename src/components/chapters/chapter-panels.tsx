@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 
+import { ResourceLink } from "@/components/analytics/resource-link";
 import type {
   BookChapter,
   ChapterTrack,
@@ -31,6 +31,7 @@ export function ChapterList({
         <button
           key={chapter.slug}
           className={`grid gap-3 rounded-lg border bg-white p-4 text-left transition-all ${chapter.number === selectedNumber ? "border-[#164b8f] shadow-lg shadow-[#071326]/10" : "border-[#ddcfad] hover:border-[#164b8f]/50"}`}
+          aria-pressed={chapter.number === selectedNumber}
           type="button"
           onClick={() => setSelectedNumber(chapter.number)}
         >
@@ -111,6 +112,7 @@ export function FigureAtlas({
             <button
               key={visual.title}
               className={`grid gap-3 rounded-lg border bg-white p-3 text-left transition-colors ${number === selectedNumber ? "border-[#164b8f]" : "border-[#ddcfad] hover:border-[#164b8f]/50"}`}
+              aria-pressed={number === selectedNumber}
               type="button"
               onClick={() => setSelectedNumber(number)}
             >
@@ -127,22 +129,44 @@ export function FigureAtlas({
 
 function VisualPreview({ visual }: { visual: StaticVisual }) {
   return (
-    <Link className="grid gap-3 rounded-md border border-[#d9e2ec] bg-white p-3" href={visual.sourceHref}>
+    <ResourceLink
+      className="grid gap-3 rounded-md border border-[#d9e2ec] bg-white p-3"
+      eventName="chapter_visual_source_clicked"
+      eventProperties={{
+        chapter: visual.chapter,
+        location: "selected_chapter_panel",
+        resource: visual.title,
+      }}
+      href={visual.sourceHref}
+      rel="noreferrer"
+      target="_blank"
+    >
       <Image className="h-64 w-full object-contain" src={visual.image} alt={visual.alt} width={900} height={560} loading="eager" unoptimized />
       <span>
         <strong className="block font-serif text-xl font-black text-[#0b2545]">{visual.title}</strong>
         <span className="mt-1 block text-sm leading-6 text-[#526070]">{visual.description}</span>
       </span>
-    </Link>
+    </ResourceLink>
   );
 }
 
 function WidgetPreview({ widget }: { widget: LearningWidget }) {
   return (
-    <Link className="grid gap-3 rounded-md border border-[#d9e2ec] bg-white p-3" href={widget.href}>
+    <ResourceLink
+      className="grid gap-3 rounded-md border border-[#d9e2ec] bg-white p-3"
+      eventName="chapter_widget_source_clicked"
+      eventProperties={{
+        chapter: widget.chapter,
+        location: "selected_chapter_panel",
+        resource: widget.title,
+      }}
+      href={widget.href}
+      rel="noreferrer"
+      target="_blank"
+    >
       <Image className="h-56 w-full object-contain" src={widget.image} alt={widget.imageAlt} width={520} height={320} unoptimized />
       <strong className="font-serif text-xl font-black text-[#0b2545]">{widget.title}</strong>
-    </Link>
+    </ResourceLink>
   );
 }
 
@@ -158,9 +182,21 @@ function ResourceLinks({ chapter }: { chapter: BookChapter }) {
   return (
     <div className="flex flex-wrap gap-2">
       {resources.map(([label, href]) => (
-        <Link key={label} className="inline-flex min-h-10 items-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7]" href={href}>
+        <ResourceLink
+          key={label}
+          className="inline-flex min-h-10 items-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7]"
+          eventName="chapter_resource_clicked"
+          eventProperties={{
+            chapter: chapter.number,
+            location: "selected_chapter_panel",
+            resource: label,
+          }}
+          href={href}
+          rel="noreferrer"
+          target="_blank"
+        >
           {label}
-        </Link>
+        </ResourceLink>
       ))}
     </div>
   );

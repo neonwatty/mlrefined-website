@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 
+import { ResourceLink } from "@/components/analytics/resource-link";
 import type { BookChapter, ChapterTrack } from "@/content/book";
 
 type InstructorRoadmapProps = {
@@ -36,6 +36,7 @@ export function InstructorRoadmap({
                 ? "border-[#164b8f] shadow-lg shadow-[#071326]/10"
                 : "border-[#ddcfad] hover:border-[#164b8f]/50"
             }`}
+            aria-pressed={roadmap.id === activeRoadmap.id}
             type="button"
             onClick={() => {
               setActiveRoadmapId(roadmap.id);
@@ -53,9 +54,16 @@ export function InstructorRoadmap({
             </span>
           </button>
         ))}
-        <Link className="rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-4 text-sm font-black text-[#164b8f]" href={prefaceHref}>
+        <ResourceLink
+          className="rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-4 text-sm font-black text-[#164b8f]"
+          eventName="instructor_resource_clicked"
+          eventProperties={{ location: "roadmap_picker", resource: "Preface" }}
+          href={prefaceHref}
+          rel="noreferrer"
+          target="_blank"
+        >
           Read the preface
-        </Link>
+        </ResourceLink>
       </aside>
 
       <section className="grid gap-5 rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-5">
@@ -80,6 +88,7 @@ export function InstructorRoadmap({
               <article key={`${activeRoadmap.id}-${roadmapChapter.number}`} className={`rounded-lg border bg-white p-4 ${isOpen ? "border-[#164b8f]" : "border-[#ddcfad]"}`}>
                 <button
                   className="grid w-full gap-3 text-left md:grid-cols-[120px_minmax(0,1fr)_auto] md:items-center"
+                  aria-expanded={isOpen}
                   type="button"
                   onClick={() => setOpenChapter(roadmapChapter.number)}
                 >
@@ -118,10 +127,21 @@ export function InstructorRoadmap({
 
         <div className="grid gap-3 border-t border-[#ddcfad] pt-5 md:grid-cols-3">
           {supportLinks.map((link) => (
-            <Link key={link.label} className="rounded-md border border-[#ddcfad] bg-white p-4 transition-colors hover:border-[#164b8f]/50" href={link.href}>
+            <ResourceLink
+              key={link.label}
+              className="rounded-md border border-[#ddcfad] bg-white p-4 transition-colors hover:border-[#164b8f]/50"
+              eventName="instructor_resource_clicked"
+              eventProperties={{
+                location: "roadmap_support",
+                resource: link.label,
+              }}
+              href={link.href}
+              rel="noreferrer"
+              target="_blank"
+            >
               <strong className="block font-serif text-lg font-black text-[#0b2545]">{link.label}</strong>
               <span className="mt-1 block text-sm leading-6 text-[#526070]">{link.note}</span>
-            </Link>
+            </ResourceLink>
           ))}
         </div>
       </section>
@@ -141,9 +161,21 @@ function ChapterResourceLinks({ chapter }: { chapter: BookChapter }) {
   return (
     <div className="flex flex-wrap gap-2">
       {resources.map(([label, href]) => (
-        <Link key={label} className="inline-flex min-h-10 items-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7]" href={href}>
+        <ResourceLink
+          key={label}
+          className="inline-flex min-h-10 items-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7]"
+          eventName="instructor_chapter_resource_clicked"
+          eventProperties={{
+            chapter: chapter.number,
+            location: "roadmap_chapter_resources",
+            resource: label,
+          }}
+          href={href}
+          rel="noreferrer"
+          target="_blank"
+        >
           {label}
-        </Link>
+        </ResourceLink>
       ))}
     </div>
   );

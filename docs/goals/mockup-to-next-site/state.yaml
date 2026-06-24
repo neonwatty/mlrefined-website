@@ -67,7 +67,7 @@ visual_board:
     url: "http://goalbuddy.localhost:41737/mockup-to-next-site/"
     command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal /Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site"
 
-active_task: T070
+active_task: T080
 
 tasks:
   - id: T001
@@ -472,7 +472,7 @@ tasks:
   - id: T070
     type: worker
     assignee: Worker
-    status: active
+    status: done
     reasoning_hint: medium
     objective: "Add SEO, metadata, accessibility, and analytics-readiness polish across the implemented Next.js routes without introducing unsupported claims."
     allowed_files:
@@ -482,6 +482,8 @@ tasks:
       - "src/app/notebooks/page.tsx"
       - "src/app/instructors/page.tsx"
       - "src/app/reviews/page.tsx"
+      - "src/app/resources/page.tsx"
+      - "src/app/dashboard/page.tsx"
       - "src/app/robots.ts"
       - "src/app/sitemap.ts"
       - "src/app/sitemap.test.ts"
@@ -502,16 +504,66 @@ tasks:
       - "Metadata or analytics assumptions require credentials or owner decisions."
       - "Accessibility regression remains after two fix attempts."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "src/app/layout.tsx"
+        - "src/app/chapters/page.tsx"
+        - "src/app/notebooks/page.tsx"
+        - "src/app/instructors/page.tsx"
+        - "src/app/reviews/page.tsx"
+        - "src/app/resources/page.tsx"
+        - "src/app/dashboard/page.tsx"
+        - "src/components/home/figure-carousel.tsx"
+        - "src/components/chapters/chapter-browser.tsx"
+        - "src/components/chapters/chapter-panels.tsx"
+        - "src/components/notebooks/notebook-workbench.tsx"
+        - "src/components/instructors/instructor-roadmap.tsx"
+        - "src/components/reviews/reviews-proof.tsx"
+        - "src/lib/site.ts"
+        - "docs/goals/mockup-to-next-site/notes/t070-browser-seo-qa.json"
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Playwright metadata/sitemap/robots/browser QA for /, /chapters, /notebooks, /instructors, /reviews, /resources, and /dashboard at 1440x1100 and 390x900"
+          status: pass
+      artifacts:
+        - "docs/goals/mockup-to-next-site/notes/t070-browser-seo-qa.json"
+      summary: "Added shared SEO metadata helpers, canonical URLs, Open Graph and Twitter metadata with the real book cover image, corrected route titles to avoid duplicated site names, and verified sitemap/robots output. Added ARIA selected/expanded state to interactive route controls and wired outbound source/proof links through the PostHog-ready ResourceLink component. Browser QA after scrolling every route verified route metadata, no broken images, no horizontal overflow, no console/page errors, sitemap coverage for all public routes including /reviews, and robots sitemap output."
 
   - id: T080
     type: worker
     assignee: Worker
-    status: queued
+    status: active
     reasoning_hint: medium
     objective: "Run browser QA and visual verification on desktop and mobile, fixing regressions in navigation, image loading, carousel stability, mobile layout, console errors, and main funnel paths."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "src/app/**"
+      - "src/components/**"
+      - "src/content/**"
+      - "src/lib/**"
+      - "public/**"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "npm run ci"
+      - "Desktop and mobile browser QA for all implemented primary routes"
+      - "Visual screenshots for home, chapters, notebooks, instructors, and reviews"
     stop_if:
       - "Need files outside allowed_files."
       - "A failure requires redesign approval rather than implementation cleanup."
@@ -562,7 +614,7 @@ checks:
   dirty_fingerprint: unknown
   last_verification:
     result: pass
-    task: T060
+    task: T070
     commands:
       - "git diff --check"
       - "npm run lint"
@@ -570,4 +622,4 @@ checks:
       - "npm run test:unit"
       - "npm run build"
       - "npm run ci"
-      - "Playwright QA for /reviews at 1440x1100 and 390x900"
+      - "Playwright metadata/sitemap/robots/browser QA for all implemented routes at 1440x1100 and 390x900"

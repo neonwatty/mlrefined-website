@@ -2,12 +2,14 @@ import Link from "next/link";
 
 import { InstructorRoadmap } from "@/components/instructors/instructor-roadmap";
 import { bookLinks, chapters, instructorRoadmaps } from "@/content/book";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata = {
-  title: "Instructors | Machine Learning Refined",
+export const metadata = createPageMetadata({
+  title: "Instructors",
   description:
     "Course planning paths for Machine Learning Refined with source-backed chapter resources, slides, exercises, and roadmap guidance.",
-};
+  path: "/instructors",
+});
 
 const supportLinks = [
   {

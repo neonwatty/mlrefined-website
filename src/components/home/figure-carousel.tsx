@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
+import { ResourceLink } from "@/components/analytics/resource-link";
 import type { featuredFigures } from "@/content/home-page";
 
 type Figure = (typeof featuredFigures)[number];
@@ -34,9 +34,17 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
 
   return (
     <article className="grid gap-4 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-4 shadow-xl shadow-[#071326]/10 lg:grid-cols-[minmax(360px,1.15fr)_minmax(300px,0.85fr)]">
-      <Link
+      <ResourceLink
         className="relative grid min-h-[360px] place-items-center overflow-hidden rounded-md border border-[#d9e2ec] bg-white"
+        eventName="home_visual_clicked"
+        eventProperties={{
+          chapter: activeFigure.chapter,
+          location: "home_carousel_image",
+          resource: activeFigure.title,
+        }}
         href={activeFigure.href}
+        rel="noreferrer"
+        target="_blank"
       >
         {safeFigures.map((figure, figureIndex) => (
           <Image
@@ -53,7 +61,7 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
             priority={figureIndex === 0}
           />
         ))}
-      </Link>
+      </ResourceLink>
 
       <div className="grid content-center gap-4">
         <p className="text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
@@ -64,13 +72,35 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
         </h3>
         <p className="min-h-20 text-[#526070]">{activeFigure.description}</p>
         <div className="flex flex-wrap gap-2">
-          <Link className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" href={activeFigure.href}>
+          <ResourceLink
+            className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
+            eventName="home_visual_clicked"
+            eventProperties={{
+              chapter: activeFigure.chapter,
+              location: "home_carousel_cta",
+              resource: activeFigure.title,
+            }}
+            href={activeFigure.href}
+            rel="noreferrer"
+            target="_blank"
+          >
             Open chapter package
-          </Link>
+          </ResourceLink>
           {activeFigure.sourceHref ? (
-            <Link className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" href={activeFigure.sourceHref}>
+            <ResourceLink
+              className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
+              eventName="home_visual_source_clicked"
+              eventProperties={{
+                chapter: activeFigure.chapter,
+                location: "home_carousel_cta",
+                resource: activeFigure.title,
+              }}
+              href={activeFigure.sourceHref}
+              rel="noreferrer"
+              target="_blank"
+            >
               Source figure
-            </Link>
+            </ResourceLink>
           ) : null}
           <button
             className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"

@@ -7,12 +7,14 @@ import {
   learningWidgets,
   staticVisuals,
 } from "@/content/book";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata = {
-  title: "Chapters | Machine Learning Refined",
+export const metadata = createPageMetadata({
+  title: "Chapters",
   description:
     "Browse Machine Learning Refined chapters with source-backed notebooks, exercises, slides, and representative book figures.",
-};
+  path: "/chapters",
+});
 
 export default function ChaptersPage() {
   return (
