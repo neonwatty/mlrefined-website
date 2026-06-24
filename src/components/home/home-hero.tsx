@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ResourceLink } from "@/components/analytics/resource-link";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 import { primaryNav, siteConfig } from "@/lib/site";
 
 import { GitHubMark } from "./icons";
@@ -75,12 +76,12 @@ export function HomeHero() {
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Link className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-5 text-sm font-black text-[#06172d] shadow-lg shadow-[#c79222]/15 transition-colors hover:bg-[#d7a02b]" href="/chapters">
+            <TrackedLink className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-5 text-sm font-black text-[#06172d] shadow-lg shadow-[#c79222]/15 transition-colors hover:bg-[#d7a02b]" eventName="primary_cta_clicked" eventProperties={{ location: "home_hero", label: "Browse chapters" }} href="/chapters">
               Browse chapters
-            </Link>
-            <Link className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-5 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" href="/notebooks">
+            </TrackedLink>
+            <TrackedLink className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-5 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" eventName="primary_cta_clicked" eventProperties={{ location: "home_hero", label: "Browse notebooks" }} href="/notebooks">
               Browse notebooks
-            </Link>
+            </TrackedLink>
           </div>
 
           <ResourceLink className="mt-4 inline-flex items-center gap-2 text-sm font-black text-[#164b8f] transition-colors hover:text-[#0b2545]" eventName="github_resource_clicked" eventProperties={{ location: "home_hero", resource: "repo" }} href={siteConfig.githubRepo} target="_blank" rel="noreferrer">
