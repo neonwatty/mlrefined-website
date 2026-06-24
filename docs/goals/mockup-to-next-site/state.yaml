@@ -67,7 +67,7 @@ visual_board:
     url: "http://goalbuddy.localhost:41737/mockup-to-next-site/"
     command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal /Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site"
 
-active_task: T050
+active_task: T060
 
 tasks:
   - id: T001
@@ -371,7 +371,7 @@ tasks:
   - id: T050
     type: worker
     assignee: Worker
-    status: active
+    status: done
     reasoning_hint: medium
     objective: "Implement the instructors path with source-backed course-fit copy, clickable chapter/resource roadmap, preface/course guidance links when verified, and simplified instructor-specific CTAs."
     allowed_files:
@@ -392,16 +392,49 @@ tasks:
       - "Recommended course guidance cannot be verified from the book/site sources."
       - "The roadmap duplicates adjacent content or becomes visually cluttered."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "src/app/instructors/page.tsx"
+        - "src/components/instructors/instructor-roadmap.tsx"
+        - "src/lib/site.ts"
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Playwright QA for /instructors at 1440x1100 and 390x900"
+          status: pass
+      summary: "Implemented the source-backed Instructors path: concise course-fit copy, four roadmap selectors, clickable roadmap chapter nodes, chapter resource links, preface link, and support links to repository roadmap guidance, teaching decks, and exercises. Browser QA verified 4 roadmap buttons, Deep Learning path selection, Chapter 13 resource expansion, support/preface links, no broken images, no horizontal overflow, and no console errors on desktop/mobile."
 
   - id: T060
     type: worker
     assignee: Worker
-    status: queued
+    status: active
     reasoning_hint: medium
     objective: "Implement the reviews/adoption experience with simplified layout, larger readable institution logos where source-backed, and only real linked review/accolade content."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "src/app/reviews/page.tsx"
+      - "src/components/reviews/**"
+      - "src/content/**"
+      - "src/lib/site.ts"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Browser QA for /reviews on desktop and mobile"
     stop_if:
       - "Need files outside allowed_files."
       - "Actual review text cannot be sourced or quoted compliantly."
@@ -482,7 +515,7 @@ checks:
   dirty_fingerprint: unknown
   last_verification:
     result: pass
-    task: T040
+    task: T050
     commands:
       - "git diff --check"
       - "npm run lint"
@@ -490,4 +523,4 @@ checks:
       - "npm run test:unit"
       - "npm run build"
       - "npm run ci"
-      - "Playwright QA for /notebooks at 1440x1100 and 390x900"
+      - "Playwright QA for /instructors at 1440x1100 and 390x900"

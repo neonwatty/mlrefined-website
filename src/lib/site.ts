@@ -12,6 +12,7 @@ export const primaryNav = [
   { href: "/", label: "Home" },
   { href: "/chapters", label: "Chapters" },
   { href: "/notebooks", label: "Notebooks" },
+  { href: "/instructors", label: "Instructors" },
 ];
 
 export const approvedPublicNav = [
@@ -26,6 +27,7 @@ export const publicRoutes = [
   "/",
   "/chapters",
   "/notebooks",
+  "/instructors",
   "/resources",
   "/dashboard",
 ];
