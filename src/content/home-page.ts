@@ -1,4 +1,5 @@
 import { chapterTracks, learningWidgets } from "./book-learning";
+import { spotlightFigureTitles, staticVisuals } from "./book-visuals";
 
 export const pedagogySteps = [
   { number: "01", title: "Intuition", note: "See the idea" },
@@ -13,45 +14,18 @@ export const visualPath = [
   ["Run", "Continue in a Colab notebook."],
 ] as const;
 
-export const featuredFigures = [
-  {
-    chapter: "Ch. 2 / Optimization",
-    title: "Regression as Optimization",
-    description:
-      "A first-principles view of fitting a regression model by minimizing a cost function.",
-    image: "/learning-visuals/book-figures/bigpicture_regression_optimization.png",
-    alt: "Regression model fitting visualized as cost minimization",
-    href: "https://github.com/neonwatty/machine-learning-refined/tree/main/notes/2_Zero_order_methods",
-  },
-  {
-    chapter: "Ch. 2 / Optimization",
-    title: "Classification as Optimization",
-    description:
-      "Decision boundaries, costs, and geometric intuition brought into the same picture.",
-    image:
-      "/learning-visuals/book-figures/bigpicture_classification_optimization.png",
-    alt: "Classification model fitting visualized as optimization",
-    href: "https://github.com/neonwatty/machine-learning-refined/tree/main/notes/2_Zero_order_methods",
-  },
-  {
-    chapter: "Ch. 3 / First-order Methods",
-    title: "Exact vs. Backtracking Search",
-    description:
-      "Step-length choices made visible before the optimization routine becomes code.",
-    image: "/learning-visuals/book-figures/exact_vs_backtrack.png",
-    alt: "Exact line search compared with backtracking line search",
-    href: "https://github.com/neonwatty/machine-learning-refined/tree/main/notes/3_First_order_methods",
-  },
-  {
-    chapter: "Ch. 13 / Neural Networks",
-    title: "Layer-by-layer Networks",
-    description:
-      "A multilayer network unfolded into a readable sequence of transformations.",
-    image: "/learning-visuals/book-figures/L_layer_network_unfolded.png",
-    alt: "Multilayer neural network unfolded layer by layer",
-    href: "https://github.com/neonwatty/machine-learning-refined/tree/main/notes/13_Multilayer_perceptrons",
-  },
-];
+export const featuredFigures = spotlightFigureTitles
+  .map((title) => staticVisuals.find((visual) => visual.title === title))
+  .filter((visual) => visual !== undefined)
+  .map((visual) => ({
+    chapter: `${visual.chapter} / ${visual.topic}`,
+    title: visual.title,
+    description: visual.description,
+    image: visual.image,
+    alt: visual.alt,
+    href: visual.chapterHref,
+    sourceHref: visual.sourceHref,
+  }));
 
 export const homeAnimations = [
   {

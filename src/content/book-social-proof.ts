@@ -1,4 +1,5 @@
-import type { SocialProofLogo, Testimonial } from "./book.types";
+import { bookLinks } from "./book-links";
+import type { ReaderReview, SocialProofLogo, Testimonial } from "./book.types";
 
 export const universityLogos: SocialProofLogo[] = [
   {
@@ -85,5 +86,26 @@ export const testimonials: Testimonial[] = [
     image: "/social-proof/people/kimiaki-shirahama.png",
     summary:
       "Emphasizes the unified optimization viewpoint and visual explanations.",
+  },
+];
+
+export const readerReviews: ReaderReview[] = [
+  {
+    name: "Veronica Medrano",
+    source: "Amazon",
+    excerpt: "One of the best books on the topic",
+    href: bookLinks.amazon,
+  },
+  {
+    name: "Julio Perez Olvera",
+    source: "Goodreads",
+    excerpt: "fluid description of the complex, theoretical side",
+    href: bookLinks.goodreads,
+  },
+  {
+    name: "Estefano Palacios",
+    source: "Goodreads",
+    excerpt: "teaching machine learning rigorously but from first principles",
+    href: bookLinks.goodreads,
   },
 ];

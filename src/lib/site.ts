@@ -11,13 +11,21 @@ export const siteConfig = {
 export const primaryNav = [
   { href: "/", label: "Home" },
   { href: "/chapters", label: "Chapters" },
-  { href: "/resources", label: "Resources" },
-  { href: "/dashboard", label: "Analytics" },
+  { href: "/notebooks", label: "Notebooks" },
+];
+
+export const approvedPublicNav = [
+  { href: "/", label: "Home" },
+  { href: "/notebooks", label: "Notebooks" },
+  { href: "/chapters", label: "Chapters" },
+  { href: "/instructors", label: "Instructors" },
+  { href: "/reviews", label: "Reviews" },
 ];
 
 export const publicRoutes = [
   "/",
   "/chapters",
+  "/notebooks",
   "/resources",
   "/dashboard",
 ];

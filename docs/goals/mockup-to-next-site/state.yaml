@@ -67,13 +67,13 @@ visual_board:
     url: "http://goalbuddy.localhost:41737/mockup-to-next-site/"
     command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal /Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site"
 
-active_task: T001
+active_task: T030
 
 tasks:
   - id: T001
     type: scout
     assignee: Scout
-    status: active
+    status: done
     reasoning_hint: medium
     objective: "Map the current Next.js app, approved HTML mockup, asset sources, routes, verification commands, and migration risks before any implementation."
     inputs:
@@ -100,12 +100,30 @@ tasks:
       - "Next.js docs/conventions that affect implementation."
       - "Verification command list."
       - "Top risks and first recommended Worker slice."
-    receipt: null
+    receipt:
+      result: done
+      note: "notes/T001-scout-map.md"
+      summary: "Mapped the current Next.js app, approved mockup inventory, production/mockup asset gap, relevant local Next docs, verification commands, risks, and recommended a shared content/asset foundation as the first Worker slice."
+      evidence:
+        - "src/app/layout.tsx"
+        - "src/app/page.tsx"
+        - "src/app/chapters/page.tsx"
+        - "src/app/resources/page.tsx"
+        - "src/lib/site.ts"
+        - "src/content/"
+        - "public/"
+        - "docs/landing-reimagining/unified-html-mockup/README.md"
+        - "docs/landing-reimagining/unified-html-mockup/app.js"
+        - "node_modules/next/dist/docs/01-app/01-getting-started/02-project-structure.md"
+        - "node_modules/next/dist/docs/01-app/01-getting-started/05-server-and-client-components.md"
+        - "node_modules/next/dist/docs/01-app/01-getting-started/12-images.md"
+      spawned_tasks:
+        - T002
 
   - id: T002
     type: judge
     assignee: Judge
-    status: queued
+    status: done
     reasoning_hint: high
     objective: "Review T001 findings and choose the first implementation slice by impact, reversibility, and verification strength."
     inputs:
@@ -124,46 +142,157 @@ tasks:
       - "verify."
       - "stop_if."
       - "Deferred or blocked tasks."
-    receipt: null
+    receipt:
+      result: done
+      decision: approved
+      full_outcome_complete: false
+      rationale: "The largest safe useful first slice is the shared content and asset foundation. It is required before the landing, chapters, notebooks, instructors, and reviews pages can be implemented from reusable source-backed data, and it directly addresses the current production gaps in chapter coverage, static figures, nav/routes, reviews, and roadmap data."
+      worker_task: T010
+      allowed_files:
+        - "src/lib/site.ts"
+        - "src/content/**"
+        - "public/learning-visuals/book-figures/**"
+        - "docs/goals/mockup-to-next-site/**"
+      verify:
+        - "git diff --check"
+        - "npm run lint"
+        - "npm run typecheck"
+        - "npm run test:unit"
+      stop_if:
+        - "Need app route/component edits outside the content/asset foundation."
+        - "Need to fetch external repositories or copy files from outside the approved existing mockup/book asset sources."
+        - "A source-backed claim, review excerpt, figure path, or external link cannot be verified."
+        - "Verification fails twice for the same reason."
+      deferred_tasks:
+        - T020
+        - T030
+        - T040
+        - T050
+        - T060
+        - T070
+        - T080
+        - T090
 
   - id: T010
     type: worker
     assignee: Worker
-    status: queued
+    status: done
     reasoning_hint: medium
     objective: "Build the shared Next.js content and asset foundation selected by Judge, including typed/structured data for navigation, chapters, notebook entries, landing carousel items, instructor resources, and reviews/adoption content."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "src/lib/site.ts"
+      - "src/content/**"
+      - "public/learning-visuals/book-figures/**"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
     stop_if:
       - "Need files outside allowed_files."
+      - "Need app route/component edits outside the content/asset foundation."
       - "Source-backed content cannot be verified."
       - "External asset repo access or licensing/source questions block real asset use."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "src/lib/site.ts"
+        - "src/content/book.types.ts"
+        - "src/content/book-links.ts"
+        - "src/content/book-chapters.ts"
+        - "src/content/book-learning.ts"
+        - "src/content/book-visuals.ts"
+        - "src/content/book-social-proof.ts"
+        - "src/content/home-page.ts"
+        - "src/content/book.ts"
+        - "src/content/book.test.ts"
+        - "public/learning-visuals/book-figures/*.png"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+      summary: "Built the shared typed content and asset foundation: full chapter/resource model, canonical book links, eight visual notebook widgets, four instructor roadmaps, 24 static visual records, source-backed reader reviews, approved future nav model, public copies of curated book figures, and unit tests proving local assets and canonical links."
 
   - id: T020
     type: worker
     assignee: Worker
-    status: queued
+    status: done
     reasoning_hint: medium
     objective: "Implement the landing page funnel in Next.js from the approved mockup direction: concise hero, primary CTAs, stable rotating visual carousel with real assets, and clear paths to chapters/notebooks."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "src/app/page.tsx"
+      - "src/app/notebooks/page.tsx"
+      - "src/components/home/**"
+      - "src/content/**"
+      - "src/lib/site.ts"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
     stop_if:
       - "Need files outside allowed_files."
       - "Carousel cannot be made stable without changing the approved interaction direction."
       - "Image load failures or layout shift remain after two fix attempts."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "src/lib/site.ts"
+        - "src/app/notebooks/page.tsx"
+        - "src/components/home/home-hero.tsx"
+        - "src/components/home/figure-carousel.tsx"
+        - "src/components/home/visual-funnel.tsx"
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Playwright QA at http://localhost:3020/ and /notebooks for 1440x1100 and 390x900"
+          status: pass
+      summary: "Implemented the simplified landing funnel: concise hero copy, Browse chapters/Browse notebooks CTAs, reduced nav, stable rotating static-figure carousel from real assets, and a minimal /notebooks route so the CTA is real. Browser QA proved carousel rotation, stable dimensions, no broken images, no horizontal overflow, no console errors, and 8 notebook cards on desktop/mobile."
+      remaining_risks:
+        - "The /notebooks route is intentionally a shell; full guided workbench remains T040."
+        - "Next reported a non-failing LCP suggestion for a notebook GIF during dev-server QA."
 
   - id: T030
     type: worker
     assignee: Worker
-    status: queued
+    status: active
     reasoning_hint: medium
     objective: "Implement the chapters/resources experience as the production chapters route, with searchable or scannable chapter cards, source-backed chapter links, representative real figures, and responsive layout."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "src/app/chapters/page.tsx"
+      - "src/components/chapters/**"
+      - "src/content/**"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Browser QA for /chapters on desktop and mobile"
     stop_if:
       - "Need files outside allowed_files."
       - "Chapter source data is ambiguous or missing."
@@ -288,6 +417,13 @@ tasks:
 checks:
   dirty_fingerprint: unknown
   last_verification:
-    result: unknown
-    task: null
-    commands: []
+    result: pass
+    task: T020
+    commands:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "npm run ci"
+      - "Playwright QA at http://localhost:3020/ and /notebooks for 1440x1100 and 390x900"

@@ -45,7 +45,7 @@ export function HomeHero() {
       <section className="mx-auto grid min-h-[calc(100vh-82px)] max-w-7xl items-center gap-10 px-5 py-12 md:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(260px,430px)] lg:py-16">
         <div>
           <p className="mb-4 w-fit border-l-4 border-[#c79222] bg-white/70 px-3 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
-            Used at 100+ universities and colleges
+            Foundations, Algorithms, and Applications
           </p>
           <h1 className="max-w-4xl font-serif text-6xl font-black leading-[0.9] tracking-normal md:text-8xl">
             Machine Learning Refined
@@ -54,31 +54,23 @@ export function HomeHero() {
               2nd Edition
             </span>
           </h1>
-          <p className="mt-4 font-serif text-2xl font-black leading-tight text-[#8a6519] md:text-3xl">
-            Foundations, Algorithms, and Applications
-          </p>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-[#526070]">
-            Intuition first. Derivations next. Implementation final. A visual,
-            first-principles path into modern machine learning.
+            A visual, first-principles path into modern machine learning.
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Link className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-5 text-sm font-black text-[#06172d] shadow-lg shadow-[#c79222]/15 transition-colors hover:bg-[#d7a02b]" href="/chapters">
-              Start with a chapter
+              Browse chapters
             </Link>
-            <Link className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-5 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" href="/resources">
-              Browse resources
+            <Link className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-5 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" href="/notebooks">
+              Browse notebooks
             </Link>
-            <ResourceLink className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-[#c79222]/50 bg-white px-5 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" eventName="github_resource_clicked" eventProperties={{ location: "home_hero", resource: "repo" }} href={siteConfig.githubRepo} target="_blank" rel="noreferrer">
-              GitHub
-              <GitHubMark />
-            </ResourceLink>
           </div>
 
-          <p className="mt-4 max-w-2xl text-sm font-bold leading-6 text-[#6b5b3d]">
-            Book figures, visual notebooks, slides, and source links gathered
-            into one learning path.
-          </p>
+          <ResourceLink className="mt-4 inline-flex items-center gap-2 text-sm font-black text-[#164b8f] transition-colors hover:text-[#0b2545]" eventName="github_resource_clicked" eventProperties={{ location: "home_hero", resource: "repo" }} href={siteConfig.githubRepo} target="_blank" rel="noreferrer">
+            Open source resources
+            <GitHubMark />
+          </ResourceLink>
         </div>
 
         <figure className="mx-auto w-full max-w-[430px] lg:justify-self-end">
