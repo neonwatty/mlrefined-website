@@ -67,7 +67,7 @@ visual_board:
     url: "http://goalbuddy.localhost:41737/mockup-to-next-site/"
     command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal /Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site"
 
-active_task: T080
+active_task: T090
 
 tasks:
   - id: T001
@@ -545,7 +545,7 @@ tasks:
   - id: T080
     type: worker
     assignee: Worker
-    status: active
+    status: done
     reasoning_hint: medium
     objective: "Run browser QA and visual verification on desktop and mobile, fixing regressions in navigation, image loading, carousel stability, mobile layout, console errors, and main funnel paths."
     allowed_files:
@@ -569,16 +569,72 @@ tasks:
       - "A failure requires redesign approval rather than implementation cleanup."
       - "Browser tooling or dev server cannot be started after recovery attempts."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "src/app/sitemap.test.ts"
+        - "docs/goals/mockup-to-next-site/notes/t080-visual-qa.json"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-home.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-chapters.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-notebooks.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-instructors.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-reviews.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-home.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-chapters.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-notebooks.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-instructors.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-reviews.png"
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run test:unit:coverage"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Playwright visual QA for /, /chapters, /notebooks, /instructors, and /reviews at 1440x1100 and 390x900"
+          status: pass
+        - cmd: "gh pr checks 21 --watch"
+          status: pass
+      artifacts:
+        - "docs/goals/mockup-to-next-site/notes/t080-visual-qa.json"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-home.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-chapters.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-notebooks.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-instructors.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-reviews.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-home.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-chapters.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-notebooks.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-instructors.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-reviews.png"
+      summary: "Ran desktop and mobile visual QA across the five primary implemented routes. Verified home carousel shell dimensions remain stable across rotation, home CTAs are present, chapter search/select flow works, notebook selection updates the workbench, instructor roadmap selection and expanded resource state work, reviews renders 9 logos/4 endorsements/3 review cards, and all primary routes have no broken images after scroll, no horizontal overflow, no console/page errors, and exactly one h1. Added the metadata helper coverage test required by CI."
 
   - id: T090
     type: worker
     assignee: Worker
-    status: queued
+    status: active
     reasoning_hint: medium
     objective: "Prepare the implementation branch for review: final checks, concise README or docs updates if needed, PR summary, and evidence receipt."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "README.md"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit:coverage"
+      - "npm run build"
+      - "npm run ci"
+      - "gh pr checks 21 --watch"
     stop_if:
       - "Need files outside allowed_files."
       - "Quality checks fail."
@@ -614,12 +670,14 @@ checks:
   dirty_fingerprint: unknown
   last_verification:
     result: pass
-    task: T070
+    task: T080
     commands:
       - "git diff --check"
       - "npm run lint"
       - "npm run typecheck"
       - "npm run test:unit"
+      - "npm run test:unit:coverage"
       - "npm run build"
       - "npm run ci"
-      - "Playwright metadata/sitemap/robots/browser QA for all implemented routes at 1440x1100 and 390x900"
+      - "Playwright visual QA for primary routes at 1440x1100 and 390x900"
+      - "gh pr checks 21 --watch"
