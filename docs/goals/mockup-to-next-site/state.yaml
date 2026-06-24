@@ -1,0 +1,293 @@
+version: 2
+
+goal:
+  title: "Mockup To Next Site"
+  slug: "mockup-to-next-site"
+  kind: existing_plan
+  tranche: "Implement the approved unified HTML mockup direction as the real Next.js website through successive verified vertical slices."
+  status: active
+  oracle:
+    signal: "A desktop and mobile browser walkthrough of the real Next.js app proves the landing, chapters, notebooks, instructors, and reviews paths work with real assets, stable imagery, accessible navigation, and no console/image-load regressions, while npm run ci passes."
+    cadence: "after each Worker package and at final audit"
+    final_proof: "Final Judge/PM receipt maps implemented routes/components/assets/tests/browser screenshots to the approved mockup direction and records full_outcome_complete: true."
+  intake:
+    original_request: "Create a detailed GoalBuddy prep board for translating the unified HTML mockup into the actual Next.js app routes/components."
+    interpreted_outcome: "A GoalBuddy board guides the conversion of the approved HTML mockup into the production Next.js MLR site."
+    input_shape: existing_plan
+    audience: "Prospective readers, instructors, current adopters, and the site owner."
+    authority: approved
+    proof_type: demo
+    completion_proof: "The real Next.js app implements the approved mockup funnel with real assets, passes repo checks, and has browser evidence across desktop and mobile."
+    likely_misfire: "Copying mockup visuals into Next.js without real app structure, stable assets, responsive proof, SEO/accessibility, analytics readiness, or browser verification."
+    blind_spots_considered:
+      - "Mockup-only styling may not map cleanly to the current Next.js architecture."
+      - "Image paths may break when moved from docs mockup to app routes."
+      - "Carousel and image containers can regress into jitter, blinking, or layout shift."
+      - "Mobile layouts may fail despite desktop looking good."
+      - "Book claims, reviews, logos, and figure captions need source-backed content."
+      - "SEO metadata, crawlable links, and analytics readiness can be missed during visual migration."
+    existing_plan_facts:
+      - "Use the unified HTML mockup as the approved product and visual reference."
+      - "Preserve the simplified landing funnel."
+      - "Keep gallery imagery folded into the landing carousel rather than a separate gallery page."
+      - "Include chapters, notebooks, instructors, and reviews as first-class experiences."
+      - "Use real book/source assets and notes-assets figures."
+      - "Do not generate new images or add stock imagery."
+
+rules:
+  pm_owns_state: true
+  one_active_task: true
+  max_write_workers: 1
+  no_implementation_without_worker_or_pm_task: true
+  no_completion_without_judge_or_pm_audit: true
+  planning_is_not_completion: true
+  queued_required_worker_blocks_completion: true
+  continuous_until_full_outcome: true
+  missing_input_or_credentials_do_not_stop_goal: true
+  exact_human_approval_can_terminal_wait: true
+  preserve_and_validate_existing_plan: true
+  intake_misfire_must_be_audited: true
+  goal_pressure_requires_oracle: true
+  no_completion_on_weak_proof: true
+  slice_policy:
+    max_consecutive_tiny_tasks: 2
+    prefer_vertical_slices: true
+    judge_picks_largest_safe_slice: true
+    worker_completes_whole_slice: true
+
+agents:
+  scout: installed
+  worker: installed
+  judge: installed
+
+visual_board:
+  selected: local
+  local:
+    status: live
+    url: "http://goalbuddy.localhost:41737/mockup-to-next-site/"
+    command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal /Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site"
+
+active_task: T001
+
+tasks:
+  - id: T001
+    type: scout
+    assignee: Scout
+    status: active
+    reasoning_hint: medium
+    objective: "Map the current Next.js app, approved HTML mockup, asset sources, routes, verification commands, and migration risks before any implementation."
+    inputs:
+      - "AGENTS.md"
+      - "README.md"
+      - "package.json"
+      - "node_modules/next/dist/docs/"
+      - "docs/landing-reimagining/unified-html-mockup/"
+      - "app/"
+      - "src/"
+      - "public/"
+      - "External asset facts already named by the user: neonwatty/machine-learning-refined and neonwatty/machine-learning-refined-notes-assets"
+    constraints:
+      - "Read-only."
+      - "Do not edit implementation files."
+      - "Do not generate images."
+      - "Do not add stock imagery."
+      - "Prefer concrete file-path evidence over generic recommendations."
+      - "Record whether external asset repos are already local or need fetching during a later Worker task."
+    expected_output:
+      - "Current app route/component map."
+      - "Approved mockup section inventory and route mapping."
+      - "Real asset inventory and missing asset questions."
+      - "Next.js docs/conventions that affect implementation."
+      - "Verification command list."
+      - "Top risks and first recommended Worker slice."
+    receipt: null
+
+  - id: T002
+    type: judge
+    assignee: Judge
+    status: queued
+    reasoning_hint: high
+    objective: "Review T001 findings and choose the first implementation slice by impact, reversibility, and verification strength."
+    inputs:
+      - "T001 receipt or note."
+      - "Goal oracle."
+      - "Existing plan facts."
+    constraints:
+      - "Read-only."
+      - "Do not implement."
+      - "Choose the largest safe useful first slice, not a tiny setup task unless setup truly blocks implementation."
+      - "Require allowed_files, verify commands, and stop conditions for the Worker."
+    expected_output:
+      - "Decision: approved first slice or request more Scout evidence."
+      - "Exact Worker objective."
+      - "allowed_files."
+      - "verify."
+      - "stop_if."
+      - "Deferred or blocked tasks."
+    receipt: null
+
+  - id: T010
+    type: worker
+    assignee: Worker
+    status: queued
+    reasoning_hint: medium
+    objective: "Build the shared Next.js content and asset foundation selected by Judge, including typed/structured data for navigation, chapters, notebook entries, landing carousel items, instructor resources, and reviews/adoption content."
+    allowed_files: []
+    verify: []
+    stop_if:
+      - "Need files outside allowed_files."
+      - "Source-backed content cannot be verified."
+      - "External asset repo access or licensing/source questions block real asset use."
+      - "Verification fails twice for the same reason."
+    receipt: null
+
+  - id: T020
+    type: worker
+    assignee: Worker
+    status: queued
+    reasoning_hint: medium
+    objective: "Implement the landing page funnel in Next.js from the approved mockup direction: concise hero, primary CTAs, stable rotating visual carousel with real assets, and clear paths to chapters/notebooks."
+    allowed_files: []
+    verify: []
+    stop_if:
+      - "Need files outside allowed_files."
+      - "Carousel cannot be made stable without changing the approved interaction direction."
+      - "Image load failures or layout shift remain after two fix attempts."
+      - "Verification fails twice for the same reason."
+    receipt: null
+
+  - id: T030
+    type: worker
+    assignee: Worker
+    status: queued
+    reasoning_hint: medium
+    objective: "Implement the chapters/resources experience as the production chapters route, with searchable or scannable chapter cards, source-backed chapter links, representative real figures, and responsive layout."
+    allowed_files: []
+    verify: []
+    stop_if:
+      - "Need files outside allowed_files."
+      - "Chapter source data is ambiguous or missing."
+      - "Mobile layout cannot be verified."
+      - "Verification fails twice for the same reason."
+    receipt: null
+
+  - id: T040
+    type: worker
+    assignee: Worker
+    status: queued
+    reasoning_hint: medium
+    objective: "Implement the notebooks experience with real notebook/resource entries, clear Colab/source links, useful grouping, and no decorative tags that do not help users."
+    allowed_files: []
+    verify: []
+    stop_if:
+      - "Need files outside allowed_files."
+      - "Notebook inventory cannot be verified."
+      - "External links are stale or ambiguous."
+      - "Verification fails twice for the same reason."
+    receipt: null
+
+  - id: T050
+    type: worker
+    assignee: Worker
+    status: queued
+    reasoning_hint: medium
+    objective: "Implement the instructors path with source-backed course-fit copy, clickable chapter/resource roadmap, preface/course guidance links when verified, and simplified instructor-specific CTAs."
+    allowed_files: []
+    verify: []
+    stop_if:
+      - "Need files outside allowed_files."
+      - "Recommended course guidance cannot be verified from the book/site sources."
+      - "The roadmap duplicates adjacent content or becomes visually cluttered."
+      - "Verification fails twice for the same reason."
+    receipt: null
+
+  - id: T060
+    type: worker
+    assignee: Worker
+    status: queued
+    reasoning_hint: medium
+    objective: "Implement the reviews/adoption experience with simplified layout, larger readable institution logos where source-backed, and only real linked review/accolade content."
+    allowed_files: []
+    verify: []
+    stop_if:
+      - "Need files outside allowed_files."
+      - "Actual review text cannot be sourced or quoted compliantly."
+      - "Logo source/rights are unclear."
+      - "Verification fails twice for the same reason."
+    receipt: null
+
+  - id: T070
+    type: worker
+    assignee: Worker
+    status: queued
+    reasoning_hint: medium
+    objective: "Add SEO, metadata, accessibility, and analytics-readiness polish across the implemented Next.js routes without introducing unsupported claims."
+    allowed_files: []
+    verify: []
+    stop_if:
+      - "Need files outside allowed_files."
+      - "Metadata or analytics assumptions require credentials or owner decisions."
+      - "Accessibility regression remains after two fix attempts."
+      - "Verification fails twice for the same reason."
+    receipt: null
+
+  - id: T080
+    type: worker
+    assignee: Worker
+    status: queued
+    reasoning_hint: medium
+    objective: "Run browser QA and visual verification on desktop and mobile, fixing regressions in navigation, image loading, carousel stability, mobile layout, console errors, and main funnel paths."
+    allowed_files: []
+    verify: []
+    stop_if:
+      - "Need files outside allowed_files."
+      - "A failure requires redesign approval rather than implementation cleanup."
+      - "Browser tooling or dev server cannot be started after recovery attempts."
+      - "Verification fails twice for the same reason."
+    receipt: null
+
+  - id: T090
+    type: worker
+    assignee: Worker
+    status: queued
+    reasoning_hint: medium
+    objective: "Prepare the implementation branch for review: final checks, concise README or docs updates if needed, PR summary, and evidence receipt."
+    allowed_files: []
+    verify: []
+    stop_if:
+      - "Need files outside allowed_files."
+      - "Quality checks fail."
+      - "Unrelated dirty worktree changes would be swept into the PR."
+      - "Verification fails twice for the same reason."
+    receipt: null
+
+  - id: T999
+    type: judge
+    assignee: Judge
+    status: queued
+    reasoning_hint: high
+    objective: "Audit whether the Next.js implementation satisfies the original mockup-to-site outcome."
+    inputs:
+      - "All done task receipts."
+      - "Final git diff and branch/PR state."
+      - "Final command output."
+      - "Desktop and mobile browser evidence."
+      - "Asset/source inventory receipt."
+    constraints:
+      - "Read-only."
+      - "Reject completion if any required Worker task is still queued or active."
+      - "Reject completion if implemented pages only resemble the mockup visually but fail the real-asset, mobile, SEO/accessibility, or verification requirements."
+      - "Reject completion if claims, reviews, logos, or figures are not source-backed."
+    expected_output:
+      - "complete | not_complete"
+      - "full_outcome_complete: true | false"
+      - "Evidence mapped to the goal oracle."
+      - "Missing evidence or next task if not complete."
+    receipt: null
+
+checks:
+  dirty_fingerprint: unknown
+  last_verification:
+    result: unknown
+    task: null
+    commands: []
