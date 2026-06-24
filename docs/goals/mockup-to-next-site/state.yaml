@@ -5,7 +5,7 @@ goal:
   slug: "mockup-to-next-site"
   kind: existing_plan
   tranche: "Implement the approved unified HTML mockup direction as the real Next.js website through successive verified vertical slices."
-  status: active
+  status: done
   oracle:
     signal: "A desktop and mobile browser walkthrough of the real Next.js app proves the landing, chapters, notebooks, instructors, and reviews paths work with real assets, stable imagery, accessible navigation, and no console/image-load regressions, while npm run ci passes."
     cadence: "after each Worker package and at final audit"
@@ -67,7 +67,7 @@ visual_board:
     url: "http://goalbuddy.localhost:41737/mockup-to-next-site/"
     command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal /Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site"
 
-active_task: T092
+active_task: null
 
 tasks:
   - id: T001
@@ -730,7 +730,7 @@ tasks:
   - id: T092
     type: judge
     assignee: Judge
-    status: active
+    status: done
     reasoning_hint: high
     objective: "Final audit after PR #21 is ready for review."
     inputs:
@@ -746,15 +746,35 @@ tasks:
       - "complete | not_complete"
       - "full_outcome_complete: true | false"
       - "Evidence mapped to the goal oracle."
-    receipt: null
+    receipt:
+      result: done
+      decision: complete
+      full_outcome_complete: true
+      evidence:
+        - "PR #21: https://github.com/neonwatty/mlrefined-website/pull/21"
+        - "gh pr view 21 --json isDraft,mergeStateStatus,statusCheckRollup,url,headRefName,baseRefName: isDraft=false, mergeStateStatus=CLEAN, Dependabot Gate=SUCCESS, Lint/Typecheck/Knip/Test/Build=SUCCESS"
+        - "docs/goals/mockup-to-next-site/notes/t070-browser-seo-qa.json: desktop/mobile metadata, canonical, sitemap, robots, no broken images after scroll, no overflow, no console/page errors across /, /chapters, /notebooks, /instructors, /reviews, /resources, /dashboard"
+        - "docs/goals/mockup-to-next-site/notes/t080-visual-qa.json: desktop/mobile visual QA for /, /chapters, /notebooks, /instructors, /reviews with zero failures and stable home carousel dimensions"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-home.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-home.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-chapters.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-chapters.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-notebooks.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-notebooks.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-instructors.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-instructors.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-desktop-reviews.png"
+        - "docs/goals/mockup-to-next-site/notes/t080-mobile-reviews.png"
+      summary: "The approved unified HTML mockup direction has been converted into the real Next.js implementation for the landing funnel, Chapters, Notebooks, Instructors, and Reviews. The implementation uses source-backed book/site assets and canonical repository links, includes SEO metadata/canonical/OG/Twitter/sitemap/robots readiness, adds ARIA state and PostHog-ready outbound resource tracking, passes local and remote quality gates, has desktop/mobile browser and visual evidence, and PR #21 is ready for review. No required Worker tasks remain."
+      remaining_risks:
+        - "PR #21 is ready but not merged or deployed; merge/deploy remains an owner action."
 
 checks:
   dirty_fingerprint: unknown
   last_verification:
     result: pass
-    task: T091
+    task: T092
     commands:
-      - "gh pr edit 21 --body ... && gh pr ready 21"
-      - "gh pr view 21 --json isDraft,mergeStateStatus,statusCheckRollup,body,url"
-      - "gh pr checks 21"
-      - "git diff --check"
+      - "gh pr view 21 --json isDraft,mergeStateStatus,statusCheckRollup,url,headRefName,baseRefName"
+      - "docs/goals/mockup-to-next-site/notes/t070-browser-seo-qa.json inspected"
+      - "docs/goals/mockup-to-next-site/notes/t080-visual-qa.json inspected"
