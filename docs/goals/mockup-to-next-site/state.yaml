@@ -67,7 +67,7 @@ visual_board:
     url: "http://goalbuddy.localhost:41737/mockup-to-next-site/"
     command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal /Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site"
 
-active_task: T040
+active_task: T050
 
 tasks:
   - id: T001
@@ -325,7 +325,7 @@ tasks:
   - id: T040
     type: worker
     assignee: Worker
-    status: active
+    status: done
     reasoning_hint: medium
     objective: "Implement the notebooks experience with real notebook/resource entries, clear Colab/source links, useful grouping, and no decorative tags that do not help users."
     allowed_files:
@@ -345,16 +345,48 @@ tasks:
       - "Notebook inventory cannot be verified."
       - "External links are stale or ambiguous."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "src/app/notebooks/page.tsx"
+        - "src/components/notebooks/notebook-workbench.tsx"
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Playwright QA for /notebooks at 1440x1100 and 390x900"
+          status: pass
+      summary: "Replaced the route shell with a guided Notebooks workbench: featured animated preview, four concept steps, source notebook/Colab/chapter/PDF bundle, and eight selectable source-backed notebook cards. Browser QA verified card selection updates the workbench, 4 concept steps render, 8 cards render, source and Colab links are visible, no broken images, no horizontal overflow, and no console errors on desktop/mobile."
 
   - id: T050
     type: worker
     assignee: Worker
-    status: queued
+    status: active
     reasoning_hint: medium
     objective: "Implement the instructors path with source-backed course-fit copy, clickable chapter/resource roadmap, preface/course guidance links when verified, and simplified instructor-specific CTAs."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "src/app/instructors/page.tsx"
+      - "src/components/instructors/**"
+      - "src/content/**"
+      - "src/lib/site.ts"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Browser QA for /instructors on desktop and mobile"
     stop_if:
       - "Need files outside allowed_files."
       - "Recommended course guidance cannot be verified from the book/site sources."
@@ -450,7 +482,7 @@ checks:
   dirty_fingerprint: unknown
   last_verification:
     result: pass
-    task: T030
+    task: T040
     commands:
       - "git diff --check"
       - "npm run lint"
@@ -458,4 +490,4 @@ checks:
       - "npm run test:unit"
       - "npm run build"
       - "npm run ci"
-      - "Playwright QA for /chapters at 1440x1100 and 390x900"
+      - "Playwright QA for /notebooks at 1440x1100 and 390x900"
