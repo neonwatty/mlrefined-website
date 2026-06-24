@@ -26,8 +26,8 @@ export function InstructorRoadmap({
   if (!activeRoadmap) return null;
 
   return (
-    <div className="mt-10 grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
-      <aside className="grid content-start gap-3">
+    <div className="mt-7 grid gap-5 md:mt-10 lg:grid-cols-[320px_minmax(0,1fr)]">
+      <aside className="grid content-start gap-3 sm:grid-cols-2 lg:grid-cols-1">
         {roadmaps.map((roadmap) => (
           <button
             key={roadmap.id}
@@ -66,17 +66,47 @@ export function InstructorRoadmap({
         </ResourceLink>
       </aside>
 
-      <section className="grid gap-5 rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-5">
+      <section className="grid gap-5 rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-4 md:p-5">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
             Interactive roadmap
           </p>
-          <h2 className="mt-2 font-serif text-4xl font-black text-[#0b2545]">
+          <h2 className="mt-2 font-serif text-3xl font-black text-[#0b2545] md:text-4xl">
             {activeRoadmap.title}
           </h2>
           <p className="mt-3 max-w-3xl leading-7 text-[#526070]">
             {activeRoadmap.description}
           </p>
+        </div>
+
+        <div aria-label={`${activeRoadmap.title} chapter sequence`} className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+          {activeRoadmap.chapters.map((roadmapChapter, index) => {
+            const isOpen = openChapter === roadmapChapter.number;
+
+            return (
+              <button
+                key={`${activeRoadmap.id}-cue-${roadmapChapter.number}`}
+                className={`grid min-h-24 gap-2 rounded-lg border p-3 text-left transition-all ${
+                  isOpen
+                    ? "border-[#164b8f] bg-[#f7fbff] shadow-md shadow-[#071326]/10"
+                    : "border-[#ddcfad] bg-white hover:border-[#164b8f]/50"
+                }`}
+                aria-pressed={isOpen}
+                type="button"
+                onClick={() => setOpenChapter(roadmapChapter.number)}
+              >
+                <span className="flex items-center justify-between gap-3 text-xs font-black uppercase tracking-[0.12em] text-[#8a6519]">
+                  <span>Step {index + 1}</span>
+                  <span className="rounded-md bg-white px-2 py-1 text-[#164b8f]">
+                    Chapter {roadmapChapter.number}
+                  </span>
+                </span>
+                <strong className="font-serif text-lg font-black leading-tight text-[#0b2545]">
+                  {roadmapChapter.label}
+                </strong>
+              </button>
+            );
+          })}
         </div>
 
         <div className="grid gap-3">

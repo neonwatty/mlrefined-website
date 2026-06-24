@@ -32,30 +32,30 @@ export default function InstructorsPage() {
   return (
     <main className="min-h-screen bg-[#fbfaf4] text-[#071326]">
       <PageHeader activeHref="/instructors" />
-      <div className="mx-auto max-w-7xl px-5 py-12 md:px-8">
-        <section className="mt-8 grid gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.7fr)] lg:items-end">
+      <div className="mx-auto max-w-7xl px-5 py-8 md:px-8 md:py-12">
+        <section className="mt-4 grid gap-5 md:mt-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.7fr)] lg:items-end">
           <div>
             <p className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
               Instructor path
             </p>
-            <h1 className="font-serif text-5xl font-black leading-tight md:text-6xl">
+            <h1 className="font-serif text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
               Instructors
             </h1>
-            <p className="mt-4 max-w-3xl text-lg leading-8 text-[#526070]">
-              Choose the course shape that fits your term, then inspect the
-              exact chapter resources behind each stop: PDFs, notes, exercises,
-              slides, and runnable notebooks where available.
+            <p className="mt-3 max-w-3xl text-base leading-7 text-[#526070] md:mt-4 md:text-lg md:leading-8">
+              Choose a course path, preview the chapter sequence, and jump
+              directly to the PDFs, notes, exercises, slides, and notebooks
+              behind each stop.
             </p>
           </div>
 
-          <div className="grid gap-3 rounded-lg border border-[#ddcfad] bg-white p-4">
+          <div className="hidden gap-3 rounded-lg border border-[#ddcfad] bg-white p-4 lg:grid">
             <p className="font-serif text-xl font-black text-[#0b2545]">
-              Course planning loop
+              Course planning
             </p>
             <div className="grid grid-cols-3 gap-2 text-center text-sm font-black text-[#164b8f]">
-              <span className="rounded-md bg-[#f7fbff] px-2 py-3">Fit</span>
               <span className="rounded-md bg-[#f7fbff] px-2 py-3">Path</span>
-              <span className="rounded-md bg-[#f7fbff] px-2 py-3">Materials</span>
+              <span className="rounded-md bg-[#f7fbff] px-2 py-3">Chapters</span>
+              <span className="rounded-md bg-[#f7fbff] px-2 py-3">Resources</span>
             </div>
           </div>
         </section>

@@ -24,8 +24,8 @@ export default function ReviewsPage() {
   return (
     <main className="min-h-screen bg-[#fbfaf4] text-[#071326]">
       <PageHeader activeHref="/reviews" />
-      <div className="mx-auto max-w-7xl px-5 py-12 md:px-8">
-        <section className="mt-6 grid gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.7fr)] lg:items-end">
+      <div className="mx-auto max-w-7xl px-5 py-8 md:px-8 md:py-12">
+        <section className="mt-4 grid gap-5 md:mt-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.7fr)] lg:items-end">
           <div>
             <p className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
               Reviews and adoption
@@ -33,7 +33,7 @@ export default function ReviewsPage() {
             <h1 className="font-serif text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
               Trusted in classrooms and by independent readers
             </h1>
-            <p className="mt-4 max-w-3xl text-lg leading-8 text-[#526070]">
+            <p className="mt-3 max-w-3xl text-base leading-7 text-[#526070] md:mt-4 md:text-lg md:leading-8">
               A compact proof page for the book: institution signals, named
               professor endorsements, and short reader-review excerpts that link
               back to their source pages.
@@ -45,9 +45,15 @@ export default function ReviewsPage() {
               {adoptionStat?.value ?? "100+"} universities and colleges
             </p>
             <div className="grid gap-2 text-sm font-black text-[#164b8f] sm:grid-cols-3 lg:grid-cols-1">
-              <span className="rounded-md bg-[#f7fbff] px-3 py-2">Named endorsements</span>
-              <span className="rounded-md bg-[#f7fbff] px-3 py-2">Reader excerpts</span>
-              <span className="rounded-md bg-[#f7fbff] px-3 py-2">Source links</span>
+              <a className="rounded-md bg-[#f7fbff] px-3 py-2 transition-colors hover:bg-[#eaf4ff]" href="#endorsements-title">
+                Named endorsements
+              </a>
+              <a className="rounded-md bg-[#f7fbff] px-3 py-2 transition-colors hover:bg-[#eaf4ff]" href="#reader-reviews-title">
+                Reader excerpts
+              </a>
+              <a className="rounded-md bg-[#f7fbff] px-3 py-2 transition-colors hover:bg-[#eaf4ff]" href="#source-trail-title">
+                Source links
+              </a>
             </div>
           </div>
         </section>

@@ -33,17 +33,17 @@ export default function ResourcesPage() {
   return (
     <main className="min-h-screen bg-[#fbfaf4] text-[#071326]">
       <PageHeader activeHref="/resources" />
-      <div className="mx-auto max-w-5xl px-6 py-16">
+      <div className="mx-auto max-w-5xl px-5 py-9 md:px-8 md:py-16">
         <p className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
           Canonical resource index
         </p>
-        <h1 className="font-serif text-5xl font-black leading-tight text-[#0b2545]">
+        <h1 className="font-serif text-4xl font-black leading-tight text-[#0b2545] sm:text-5xl">
           Resources
         </h1>
-        <p className="mt-4 max-w-3xl text-lg leading-8 text-[#526070]">
-          Jump straight to the book&apos;s source-backed PDFs, notes,
-          notebooks, exercises, slides, and roadmap guidance. The chapter and
-          notebook pages provide the guided path; this page is the compact index.
+        <p className="mt-3 max-w-3xl text-base leading-7 text-[#526070] md:mt-4 md:text-lg md:leading-8">
+          Jump straight to source-backed PDFs, notes, notebooks, exercises,
+          slides, and roadmap guidance. Use Chapters for the guided path; use
+          Resources when you already know what you need.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <ResourceLink

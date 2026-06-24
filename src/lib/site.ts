@@ -62,6 +62,7 @@ export const primaryNav = [
   { href: "/notebooks", label: "Notebooks" },
   { href: "/instructors", label: "Instructors" },
   { href: "/reviews", label: "Reviews" },
+  { href: "/resources", label: "Resources" },
 ];
 
 export const approvedPublicNav = [

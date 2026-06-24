@@ -34,8 +34,14 @@ export function ReviewsProof({
 
   return (
     <div className="mt-10 grid gap-7 lg:grid-cols-[280px_minmax(0,1fr)]">
-      <aside className="grid content-start gap-4 rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-5">
-        <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
+      <aside
+        aria-labelledby="source-trail-title"
+        className="grid content-start gap-4 rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-5"
+      >
+        <p
+          className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]"
+          id="source-trail-title"
+        >
           Source trail
         </p>
         <Image
