@@ -5,7 +5,7 @@ goal:
   slug: "mockup-to-next-site"
   kind: existing_plan
   tranche: "Implement the approved unified HTML mockup direction as the real Next.js website through successive verified vertical slices."
-  status: done
+  status: active
   oracle:
     signal: "A desktop and mobile browser walkthrough of the real Next.js app proves the landing, chapters, notebooks, instructors, and reviews paths work with real assets, stable imagery, accessible navigation, and no console/image-load regressions, while npm run ci passes."
     cadence: "after each Worker package and at final audit"
@@ -67,7 +67,7 @@ visual_board:
     url: "http://goalbuddy.localhost:41737/mockup-to-next-site/"
     command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal /Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site"
 
-active_task: null
+active_task: T094
 
 tasks:
   - id: T001
@@ -748,8 +748,8 @@ tasks:
       - "Evidence mapped to the goal oracle."
     receipt:
       result: done
-      decision: complete
-      full_outcome_complete: true
+      decision: not_complete
+      full_outcome_complete: false
       evidence:
         - "PR #21: https://github.com/neonwatty/mlrefined-website/pull/21"
         - "gh pr view 21 --json isDraft,mergeStateStatus,statusCheckRollup,url,headRefName,baseRefName: isDraft=false, mergeStateStatus=CLEAN, Dependabot Gate=SUCCESS, Lint/Typecheck/Knip/Test/Build=SUCCESS"
@@ -765,16 +765,88 @@ tasks:
         - "docs/goals/mockup-to-next-site/notes/t080-mobile-instructors.png"
         - "docs/goals/mockup-to-next-site/notes/t080-desktop-reviews.png"
         - "docs/goals/mockup-to-next-site/notes/t080-mobile-reviews.png"
-      summary: "The approved unified HTML mockup direction has been converted into the real Next.js implementation for the landing funnel, Chapters, Notebooks, Instructors, and Reviews. The implementation uses source-backed book/site assets and canonical repository links, includes SEO metadata/canonical/OG/Twitter/sitemap/robots readiness, adds ARIA state and PostHog-ready outbound resource tracking, passes local and remote quality gates, has desktop/mobile browser and visual evidence, and PR #21 is ready for review. No required Worker tasks remain."
+      summary: "The approved unified HTML mockup direction has been converted into the real Next.js implementation and PR #21 is ready with green checks, but final dev-server shutdown surfaced non-fatal Next Image warnings for review logo aspect-ratio classes and the notebooks LCP GIF. Resolve those warnings before calling the goal complete."
       remaining_risks:
-        - "PR #21 is ready but not merged or deployed; merge/deploy remains an owner action."
+        - "Fix and re-verify image warnings, then rerun final audit."
+
+  - id: T093
+    type: worker
+    assignee: Worker
+    status: done
+    reasoning_hint: low
+    objective: "Fix the final browser image warnings discovered during audit cleanup."
+    allowed_files:
+      - "src/components/notebooks/notebook-workbench.tsx"
+      - "src/components/reviews/reviews-proof.tsx"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit:coverage"
+      - "npm run build"
+      - "Browser console warning check for /notebooks and /reviews"
+      - "gh pr checks 21"
+    stop_if:
+      - "Warnings require design or asset changes outside allowed files."
+      - "Quality checks fail twice."
+    receipt:
+      result: done
+      changed_files:
+        - "src/components/notebooks/notebook-workbench.tsx"
+        - "src/components/reviews/reviews-proof.tsx"
+        - "docs/goals/mockup-to-next-site/notes/t093-warning-cleanup.json"
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit:coverage"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Browser console warning check for /notebooks and /reviews at 1440x1100 and 390x900"
+          status: pass
+      artifacts:
+        - "docs/goals/mockup-to-next-site/notes/t093-warning-cleanup.json"
+      summary: "Fixed the final Next Image warnings by adding priority loading to the active notebook preview image and explicit auto sizing to default review logo images. Focused browser console verification for /notebooks and /reviews on desktop/mobile found no Image warnings, no broken images, no overflow, and no page errors; dev-server terminal output stayed clean during the check."
+
+  - id: T094
+    type: judge
+    assignee: Judge
+    status: active
+    reasoning_hint: high
+    objective: "Final audit after image-warning cleanup."
+    inputs:
+      - "All done task receipts."
+      - "T093 warning-cleanup receipt."
+      - "Final PR ready state and checks."
+      - "T070/T080/T093 browser evidence artifacts."
+    constraints:
+      - "Read-only."
+      - "Reject completion if any required Worker task is queued or active."
+      - "Reject completion if image warnings remain."
+    expected_output:
+      - "complete | not_complete"
+      - "full_outcome_complete: true | false"
+      - "Evidence mapped to the goal oracle."
+    receipt: null
 
 checks:
   dirty_fingerprint: unknown
   last_verification:
     result: pass
-    task: T092
+    task: T093
     commands:
-      - "gh pr view 21 --json isDraft,mergeStateStatus,statusCheckRollup,url,headRefName,baseRefName"
-      - "docs/goals/mockup-to-next-site/notes/t070-browser-seo-qa.json inspected"
-      - "docs/goals/mockup-to-next-site/notes/t080-visual-qa.json inspected"
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit:coverage"
+      - "npm run build"
+      - "npm run ci"
+      - "Browser console warning check for /notebooks and /reviews at 1440x1100 and 390x900"

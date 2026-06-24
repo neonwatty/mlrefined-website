@@ -232,5 +232,5 @@ function logoClassName(name: string) {
     return "w-52 max-w-none";
   }
 
-  return "max-h-16 max-w-[86%]";
+  return "h-auto w-auto max-h-16 max-w-[86%]";
 }

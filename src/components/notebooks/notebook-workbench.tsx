@@ -38,6 +38,7 @@ export function NotebookWorkbench({ chapters, widgets }: NotebookWorkbenchProps)
           width={760}
           height={520}
           loading="eager"
+          priority
           unoptimized
         />
         <div className="grid content-center gap-4">
