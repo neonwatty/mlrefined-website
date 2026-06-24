@@ -1,35 +1,60 @@
 import Link from "next/link";
 
-import { chapters } from "@/content/book";
+import { ChapterBrowser } from "@/components/chapters/chapter-browser";
+import {
+  chapters,
+  instructorRoadmaps,
+  learningWidgets,
+  staticVisuals,
+} from "@/content/book";
 
 export const metadata = {
   title: "Chapters | Machine Learning Refined",
   description:
-    "Chapter landing pages for Machine Learning Refined, including notebooks, exercises, PDFs, and GitHub resources.",
+    "Browse Machine Learning Refined chapters with source-backed notebooks, exercises, slides, and representative book figures.",
 };
 
 export default function ChaptersPage() {
   return (
-    <main className="mx-auto min-h-screen max-w-5xl px-6 py-16">
-      <Link className="text-sm text-black/55" href="/">
-        Machine Learning Refined
-      </Link>
-      <h1 className="mt-8 text-4xl font-semibold">Chapters</h1>
-      <p className="mt-4 max-w-2xl leading-7 text-black/65">
-        This route will become the crawlable chapter hub, with each chapter
-        linking to PDFs, notebooks, exercises, Colab launches, and canonical
-        GitHub source pages.
-      </p>
-      <div className="mt-10 grid gap-4">
-        {chapters.map((chapter) => (
-          <article key={chapter.slug} className="rounded-lg border border-black/10 p-5">
-            <p className="text-sm text-black/50">Chapter {chapter.number}</p>
-            <h2 className="mt-2 text-xl font-medium">{chapter.title}</h2>
-            <p className="mt-2 text-sm leading-6 text-black/60">
-              {chapter.summary}
+    <main className="min-h-screen bg-[#fbfaf4] px-5 py-12 text-[#071326] md:px-8">
+      <div className="mx-auto max-w-7xl">
+        <Link className="text-sm font-bold text-black/55" href="/">
+          Machine Learning Refined
+        </Link>
+
+        <section className="mt-8 grid gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.7fr)] lg:items-end">
+          <div>
+            <p className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
+              Chapter resource hub
             </p>
-          </article>
-        ))}
+            <h1 className="font-serif text-5xl font-black leading-tight md:text-6xl">
+              Chapters
+            </h1>
+            <p className="mt-4 max-w-3xl text-lg leading-8 text-[#526070]">
+              Move through the book chapter-by-chapter: scan the concepts,
+              inspect representative figures, and jump to the canonical PDFs,
+              notes, notebooks, exercises, and teaching materials.
+            </p>
+          </div>
+
+          <div className="grid gap-3 rounded-lg border border-[#ddcfad] bg-white p-4">
+            <p className="font-serif text-xl font-black text-[#0b2545]">
+              Source-backed coverage
+            </p>
+            <p className="text-sm leading-6 text-[#526070]">
+              This hub uses real repository paths and real static figures from
+              the book asset sources. Chapters without curated figures still
+              route to their verified resource package.
+            </p>
+          </div>
+        </section>
+
+        <ChapterBrowser
+          chapters={chapters}
+          visuals={staticVisuals}
+          widgets={learningWidgets}
+          roadmaps={instructorRoadmaps}
+        />
       </div>
     </main>
   );

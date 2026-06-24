@@ -67,7 +67,7 @@ visual_board:
     url: "http://goalbuddy.localhost:41737/mockup-to-next-site/"
     command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal /Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site"
 
-active_task: T030
+active_task: T040
 
 tasks:
   - id: T001
@@ -278,7 +278,7 @@ tasks:
   - id: T030
     type: worker
     assignee: Worker
-    status: active
+    status: done
     reasoning_hint: medium
     objective: "Implement the chapters/resources experience as the production chapters route, with searchable or scannable chapter cards, source-backed chapter links, representative real figures, and responsive layout."
     allowed_files:
@@ -298,16 +298,48 @@ tasks:
       - "Chapter source data is ambiguous or missing."
       - "Mobile layout cannot be verified."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "src/app/chapters/page.tsx"
+        - "src/components/chapters/chapter-browser.tsx"
+        - "src/components/chapters/chapter-panels.tsx"
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Playwright QA for /chapters at 1440x1100 and 390x900"
+          status: pass
+      summary: "Replaced the scaffolded Chapters route with a source-backed chapter browser: search, resource filters, selected chapter package, real PDF/notes/Colab/exercise/slides links, representative static figures, related notebook/roadmap lists, and a responsive figure atlas. Browser QA verified Kernel and Feature Learning searches, the Figures filter, selected figure-to-chapter updates, no broken images after scroll, no horizontal overflow, no console errors, and visible resource links on desktop/mobile."
 
   - id: T040
     type: worker
     assignee: Worker
-    status: queued
+    status: active
     reasoning_hint: medium
     objective: "Implement the notebooks experience with real notebook/resource entries, clear Colab/source links, useful grouping, and no decorative tags that do not help users."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "src/app/notebooks/page.tsx"
+      - "src/components/notebooks/**"
+      - "src/content/**"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Browser QA for /notebooks on desktop and mobile"
     stop_if:
       - "Need files outside allowed_files."
       - "Notebook inventory cannot be verified."
@@ -418,7 +450,7 @@ checks:
   dirty_fingerprint: unknown
   last_verification:
     result: pass
-    task: T020
+    task: T030
     commands:
       - "git diff --check"
       - "npm run lint"
@@ -426,4 +458,4 @@ checks:
       - "npm run test:unit"
       - "npm run build"
       - "npm run ci"
-      - "Playwright QA at http://localhost:3020/ and /notebooks for 1440x1100 and 390x900"
+      - "Playwright QA for /chapters at 1440x1100 and 390x900"
