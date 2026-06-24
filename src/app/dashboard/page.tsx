@@ -1,12 +1,18 @@
 import { PageHeader } from "@/components/site/page-header";
 import { createPageMetadata } from "@/lib/site";
 
-export const metadata = createPageMetadata({
-  title: "Analytics Dashboard",
-  description:
-    "Owner dashboard scaffold for PostHog events, Google Search Console trends, and content SEO opportunities.",
-  path: "/dashboard",
-});
+export const metadata = {
+  ...createPageMetadata({
+    title: "Analytics Dashboard",
+    description:
+      "Owner dashboard scaffold for PostHog events, Google Search Console trends, and content SEO opportunities.",
+    path: "/dashboard",
+  }),
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 const dashboardSections = [
   "Search Console query opportunities",
