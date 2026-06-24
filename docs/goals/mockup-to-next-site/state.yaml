@@ -67,7 +67,7 @@ visual_board:
     url: "http://goalbuddy.localhost:41737/mockup-to-next-site/"
     command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal /Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site"
 
-active_task: T060
+active_task: T070
 
 tasks:
   - id: T001
@@ -419,7 +419,7 @@ tasks:
   - id: T060
     type: worker
     assignee: Worker
-    status: active
+    status: done
     reasoning_hint: medium
     objective: "Implement the reviews/adoption experience with simplified layout, larger readable institution logos where source-backed, and only real linked review/accolade content."
     allowed_files:
@@ -440,16 +440,63 @@ tasks:
       - "Actual review text cannot be sourced or quoted compliantly."
       - "Logo source/rights are unclear."
       - "Verification fails twice for the same reason."
-    receipt: null
+    receipt:
+      result: done
+      changed_files:
+        - "src/app/reviews/page.tsx"
+        - "src/components/reviews/reviews-proof.tsx"
+        - "src/lib/site.ts"
+        - "docs/goals/mockup-to-next-site/notes/reviews-desktop.png"
+        - "docs/goals/mockup-to-next-site/notes/reviews-mobile.png"
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Playwright QA for /reviews at 1440x1100 and 390x900"
+          status: pass
+      artifacts:
+        - "docs/goals/mockup-to-next-site/notes/reviews-desktop.png"
+        - "docs/goals/mockup-to-next-site/notes/reviews-mobile.png"
+      summary: "Implemented the source-backed Reviews path: a simplified proof page with no filter buttons or boxed count strip, larger readable institution logos, the book cover source rail, repository/Amazon/Goodreads links, four named professor endorsements, and three short linked reader-review excerpts from the existing proof library. Browser QA verified 9 logos, 4 endorsement cards, 3 review cards, source links, no broken images, no horizontal overflow, and no console/page errors on desktop/mobile."
 
   - id: T070
     type: worker
     assignee: Worker
-    status: queued
+    status: active
     reasoning_hint: medium
     objective: "Add SEO, metadata, accessibility, and analytics-readiness polish across the implemented Next.js routes without introducing unsupported claims."
-    allowed_files: []
-    verify: []
+    allowed_files:
+      - "src/app/layout.tsx"
+      - "src/app/page.tsx"
+      - "src/app/chapters/page.tsx"
+      - "src/app/notebooks/page.tsx"
+      - "src/app/instructors/page.tsx"
+      - "src/app/reviews/page.tsx"
+      - "src/app/robots.ts"
+      - "src/app/sitemap.ts"
+      - "src/app/sitemap.test.ts"
+      - "src/components/**"
+      - "src/content/**"
+      - "src/lib/site.ts"
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "git diff --check"
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Browser QA for implemented routes on desktop and mobile"
+      - "Metadata/sitemap/robots inspection for implemented routes"
     stop_if:
       - "Need files outside allowed_files."
       - "Metadata or analytics assumptions require credentials or owner decisions."
@@ -515,7 +562,7 @@ checks:
   dirty_fingerprint: unknown
   last_verification:
     result: pass
-    task: T050
+    task: T060
     commands:
       - "git diff --check"
       - "npm run lint"
@@ -523,4 +570,4 @@ checks:
       - "npm run test:unit"
       - "npm run build"
       - "npm run ci"
-      - "Playwright QA for /instructors at 1440x1100 and 390x900"
+      - "Playwright QA for /reviews at 1440x1100 and 390x900"
