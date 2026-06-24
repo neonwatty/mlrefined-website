@@ -67,7 +67,7 @@ visual_board:
     url: "http://goalbuddy.localhost:41737/mockup-to-next-site/"
     command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal /Users/neonwatty/Desktop/mlrefined-website/.worktrees/main-maintenance/docs/goals/mockup-to-next-site"
 
-active_task: T999
+active_task: T092
 
 tasks:
   - id: T001
@@ -664,7 +664,7 @@ tasks:
   - id: T999
     type: judge
     assignee: Judge
-    status: active
+    status: done
     reasoning_hint: high
     objective: "Audit whether the Next.js implementation satisfies the original mockup-to-site outcome."
     inputs:
@@ -683,18 +683,78 @@ tasks:
       - "full_outcome_complete: true | false"
       - "Evidence mapped to the goal oracle."
       - "Missing evidence or next task if not complete."
+    receipt:
+      result: done
+      decision: not_complete
+      full_outcome_complete: false
+      rationale: "Implementation, local checks, browser evidence, and remote PR checks satisfy the technical oracle, but PR #21 is still marked draft and its body says draft remains intentional until final audit. Complete a final PR-ready handoff before the true completion audit."
+      evidence:
+        - "gh pr view 21 --json isDraft,mergeStateStatus,statusCheckRollup,url,headRefName,baseRefName"
+        - "docs/goals/mockup-to-next-site/notes/t070-browser-seo-qa.json"
+        - "docs/goals/mockup-to-next-site/notes/t080-visual-qa.json"
+      spawned_tasks:
+        - T091
+        - T092
+
+  - id: T091
+    type: worker
+    assignee: Worker
+    status: done
+    reasoning_hint: low
+    objective: "Finalize PR #21 for review now that implementation and visual QA are complete."
+    allowed_files:
+      - "docs/goals/mockup-to-next-site/**"
+    verify:
+      - "gh pr view 21 --json isDraft,mergeStateStatus,statusCheckRollup,body"
+      - "gh pr checks 21"
+      - "git diff --check"
+    stop_if:
+      - "PR cannot be marked ready."
+      - "PR checks are failing."
+      - "Need implementation changes."
+    receipt:
+      result: done
+      changed_files:
+        - "docs/goals/mockup-to-next-site/state.yaml"
+      commands:
+        - cmd: "gh pr edit 21 --body ... && gh pr ready 21"
+          status: pass
+        - cmd: "gh pr view 21 --json isDraft,mergeStateStatus,statusCheckRollup,body,url"
+          status: pass
+        - cmd: "gh pr checks 21"
+          status: pass
+        - cmd: "git diff --check"
+          status: pass
+      summary: "Finalized PR #21 for review: removed stale draft language from the body, kept the current implementation/evidence summary, marked the PR ready for review, and verified isDraft=false, mergeStateStatus=CLEAN, and both GitHub checks passing."
+
+  - id: T092
+    type: judge
+    assignee: Judge
+    status: active
+    reasoning_hint: high
+    objective: "Final audit after PR #21 is ready for review."
+    inputs:
+      - "All done task receipts."
+      - "Final PR ready state and checks."
+      - "T070 and T080 browser evidence artifacts."
+      - "Current git status."
+    constraints:
+      - "Read-only."
+      - "Reject completion if any required Worker task is queued or active."
+      - "Reject completion if the PR is still draft or checks are red."
+    expected_output:
+      - "complete | not_complete"
+      - "full_outcome_complete: true | false"
+      - "Evidence mapped to the goal oracle."
     receipt: null
 
 checks:
   dirty_fingerprint: unknown
   last_verification:
     result: pass
-    task: T090
+    task: T091
     commands:
-      - "git diff --check"
-      - "npm run lint"
-      - "npm run typecheck"
-      - "npm run test:unit:coverage"
-      - "npm run build"
-      - "npm run ci"
+      - "gh pr edit 21 --body ... && gh pr ready 21"
+      - "gh pr view 21 --json isDraft,mergeStateStatus,statusCheckRollup,body,url"
       - "gh pr checks 21"
+      - "git diff --check"
