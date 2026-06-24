@@ -1,6 +1,5 @@
-import Link from "next/link";
-
 import { InstructorRoadmap } from "@/components/instructors/instructor-roadmap";
+import { PageHeader } from "@/components/site/page-header";
 import { bookLinks, chapters, instructorRoadmaps } from "@/content/book";
 import { createPageMetadata } from "@/lib/site";
 
@@ -31,12 +30,9 @@ const supportLinks = [
 
 export default function InstructorsPage() {
   return (
-    <main className="min-h-screen bg-[#fbfaf4] px-5 py-12 text-[#071326] md:px-8">
-      <div className="mx-auto max-w-7xl">
-        <Link className="text-sm font-bold text-black/55" href="/">
-          Machine Learning Refined
-        </Link>
-
+    <main className="min-h-screen bg-[#fbfaf4] text-[#071326]">
+      <PageHeader activeHref="/instructors" />
+      <div className="mx-auto max-w-7xl px-5 py-12 md:px-8">
         <section className="mt-8 grid gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.7fr)] lg:items-end">
           <div>
             <p className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">

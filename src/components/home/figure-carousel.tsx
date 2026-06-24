@@ -132,6 +132,7 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
                 className="h-14 w-full object-contain"
                 src={figure.image}
                 alt=""
+                aria-hidden="true"
                 width={220}
                 height={140}
               />
