@@ -2,7 +2,7 @@ import { pedagogySteps } from "@/content/home-page";
 
 export function PedagogyStrip() {
   return (
-    <section className="mx-auto grid max-w-7xl gap-7 rounded-lg bg-[radial-gradient(circle_at_12%_18%,rgba(199,146,34,0.28),transparent_34%),linear-gradient(135deg,#071326,#0b2545_58%,#071326)] px-6 py-7 text-[#fffaf0] shadow-2xl shadow-[#071326]/20 md:px-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
+    <section className="mx-auto my-4 grid w-[min(1480px,calc(100%_-_48px))] gap-7 rounded-lg bg-[radial-gradient(circle_at_12%_18%,rgba(199,146,34,0.28),transparent_34%),linear-gradient(135deg,#071326,#0b2545_58%,#071326)] px-6 py-7 text-[#fffaf0] shadow-2xl shadow-[#071326]/20 md:px-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
       <div>
         <p className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-[#ead4a4]">
           The pedagogy

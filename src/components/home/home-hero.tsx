@@ -4,9 +4,9 @@ import { TrackedLink } from "@/components/analytics/tracked-link";
 
 export function HomeHero() {
   return (
-    <section className="mx-auto grid min-h-[min(620px,calc(100vh-96px))] w-[min(1680px,100%)] items-center gap-7 px-6 py-[clamp(18px,3vh,34px)] md:px-[26px] lg:grid-cols-[minmax(420px,1fr)_minmax(240px,0.34fr)] lg:gap-[clamp(28px,5vw,74px)]">
+    <section className="mx-auto grid min-h-[min(520px,calc(100vh-96px))] w-[min(1320px,100%)] items-center gap-7 px-6 py-[clamp(16px,2.4vh,28px)] md:px-[26px] lg:justify-center lg:grid-cols-[minmax(520px,720px)_minmax(300px,410px)] lg:gap-[clamp(24px,3vw,44px)]">
       <div className="min-w-0">
-        <h1 className="max-w-[780px] font-serif text-[clamp(3rem,5vw,4.65rem)] font-black leading-[0.92] tracking-normal">
+        <h1 className="max-w-[720px] font-serif text-[clamp(3rem,5vw,4.65rem)] font-black leading-[0.92] tracking-normal">
           Machine Learning Refined
           <span className="mt-2 block font-sans text-[clamp(1.15rem,2vw,1.9rem)] font-extrabold leading-tight text-[#164b8f]">
             2nd Edition
@@ -34,9 +34,9 @@ export function HomeHero() {
         </p>
       </div>
 
-      <figure className="m-0 justify-self-center">
+      <figure className="m-0 justify-self-center lg:justify-self-start">
         <Image
-          className="h-auto w-[min(100%,430px)] max-h-[min(560px,calc(100vh-150px))] border border-[#ead4a4]/75 object-contain shadow-2xl shadow-[#071326]/20"
+          className="h-auto w-[min(100%,410px)] max-h-[min(510px,calc(100vh-150px))] border border-[#ead4a4]/75 object-contain shadow-2xl shadow-[#071326]/20"
           src="/book-cover-2nd.png"
           alt="Machine Learning Refined second edition book cover"
           width={760}

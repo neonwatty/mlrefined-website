@@ -9,8 +9,8 @@ export default function Home() {
     <main className="min-h-screen overflow-x-clip text-[#071326]">
       <PageHeader activeHref="/" />
       <HomeHero />
-      <VisualFunnel />
       <PedagogyStrip />
+      <VisualFunnel />
       <ProofAndResources />
     </main>
   );
