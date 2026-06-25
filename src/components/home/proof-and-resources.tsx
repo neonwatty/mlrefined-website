@@ -1,56 +1,93 @@
 import Image from "next/image";
 
 import { TrackedLink } from "@/components/analytics/tracked-link";
-import { readerReviews, universityLogos } from "@/content/book";
+import { readerReviews, testimonials, universityLogos } from "@/content/book";
 
 export function ProofAndResources() {
   return (
-    <section className="mx-auto grid w-[min(1680px,100%)] gap-5 border-y border-[#ddcfad] bg-[#fffdf8]/72 px-6 py-5 md:px-[26px] lg:grid-cols-[300px_minmax(0,1fr)_360px] lg:items-center">
-      <div className="grid gap-3">
-        <p className="font-serif text-lg font-black leading-tight">
-          Used as a reference text at 100+ universities and colleges
-        </p>
-        <div className="flex flex-wrap gap-2">
-          <TrackedLink className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" eventName="primary_cta_clicked" eventProperties={{ location: "home_proof_band", label: "For instructors" }} href="/instructors">
+    <section className="mx-auto mb-8 mt-5 w-[min(1480px,calc(100%_-_48px))] rounded-lg border border-[#ddcfad] bg-[#fffdf8]/90 p-5 shadow-xl shadow-[#071326]/10 md:p-6">
+      <div className="grid gap-5 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:items-end">
+        <div>
+          <p className="mb-2 text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
+            Reviews &amp; adoption
+          </p>
+          <h2 className="font-serif text-[clamp(1.75rem,2.7vw,3rem)] font-black leading-tight text-[#0b2545]">
+            Trusted in classrooms, useful at the desk
+          </h2>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-[#526070]">
+            Machine Learning Refined is used as a reference text at 100+
+            universities and colleges, with adoption proof and reader signals
+            collected from the book ecosystem.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2 lg:justify-end">
+          <TrackedLink className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" eventName="primary_cta_clicked" eventProperties={{ location: "home_proof_panel", label: "For instructors" }} href="/instructors">
             For instructors
           </TrackedLink>
-          <TrackedLink className="inline-flex min-h-10 items-center justify-center rounded-md border border-transparent bg-transparent px-2 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" eventName="primary_cta_clicked" eventProperties={{ location: "home_proof_band", label: "See adoption proof" }} href="/reviews">
+          <TrackedLink className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-3 text-sm font-black text-[#06172d] transition-colors hover:bg-[#d7a02b]" eventName="primary_cta_clicked" eventProperties={{ location: "home_proof_panel", label: "See adoption proof" }} href="/reviews">
             See adoption proof
           </TrackedLink>
         </div>
       </div>
-      <div className="grid grid-cols-4 items-center gap-x-5 gap-y-3 sm:grid-cols-8 lg:border-x lg:border-[#ddcfad] lg:px-5">
+
+      <div className="mt-5 grid grid-cols-2 items-center gap-2.5 sm:grid-cols-4 lg:grid-cols-8">
         {universityLogos.slice(0, 8).map((logo) => (
-          <Image key={logo.name} className="max-h-12 w-auto object-contain" src={logo.image} alt={`${logo.name} logo`} width={logo.width} height={logo.height} />
+          <figure key={logo.name} className="grid min-h-[64px] place-items-center rounded-md border border-[#ddcfad] bg-white p-2">
+            <Image className="max-h-11 w-auto object-contain" src={logo.image} alt={`${logo.name} logo`} width={logo.width} height={logo.height} />
+          </figure>
         ))}
       </div>
-      <div className="grid gap-2">
-        <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
-          Reader signals
-        </p>
-        <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-1">
-          {readerReviews.map((review) => (
-            <TrackedLink
-              key={`${review.source}-${review.name}`}
-              className="rounded-md border border-[#ddcfad] bg-white p-2.5 transition-colors hover:border-[#164b8f]/50 hover:bg-[#f7fbff]"
-              eventName="primary_cta_clicked"
-              eventProperties={{
-                label: `Review: ${review.source}`,
-                location: "home_proof_band",
-              }}
-              href={review.href}
-              rel="noreferrer"
-              target="_blank"
-            >
-              <strong className="block font-serif text-sm font-black text-[#0b2545]">
-                {review.excerpt}
-              </strong>
-              <span className="mt-1 block text-xs font-bold text-[#164b8f]">
-                {review.source} review
-              </span>
-            </TrackedLink>
-          ))}
-        </div>
+
+      <div className="mt-5 grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+        <section aria-labelledby="home-endorsements-title">
+          <h3 className="mb-2 font-serif text-xl font-black text-[#0b2545]" id="home-endorsements-title">
+            Professor endorsements
+          </h3>
+          <div className="grid gap-2 sm:grid-cols-2">
+            {testimonials.slice(0, 4).map((testimonial) => (
+              <article key={testimonial.name} className="rounded-md border border-[#ddcfad] bg-white p-3">
+                <strong className="block font-serif text-base font-black text-[#0b2545]">
+                  {testimonial.name}
+                </strong>
+                <span className="mt-1 block text-xs font-black leading-4 text-[#164b8f]">
+                  {testimonial.role}
+                </span>
+                <p className="mt-2 text-sm leading-5 text-[#526070]">
+                  {testimonial.summary}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section aria-labelledby="home-reader-reviews-title">
+          <h3 className="mb-2 font-serif text-xl font-black text-[#0b2545]" id="home-reader-reviews-title">
+            Reader review signals
+          </h3>
+          <div className="grid gap-2">
+            {readerReviews.map((review) => (
+              <TrackedLink
+                key={`${review.source}-${review.name}`}
+                className="grid gap-1 rounded-md border border-[#ddcfad] bg-white p-3 transition-colors hover:border-[#164b8f]/50 hover:bg-[#f7fbff]"
+                eventName="primary_cta_clicked"
+                eventProperties={{
+                  label: `Review: ${review.source}`,
+                  location: "home_proof_panel",
+                }}
+                href={review.href}
+                rel="noreferrer"
+                target="_blank"
+              >
+                <strong className="font-serif text-base font-black leading-tight text-[#0b2545]">
+                  &ldquo;{review.excerpt}&rdquo;
+                </strong>
+                <span className="text-xs font-bold text-[#164b8f]">
+                  {review.name} on {review.source}
+                </span>
+              </TrackedLink>
+            ))}
+          </div>
+        </section>
       </div>
     </section>
   );
