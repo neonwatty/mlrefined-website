@@ -58,11 +58,10 @@ export function createPageMetadata({
 
 export const primaryNav = [
   { href: "/", label: "Home" },
-  { href: "/chapters", label: "Chapters" },
   { href: "/notebooks", label: "Notebooks" },
+  { href: "/chapters", label: "Chapters" },
   { href: "/instructors", label: "Instructors" },
   { href: "/reviews", label: "Reviews" },
-  { href: "/resources", label: "Resources" },
 ];
 
 export const approvedPublicNav = [
@@ -75,9 +74,8 @@ export const approvedPublicNav = [
 
 export const publicRoutes = [
   "/",
-  "/chapters",
   "/notebooks",
+  "/chapters",
   "/instructors",
   "/reviews",
-  "/resources",
 ];

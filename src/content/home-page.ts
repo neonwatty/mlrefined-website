@@ -11,7 +11,7 @@ export const pedagogySteps = [
 export const visualPath = [
   ["Look", "Start with a real book figure."],
   ["Learn", "Open the chapter package behind it."],
-  ["Run", "Continue in a Colab notebook."],
+  ["Explore", "Continue into chapters or notebooks."],
 ] as const;
 
 export const featuredFigures = spotlightFigureTitles

@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fbfaf4;
+  --foreground: #071326;
+  --paper: #fbfaf4;
+  --surface: #fffdf8;
+  --ink: #071326;
+  --muted: #526070;
+  --navy: #06172d;
+  --navy-2: #0b2545;
+  --blue: #164b8f;
+  --gold: #c79222;
+  --gold-soft: #ead4a4;
+  --line: #ddcfad;
+  --line-cool: #d9e2ec;
   color-scheme: light;
 }
 
@@ -14,7 +25,23 @@
 }
 
 body {
-  background: var(--background);
+  min-width: 320px;
+  background:
+    linear-gradient(90deg, rgba(199, 146, 34, 0.09) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(7, 19, 38, 0.035) 1px, transparent 1px),
+    var(--background);
+  background-size: 112px 112px, 112px 112px, auto;
   color: var(--foreground);
   font-family: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
