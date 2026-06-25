@@ -25,10 +25,10 @@ export function ReviewsProof({
   testimonials,
 }: ReviewsProofProps) {
   return (
-    <div className="grid gap-5 lg:grid-cols-[285px_minmax(0,1fr)]">
+    <div className="grid gap-4 lg:grid-cols-[285px_minmax(0,1fr)]">
       <aside
         aria-labelledby="source-trail-title"
-        className="grid content-start gap-3 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-4 shadow-lg shadow-[#071326]/5"
+        className="grid content-start gap-2.5 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-3.5 shadow-lg shadow-[#071326]/5"
       >
         <p
           className="text-xs font-black uppercase tracking-[0.14em] text-[#526070]"
@@ -85,17 +85,17 @@ export function ReviewsProof({
         </div>
       </aside>
 
-      <div className="grid gap-3">
+      <div className="grid gap-2.5">
         <section>
           <h1 className="font-serif text-[clamp(2.7rem,5vw,5.2rem)] font-black leading-[0.92]">
             Reviews &amp; Adoption
           </h1>
-          <p className="mt-2 max-w-3xl text-lg leading-7 text-[#526070]">
+          <p className="mt-1.5 max-w-3xl text-lg leading-7 text-[#526070]">
             Used as a reference text at 100+ universities and colleges.
           </p>
         </section>
         <section aria-labelledby="adoption-logos-title">
-          <div className="mb-3">
+          <div className="mb-2.5">
             <h2
               className="font-serif text-3xl font-black text-[#0b2545]"
               id="adoption-logos-title"
@@ -129,7 +129,7 @@ export function ReviewsProof({
         </section>
 
         <section aria-labelledby="endorsements-title">
-          <div className="mb-3">
+          <div className="mb-2.5">
             <h2
               className="font-serif text-3xl font-black text-[#0b2545]"
               id="endorsements-title"
@@ -141,11 +141,11 @@ export function ReviewsProof({
             {testimonials.map((testimonial) => (
               <article
                 key={testimonial.name}
-                className="rounded-lg border border-[#ddcfad] bg-white p-2.5"
+                className="rounded-lg border border-[#ddcfad] bg-white p-2"
               >
                 <Image
                   alt={testimonial.name}
-                  className="mb-3 h-[58px] w-[58px] rounded-full object-cover"
+                  className="mb-2.5 h-[58px] w-[58px] rounded-full object-cover"
                   height={120}
                   src={testimonial.image}
                   width={120}
@@ -167,7 +167,7 @@ export function ReviewsProof({
         </section>
 
         <section aria-labelledby="reader-reviews-title">
-          <div className="mb-3">
+          <div className="mb-2.5">
             <h2
               className="font-serif text-3xl font-black text-[#0b2545]"
               id="reader-reviews-title"
@@ -179,7 +179,7 @@ export function ReviewsProof({
             {readerReviews.map((review) => (
               <article
                 key={`${review.source}-${review.name}`}
-                className="grid grid-cols-[42px_minmax(0,1fr)] gap-3 rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-2.5"
+                className="grid grid-cols-[42px_minmax(0,1fr)] gap-3 rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-2"
               >
                 <span
                   aria-hidden="true"

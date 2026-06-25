@@ -54,7 +54,7 @@ export function FigureAtlas({
   }, [visuals]);
 
   return (
-    <section className="mt-1 grid gap-3 border-t border-[#ddcfad] pt-5">
+    <section className="mt-1 grid gap-2.5 border-t border-[#ddcfad] pt-4">
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">Static figure atlas</p>
@@ -140,9 +140,9 @@ function FigureCoverage({
 
 function FigureInspector({ visual }: { visual: StaticVisual }) {
   return (
-    <section className="my-2 grid gap-3 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-3 shadow-lg shadow-[#071326]/5 md:grid-cols-[minmax(280px,0.9fr)_minmax(360px,1.1fr)]">
+    <section className="my-1.5 grid gap-3 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-3 shadow-lg shadow-[#071326]/5 md:grid-cols-[minmax(280px,0.9fr)_minmax(360px,1.1fr)]">
       <Image
-        className="h-64 w-full rounded-md border border-[#d9e2ec] bg-white object-contain p-2"
+        className="h-60 w-full rounded-md border border-[#d9e2ec] bg-white object-contain p-2"
         src={visual.image}
         alt={visual.alt}
         width={760}
@@ -183,8 +183,8 @@ function FigureGroup({
   }
 
   return (
-    <section className="grid gap-3 rounded-lg border border-[#ddcfad]/75 bg-[#fffdf8]/80 p-3">
-      <div className="flex flex-wrap items-end justify-between gap-3">
+    <section className="grid gap-2.5 rounded-lg border border-[#ddcfad]/75 bg-[#fffdf8]/80 p-2.5">
+      <div className="flex flex-wrap items-end justify-between gap-2">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
             {firstVisual.chapter}
@@ -234,7 +234,7 @@ function FigureCard({
       }}
     >
       <Image
-        className="h-[190px] w-full border-b border-[#ddcfad] bg-white object-contain p-2"
+        className="h-[160px] w-full border-b border-[#ddcfad] bg-white object-contain p-2"
         src={visual.image}
         alt={visual.alt}
         width={520}
@@ -242,11 +242,11 @@ function FigureCard({
         loading="eager"
         unoptimized
       />
-      <span className="grid gap-1.5 p-[11px]">
+      <span className="grid gap-1 p-2.5">
         <span className="text-[0.7rem] font-black uppercase tracking-[0.12em] text-[#8a6519]">
           {visual.topic}
         </span>
-        <strong className="font-serif text-base font-black text-[#0b2545]">{visual.title}</strong>
+        <strong className="font-serif text-[0.98rem] font-black leading-tight text-[#0b2545]">{visual.title}</strong>
         <span className="overflow-hidden text-xs leading-[1.34] text-[#526070] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">
           {visual.description}
         </span>

@@ -32,50 +32,50 @@ export default function InstructorsPage() {
   return (
     <main className="min-h-screen text-[#071326]">
       <PageHeader activeHref="/instructors" />
-      <div className="mx-auto w-[min(1680px,100%)] px-6 py-6 md:px-[26px]">
-        <section className="border-b border-[#d9e2ec] bg-[linear-gradient(90deg,#fffdf8,#ffffff_46%,#f7f4ed)] px-4 py-6">
+      <div className="mx-auto w-[min(1680px,100%)] px-6 py-3 md:px-[26px]">
+        <section className="border-b border-[#d9e2ec] bg-[linear-gradient(90deg,#fffdf8,#ffffff_46%,#f7f4ed)] px-3 py-3">
           <div>
-            <p className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
+            <p className="mb-1.5 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
               Instructor adoption
             </p>
-            <h1 className="font-serif text-[clamp(2.7rem,5vw,5.2rem)] font-black leading-[0.92]">
+            <h1 className="font-serif text-[clamp(2.35rem,4.2vw,4.25rem)] font-black leading-[0.9]">
               Instructor Path
             </h1>
-            <p className="mt-3 max-w-3xl text-base leading-7 text-[#526070]">
+            <p className="mt-1.5 max-w-3xl text-sm leading-6 text-[#526070]">
               Compare course roadmaps, then jump straight to the chapters,
               slides, exercises, and notebooks behind each path.
             </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <a className="inline-flex min-h-10 items-center rounded-md border border-[#c79222] bg-[#c79222] px-3 text-sm font-black text-[#06172d]" href="#instructor-roadmaps">
+            <div className="mt-2.5 flex flex-wrap gap-2">
+              <a className="inline-flex min-h-9 items-center rounded-md border border-[#c79222] bg-[#c79222] px-3 text-sm font-black text-[#06172d]" href="#instructor-roadmaps">
                 Choose roadmap
               </a>
-              <a className="inline-flex min-h-10 items-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f]" href="#instructor-support">
+              <a className="inline-flex min-h-9 items-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f]" href="#instructor-support">
                 Adoption support
               </a>
             </div>
-            <p className="mt-3 text-sm font-black text-[#6b5b3d]">
+            <p className="mt-1.5 text-xs font-black text-[#6b5b3d]">
               Support links stay one step away: preface, slides, sample-copy
               request, and GitHub questions.
             </p>
           </div>
         </section>
-        <nav className="sticky top-[72px] z-10 flex gap-2 bg-[#fbfaf4]/90 py-2 backdrop-blur" aria-label="Instructor page sections">
-          <a className="rounded-md border border-[#ddcfad] bg-white px-3 py-2 text-sm font-black text-[#164b8f]" href="#instructor-roadmaps">
+        <nav className="sticky top-[72px] z-10 flex gap-2 bg-[#fbfaf4]/90 py-1 backdrop-blur" aria-label="Instructor page sections">
+          <a className="rounded-md border border-[#ddcfad] bg-white px-3 py-1.5 text-sm font-black text-[#164b8f]" href="#instructor-roadmaps">
             Roadmaps
           </a>
-          <a className="rounded-md border border-[#ddcfad] bg-white px-3 py-2 text-sm font-black text-[#164b8f]" href="#instructor-support">
+          <a className="rounded-md border border-[#ddcfad] bg-white px-3 py-1.5 text-sm font-black text-[#164b8f]" href="#instructor-support">
             Support
           </a>
         </nav>
-        <section className="mb-3 grid gap-3 rounded-lg border border-[#164b8f]/25 bg-[#f6fbff] p-3 md:grid-cols-[minmax(0,0.42fr)_minmax(0,1fr)_auto] md:items-center">
+        <section className="mb-2 grid gap-2.5 rounded-lg border border-[#164b8f]/25 bg-[#f6fbff] p-2 md:grid-cols-[minmax(0,0.42fr)_minmax(0,1fr)_auto] md:items-center">
           <strong className="font-serif text-[#0b2545]">
             Most instructors start with Essentials
           </strong>
-          <span className="text-sm leading-6 text-[#526070]">
+          <span className="text-sm leading-5 text-[#526070]">
             Core optimization, linear learning, unsupervised learning, and
             validation in a 12 to 16 week path.
           </span>
-          <a className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f]" href="#instructor-roadmaps">
+          <a className="inline-flex min-h-9 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f]" href="#instructor-roadmaps">
             View Essentials roadmap
           </a>
         </section>

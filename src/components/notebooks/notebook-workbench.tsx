@@ -30,8 +30,8 @@ export function NotebookWorkbench({ chapters, widgets }: NotebookWorkbenchProps)
 
   return (
     <div className="mt-3 grid gap-3">
-      <section className="grid gap-3.5 lg:grid-cols-[minmax(0,1fr)_360px]">
-        <div className="grid gap-3.5 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-4 shadow-xl shadow-[#071326]/10 lg:grid-cols-[minmax(300px,0.9fr)_minmax(340px,1.1fr)]">
+      <section className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_340px]">
+        <div className="grid gap-3 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-3 shadow-xl shadow-[#071326]/10 lg:grid-cols-[minmax(300px,1fr)_minmax(280px,0.78fr)]">
           <div className="grid content-center gap-3">
             <p className="text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
               Featured workbench
@@ -95,7 +95,7 @@ export function NotebookWorkbench({ chapters, widgets }: NotebookWorkbenchProps)
             </div>
           </div>
           <Image
-            className="h-[250px] w-full rounded-md border border-[#d9e2ec] bg-white object-contain p-3"
+            className="h-[230px] w-full max-w-[560px] justify-self-center rounded-md border border-[#d9e2ec] bg-white object-contain p-3"
             src={selectedWidget.image}
             alt={selectedWidget.imageAlt}
             width={760}
@@ -117,11 +117,11 @@ export function NotebookWorkbench({ chapters, widgets }: NotebookWorkbenchProps)
             Concept-by-concept notebooks
           </h2>
         </div>
-        <div className="grid gap-3.5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
           {widgets.map((widget) => (
             <article
               key={widget.title}
-              className={`grid min-h-[365px] content-start gap-2.5 rounded-lg border bg-white p-3 text-left shadow-lg shadow-[#071326]/5 transition-all ${
+              className={`grid min-h-[335px] content-start gap-2 rounded-lg border bg-white p-2.5 text-left shadow-lg shadow-[#071326]/5 transition-all ${
                 widget.title === selectedWidget.title
                   ? "border-[#164b8f]"
                   : "border-[#ddcfad] hover:-translate-y-0.5 hover:border-[#164b8f]/50"
@@ -134,7 +134,7 @@ export function NotebookWorkbench({ chapters, widgets }: NotebookWorkbenchProps)
                 onClick={() => setSelectedTitle(widget.title)}
               >
                 <Image
-                  className="h-40 w-full rounded-md border border-[#d9e2ec] bg-white object-contain p-2"
+                  className="h-[136px] w-full rounded-md border border-[#d9e2ec] bg-white object-contain p-2"
                   src={widget.image}
                   alt={widget.imageAlt}
                   width={320}
@@ -145,30 +145,30 @@ export function NotebookWorkbench({ chapters, widgets }: NotebookWorkbenchProps)
                 <span className="text-xs font-black uppercase tracking-[0.14em] text-[#164b8f]">
                   {widget.chapter} / {widget.topic}
                 </span>
-                <strong className="font-serif text-xl font-black text-[#0b2545]">
+                <strong className="font-serif text-lg font-black text-[#0b2545]">
                   {widget.title}
                 </strong>
                 <span className="text-sm leading-5 text-[#526070]">
                   {widget.description}
                 </span>
               </button>
-              <div className="mt-auto grid grid-cols-3 gap-2">
+              <div className="mt-auto grid grid-cols-3 gap-1.5">
                 <SourceLink
-                  className="inline-flex min-h-9 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-2 text-center text-xs font-black leading-4 text-[#164b8f] hover:bg-[#fff7e7]"
+                  className="inline-flex min-h-8 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-1.5 text-center text-[0.68rem] font-black leading-[0.875rem] text-[#164b8f] hover:bg-[#fff7e7]"
                   detail=""
                   href={chapterHrefForWidget(chapters, widget)}
                   label="Chapter resources"
                   resource={widget.title}
                 />
                 <SourceLink
-                  className="inline-flex min-h-9 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-2 text-center text-xs font-black leading-4 text-[#164b8f] hover:bg-[#fff7e7]"
+                  className="inline-flex min-h-8 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-1.5 text-center text-[0.68rem] font-black leading-[0.875rem] text-[#164b8f] hover:bg-[#fff7e7]"
                   detail=""
                   href={widget.href}
                   label="Source notebook"
                   resource={widget.title}
                 />
                 <SourceLink
-                  className="inline-flex min-h-9 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-2 text-center text-xs font-black leading-4 text-[#164b8f] hover:bg-[#fff7e7]"
+                  className="inline-flex min-h-8 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-1.5 text-center text-[0.68rem] font-black leading-[0.875rem] text-[#164b8f] hover:bg-[#fff7e7]"
                   detail=""
                   href={widget.colab}
                   label="Open in Colab"

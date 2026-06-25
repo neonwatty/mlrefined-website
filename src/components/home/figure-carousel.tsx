@@ -19,6 +19,14 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
   const [isPaused, setIsPaused] = useState(false);
   const activeFigure = figures[index] ?? figures[0];
   const safeFigures = useMemo(() => figures.slice(0, 12), [figures]);
+  const showPrevious = () => {
+    setIndex((current) => (current - 1 + safeFigures.length) % safeFigures.length);
+    setIsPaused(true);
+  };
+  const showNext = () => {
+    setIndex((current) => (current + 1) % safeFigures.length);
+    setIsPaused(true);
+  };
 
   useEffect(() => {
     if (isPaused || safeFigures.length < 2) return;
@@ -72,6 +80,30 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
         </h3>
         <p className="min-h-[4.6rem] text-[#526070]">{activeFigure.description}</p>
         <div className="flex flex-wrap gap-2">
+          <button
+            className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
+            type="button"
+            onClick={showPrevious}
+          >
+            Previous
+          </button>
+          <button
+            className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
+            type="button"
+            onClick={showNext}
+          >
+            Next
+          </button>
+          <button
+            className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
+            type="button"
+            aria-pressed={isPaused}
+            onClick={() => setIsPaused((current) => !current)}
+          >
+            {isPaused ? "Resume" : "Pause"}
+          </button>
+        </div>
+        <div className="grid gap-2 sm:grid-cols-2">
           <ResourceLink
             className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
             eventName="home_visual_clicked"
@@ -84,7 +116,7 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
             rel="noreferrer"
             target="_blank"
           >
-            Open chapter package
+            Chapter resources
           </ResourceLink>
           {activeFigure.sourceHref ? (
             <ResourceLink
@@ -99,17 +131,9 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
               rel="noreferrer"
               target="_blank"
             >
-              Source figure
+              Inspect image
             </ResourceLink>
           ) : null}
-          <button
-            className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
-            type="button"
-            aria-pressed={isPaused}
-            onClick={() => setIsPaused((current) => !current)}
-          >
-            {isPaused ? "Resume" : "Pause"}
-          </button>
         </div>
         <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-6 xl:grid-cols-7">
           {safeFigures.map((figure, figureIndex) => (

@@ -19,9 +19,9 @@ export function ProofAndResources() {
           </TrackedLink>
         </div>
       </div>
-      <div className="grid grid-cols-4 items-center gap-x-6 gap-y-4 sm:grid-cols-8">
+      <div className="grid grid-cols-4 items-center gap-x-5 gap-y-3 sm:grid-cols-8">
         {universityLogos.slice(0, 8).map((logo) => (
-          <Image key={logo.name} className="max-h-11 w-auto object-contain" src={logo.image} alt={`${logo.name} logo`} width={logo.width} height={logo.height} />
+          <Image key={logo.name} className="max-h-12 w-auto object-contain" src={logo.image} alt={`${logo.name} logo`} width={logo.width} height={logo.height} />
         ))}
       </div>
     </section>

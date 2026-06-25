@@ -27,7 +27,7 @@ export function InstructorRoadmap({
   if (!activeRoadmap) return null;
 
   return (
-    <div id="instructor-roadmaps" className="mt-3 grid gap-2.5 lg:grid-cols-[300px_minmax(620px,1fr)_320px]">
+    <div id="instructor-roadmaps" className="mt-2 grid gap-2.5 lg:grid-cols-[300px_minmax(620px,1fr)_320px]">
       <aside className="grid content-start gap-2">
         <h2 className="font-serif text-sm font-black uppercase text-[#0b2545]">
           Choose a roadmap
@@ -35,7 +35,7 @@ export function InstructorRoadmap({
         {roadmaps.map((roadmap) => (
           <button
             key={roadmap.id}
-            className={`grid min-h-[74px] grid-cols-[58px_1fr] items-center gap-2.5 rounded-lg border bg-white p-2 text-left transition-all ${
+            className={`grid min-h-[62px] grid-cols-[54px_1fr] items-center gap-2 rounded-lg border bg-white p-1.5 text-left transition-all ${
               roadmap.id === activeRoadmap.id
                 ? "border-[#164b8f] shadow-lg shadow-[#071326]/10"
                 : "border-[#ddcfad] hover:border-[#164b8f]/50"
@@ -48,14 +48,14 @@ export function InstructorRoadmap({
             }}
           >
             <Image
-              className="h-[38px] w-[58px] object-cover"
+              className="h-[34px] w-[54px] object-cover"
               src={roadmap.image}
               alt={roadmap.imageAlt}
               width={116}
               height={76}
             />
             <span>
-              <strong className="block font-serif text-lg font-black text-[#0b2545]">
+              <strong className="block font-serif text-base font-black text-[#0b2545]">
                 {roadmap.title}
               </strong>
               <small className="block text-xs font-bold text-[#526070]">
@@ -68,7 +68,7 @@ export function InstructorRoadmap({
           </button>
         ))}
         <ResourceLink
-          className="rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-4 text-sm font-black text-[#164b8f]"
+          className="rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-2.5 text-sm font-black text-[#164b8f]"
           eventName="instructor_resource_clicked"
           eventProperties={{ location: "roadmap_picker", resource: "Preface" }}
           href={prefaceHref}
@@ -79,8 +79,8 @@ export function InstructorRoadmap({
         </ResourceLink>
       </aside>
 
-      <section className="grid gap-3 overflow-hidden rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-3 shadow-lg shadow-[#071326]/5">
-        <div className="grid gap-4 border-b border-[#d9e2ec] pb-2.5 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
+      <section className="grid gap-2.5 overflow-hidden rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-2.5 shadow-lg shadow-[#071326]/5">
+        <div className="grid gap-2.5 border-b border-[#d9e2ec] pb-2 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
               Interactive roadmap
@@ -101,24 +101,24 @@ export function InstructorRoadmap({
           </strong>
         </div>
 
-        <div className="relative grid gap-2 pl-6 before:absolute before:bottom-4 before:left-10 before:top-4 before:w-1 before:rounded-full before:bg-[linear-gradient(#1f6db7,#50a28b)]">
+        <div className="relative grid gap-1 pl-6 before:absolute before:bottom-4 before:left-10 before:top-4 before:w-1 before:rounded-full before:bg-[linear-gradient(#1f6db7,#50a28b)]">
           {activeRoadmap.chapters.map((roadmapChapter, index) => {
             const chapter = chapters.find((item) => item.number === roadmapChapter.number);
             const isOpen = openChapter === roadmapChapter.number;
 
             return (
-              <article key={`${activeRoadmap.id}-${roadmapChapter.number}`} className="relative grid grid-cols-[82px_minmax(0,1fr)] gap-2">
-                <div className="relative z-10 grid content-start justify-items-center gap-2 pt-2">
-                  <span className="grid size-9 place-items-center rounded-full border-[3px] border-white bg-[#164b8f] text-xs font-black text-white shadow-lg shadow-[#164b8f]/25">
+              <article key={`${activeRoadmap.id}-${roadmapChapter.number}`} className="relative grid grid-cols-[78px_minmax(0,1fr)] gap-2">
+                <div className="relative z-10 grid content-start justify-items-center gap-1.5 pt-2">
+                  <span className="grid size-8 place-items-center rounded-full border-[3px] border-white bg-[#164b8f] text-xs font-black text-white shadow-lg shadow-[#164b8f]/25">
                     {index + 1}
                   </span>
                   <strong className="rounded-md border border-[#d9e2ec] bg-white px-2 py-1 text-center text-[0.67rem] font-black text-[#0b2545]">
                     Chapter {roadmapChapter.number}
                   </strong>
                 </div>
-                <div className={`rounded-lg border bg-white p-2.5 ${isOpen ? "border-[#164b8f] shadow-md shadow-[#071326]/10" : "border-[#d9e2ec]"}`}>
+                <div className={`rounded-lg border bg-white p-1.5 ${isOpen ? "border-[#164b8f] shadow-md shadow-[#071326]/10" : "border-[#d9e2ec]"}`}>
                 <button
-                  className="grid w-full gap-3 text-left md:grid-cols-[minmax(0,1fr)_auto] md:items-center"
+                  className="grid w-full gap-2 text-left md:grid-cols-[minmax(0,1fr)_auto] md:items-center"
                   aria-expanded={isOpen}
                   type="button"
                   onClick={() => setOpenChapter(roadmapChapter.number)}
@@ -139,10 +139,10 @@ export function InstructorRoadmap({
                   </span>
                 </button>
                 {isOpen ? (
-                  <div className="mt-3 grid gap-2 border-t border-[#ddcfad] pt-3">
-                    <div className="flex flex-wrap gap-2">
+                  <div className="mt-2 grid gap-2 border-t border-[#ddcfad] pt-2">
+                    <div className="flex flex-wrap gap-1.5">
                       {roadmapChapter.topics.map((topic) => (
-                        <span key={topic} className="rounded-md bg-[#f7fbff] px-3 py-2 text-xs font-black text-[#164b8f]">
+                        <span key={topic} className="rounded-md bg-[#f7fbff] px-2 py-1.5 text-xs font-black text-[#164b8f]">
                           {topic}
                         </span>
                       ))}
@@ -157,7 +157,7 @@ export function InstructorRoadmap({
         </div>
       </section>
 
-      <aside id="instructor-support" className="grid content-start gap-3 rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-4 shadow-lg shadow-[#071326]/5">
+      <aside id="instructor-support" className="grid content-start gap-2.5 rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-3 shadow-lg shadow-[#071326]/5">
         <h2 className="font-serif text-sm font-black uppercase text-[#0b2545]">
           Adoption Support
         </h2>
@@ -170,7 +170,7 @@ export function InstructorRoadmap({
         {supportLinks.map((link) => (
           <ResourceLink
             key={link.label}
-            className="grid gap-1 border-b border-[#d9e2ec] py-2 transition-colors hover:text-[#164b8f]"
+            className="grid gap-1 border-b border-[#d9e2ec] py-1.5 transition-colors hover:text-[#164b8f]"
             eventName="instructor_resource_clicked"
             eventProperties={{
               location: "roadmap_support",
@@ -181,7 +181,7 @@ export function InstructorRoadmap({
             target="_blank"
           >
             <strong className="font-serif text-[#0b2545]">{link.label}</strong>
-            <span className="text-sm leading-6 text-[#526070]">{link.note}</span>
+            <span className="text-sm leading-5 text-[#526070]">{link.note}</span>
           </ResourceLink>
         ))}
       </aside>
@@ -199,11 +199,11 @@ function ChapterResourceLinks({ chapter }: { chapter: BookChapter }) {
   ].filter((resource): resource is [string, string] => Boolean(resource[1]));
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-1.5">
       {resources.map(([label, href]) => (
         <ResourceLink
           key={label}
-          className="inline-flex min-h-10 items-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7]"
+          className="inline-flex min-h-8 items-center rounded-md border border-[#c79222]/50 bg-white px-2.5 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7]"
           eventName="instructor_chapter_resource_clicked"
           eventProperties={{
             chapter: chapter.number,
