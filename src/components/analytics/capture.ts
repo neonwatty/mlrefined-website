@@ -1,3 +1,5 @@
+"use client";
+
 import posthog from "posthog-js";
 
 export type AnalyticsProperties = Record<string, string | number | boolean>;
