@@ -5,9 +5,9 @@ import { describe, expect, it } from "vitest";
 import { publicRoutes } from "@/lib/site";
 import {
   absoluteUrl,
-  bookCoverImage,
   createPageMetadata,
   siteConfig,
+  socialPreviewImage,
 } from "@/lib/site";
 import sitemap from "./sitemap";
 
@@ -47,8 +47,8 @@ describe("site metadata helpers", () => {
     expect(reviewsMetadata.openGraph?.title).toBe(
       "Reviews | Machine Learning Refined",
     );
-    expect(reviewsMetadata.openGraph?.images).toEqual([bookCoverImage]);
-    expect(reviewsMetadata.twitter?.images).toEqual([bookCoverImage.url]);
+    expect(reviewsMetadata.openGraph?.images).toEqual([socialPreviewImage]);
+    expect(reviewsMetadata.twitter?.images).toEqual([socialPreviewImage]);
 
     const homeMetadata = createPageMetadata({
       title: siteConfig.name,

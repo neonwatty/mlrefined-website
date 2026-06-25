@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { PageviewTracker } from "@/components/analytics/pageview-tracker";
-import { bookCoverImage, siteConfig } from "@/lib/site";
+import { siteConfig, socialPreviewImage } from "@/lib/site";
 
 import "./globals.css";
 
@@ -33,13 +33,13 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     siteName: siteConfig.name,
     type: "website",
-    images: [bookCoverImage],
+    images: [socialPreviewImage],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [bookCoverImage.url],
+    images: [socialPreviewImage],
   },
   robots: {
     index: true,
