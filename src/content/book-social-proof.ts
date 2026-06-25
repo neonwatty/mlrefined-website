@@ -93,19 +93,25 @@ export const readerReviews: ReaderReview[] = [
   {
     name: "Veronica Medrano",
     source: "Amazon",
-    excerpt: "One of the best books on the topic",
+    excerpt: "Machine Learning Geeks, get your hands on this!",
     href: bookLinks.amazon,
   },
   {
     name: "Julio Perez Olvera",
     source: "Goodreads",
-    excerpt: "fluid description of the complex, theoretical side",
+    excerpt: "One of the best books on the topic",
     href: bookLinks.goodreads,
   },
   {
     name: "Estefano Palacios",
     source: "Goodreads",
-    excerpt: "teaching machine learning rigorously but from first principles",
+    excerpt: "rigorously but from first principles",
     href: bookLinks.goodreads,
+  },
+  {
+    name: "Rama Ramakrishnan",
+    source: "Amazon",
+    excerpt: "unifying lens of optimization and gradient descent",
+    href: bookLinks.amazon,
   },
 ];

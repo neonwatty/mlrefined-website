@@ -11,12 +11,11 @@ export function VisualFunnel() {
             Visual learning system
           </p>
           <h2 className="max-w-5xl font-serif text-[clamp(1.35rem,2vw,2.1rem)] font-black leading-tight">
-            Start with a figure, then open the chapter resources
+            Intuitive visuals that pull you into each chapter
           </h2>
           <p className="mt-3 max-w-3xl leading-6 text-[#526070]">
-            A focused carousel of source-backed book figures reveals the
-            geometry behind each chapter, then routes readers straight into the
-            chapter resources.
+            Source-backed figures and animations reveal the geometry, then
+            take readers straight to the relevant chapter materials.
           </p>
           <ol className="mt-4 flex flex-wrap gap-2">
             {visualPath.map(([title, note]) => (

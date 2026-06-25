@@ -12,12 +12,11 @@ export function ProofAndResources() {
             Reviews &amp; adoption
           </p>
           <h2 className="font-serif text-[clamp(1.75rem,2.7vw,3rem)] font-black leading-tight text-[#0b2545]">
-            Trusted in classrooms, useful at the desk
+            Readers love it. Courses use it.
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-[#526070]">
-            Machine Learning Refined is used as a reference text at 100+
-            universities and colleges, with adoption proof and reader signals
-            collected from the book ecosystem.
+            A classroom-tested text with professor endorsements, university
+            adoption, and reader reviews from Amazon and Goodreads.
           </p>
         </div>
         <div className="flex flex-wrap gap-2 lg:justify-end">
@@ -62,7 +61,7 @@ export function ProofAndResources() {
 
         <section aria-labelledby="home-reader-reviews-title">
           <h3 className="mb-2 font-serif text-xl font-black text-[#0b2545]" id="home-reader-reviews-title">
-            Reader review signals
+            Reader praise
           </h3>
           <div className="grid gap-2">
             {readerReviews.map((review) => (

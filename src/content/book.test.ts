@@ -115,7 +115,7 @@ describe("book content contracts", () => {
 
   it("keeps instructor and review data source-backed", () => {
     expect(instructorRoadmaps).toHaveLength(4);
-    expect(readerReviews).toHaveLength(3);
+    expect(readerReviews).toHaveLength(4);
     expect(universityLogos).toHaveLength(9);
     expect(testimonials).toHaveLength(4);
 
