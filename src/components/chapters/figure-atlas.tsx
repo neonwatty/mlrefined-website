@@ -20,13 +20,29 @@ export function FigureAtlas({
   visuals,
 }: FigureAtlasProps) {
   const [figureQuery, setFigureQuery] = useState("");
-  const filteredVisuals = visuals.filter((visual) =>
-    matchesQuery(visual, `${query} ${figureQuery}`.trim()),
+  const [selectedVisualTitle, setSelectedVisualTitle] = useState<string | null>(null);
+  const filteredVisuals = useMemo(
+    () => visuals.filter((visual) => matchesQuery(visual, `${query} ${figureQuery}`.trim())),
+    [figureQuery, query, visuals],
   );
   const selectedVisual =
+    filteredVisuals.find(
+      (visual) =>
+        visual.title === selectedVisualTitle &&
+        chapterNumber(visual.chapter) === selectedNumber,
+    ) ??
     filteredVisuals.find((visual) => chapterNumber(visual.chapter) === selectedNumber) ??
     filteredVisuals[0] ??
     visuals[0];
+  const visualGroups = useMemo(() => {
+    const groups = new Map<string, StaticVisual[]>();
+
+    for (const visual of filteredVisuals) {
+      groups.set(visual.chapter, [...(groups.get(visual.chapter) ?? []), visual]);
+    }
+
+    return Array.from(groups.entries());
+  }, [filteredVisuals]);
   const coverage = useMemo(() => {
     const counts = new Map<string, number>();
 
@@ -38,11 +54,11 @@ export function FigureAtlas({
   }, [visuals]);
 
   return (
-    <section className="grid gap-4 rounded-lg border border-transparent pt-1">
+    <section className="mt-1 grid gap-3 border-t border-[#ddcfad] pt-5">
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">Static figure atlas</p>
-          <h2 className="mt-2 font-serif text-3xl font-black text-[#0b2545]">Representative book figures by chapter</h2>
+          <h2 className="mt-2 font-serif text-3xl font-black text-[#0b2545]">Book figures by chapter</h2>
           <p className="mt-2 max-w-3xl text-sm leading-6 text-[#526070]">
             Search source-backed figures from the notes-assets repository, then inspect the image or jump back to its chapter package.
           </p>
@@ -63,16 +79,18 @@ export function FigureAtlas({
       <FigureCoverage
         coverage={coverage}
         selectedNumber={selectedNumber}
+        setSelectedVisualTitle={setSelectedVisualTitle}
         setSelectedNumber={setSelectedNumber}
       />
       {selectedVisual ? <FigureInspector visual={selectedVisual} /> : null}
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-        {filteredVisuals.map((visual) => (
-          <FigureCard
-            key={visual.title}
-            selectedNumber={selectedNumber}
+      <div className="grid gap-3">
+        {visualGroups.map(([chapter, groupVisuals]) => (
+          <FigureGroup
+            key={chapter}
+            selectedVisual={selectedVisual}
             setSelectedNumber={setSelectedNumber}
-            visual={visual}
+            setSelectedVisualTitle={setSelectedVisualTitle}
+            visuals={groupVisuals}
           />
         ))}
       </div>
@@ -83,14 +101,16 @@ export function FigureAtlas({
 function FigureCoverage({
   coverage,
   selectedNumber,
+  setSelectedVisualTitle,
   setSelectedNumber,
 }: {
   coverage: Array<[string, number]>;
   selectedNumber: string;
+  setSelectedVisualTitle: (title: string | null) => void;
   setSelectedNumber: (number: string) => void;
 }) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-7">
       {coverage.map(([chapter, count]) => {
         const number = chapterNumber(chapter);
 
@@ -104,7 +124,10 @@ function FigureCoverage({
             }`}
             aria-pressed={number === selectedNumber}
             type="button"
-            onClick={() => setSelectedNumber(number)}
+            onClick={() => {
+              setSelectedVisualTitle(null);
+              setSelectedNumber(number);
+            }}
           >
             <span>{chapter}</span>
             <span className="text-[#526070]">{count} figures</span>
@@ -117,9 +140,9 @@ function FigureCoverage({
 
 function FigureInspector({ visual }: { visual: StaticVisual }) {
   return (
-    <section className="grid gap-4 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-3 shadow-lg shadow-[#071326]/5 md:grid-cols-[minmax(260px,0.72fr)_minmax(0,1fr)]">
+    <section className="my-2 grid gap-3 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-3 shadow-lg shadow-[#071326]/5 md:grid-cols-[minmax(280px,0.9fr)_minmax(360px,1.1fr)]">
       <Image
-        className="h-56 w-full rounded-md border border-[#d9e2ec] bg-white object-contain p-2"
+        className="h-64 w-full rounded-md border border-[#d9e2ec] bg-white object-contain p-2"
         src={visual.image}
         alt={visual.alt}
         width={760}
@@ -142,37 +165,90 @@ function FigureInspector({ visual }: { visual: StaticVisual }) {
   );
 }
 
-function FigureCard({
-  selectedNumber,
+function FigureGroup({
+  selectedVisual,
   setSelectedNumber,
+  setSelectedVisualTitle,
+  visuals,
+}: {
+  selectedVisual: StaticVisual | undefined;
+  setSelectedNumber: (number: string) => void;
+  setSelectedVisualTitle: (title: string | null) => void;
+  visuals: StaticVisual[];
+}) {
+  const [firstVisual] = visuals;
+
+  if (!firstVisual) {
+    return null;
+  }
+
+  return (
+    <section className="grid gap-3 rounded-lg border border-[#ddcfad]/75 bg-[#fffdf8]/80 p-3">
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
+            {firstVisual.chapter}
+          </p>
+          <h3 className="mt-1 font-serif text-xl font-black text-[#0b2545]">
+            {firstVisual.chapterTitle}
+          </h3>
+        </div>
+        <AtlasLink href={firstVisual.chapterHref} label="Open chapter notes" visual={firstVisual} />
+      </div>
+      <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
+        {visuals.map((visual) => (
+          <FigureCard
+            key={visual.title}
+            isSelected={visual.title === selectedVisual?.title}
+            setSelectedNumber={setSelectedNumber}
+            setSelectedVisualTitle={setSelectedVisualTitle}
+            visual={visual}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function FigureCard({
+  isSelected,
+  setSelectedNumber,
+  setSelectedVisualTitle,
   visual,
 }: {
-  selectedNumber: string;
+  isSelected: boolean;
   setSelectedNumber: (number: string) => void;
+  setSelectedVisualTitle: (title: string | null) => void;
   visual: StaticVisual;
 }) {
   const number = chapterNumber(visual.chapter);
 
   return (
     <button
-      className={`grid gap-2 rounded-lg border bg-white p-2 text-left transition-colors ${number === selectedNumber ? "border-[#164b8f]" : "border-[#ddcfad] hover:border-[#164b8f]/50"}`}
-      aria-pressed={number === selectedNumber}
+      className={`grid overflow-hidden rounded-lg border bg-white text-left transition-colors ${isSelected ? "border-[#164b8f] shadow-lg shadow-[#1f6db7]/10" : "border-[#ddcfad] hover:border-[#164b8f]/50"}`}
+      aria-pressed={isSelected}
       type="button"
-      onClick={() => setSelectedNumber(number)}
+      onClick={() => {
+        setSelectedVisualTitle(visual.title);
+        setSelectedNumber(number);
+      }}
     >
       <Image
-        className="h-[135px] w-full rounded-md border border-[#d9e2ec] bg-white object-contain p-1.5"
+        className="h-[190px] w-full border-b border-[#ddcfad] bg-white object-contain p-2"
         src={visual.image}
         alt={visual.alt}
         width={520}
         height={320}
-        loading={number === selectedNumber ? "eager" : "lazy"}
+        loading="eager"
         unoptimized
       />
-      <span className="text-[0.7rem] font-black uppercase tracking-[0.12em] text-[#8a6519]">
-        {visual.chapter} / {visual.topic}
+      <span className="grid gap-2 p-3">
+        <span className="text-[0.7rem] font-black uppercase tracking-[0.12em] text-[#8a6519]">
+          {visual.topic}
+        </span>
+        <strong className="font-serif text-base font-black text-[#0b2545]">{visual.title}</strong>
+        <span className="text-xs leading-5 text-[#526070]">{visual.description}</span>
       </span>
-      <strong className="font-serif text-base font-black text-[#0b2545]">{visual.title}</strong>
     </button>
   );
 }
