@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
+import { PageviewTracker } from "@/components/analytics/pageview-tracker";
 import { bookCoverImage, siteConfig } from "@/lib/site";
 
 import "./globals.css";
@@ -56,7 +57,10 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col antialiased">{children}</body>
+      <body className="min-h-full flex flex-col antialiased">
+        <PageviewTracker />
+        {children}
+      </body>
     </html>
   );
 }

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
+import { captureAnalyticsEvent } from "@/components/analytics/capture";
 import { ResourceLink } from "@/components/analytics/resource-link";
 import type { BookChapter, ChapterTrack } from "@/content/book";
 
@@ -43,6 +44,10 @@ export function InstructorRoadmap({
             aria-pressed={roadmap.id === activeRoadmap.id}
             type="button"
             onClick={() => {
+              captureAnalyticsEvent("instructor_roadmap_selected", {
+                location: "roadmap_picker",
+                roadmap: roadmap.title,
+              });
               setActiveRoadmapId(roadmap.id);
               setOpenChapter(roadmap.chapters[0]?.number ?? "2");
             }}
@@ -121,7 +126,14 @@ export function InstructorRoadmap({
                   className="grid w-full gap-2 text-left md:grid-cols-[minmax(0,1fr)_auto] md:items-center"
                   aria-expanded={isOpen}
                   type="button"
-                  onClick={() => setOpenChapter(roadmapChapter.number)}
+                  onClick={() => {
+                    captureAnalyticsEvent("instructor_roadmap_chapter_opened", {
+                      chapter: roadmapChapter.number,
+                      location: "interactive_roadmap",
+                      roadmap: activeRoadmap.title,
+                    });
+                    setOpenChapter(roadmapChapter.number);
+                  }}
                 >
                   <span>
                     <span className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">

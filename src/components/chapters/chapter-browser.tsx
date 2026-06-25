@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useRef, useState } from "react";
 
+import { captureAnalyticsEvent } from "@/components/analytics/capture";
 import { ResourceLink } from "@/components/analytics/resource-link";
 import { bookLinks } from "@/content/book";
 import type {
@@ -18,6 +19,7 @@ import {
   chapterFigures,
   chapterWidgets,
 } from "./chapter-panels";
+import { FilterButton, FilterGroup, SummaryItem } from "./chapter-filter-controls";
 import { FigureAtlas } from "./figure-atlas";
 
 type ResourceKind = "all" | "figures" | "notebooks" | "exercises" | "slides";
@@ -61,6 +63,7 @@ export function ChapterBrowser({
   const [audienceKind, setAudienceKind] = useState<AudienceKind>("all");
   const [resourceKind, setResourceKind] = useState<ResourceKind>("all");
   const [selectedNumber, setSelectedNumber] = useState("6");
+  const lastCommittedSearch = useRef("");
   const primaryChapters = useMemo(
     () => chapters.filter((chapter) => chapter.number !== "C"),
     [chapters],
@@ -83,6 +86,28 @@ export function ChapterBrowser({
   const selectedRoadmaps = roadmaps.filter((roadmap) =>
     roadmap.chapters.some((chapter) => chapter.number === selectedChapter.number),
   );
+  const commitSearch = () => {
+    const normalizedQuery = query.trim();
+
+    if (!normalizedQuery) return;
+
+    const searchSignature = `${normalizedQuery}:${filteredChapters.length}`;
+    if (searchSignature === lastCommittedSearch.current) return;
+
+    lastCommittedSearch.current = searchSignature;
+    captureAnalyticsEvent("chapter_search_submitted", {
+      location: "chapters_filter_bar",
+      query_length: normalizedQuery.length,
+      results: filteredChapters.length,
+    });
+  };
+  const selectChapter = (number: string, location: string) => {
+    captureAnalyticsEvent("chapter_selected", {
+      chapter: number,
+      location,
+    });
+    setSelectedNumber(number);
+  };
 
   return (
     <div className="grid gap-5 lg:grid-cols-[230px_minmax(0,1fr)]">
@@ -149,6 +174,10 @@ export function ChapterBrowser({
               value={query}
               placeholder="Search chapters, topics, resources"
               onChange={(event) => setQuery(event.target.value)}
+              onBlur={commitSearch}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") commitSearch();
+              }}
             />
           </label>
           <FilterGroup label="Audience">
@@ -156,7 +185,14 @@ export function ChapterBrowser({
               <FilterButton
                 key={filter.key}
                 isSelected={audienceKind === filter.key}
-                onClick={() => setAudienceKind(filter.key)}
+                onClick={() => {
+                  captureAnalyticsEvent("chapter_filter_clicked", {
+                    filter_group: "audience",
+                    filter_value: filter.key,
+                    location: "chapters_filter_bar",
+                  });
+                  setAudienceKind(filter.key);
+                }}
               >
                 {filter.label}
               </FilterButton>
@@ -167,7 +203,14 @@ export function ChapterBrowser({
               <FilterButton
                 key={filter.key}
                 isSelected={resourceKind === filter.key}
-                onClick={() => setResourceKind(filter.key)}
+                onClick={() => {
+                  captureAnalyticsEvent("chapter_filter_clicked", {
+                    filter_group: "resource_type",
+                    filter_value: filter.key,
+                    location: "chapters_filter_bar",
+                  });
+                  setResourceKind(filter.key);
+                }}
               >
                 {filter.label}
               </FilterButton>
@@ -192,7 +235,7 @@ export function ChapterBrowser({
         <ChapterList
           chapters={filteredChapters}
           selectedNumber={selectedChapter.number}
-          setSelectedNumber={setSelectedNumber}
+          setSelectedNumber={(number) => selectChapter(number, "chapter_list")}
           visuals={visuals}
           widgets={widgets}
         />
@@ -200,64 +243,11 @@ export function ChapterBrowser({
         <FigureAtlas
           query={query}
           selectedNumber={selectedChapter.number}
-          setSelectedNumber={setSelectedNumber}
+          setSelectedNumber={(number) => selectChapter(number, "figure_atlas")}
           visuals={visuals}
         />
       </div>
     </div>
-  );
-}
-
-function FilterGroup({
-  children,
-  label,
-}: {
-  children: ReactNode;
-  label: string;
-}) {
-  return (
-    <div className="grid gap-2">
-      <span className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
-        {label}
-      </span>
-      <div className="flex flex-wrap gap-2">{children}</div>
-    </div>
-  );
-}
-
-function FilterButton({
-  children,
-  isSelected,
-  onClick,
-}: {
-  children: ReactNode;
-  isSelected: boolean;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      className={`min-h-10 rounded-md border px-3 text-sm font-black transition-colors ${
-        isSelected
-          ? "border-[#c79222] bg-[#c79222] text-[#06172d]"
-          : "border-[#ddcfad] bg-white text-[#164b8f] hover:bg-[#fff7e7]"
-      }`}
-      aria-pressed={isSelected}
-      type="button"
-      onClick={onClick}
-    >
-      {children}
-    </button>
-  );
-}
-
-function SummaryItem({ label, value }: { label: string; value: number }) {
-  return (
-    <li className="grid justify-items-center text-xs text-[#526070]">
-      <strong className="font-serif text-xl font-black text-[#0b2545]">
-        {value}
-      </strong>
-      <span>{label}</span>
-    </li>
   );
 }
 

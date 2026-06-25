@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import posthog from "posthog-js";
 import type { ComponentProps } from "react";
+
+import { captureAnalyticsEvent, type AnalyticsProperties } from "./capture";
 
 type TrackedLinkProps = ComponentProps<typeof Link> & {
   eventName: string;
-  eventProperties?: Record<string, string | number | boolean>;
+  eventProperties?: AnalyticsProperties;
 };
 
 export function TrackedLink({
@@ -21,7 +22,7 @@ export function TrackedLink({
       {...props}
       href={href}
       onClick={(event) => {
-        posthog.capture(eventName, withHref(eventProperties, href));
+        captureAnalyticsEvent(eventName, withHref(eventProperties, href));
         onClick?.(event);
       }}
     />

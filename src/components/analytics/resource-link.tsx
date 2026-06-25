@@ -1,11 +1,12 @@
 "use client";
 
-import posthog from "posthog-js";
 import type { AnchorHTMLAttributes, ReactNode } from "react";
+
+import { captureAnalyticsEvent, type AnalyticsProperties } from "./capture";
 
 type ResourceLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   eventName: string;
-  eventProperties?: Record<string, string | number | boolean>;
+  eventProperties?: AnalyticsProperties;
   children: ReactNode;
 };
 
@@ -23,7 +24,7 @@ export function ResourceLink({
       {...props}
       rel={rel}
       onClick={(event) => {
-        posthog.capture(eventName, withHref(eventProperties, props.href));
+        captureAnalyticsEvent(eventName, withHref(eventProperties, props.href));
         onClick?.(event);
       }}
     >
