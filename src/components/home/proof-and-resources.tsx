@@ -16,7 +16,7 @@ export function ProofAndResources() {
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-[#526070]">
             A classroom-tested text with professor endorsements, university
-            adoption, and reader reviews from Amazon and Goodreads.
+            adoption, and 5-star reader praise from Amazon.
           </p>
         </div>
         <div className="flex flex-wrap gap-2 lg:justify-end">
@@ -31,8 +31,8 @@ export function ProofAndResources() {
 
       <div className="mt-5 grid grid-cols-2 items-center gap-2.5 sm:grid-cols-4 lg:grid-cols-8">
         {universityLogos.slice(0, 8).map((logo) => (
-          <figure key={logo.name} className="grid min-h-[64px] place-items-center rounded-md border border-[#ddcfad] bg-white p-2">
-            <Image className="max-h-11 w-auto object-contain" src={logo.image} alt={`${logo.name} logo`} width={logo.width} height={logo.height} />
+          <figure key={logo.name} className="relative grid min-h-[72px] place-items-center overflow-hidden rounded-md border border-[#ddcfad] bg-white p-2">
+            <Image className={`h-auto object-contain ${logoClassName(logo.name)}`} src={logo.image} alt={`${logo.name} logo`} width={logo.width} height={logo.height} />
           </figure>
         ))}
       </div>
@@ -42,9 +42,9 @@ export function ProofAndResources() {
           <h3 className="mb-2 font-serif text-xl font-black text-[#0b2545]" id="home-endorsements-title">
             Professor endorsements
           </h3>
-          <div className="grid gap-2 sm:grid-cols-2">
+          <div className="grid h-full grid-rows-4 gap-2">
             {testimonials.slice(0, 4).map((testimonial) => (
-              <article key={testimonial.name} className="rounded-md border border-[#ddcfad] bg-white p-3">
+              <article key={testimonial.name} className="grid content-start rounded-md border border-[#ddcfad] bg-white p-3">
                 <strong className="block font-serif text-base font-black text-[#0b2545]">
                   {testimonial.name}
                 </strong>
@@ -78,8 +78,11 @@ export function ProofAndResources() {
                 target="_blank"
               >
                 <strong className="font-serif text-base font-black leading-tight text-[#0b2545]">
-                  &ldquo;{review.excerpt}&rdquo;
+                  {review.title}
                 </strong>
+                <span className="text-sm font-semibold leading-5 text-[#526070]">
+                  &ldquo;{review.excerpt}&rdquo;
+                </span>
                 <span className="text-xs font-bold text-[#164b8f]">
                   {review.name} on {review.source}
                 </span>
@@ -90,4 +93,20 @@ export function ProofAndResources() {
       </div>
     </section>
   );
+}
+
+function logoClassName(name: string) {
+  if (name === "University of Michigan") {
+    return "absolute left-1/2 top-[-58px] w-80 max-w-none -translate-x-1/2";
+  }
+
+  if (name === "University of Toronto") {
+    return "absolute left-1/2 top-[-68px] w-[300px] max-w-none -translate-x-1/2";
+  }
+
+  if (name === "Texas A&M University") {
+    return "absolute left-1/2 top-[-48px] w-[200px] max-w-none -translate-x-1/2";
+  }
+
+  return "w-auto max-h-[54px] max-w-[86%]";
 }

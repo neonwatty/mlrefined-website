@@ -190,10 +190,10 @@ export function ReviewsProof({
                 <div>
                   <div>
                     <h3 className="font-serif text-lg font-black text-[#0b2545]">
-                      {review.name}
+                      {review.title}
                     </h3>
                     <p className="text-sm font-black text-[#164b8f]">
-                      Reviewed MLR on {review.source}
+                      {review.name} on {review.source}
                     </p>
                   </div>
                   <p className="mt-2 text-base font-black leading-6 text-[#071326]">
@@ -212,7 +212,7 @@ export function ReviewsProof({
                     target="_blank"
                   >
                     {review.source === "Amazon"
-                      ? "Open Amazon listing"
+                      ? "Open Amazon review"
                       : "Open Goodreads reviews"}
                   </ResourceLink>
                 </div>

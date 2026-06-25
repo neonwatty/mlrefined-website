@@ -8,13 +8,14 @@ export function PedagogyStrip() {
           The pedagogy
         </p>
         <h2 className="font-serif text-xl font-black leading-tight md:text-2xl">
-          From picture to proof to Python
+          Visualize. Derive. Implement.
         </h2>
         <p className="mt-1.5 max-w-xl text-sm leading-5 text-[#fffaf0]/74">
-          Every concept moves from intuition to geometry to derivation to code.
+          Geometry builds intuition, derivations make it precise, and Python
+          makes it real.
         </p>
       </div>
-      <ol className="grid grid-cols-4 gap-1 lg:gap-0">
+      <ol className="grid grid-cols-3 gap-1 lg:gap-0">
         {pedagogySteps.map((step) => (
           <li key={step.title} className="relative grid min-h-14 justify-items-center gap-1 px-1 py-1.5 text-center lg:px-2 lg:before:absolute lg:before:left-0 lg:before:right-0 lg:before:top-6 lg:before:h-px lg:before:bg-[#ead4a4]/42">
             <span className="z-10 grid size-7 place-items-center rounded-full border border-[#ead4a4] bg-[#fffdf8] font-serif text-[0.64rem] font-black text-[#164b8f] shadow-md shadow-black/20 lg:size-8 lg:text-[0.68rem]">

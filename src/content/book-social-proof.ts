@@ -91,27 +91,33 @@ export const testimonials: Testimonial[] = [
 
 export const readerReviews: ReaderReview[] = [
   {
-    name: "Veronica Medrano",
+    name: "Reader",
     source: "Amazon",
-    excerpt: "Machine Learning Geeks, get your hands on this!",
-    href: bookLinks.amazon,
-  },
-  {
-    name: "Julio Perez Olvera",
-    source: "Goodreads",
-    excerpt: "One of the best books on the topic",
-    href: bookLinks.goodreads,
+    title: "One of the best books in Machine Learning",
+    excerpt:
+      "What is an absolute gem are the chapters on Feature Learning, Selections and Engineering.",
+    href: "https://www.amazon.com/review/R2HSLH6FN0YA2N/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8",
   },
   {
     name: "Estefano Palacios",
-    source: "Goodreads",
-    excerpt: "rigorously but from first principles",
-    href: bookLinks.goodreads,
+    source: "Amazon",
+    title: "Gold",
+    excerpt: "teaching machine learning rigorously but from first principles",
+    href: "https://www.amazon.com/review/R15OKLTHO19AQF/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8",
   },
   {
     name: "Rama Ramakrishnan",
     source: "Amazon",
-    excerpt: "unifying lens of optimization and gradient descent",
-    href: bookLinks.amazon,
+    title: "Love this book!",
+    excerpt:
+      "The content, the painstakingly created figures, and the beautiful hardback edition are all excellent.",
+    href: "https://www.amazon.com/review/RA6V9P1WKCOXN/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8",
+  },
+  {
+    name: "Julio Perez Olvera",
+    source: "Amazon",
+    title: "One of the best books on the topic",
+    excerpt: "Would definitely recommend to anyone starting with ML.",
+    href: `${bookLinks.amazon}#customerReviews`,
   },
 ];
