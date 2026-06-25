@@ -32,16 +32,16 @@ export default function InstructorsPage() {
   return (
     <main className="min-h-screen text-[#071326]">
       <PageHeader activeHref="/instructors" />
-      <div className="mx-auto w-[min(1680px,100%)] px-6 py-3 md:px-[26px]">
+      <div className="mx-auto w-[min(1320px,100%)] px-5 py-2.5 md:px-6">
         <section className="border-b border-[#d9e2ec] bg-[linear-gradient(90deg,#fffdf8,#ffffff_46%,#f7f4ed)] px-3 py-3">
           <div>
             <p className="mb-1.5 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
               Instructor adoption
             </p>
-            <h1 className="font-serif text-[clamp(2.35rem,4.2vw,4.25rem)] font-black leading-[0.9]">
+            <h1 className="font-serif text-[clamp(2.05rem,3.3vw,3.25rem)] font-black leading-[0.9]">
               Instructor Path
             </h1>
-            <p className="mt-1.5 max-w-3xl text-sm leading-6 text-[#526070]">
+            <p className="mt-1.5 max-w-2xl text-sm leading-5 text-[#526070]">
               Compare course roadmaps, then jump straight to the chapters,
               slides, exercises, and notebooks behind each path.
             </p>

@@ -54,12 +54,12 @@ export function FigureAtlas({
   }, [visuals]);
 
   return (
-    <section className="mt-1 grid gap-2.5 border-t border-[#ddcfad] pt-4">
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
+    <section className="mt-1 grid gap-2 border-t border-[#ddcfad] pt-3">
+      <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_300px] lg:items-end">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">Static figure atlas</p>
-          <h2 className="mt-2 font-serif text-3xl font-black text-[#0b2545]">Book figures by chapter</h2>
-          <p className="mt-2 max-w-3xl text-sm leading-6 text-[#526070]">
+          <h2 className="mt-1.5 font-serif text-2xl font-black text-[#0b2545]">Book figures by chapter</h2>
+          <p className="mt-1.5 max-w-3xl text-sm leading-5 text-[#526070]">
             Search source-backed figures from the notes-assets repository, then inspect the image or jump back to its chapter package.
           </p>
         </div>
@@ -83,7 +83,7 @@ export function FigureAtlas({
         setSelectedNumber={setSelectedNumber}
       />
       {selectedVisual ? <FigureInspector visual={selectedVisual} /> : null}
-      <div className="grid gap-3">
+      <div className="grid gap-2.5">
         {visualGroups.map(([chapter, groupVisuals]) => (
           <FigureGroup
             key={chapter}
@@ -110,14 +110,14 @@ function FigureCoverage({
   setSelectedNumber: (number: string) => void;
 }) {
   return (
-    <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-7">
+    <div className="grid gap-1.5 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-7">
       {coverage.map(([chapter, count]) => {
         const number = chapterNumber(chapter);
 
         return (
           <button
             key={chapter}
-            className={`inline-flex min-h-9 items-center gap-2 rounded-md border px-3 text-xs font-black transition-colors ${
+            className={`inline-flex min-h-8 items-center gap-1.5 rounded-md border px-2.5 text-[0.7rem] font-black transition-colors ${
               number === selectedNumber
                 ? "border-[#164b8f] bg-[#e9f1fb] text-[#0b2545]"
                 : "border-[#ddcfad] bg-white text-[#164b8f] hover:bg-[#fff7e7]"
@@ -140,9 +140,9 @@ function FigureCoverage({
 
 function FigureInspector({ visual }: { visual: StaticVisual }) {
   return (
-    <section className="my-1.5 grid gap-3 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-3 shadow-lg shadow-[#071326]/5 md:grid-cols-[minmax(280px,0.9fr)_minmax(360px,1.1fr)]">
+    <section className="my-1 grid gap-2.5 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-2.5 shadow-lg shadow-[#071326]/5 md:grid-cols-[minmax(260px,0.82fr)_minmax(340px,1.18fr)]">
       <Image
-        className="h-60 w-full rounded-md border border-[#d9e2ec] bg-white object-contain p-2"
+        className="h-48 w-full rounded-md border border-[#d9e2ec] bg-white object-contain p-2"
         src={visual.image}
         alt={visual.alt}
         width={760}
@@ -150,12 +150,12 @@ function FigureInspector({ visual }: { visual: StaticVisual }) {
         loading="eager"
         unoptimized
       />
-      <div className="grid content-center gap-3">
+      <div className="grid content-center gap-2">
         <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
           {visual.chapter} / {visual.topic}
         </p>
-        <h3 className="font-serif text-2xl font-black text-[#0b2545]">{visual.title}</h3>
-        <p className="text-sm leading-6 text-[#526070]">{visual.description}</p>
+        <h3 className="font-serif text-xl font-black text-[#0b2545]">{visual.title}</h3>
+        <p className="text-sm leading-5 text-[#526070]">{visual.description}</p>
         <div className="flex flex-wrap gap-2">
           <AtlasLink href={visual.sourceHref} label="Source figure" visual={visual} />
           <AtlasLink href={visual.chapterHref} label="Chapter resources" visual={visual} />
@@ -183,19 +183,19 @@ function FigureGroup({
   }
 
   return (
-    <section className="grid gap-2.5 rounded-lg border border-[#ddcfad]/75 bg-[#fffdf8]/80 p-2.5">
-      <div className="flex flex-wrap items-end justify-between gap-2">
+    <section className="grid gap-2 rounded-md border border-[#ddcfad]/75 bg-[#fffdf8]/75 p-2">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
             {firstVisual.chapter}
           </p>
-          <h3 className="mt-1 font-serif text-xl font-black text-[#0b2545]">
+          <h3 className="mt-0.5 font-serif text-lg font-black text-[#0b2545]">
             {firstVisual.chapterTitle}
           </h3>
         </div>
         <AtlasLink href={firstVisual.chapterHref} label="Open chapter notes" visual={firstVisual} />
       </div>
-      <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {visuals.map((visual) => (
           <FigureCard
             key={visual.title}
@@ -234,7 +234,7 @@ function FigureCard({
       }}
     >
       <Image
-        className="h-[160px] w-full border-b border-[#ddcfad] bg-white object-contain p-2"
+        className="h-[118px] w-full border-b border-[#ddcfad] bg-white object-contain p-2"
         src={visual.image}
         alt={visual.alt}
         width={520}
@@ -242,12 +242,12 @@ function FigureCard({
         loading="eager"
         unoptimized
       />
-      <span className="grid gap-1 p-2.5">
+      <span className="grid gap-0.5 p-2">
         <span className="text-[0.7rem] font-black uppercase tracking-[0.12em] text-[#8a6519]">
           {visual.topic}
         </span>
-        <strong className="font-serif text-[0.98rem] font-black leading-tight text-[#0b2545]">{visual.title}</strong>
-        <span className="overflow-hidden text-xs leading-[1.34] text-[#526070] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">
+        <strong className="font-serif text-sm font-black leading-tight text-[#0b2545]">{visual.title}</strong>
+        <span className="overflow-hidden text-[0.7rem] leading-[1.25] text-[#526070] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">
           {visual.description}
         </span>
       </span>
@@ -266,7 +266,7 @@ function AtlasLink({
 }) {
   return (
     <ResourceLink
-      className="inline-flex min-h-9 items-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7]"
+      className="inline-flex min-h-8 items-center rounded-md border border-[#c79222]/50 bg-white px-2.5 text-xs font-black text-[#164b8f] hover:bg-[#fff7e7]"
       eventName="chapter_visual_source_clicked"
       eventProperties={{
         chapter: visual.chapter,
