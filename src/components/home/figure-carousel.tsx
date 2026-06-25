@@ -33,9 +33,9 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
   if (!activeFigure) return null;
 
   return (
-    <article className="grid gap-4 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-4 shadow-xl shadow-[#071326]/10 lg:grid-cols-[minmax(360px,1.15fr)_minmax(300px,0.85fr)]">
+    <article className="grid gap-3.5 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-3.5 shadow-xl shadow-[#071326]/10 lg:grid-cols-[minmax(360px,1.15fr)_minmax(300px,0.85fr)]">
       <ResourceLink
-        className="relative grid min-h-[360px] place-items-center overflow-hidden rounded-md border border-[#d9e2ec] bg-white"
+        className="relative grid h-[clamp(390px,34vw,500px)] min-h-0 place-items-center overflow-hidden rounded-md border border-[#d9e2ec] bg-white"
         eventName="home_visual_clicked"
         eventProperties={{
           chapter: activeFigure.chapter,
@@ -49,7 +49,7 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
         {safeFigures.map((figure, figureIndex) => (
           <Image
             key={figure.title}
-            className={`absolute inset-0 h-full w-full object-contain p-4 transition-all duration-700 ease-out ${
+            className={`absolute inset-0 h-full w-full object-contain p-3 transition-all duration-700 ease-out ${
               figureIndex === index
                 ? "translate-y-0 opacity-100"
                 : "translate-y-3 opacity-0"
@@ -63,14 +63,14 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
         ))}
       </ResourceLink>
 
-      <div className="grid content-center gap-4">
+      <div className="grid min-h-0 content-center gap-2.5">
         <p className="text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
           {activeFigure.chapter}
         </p>
         <h3 className="font-serif text-3xl font-black leading-tight text-[#0b2545]">
           {activeFigure.title}
         </h3>
-        <p className="min-h-20 text-[#526070]">{activeFigure.description}</p>
+        <p className="min-h-[4.6rem] text-[#526070]">{activeFigure.description}</p>
         <div className="flex flex-wrap gap-2">
           <ResourceLink
             className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
@@ -111,11 +111,11 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
             {isPaused ? "Resume" : "Pause"}
           </button>
         </div>
-        <div className="grid grid-cols-4 gap-2 sm:grid-cols-6">
+        <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-6 xl:grid-cols-7">
           {safeFigures.map((figure, figureIndex) => (
             <button
               key={figure.title}
-              className={`grid min-h-16 place-items-center overflow-hidden rounded-md border bg-white p-1 transition-colors ${
+              className={`grid min-h-[54px] place-items-center overflow-hidden rounded-md border bg-white p-1 transition-colors ${
                 figureIndex === index
                   ? "border-[#164b8f]"
                   : "border-[#ddcfad] hover:border-[#164b8f]"
@@ -129,7 +129,7 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
               }}
             >
               <Image
-                className="h-14 w-full object-contain"
+                className="h-11 w-full object-contain"
                 src={figure.image}
                 alt=""
                 aria-hidden="true"

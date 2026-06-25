@@ -27,7 +27,7 @@ export function InstructorRoadmap({
   if (!activeRoadmap) return null;
 
   return (
-    <div id="instructor-roadmaps" className="mt-3 grid gap-3 lg:grid-cols-[300px_minmax(620px,1fr)_320px]">
+    <div id="instructor-roadmaps" className="mt-3 grid gap-2.5 lg:grid-cols-[300px_minmax(620px,1fr)_320px]">
       <aside className="grid content-start gap-2">
         <h2 className="font-serif text-sm font-black uppercase text-[#0b2545]">
           Choose a roadmap
@@ -35,7 +35,7 @@ export function InstructorRoadmap({
         {roadmaps.map((roadmap) => (
           <button
             key={roadmap.id}
-            className={`grid grid-cols-[58px_1fr] items-center gap-3 rounded-lg border bg-white p-2 text-left transition-all ${
+            className={`grid min-h-[74px] grid-cols-[58px_1fr] items-center gap-2.5 rounded-lg border bg-white p-2 text-left transition-all ${
               roadmap.id === activeRoadmap.id
                 ? "border-[#164b8f] shadow-lg shadow-[#071326]/10"
                 : "border-[#ddcfad] hover:border-[#164b8f]/50"
@@ -48,7 +48,7 @@ export function InstructorRoadmap({
             }}
           >
             <Image
-              className="h-10 w-14 object-cover"
+              className="h-[38px] w-[58px] object-cover"
               src={roadmap.image}
               alt={roadmap.imageAlt}
               width={116}
@@ -80,20 +80,20 @@ export function InstructorRoadmap({
       </aside>
 
       <section className="grid gap-3 overflow-hidden rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-3 shadow-lg shadow-[#071326]/5">
-        <div className="grid gap-3 border-b border-[#d9e2ec] pb-3 md:grid-cols-[minmax(0,1fr)_auto]">
+        <div className="grid gap-4 border-b border-[#d9e2ec] pb-2.5 md:grid-cols-[minmax(0,1fr)_auto] md:items-start">
           <div>
-          <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
-            Interactive roadmap
-          </p>
-          <h2 className="mt-1 font-serif text-2xl font-black text-[#164b8f]">
-            {activeRoadmap.title}{" "}
-            <span className="font-sans text-sm font-bold text-[#526070]">
-              {activeRoadmap.subtitle}
-            </span>
-          </h2>
-          <p className="mt-1 max-w-3xl text-sm leading-5 text-[#526070]">
-            {activeRoadmap.description}
-          </p>
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
+              Interactive roadmap
+            </p>
+            <h2 className="mt-1 font-serif text-[1.15rem] font-black text-[#164b8f]">
+              {activeRoadmap.title}{" "}
+              <span className="font-sans text-sm font-bold text-[#526070]">
+                {activeRoadmap.subtitle}
+              </span>
+            </h2>
+            <p className="mt-1 max-w-3xl text-sm leading-[1.45] text-[#526070]">
+              {activeRoadmap.description}
+            </p>
           </div>
           <strong className="rounded-md border border-[#d9e2ec] bg-[#f8fbff] px-3 py-2 text-center text-xs font-black text-[#164b8f]">
             {activeRoadmap.badge}

@@ -42,7 +42,7 @@ export function ReviewsProof({
         </p>
         <Image
           alt="Machine Learning Refined second edition cover"
-          className="mx-auto h-auto w-36 shadow-xl shadow-[#071326]/15"
+          className="mx-auto h-auto w-40 shadow-xl shadow-[#071326]/15"
           height={1746}
           priority
           src="/book-cover-2nd.png"
@@ -103,7 +103,7 @@ export function ReviewsProof({
               Selected Universities and Colleges
             </h2>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-2.5 sm:grid-cols-2 xl:grid-cols-3">
             {logos.map((logo) => (
               <figure
                 key={logo.name}
@@ -137,7 +137,7 @@ export function ReviewsProof({
               Professor Endorsements
             </h2>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-2.5 sm:grid-cols-2 xl:grid-cols-4">
             {testimonials.map((testimonial) => (
               <article
                 key={testimonial.name}
@@ -175,7 +175,7 @@ export function ReviewsProof({
               Reader Review Signals
             </h2>
           </div>
-          <div className="grid gap-3 md:grid-cols-3">
+          <div className="grid gap-2.5 md:grid-cols-3">
             {readerReviews.map((review) => (
               <article
                 key={`${review.source}-${review.name}`}

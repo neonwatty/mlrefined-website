@@ -242,12 +242,14 @@ function FigureCard({
         loading="eager"
         unoptimized
       />
-      <span className="grid gap-2 p-3">
+      <span className="grid gap-1.5 p-[11px]">
         <span className="text-[0.7rem] font-black uppercase tracking-[0.12em] text-[#8a6519]">
           {visual.topic}
         </span>
         <strong className="font-serif text-base font-black text-[#0b2545]">{visual.title}</strong>
-        <span className="text-xs leading-5 text-[#526070]">{visual.description}</span>
+        <span className="overflow-hidden text-xs leading-[1.34] text-[#526070] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2]">
+          {visual.description}
+        </span>
       </span>
     </button>
   );

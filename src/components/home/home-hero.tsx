@@ -4,7 +4,7 @@ import { TrackedLink } from "@/components/analytics/tracked-link";
 
 export function HomeHero() {
   return (
-    <section className="mx-auto grid min-h-[min(590px,calc(100vh-96px))] w-[min(1680px,100%)] items-center gap-7 px-6 py-5 md:px-[26px] lg:grid-cols-[minmax(420px,1fr)_minmax(240px,0.34fr)] lg:gap-[clamp(28px,5vw,74px)]">
+    <section className="mx-auto grid min-h-[min(620px,calc(100vh-96px))] w-[min(1680px,100%)] items-center gap-7 px-6 py-[clamp(18px,3vh,34px)] md:px-[26px] lg:grid-cols-[minmax(420px,1fr)_minmax(240px,0.34fr)] lg:gap-[clamp(28px,5vw,74px)]">
       <div className="min-w-0">
         <h1 className="max-w-[780px] font-serif text-[clamp(3rem,5vw,4.65rem)] font-black leading-[0.92] tracking-normal">
           Machine Learning Refined
@@ -36,7 +36,7 @@ export function HomeHero() {
 
       <figure className="m-0 justify-self-center">
         <Image
-          className="h-auto w-[min(100%,410px)] max-h-[min(540px,calc(100vh-150px))] border border-[#ead4a4]/75 object-contain shadow-2xl shadow-[#071326]/20"
+          className="h-auto w-[min(100%,430px)] max-h-[min(560px,calc(100vh-150px))] border border-[#ead4a4]/75 object-contain shadow-2xl shadow-[#071326]/20"
           src="/book-cover-2nd.png"
           alt="Machine Learning Refined second edition book cover"
           width={760}
