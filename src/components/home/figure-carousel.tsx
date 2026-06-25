@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
+import { captureAnalyticsEvent } from "@/components/analytics/capture";
 import { ResourceLink } from "@/components/analytics/resource-link";
 import type { featuredFigures } from "@/content/home-page";
 
@@ -20,10 +21,20 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
   const activeFigure = figures[index] ?? figures[0];
   const safeFigures = useMemo(() => figures.slice(0, 12), [figures]);
   const showPrevious = () => {
+    captureAnalyticsEvent("home_visual_carousel_control_clicked", {
+      action: "previous",
+      chapter: activeFigure.chapter,
+      resource: activeFigure.title,
+    });
     setIndex((current) => (current - 1 + safeFigures.length) % safeFigures.length);
     setIsPaused(true);
   };
   const showNext = () => {
+    captureAnalyticsEvent("home_visual_carousel_control_clicked", {
+      action: "next",
+      chapter: activeFigure.chapter,
+      resource: activeFigure.title,
+    });
     setIndex((current) => (current + 1) % safeFigures.length);
     setIsPaused(true);
   };
@@ -98,7 +109,14 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
             className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
             type="button"
             aria-pressed={isPaused}
-            onClick={() => setIsPaused((current) => !current)}
+            onClick={() => {
+              captureAnalyticsEvent("home_visual_carousel_control_clicked", {
+                action: isPaused ? "resume" : "pause",
+                chapter: activeFigure.chapter,
+                resource: activeFigure.title,
+              });
+              setIsPaused((current) => !current);
+            }}
           >
             {isPaused ? "Resume" : "Pause"}
           </button>
@@ -148,6 +166,11 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
               aria-label={`Show ${figure.title}`}
               aria-current={figureIndex === index}
               onClick={() => {
+                captureAnalyticsEvent("home_visual_carousel_control_clicked", {
+                  action: "thumbnail",
+                  chapter: figure.chapter,
+                  resource: figure.title,
+                });
                 setIndex(figureIndex);
                 setIsPaused(true);
               }}

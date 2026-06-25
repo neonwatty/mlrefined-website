@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
+import { captureAnalyticsEvent } from "@/components/analytics/capture";
 import { ResourceLink } from "@/components/analytics/resource-link";
 import type { StaticVisual } from "@/content/book";
 
@@ -21,6 +22,7 @@ export function FigureAtlas({
 }: FigureAtlasProps) {
   const [figureQuery, setFigureQuery] = useState("");
   const [selectedVisualTitle, setSelectedVisualTitle] = useState<string | null>(null);
+  const lastCommittedFigureSearch = useRef("");
   const filteredVisuals = useMemo(
     () => visuals.filter((visual) => matchesQuery(visual, `${query} ${figureQuery}`.trim())),
     [figureQuery, query, visuals],
@@ -52,6 +54,21 @@ export function FigureAtlas({
 
     return Array.from(counts.entries());
   }, [visuals]);
+  const commitFigureSearch = () => {
+    const normalizedQuery = figureQuery.trim();
+
+    if (!normalizedQuery) return;
+
+    const searchSignature = `${normalizedQuery}:${filteredVisuals.length}`;
+    if (searchSignature === lastCommittedFigureSearch.current) return;
+
+    lastCommittedFigureSearch.current = searchSignature;
+    captureAnalyticsEvent("figure_search_submitted", {
+      location: "figure_atlas",
+      query_length: normalizedQuery.length,
+      results: filteredVisuals.length,
+    });
+  };
 
   return (
     <section className="mt-1 grid gap-2 border-t border-[#ddcfad] pt-3">
@@ -73,6 +90,10 @@ export function FigureAtlas({
             value={figureQuery}
             placeholder="Search figures, topics, chapters"
             onChange={(event) => setFigureQuery(event.target.value)}
+            onBlur={commitFigureSearch}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") commitFigureSearch();
+            }}
           />
         </label>
       </div>
@@ -125,6 +146,10 @@ function FigureCoverage({
             aria-pressed={number === selectedNumber}
             type="button"
             onClick={() => {
+              captureAnalyticsEvent("figure_atlas_chapter_filter_clicked", {
+                chapter: number,
+                location: "figure_atlas_coverage",
+              });
               setSelectedVisualTitle(null);
               setSelectedNumber(number);
             }}
@@ -229,6 +254,11 @@ function FigureCard({
       aria-pressed={isSelected}
       type="button"
       onClick={() => {
+        captureAnalyticsEvent("figure_atlas_visual_selected", {
+          chapter: visual.chapter,
+          location: "figure_atlas_card",
+          resource: visual.title,
+        });
         setSelectedVisualTitle(visual.title);
         setSelectedNumber(number);
       }}

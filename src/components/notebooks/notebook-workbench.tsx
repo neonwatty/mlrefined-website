@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 
+import { captureAnalyticsEvent } from "@/components/analytics/capture";
 import { ResourceLink } from "@/components/analytics/resource-link";
 import type { BookChapter, LearningWidget } from "@/content/book";
 
@@ -131,7 +132,15 @@ export function NotebookWorkbench({ chapters, widgets }: NotebookWorkbenchProps)
                 className="grid gap-2.5 text-left"
                 aria-pressed={widget.title === selectedWidget.title}
                 type="button"
-                onClick={() => setSelectedTitle(widget.title)}
+                onClick={() => {
+                  captureAnalyticsEvent("notebook_selected", {
+                    chapter: widget.chapter,
+                    location: "notebook_grid",
+                    resource: widget.title,
+                    topic: widget.topic,
+                  });
+                  setSelectedTitle(widget.title);
+                }}
               >
                 <Image
                   className="h-[136px] w-full rounded-md border border-[#d9e2ec] bg-white object-contain p-2"
