@@ -8,8 +8,8 @@ type PageHeaderProps = {
 
 export function PageHeader({ activeHref }: PageHeaderProps) {
   return (
-    <header className="border-b border-[#ead4a4]/55 bg-[#06172d] text-[#fffaf0] shadow-lg shadow-[#071326]/10">
-      <nav className="mx-auto grid max-w-7xl gap-4 px-5 py-4 md:px-8 lg:grid-cols-[auto_1fr] lg:items-center">
+    <header className="sticky top-0 z-20 border-b border-[#ead4a4]/40 bg-[linear-gradient(180deg,#06172d,#04101f)] text-[#fffaf0] shadow-lg shadow-[#071326]/20">
+      <nav className="mx-auto grid min-h-[72px] w-[min(1680px,100%)] gap-[18px] px-5 py-2.5 md:grid-cols-[minmax(260px,0.75fr)_minmax(0,1.25fr)] md:items-center">
         <Link className="flex items-center gap-3" href="/">
           <span className="grid size-10 place-items-center border border-[#c79222] font-serif text-xs font-black text-[#c79222]">
             MLR
@@ -18,22 +18,22 @@ export function PageHeader({ activeHref }: PageHeaderProps) {
             <strong className="block font-serif text-lg leading-tight">
               Machine Learning Refined
             </strong>
-            <span className="block text-[0.68rem] font-black uppercase tracking-[0.16em] text-[#ead4a4]">
-              Foundations to implementation
+            <span className="mt-1 block text-[0.7rem] font-black uppercase tracking-[0.08em] text-[#ead4a4]">
+              Unified page-system prototype
             </span>
           </span>
         </Link>
-        <div className="grid grid-cols-3 gap-2 text-xs font-bold leading-tight text-[#fffaf0]/78 sm:flex sm:flex-wrap sm:text-sm lg:justify-end">
+        <div className="flex flex-wrap justify-start gap-1.5 text-[0.84rem] font-bold leading-tight text-[#ecf2fa] md:justify-center">
           {primaryNav.map((item) => {
             const isActive = item.href === activeHref;
 
             return (
               <Link
                 key={item.href}
-                className={`inline-flex min-h-9 items-center justify-center rounded-md px-2 text-center transition-colors sm:min-h-10 sm:px-3 lg:justify-start ${
+                className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-md border px-3 text-center transition-colors ${
                   isActive
-                    ? "bg-[#c79222] text-[#06172d]"
-                    : "bg-white/5 hover:bg-white/10 hover:text-white"
+                    ? "border-[#c79222] bg-[#c79222]/20 text-[#ffe0a3]"
+                    : "border-transparent hover:bg-white/10 hover:text-white"
                 }`}
                 aria-current={isActive ? "page" : undefined}
                 href={item.href}

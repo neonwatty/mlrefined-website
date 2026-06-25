@@ -2,16 +2,15 @@ import { chapterTracks, learningWidgets } from "./book-learning";
 import { spotlightFigureTitles, staticVisuals } from "./book-visuals";
 
 export const pedagogySteps = [
-  { number: "01", title: "Intuition", note: "See the idea" },
-  { number: "02", title: "Visualization", note: "Watch the geometry" },
-  { number: "03", title: "Derivation", note: "Earn the notation" },
-  { number: "04", title: "Implementation", note: "Build it in Python" },
+  { number: "01", title: "Intuition", note: "See the geometry" },
+  { number: "02", title: "Derivation", note: "Earn the notation" },
+  { number: "03", title: "Code", note: "Build it in Python" },
 ];
 
 export const visualPath = [
   ["Look", "Start with a real book figure."],
   ["Learn", "Open the chapter package behind it."],
-  ["Run", "Continue in a Colab notebook."],
+  ["Explore", "Continue into chapters or notebooks."],
 ] as const;
 
 export const featuredFigures = spotlightFigureTitles

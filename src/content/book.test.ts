@@ -115,7 +115,7 @@ describe("book content contracts", () => {
 
   it("keeps instructor and review data source-backed", () => {
     expect(instructorRoadmaps).toHaveLength(4);
-    expect(readerReviews).toHaveLength(3);
+    expect(readerReviews).toHaveLength(6);
     expect(universityLogos).toHaveLength(9);
     expect(testimonials).toHaveLength(4);
 
@@ -125,7 +125,13 @@ describe("book content contracts", () => {
     }
 
     for (const review of readerReviews) {
-      expect([bookLinks.amazon, bookLinks.goodreads]).toContain(review.href);
+      expect(
+        review.href === bookLinks.amazon ||
+          review.href === bookLinks.goodreads ||
+          review.href.startsWith("https://www.amazon.com/review/") ||
+          review.href === `${bookLinks.amazon}#customerReviews`,
+      ).toBe(true);
+      expect(review.title.length).toBeGreaterThan(3);
       expect(review.excerpt.length).toBeGreaterThan(10);
     }
   });

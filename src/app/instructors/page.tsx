@@ -30,34 +30,54 @@ const supportLinks = [
 
 export default function InstructorsPage() {
   return (
-    <main className="min-h-screen bg-[#fbfaf4] text-[#071326]">
+    <main className="min-h-screen text-[#071326]">
       <PageHeader activeHref="/instructors" />
-      <div className="mx-auto max-w-7xl px-5 py-8 md:px-8 md:py-12">
-        <section className="mt-4 grid gap-5 md:mt-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.7fr)] lg:items-end">
+      <div className="mx-auto w-[min(1320px,100%)] px-5 py-2.5 md:px-6">
+        <section className="border-b border-[#d9e2ec] bg-[linear-gradient(90deg,#fffdf8,#ffffff_46%,#f7f4ed)] px-3 py-3">
           <div>
-            <p className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
-              Instructor path
+            <p className="mb-1.5 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
+              Instructor adoption
             </p>
-            <h1 className="font-serif text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
-              Instructors
+            <h1 className="font-serif text-[clamp(2.05rem,3.3vw,3.25rem)] font-black leading-[0.9]">
+              Instructor Path
             </h1>
-            <p className="mt-3 max-w-3xl text-base leading-7 text-[#526070] md:mt-4 md:text-lg md:leading-8">
-              Choose a course path, preview the chapter sequence, and jump
-              directly to the PDFs, notes, exercises, slides, and notebooks
-              behind each stop.
+            <p className="mt-1.5 max-w-2xl text-sm leading-5 text-[#526070]">
+              Compare course roadmaps, then jump straight to the chapters,
+              slides, exercises, and notebooks behind each path.
             </p>
-          </div>
-
-          <div className="hidden gap-3 rounded-lg border border-[#ddcfad] bg-white p-4 lg:grid">
-            <p className="font-serif text-xl font-black text-[#0b2545]">
-              Course planning
-            </p>
-            <div className="grid grid-cols-3 gap-2 text-center text-sm font-black text-[#164b8f]">
-              <span className="rounded-md bg-[#f7fbff] px-2 py-3">Path</span>
-              <span className="rounded-md bg-[#f7fbff] px-2 py-3">Chapters</span>
-              <span className="rounded-md bg-[#f7fbff] px-2 py-3">Resources</span>
+            <div className="mt-2.5 flex flex-wrap gap-2">
+              <a className="inline-flex min-h-9 items-center rounded-md border border-[#c79222] bg-[#c79222] px-3 text-sm font-black text-[#06172d]" href="#instructor-roadmaps">
+                Choose roadmap
+              </a>
+              <a className="inline-flex min-h-9 items-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f]" href="#instructor-support">
+                Adoption support
+              </a>
             </div>
+            <p className="mt-1.5 text-xs font-black text-[#6b5b3d]">
+              Support links stay one step away: preface, slides, sample-copy
+              request, and GitHub questions.
+            </p>
           </div>
+        </section>
+        <nav className="sticky top-[72px] z-10 flex gap-2 bg-[#fbfaf4]/90 py-1 backdrop-blur" aria-label="Instructor page sections">
+          <a className="rounded-md border border-[#ddcfad] bg-white px-3 py-1.5 text-sm font-black text-[#164b8f]" href="#instructor-roadmaps">
+            Roadmaps
+          </a>
+          <a className="rounded-md border border-[#ddcfad] bg-white px-3 py-1.5 text-sm font-black text-[#164b8f]" href="#instructor-support">
+            Support
+          </a>
+        </nav>
+        <section className="mb-2 grid gap-2.5 rounded-lg border border-[#164b8f]/25 bg-[#f6fbff] p-2 md:grid-cols-[minmax(0,0.42fr)_minmax(0,1fr)_auto] md:items-center">
+          <strong className="font-serif text-[#0b2545]">
+            Most instructors start with Essentials
+          </strong>
+          <span className="text-sm leading-5 text-[#526070]">
+            Core optimization, linear learning, unsupervised learning, and
+            validation in a 12 to 16 week path.
+          </span>
+          <a className="inline-flex min-h-9 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f]" href="#instructor-roadmaps">
+            View Essentials roadmap
+          </a>
         </section>
 
         <InstructorRoadmap

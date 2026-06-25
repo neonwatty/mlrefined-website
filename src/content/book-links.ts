@@ -17,6 +17,8 @@ export const bookLinks = {
     "https://www.amazon.com/Machine-Learning-Refined-Foundations-Applications/dp/1108480721",
   goodreads:
     "https://www.goodreads.com/en/book/show/28148174-machine-learning-refined",
+  publisher:
+    "https://www.cambridge.org/us/academic/subjects/engineering/communications-and-signal-processing/machine-learning-refined-foundations-algorithms-and-applications-2nd-edition?format=HB",
 } as const;
 
 export function repoPath(path: string) {

@@ -86,6 +86,7 @@ export type RoadmapChapter = {
 export type ReaderReview = {
   name: string;
   source: "Amazon" | "Goodreads";
+  title: string;
   excerpt: string;
   href: string;
 };

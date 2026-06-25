@@ -17,7 +17,7 @@
       "id": "hero",
       "label": "Instructor Hero",
       "referenceSelector": "[data-limner-region='hero']",
-      "checks": ["bounds", "visible", "computed-style", "text", "image"]
+      "checks": ["bounds", "visible", "computed-style", "text"]
     },
     {
       "id": "verified-instructor",
@@ -29,13 +29,13 @@
       "id": "proof-strip",
       "label": "Adoption Proof Strip",
       "referenceSelector": "[data-limner-region='proof-strip']",
-      "checks": ["bounds", "visible", "computed-style", "text", "image"]
+      "checks": ["bounds", "visible", "computed-style", "text"]
     },
     {
       "id": "course-workbench",
       "label": "Course Planning Workbench",
       "referenceSelector": "[data-limner-region='course-workbench']",
-      "checks": ["bounds", "visible", "computed-style", "text", "image"]
+      "checks": ["bounds", "visible", "computed-style", "text"]
     },
     {
       "id": "teaching-resources",

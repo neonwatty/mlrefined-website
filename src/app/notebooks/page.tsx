@@ -12,31 +12,20 @@ export const metadata = createPageMetadata({
 
 export default function NotebooksPage() {
   return (
-    <main className="min-h-screen bg-[#fbfaf4] text-[#071326]">
+    <main className="min-h-screen text-[#071326]">
       <PageHeader activeHref="/notebooks" />
-      <div className="mx-auto max-w-7xl px-5 py-10 md:px-8 md:py-12">
-        <section className="mt-4 grid gap-5 md:mt-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(320px,0.7fr)] lg:items-end">
+      <div className="mx-auto w-[min(1680px,100%)] px-6 py-6 md:px-[26px]">
+        <section className="mb-4 grid gap-5">
           <div>
             <p className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
-              Visual notebooks
+              Animated companions
             </p>
-            <h1 className="font-serif text-4xl font-black leading-tight sm:text-5xl md:text-6xl">
+            <h1 className="font-serif text-[clamp(2.7rem,5vw,5.2rem)] font-black leading-[0.92]">
               Notebooks
             </h1>
-            <p className="mt-3 max-w-3xl text-base leading-7 text-[#526070] md:mt-4 md:text-lg md:leading-8">
-              Move from visual intuition to runnable code through curated
-              notebook previews, source notebooks, Colab paths, and chapter
-              packages.
-            </p>
-          </div>
-
-          <div className="hidden gap-3 rounded-lg border border-[#ddcfad] bg-white p-4 lg:grid">
-            <p className="font-serif text-xl font-black text-[#0b2545]">
-              Eight visual notebooks
-            </p>
-            <p className="text-sm leading-6 text-[#526070]">
-              A curated set of high-signal animations from the book resources,
-              not a decorative tag wall or fabricated inventory.
+            <p className="mt-3 max-w-3xl text-base leading-7 text-[#526070]">
+              Eight curated animated previews tied to source notebooks, chapter
+              PDFs, and Colab-ready paths.
             </p>
           </div>
         </section>
