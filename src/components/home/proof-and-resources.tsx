@@ -1,11 +1,11 @@
 import Image from "next/image";
 
 import { TrackedLink } from "@/components/analytics/tracked-link";
-import { universityLogos } from "@/content/book";
+import { readerReviews, universityLogos } from "@/content/book";
 
 export function ProofAndResources() {
   return (
-    <section className="mx-auto grid w-[min(1680px,100%)] gap-5 border-y border-[#ddcfad] bg-[#fffdf8]/72 px-6 py-4 md:px-[26px] lg:grid-cols-[320px_1fr] lg:items-center">
+    <section className="mx-auto grid w-[min(1680px,100%)] gap-5 border-y border-[#ddcfad] bg-[#fffdf8]/72 px-6 py-5 md:px-[26px] lg:grid-cols-[300px_minmax(0,1fr)_360px] lg:items-center">
       <div className="grid gap-3">
         <p className="font-serif text-lg font-black leading-tight">
           Used as a reference text at 100+ universities and colleges
@@ -19,10 +19,38 @@ export function ProofAndResources() {
           </TrackedLink>
         </div>
       </div>
-      <div className="grid grid-cols-4 items-center gap-x-5 gap-y-3 sm:grid-cols-8">
+      <div className="grid grid-cols-4 items-center gap-x-5 gap-y-3 sm:grid-cols-8 lg:border-x lg:border-[#ddcfad] lg:px-5">
         {universityLogos.slice(0, 8).map((logo) => (
           <Image key={logo.name} className="max-h-12 w-auto object-contain" src={logo.image} alt={`${logo.name} logo`} width={logo.width} height={logo.height} />
         ))}
+      </div>
+      <div className="grid gap-2">
+        <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
+          Reader signals
+        </p>
+        <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-1">
+          {readerReviews.map((review) => (
+            <TrackedLink
+              key={`${review.source}-${review.name}`}
+              className="rounded-md border border-[#ddcfad] bg-white p-2.5 transition-colors hover:border-[#164b8f]/50 hover:bg-[#f7fbff]"
+              eventName="primary_cta_clicked"
+              eventProperties={{
+                label: `Review: ${review.source}`,
+                location: "home_proof_band",
+              }}
+              href={review.href}
+              rel="noreferrer"
+              target="_blank"
+            >
+              <strong className="block font-serif text-sm font-black text-[#0b2545]">
+                {review.excerpt}
+              </strong>
+              <span className="mt-1 block text-xs font-bold text-[#164b8f]">
+                {review.source} review
+              </span>
+            </TrackedLink>
+          ))}
+        </div>
       </div>
     </section>
   );
