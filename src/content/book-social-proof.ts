@@ -120,4 +120,18 @@ export const readerReviews: ReaderReview[] = [
     excerpt: "Would definitely recommend to anyone starting with ML.",
     href: `${bookLinks.amazon}#customerReviews`,
   },
+  {
+    name: "Booker",
+    source: "Amazon",
+    title: "Excellent book, great content, improved Kindle edition",
+    excerpt: "one of the best ML books available",
+    href: "https://www.amazon.com/review/R2S6URCQT7NIAX/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8",
+  },
+  {
+    name: "HBK",
+    source: "Amazon",
+    title: "Very good book with the right blend of theory and applications",
+    excerpt: "covers almost all important topics in ML",
+    href: "https://www.amazon.com/review/R19KAK61UM2S1A/ref=cm_cr_dp_d_rvw_ttl?ie=UTF8",
+  },
 ];
