@@ -1,1 +1,1 @@
-Machine Learning Refined book cover beside a Logistic Regression notebook preview
+Machine Learning Refined book cover with the line Machine learning, from intuition to implementation.

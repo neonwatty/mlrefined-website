@@ -16,8 +16,7 @@ export function HomeHero() {
           Foundations, Algorithms, and Applications
         </p>
         <p className="max-w-[660px] text-[1.04rem] leading-[1.46] text-[#526070]">
-          A second-edition textbook that teaches machine learning from
-          intuition and geometry to derivations and executable Python resources.
+          Machine learning, from intuition to implementation.
         </p>
 
         <div className="mt-4 flex flex-wrap gap-2">
