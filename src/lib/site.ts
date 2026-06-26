@@ -84,5 +84,6 @@ export const publicRoutes = [
   "/notebooks",
   "/chapters",
   "/instructors",
+  "/resources",
   "/reviews",
 ];

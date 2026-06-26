@@ -1,11 +1,13 @@
 import Image from "next/image";
 
 import { ResourceLink } from "@/components/analytics/resource-link";
+import { BookSideRail } from "@/components/site/book-side-rail";
 import type {
   ReaderReview,
   SocialProofLogo,
   Testimonial,
 } from "@/content/book";
+import { innerPageTitleClassName } from "@/lib/page-styles";
 
 type ReviewsProofProps = {
   goodreadsHref: string;
@@ -25,71 +27,33 @@ export function ReviewsProof({
   testimonials,
 }: ReviewsProofProps) {
   return (
-    <div className="grid gap-4 lg:grid-cols-[285px_minmax(0,1fr)]">
-      <aside
-        aria-labelledby="source-trail-title"
-        className="grid content-start gap-2.5 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-3.5 shadow-lg shadow-[#071326]/5"
-      >
-        <p
-          className="text-xs font-black uppercase tracking-[0.14em] text-[#526070]"
-          id="source-trail-title"
-        >
-          Adoption context
-        </p>
-        <p className="text-sm leading-6 text-[#526070]">
-          Machine Learning Refined is used as a reference text across
-          engineering, computer science, data science, and applied mathematics.
-        </p>
-        <Image
-          alt="Machine Learning Refined second edition cover"
-          className="mx-auto h-auto w-40 shadow-xl shadow-[#071326]/15"
-          height={1746}
-          priority
-          src="/book-cover-2nd.png"
-          width={1226}
-        />
-        <div className="grid gap-2 text-sm font-black">
-          <ResourceLink
-            className="border-b border-[#ddcfad] py-2 text-[#164b8f] transition-colors hover:text-[#0b2545]"
-            eventName="proof_source_clicked"
-            eventProperties={{ location: "reviews_source_rail", resource: "publisher" }}
-            href={publisherHref}
-            rel="noreferrer"
-            target="_blank"
-          >
-            Publisher page
-          </ResourceLink>
-          <ResourceLink
-            className="border-b border-[#ddcfad] py-2 text-[#164b8f] transition-colors hover:text-[#0b2545]"
-            eventName="proof_source_clicked"
-            eventProperties={{ location: "reviews_source_rail", resource: "repo" }}
-            href={repoHref}
-            rel="noreferrer"
-            target="_blank"
-          >
-            Resource repository
-          </ResourceLink>
-          <ResourceLink
-            className="border-b border-[#ddcfad] py-2 text-[#164b8f] transition-colors hover:text-[#0b2545]"
-            eventName="proof_source_clicked"
-            eventProperties={{
-              location: "reviews_source_rail",
-              resource: "Goodreads",
-            }}
-            href={goodreadsHref}
-            rel="noreferrer"
-            target="_blank"
-          >
-            Goodreads source
-          </ResourceLink>
-        </div>
-      </aside>
+    <div className="grid gap-4 lg:grid-cols-[250px_minmax(0,1fr)]">
+      <BookSideRail
+        description="Machine Learning Refined is used as a reference text across engineering, computer science, data science, and applied mathematics."
+        eyebrow="Adoption context"
+        eventLocation="reviews_side_rail"
+        links={[
+          {
+            href: publisherHref,
+            label: "Publisher page",
+            resource: "publisher",
+          },
+          {
+            href: repoHref,
+            label: "Resource repository",
+            resource: "repo",
+          },
+          {
+            href: goodreadsHref,
+            label: "Goodreads source",
+            resource: "goodreads",
+          },
+        ]}
+      />
 
       <div className="grid gap-2.5">
         <section>
-          <h1 className="font-serif text-[clamp(2.7rem,5vw,5.2rem)] font-black leading-[0.92]">
-            Reviews &amp; Adoption
-          </h1>
+          <h1 className={innerPageTitleClassName}>Reviews &amp; Adoption</h1>
           <p className="mt-1.5 max-w-3xl text-lg leading-7 text-[#526070]">
             Used as a reference text at 100+ universities and colleges.
           </p>

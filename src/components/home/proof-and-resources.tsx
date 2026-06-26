@@ -12,11 +12,11 @@ export function ProofAndResources() {
             Reviews &amp; adoption
           </p>
           <h2 className="font-serif text-[clamp(1.75rem,2.7vw,3rem)] font-black leading-tight text-[#0b2545]">
-            Readers love it. Courses use it.
+            Trusted where machine learning is taught.
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-[#526070]">
-            A classroom-tested text with professor endorsements, university
-            adoption, and 5-star reader praise from Amazon.
+            Used at 100+ universities and colleges, with professor endorsements
+            and reader praise for its visual, first-principles approach.
           </p>
         </div>
         <div className="flex flex-wrap gap-2 lg:justify-end">

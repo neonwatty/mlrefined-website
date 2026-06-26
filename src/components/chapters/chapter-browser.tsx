@@ -1,10 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useMemo, useRef, useState } from "react";
 
 import { captureAnalyticsEvent } from "@/components/analytics/capture";
-import { ResourceLink } from "@/components/analytics/resource-link";
+import { BookSideRail } from "@/components/site/book-side-rail";
 import { bookLinks } from "@/content/book";
 import type {
   BookChapter,
@@ -12,6 +11,7 @@ import type {
   LearningWidget,
   StaticVisual,
 } from "@/content/book";
+import { innerPageTitleClassName } from "@/lib/page-styles";
 
 import {
   ChapterList,
@@ -47,10 +47,30 @@ const audienceFilters: Array<{ key: AudienceKind; label: string }> = [
 ];
 
 const sourceEvidence = [
-  ["chapter_pdfs/README.md", "Dropbox PDF collection", bookLinks.pdfs],
-  ["notes/", "Source notebooks and notes", bookLinks.notes],
-  ["exercises/", "Exercise notebooks", bookLinks.exercises],
-  ["presentations/README.md", "PPTX collection", bookLinks.slides],
+  {
+    href: bookLinks.pdfs,
+    label: "chapter_pdfs/README.md",
+    note: "Dropbox PDF collection",
+    resource: "chapter_pdfs",
+  },
+  {
+    href: bookLinks.notes,
+    label: "notes/",
+    note: "Source notebooks and notes",
+    resource: "notes",
+  },
+  {
+    href: bookLinks.exercises,
+    label: "exercises/",
+    note: "Exercise notebooks",
+    resource: "exercises",
+  },
+  {
+    href: bookLinks.slides,
+    label: "presentations/README.md",
+    note: "PPTX collection",
+    resource: "slides",
+  },
 ];
 
 export function ChapterBrowser({
@@ -110,46 +130,13 @@ export function ChapterBrowser({
   };
 
   return (
-    <div className="grid gap-5 lg:grid-cols-[230px_minmax(0,1fr)]">
-      <aside className="grid content-start gap-4 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-4 shadow-lg shadow-[#071326]/5">
-        <Image
-          className="mx-auto w-32 border border-[#ead4a4] shadow-lg shadow-[#071326]/10"
-          src="/book-cover-2nd.png"
-          alt="Machine Learning Refined second edition cover"
-          width={760}
-          height={1000}
-        />
-        <section>
-          <h2 className="mb-2 text-sm font-black uppercase tracking-[0.08em] text-[#0b2545]">
-            Verified Sources
-          </h2>
-          <p className="mt-2 text-sm leading-6 text-[#526070]">
-            PDFs, slides, notebooks, and exercises link back to the book
-            repository and publisher workflows.
-          </p>
-          <details className="mt-3 border-t border-[#ddcfad] pt-2">
-            <summary className="cursor-pointer text-sm font-black text-[#164b8f]">
-              Show source anchors
-            </summary>
-            <div className="mt-3 grid gap-2">
-              {sourceEvidence.map(([title, label, href]) => (
-                <ResourceLink
-                  key={title}
-                  className="rounded-md border border-[#ddcfad] bg-white p-2 text-sm transition-colors hover:border-[#164b8f]/50"
-                  eventName="chapter_source_clicked"
-                  eventProperties={{ location: "chapters_source_rail", resource: title }}
-                  href={href}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <strong className="block text-[#0b2545]">{title}</strong>
-                  <span className="text-xs leading-5 text-[#526070]">{label}</span>
-                </ResourceLink>
-              ))}
-            </div>
-          </details>
-        </section>
-      </aside>
+    <div className="grid gap-5 lg:grid-cols-[250px_minmax(0,1fr)]">
+      <BookSideRail
+        description="PDFs, slides, notebooks, and exercises link back to the book repository and publisher workflows."
+        eyebrow="Verified sources"
+        eventLocation="chapters_side_rail"
+        links={sourceEvidence}
+      />
 
       <div className="grid content-start gap-4">
         <section className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(280px,420px)] lg:items-end">
@@ -157,7 +144,7 @@ export function ChapterBrowser({
             <p className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
               Chapter resource hub
             </p>
-            <h1 className="font-serif text-[clamp(2.15rem,4vw,4rem)] font-black leading-tight">
+            <h1 className={innerPageTitleClassName}>
               Find the chapter, then open the exact resource
             </h1>
           </div>
