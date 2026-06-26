@@ -31,13 +31,30 @@ export function PageHeader({ activeHref }: PageHeaderProps) {
           </strong>
         </TrackedLink>
         <button
-          className="inline-flex min-h-11 shrink-0 items-center justify-center rounded-md border border-[#c79222]/55 px-3 text-sm font-black text-[#ffe0a3] transition-colors hover:bg-white/10 lg:hidden"
+          className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-md border border-[#c79222]/55 px-3 text-sm font-black text-[#ffe0a3] transition-colors hover:bg-white/10 lg:hidden"
           type="button"
           aria-controls="mobile-site-navigation"
           aria-expanded={isOpen}
           onClick={() => setIsOpen((current) => !current)}
         >
-          Menu
+          <span>{isOpen ? "Close" : "Menu"}</span>
+          <span className="relative h-3.5 w-4" aria-hidden="true">
+            <span
+              className={`absolute left-0 top-0 h-0.5 w-4 rounded-full bg-current transition-transform duration-300 motion-reduce:transition-none ${
+                isOpen ? "translate-y-[6px] rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`absolute left-0 top-[6px] h-0.5 w-4 rounded-full bg-current transition-opacity duration-200 motion-reduce:transition-none ${
+                isOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`absolute left-0 top-3 h-0.5 w-4 rounded-full bg-current transition-transform duration-300 motion-reduce:transition-none ${
+                isOpen ? "-translate-y-[6px] -rotate-45" : ""
+              }`}
+            />
+          </span>
         </button>
         <div className="hidden max-w-full gap-1 text-[0.84rem] font-bold leading-tight text-[#ecf2fa] lg:flex lg:justify-end">
           {primaryNav.map((item) => {
@@ -63,12 +80,15 @@ export function PageHeader({ activeHref }: PageHeaderProps) {
         </div>
       </nav>
       <div
-        className={`border-t border-[#ead4a4]/20 px-4 pb-3 pt-1 lg:hidden ${
-          isOpen ? "block" : "hidden"
+        className={`overflow-hidden border-t px-4 transition-[max-height,opacity,border-color] duration-300 ease-out motion-reduce:transition-none lg:hidden ${
+          isOpen
+            ? "max-h-96 border-[#ead4a4]/20 opacity-100"
+            : "pointer-events-none max-h-0 border-transparent opacity-0"
         }`}
         id="mobile-site-navigation"
+        aria-hidden={!isOpen}
       >
-        <div className="mx-auto grid w-[min(1680px,100%)] gap-2">
+        <div className="mx-auto grid w-[min(1680px,100%)] gap-2 py-3">
           {primaryNav.map((item) => {
             const isActive = item.href === activeHref;
 
@@ -85,6 +105,7 @@ export function PageHeader({ activeHref }: PageHeaderProps) {
                 eventProperties={{ label: item.label, location: "site_header_mobile" }}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
+                tabIndex={isOpen ? undefined : -1}
               >
                 {item.label}
                 {isActive ? (
