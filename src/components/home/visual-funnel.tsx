@@ -4,7 +4,7 @@ import { FigureCarousel } from "./figure-carousel";
 
 export function VisualFunnel() {
   return (
-    <section className="mx-auto my-5 w-[min(1680px,calc(100%_-_48px))] border-y border-[#ddcfad] bg-[#fffdf8]/72 px-5 py-5 md:px-7">
+    <section className="mx-auto my-5 w-[min(1480px,calc(100%_-_48px))] rounded-lg border border-[#ddcfad] bg-[#fffdf8]/90 p-5 shadow-xl shadow-[#071326]/10 md:p-6">
       <div className="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end">
         <div>
           <p className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
