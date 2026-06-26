@@ -46,26 +46,34 @@ export function HomeHero() {
         />
       </figure>
 
-      <div className="rounded-md bg-[linear-gradient(135deg,#071326,#0b2545_58%,#071326)] p-3.5 text-[#fffaf0] shadow-lg shadow-[#071326]/12 lg:col-span-2 lg:grid lg:grid-cols-[minmax(260px,0.62fr)_minmax(0,1.38fr)] lg:items-center lg:gap-5">
-        <div>
-          <p className="mb-1 text-[0.66rem] font-black uppercase tracking-[0.16em] text-[#ead4a4]">
+      <div className="rounded-md bg-[linear-gradient(135deg,#071326,#0b2545_58%,#071326)] p-4 text-[#fffaf0] shadow-lg shadow-[#071326]/12 sm:p-5 lg:col-span-2 lg:grid lg:grid-cols-[minmax(260px,0.55fr)_minmax(0,1.45fr)] lg:items-center lg:gap-6">
+        <div className="max-w-[460px]">
+          <p className="mb-1.5 text-[0.66rem] font-black uppercase tracking-[0.16em] text-[#ead4a4]">
             The pedagogy
           </p>
-          <h2 className="font-serif text-lg font-black leading-tight md:text-2xl">
+          <h2 className="font-serif text-2xl font-black leading-[1.05] sm:text-3xl lg:text-2xl">
             Visualize. Derive. Implement.
           </h2>
+          <p className="mt-2 text-sm leading-6 text-[#fffaf0]/74">
+            Every topic moves from geometric intuition to precise math to executable Python.
+          </p>
         </div>
-        <ol className="mt-3 grid gap-2 sm:grid-cols-3 lg:mt-0 lg:gap-0">
+        <ol className="mt-4 grid gap-2.5 sm:grid-cols-3 lg:mt-0 lg:gap-3">
           {pedagogySteps.map((step) => (
-            <li key={step.title} className="relative grid min-h-12 justify-items-center gap-1 px-1 py-1 text-center lg:px-2 lg:before:absolute lg:before:left-0 lg:before:right-0 lg:before:top-5 lg:before:h-px lg:before:bg-[#ead4a4]/42">
-              <span className="z-10 grid size-7 place-items-center rounded-full border border-[#ead4a4] bg-[#fffdf8] font-serif text-[0.64rem] font-black text-[#164b8f] shadow-md shadow-black/20 lg:size-7 lg:text-[0.64rem]">
+            <li
+              key={step.title}
+              className="grid grid-cols-[36px_minmax(0,1fr)] items-start gap-3 rounded-md border border-white/10 bg-white/[0.055] p-3 text-left sm:min-h-[126px] sm:grid-cols-1 sm:justify-items-start sm:p-3.5 lg:min-h-0"
+            >
+              <span className="grid size-9 place-items-center rounded-full border border-[#ead4a4] bg-[#fffdf8] font-serif text-[0.64rem] font-black text-[#164b8f] shadow-md shadow-black/20 sm:size-8">
                 {step.number}
               </span>
-              <strong className="font-serif text-[0.64rem] font-black leading-3 sm:text-sm sm:leading-tight">
-                {step.title}
-              </strong>
-              <span className="hidden text-[0.68rem] leading-4 text-[#fffaf0]/70 sm:block">
-                {step.note}
+              <span className="min-w-0">
+                <strong className="block font-serif text-base font-black leading-tight">
+                  {step.title}
+                </strong>
+                <span className="mt-1 block text-sm leading-5 text-[#fffaf0]/70 sm:text-[0.78rem]">
+                  {step.note}
+                </span>
               </span>
             </li>
           ))}
