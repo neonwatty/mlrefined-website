@@ -46,7 +46,7 @@ export function HomeHero() {
         />
       </figure>
 
-      <div className="rounded-md bg-[linear-gradient(135deg,#071326,#0b2545_58%,#071326)] p-3.5 text-[#fffaf0] shadow-lg shadow-[#071326]/12 sm:p-5 lg:col-span-2 lg:grid lg:grid-cols-[minmax(260px,0.55fr)_minmax(0,1.45fr)] lg:items-center lg:gap-6">
+      <div className="hidden rounded-md bg-[linear-gradient(135deg,#071326,#0b2545_58%,#071326)] p-3.5 text-[#fffaf0] shadow-lg shadow-[#071326]/12 sm:block sm:p-5 lg:col-span-2 lg:grid lg:grid-cols-[minmax(260px,0.55fr)_minmax(0,1.45fr)] lg:items-center lg:gap-6">
         <div className="max-w-[460px]">
           <p className="mb-1.5 text-[0.66rem] font-black uppercase tracking-[0.16em] text-[#ead4a4]">
             The pedagogy
