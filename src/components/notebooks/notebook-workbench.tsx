@@ -45,10 +45,10 @@ export function NotebookWorkbench({ chapters, widgets }: NotebookWorkbenchProps)
             <p className="text-xs font-black uppercase tracking-[0.14em] text-[#164b8f]">
               {selectedWidget.chapter} / {selectedWidget.topic} / Live visual notebook
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="grid gap-2 sm:flex sm:flex-wrap">
               {selectedChapter ? (
                 <SourceLink
-                  className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7]"
+                  className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7]"
                   detail=""
                   href={selectedChapter.resources.notes ?? selectedChapter.resources.notebook ?? selectedWidget.href}
                   label="Chapter resources"
@@ -56,14 +56,14 @@ export function NotebookWorkbench({ chapters, widgets }: NotebookWorkbenchProps)
                 />
               ) : null}
               <SourceLink
-                className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7]"
+                className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7]"
                 detail=""
                 href={selectedWidget.href}
                 label="Source notebook"
                 resource={selectedWidget.title}
               />
               <SourceLink
-                className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-3 text-sm font-black text-[#06172d] hover:bg-[#d7a02b]"
+                className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-3 text-sm font-black text-[#06172d] hover:bg-[#d7a02b]"
                 detail=""
                 href={selectedWidget.colab}
                 label="Open in Colab"
@@ -137,23 +137,23 @@ export function NotebookWorkbench({ chapters, widgets }: NotebookWorkbenchProps)
                   {widget.description}
                 </span>
               </button>
-              <div className="mt-auto grid grid-cols-3 gap-1.5">
+              <div className="mt-auto grid gap-2 sm:grid-cols-3 sm:gap-1.5">
                 <SourceLink
-                  className="inline-flex min-h-8 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-1.5 text-center text-[0.68rem] font-black leading-[0.875rem] text-[#164b8f] hover:bg-[#fff7e7]"
+                  className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-2 text-center text-sm font-black leading-tight text-[#164b8f] hover:bg-[#fff7e7] sm:px-1.5 sm:text-[0.68rem] sm:leading-[0.875rem]"
                   detail=""
                   href={chapterHrefForWidget(chapters, widget)}
                   label="Chapter resources"
                   resource={widget.title}
                 />
                 <SourceLink
-                  className="inline-flex min-h-8 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-1.5 text-center text-[0.68rem] font-black leading-[0.875rem] text-[#164b8f] hover:bg-[#fff7e7]"
+                  className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-2 text-center text-sm font-black leading-tight text-[#164b8f] hover:bg-[#fff7e7] sm:px-1.5 sm:text-[0.68rem] sm:leading-[0.875rem]"
                   detail=""
                   href={widget.href}
                   label="Source notebook"
                   resource={widget.title}
                 />
                 <SourceLink
-                  className="inline-flex min-h-8 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-1.5 text-center text-[0.68rem] font-black leading-[0.875rem] text-[#164b8f] hover:bg-[#fff7e7]"
+                  className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-2 text-center text-sm font-black leading-tight text-[#164b8f] hover:bg-[#fff7e7] sm:px-1.5 sm:text-[0.68rem] sm:leading-[0.875rem]"
                   detail=""
                   href={widget.colab}
                   label="Open in Colab"

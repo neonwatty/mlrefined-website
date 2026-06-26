@@ -95,7 +95,7 @@ function FooterLinkGroup({
       <p className="text-xs font-black uppercase tracking-[0.2em] text-[#ead4a4]">
         {label}
       </p>
-      <div className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-2">
+      <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 md:mt-4 md:items-baseline md:gap-x-4 md:gap-y-2">
         <FooterLinkList links={links} section={label} />
       </div>
     </div>
@@ -113,11 +113,11 @@ function AuthorLinkGroup({ rows }: { rows: readonly AuthorFooterRow[] }) {
       <p className="text-xs font-black uppercase tracking-[0.2em] text-[#ead4a4]">
         Authors
       </p>
-      <div className="mt-4 space-y-2">
+      <div className="mt-3 space-y-2 md:mt-4">
         {rows.map((row) => (
           <div
             key={row.name}
-            className="flex flex-wrap items-baseline gap-x-4 gap-y-2"
+            className="flex flex-wrap items-center gap-x-3 gap-y-1 md:items-baseline md:gap-x-4 md:gap-y-2"
           >
             <p className="font-bold leading-6 text-white">{row.name}</p>
             <FooterLinkList
@@ -139,19 +139,19 @@ function FooterLinkList({
   section: string;
 }) {
   return (
-    <ul className="flex flex-wrap items-center gap-x-3 gap-y-2">
+    <ul className="flex flex-wrap items-center gap-x-2 gap-y-1 md:gap-x-3 md:gap-y-2">
       {links.map((link, index) => (
         <li key={link.href} className="flex items-center gap-x-3">
           {index > 0 ? (
             <span
               aria-hidden="true"
-              className="hidden text-[#ead4a4]/45 md:inline"
+            className="hidden text-[#ead4a4]/45 md:inline"
             >
               |
             </span>
           ) : null}
           <ResourceLink
-            className="font-bold leading-6 text-[#ecf2fa] transition-colors hover:text-[#ffe0a3] hover:underline hover:decoration-[#c79222] hover:underline-offset-4"
+            className="inline-flex min-h-11 items-center rounded-md px-1 font-bold leading-6 text-[#ecf2fa] transition-colors hover:text-[#ffe0a3] hover:underline hover:decoration-[#c79222] hover:underline-offset-4 md:min-h-6 md:px-0"
             eventName="footer_link_clicked"
             eventProperties={{
               label: link.label,

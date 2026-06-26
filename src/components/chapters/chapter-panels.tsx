@@ -76,7 +76,7 @@ export function SelectedChapterPanel({
   const heroWidget = widgets[0];
 
   return (
-    <section className="grid gap-4 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-4 shadow-lg shadow-[#071326]/5 lg:grid-cols-[minmax(260px,0.72fr)_minmax(280px,0.58fr)_minmax(340px,1fr)]">
+    <section className="grid gap-4 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-3 shadow-lg shadow-[#071326]/5 sm:p-4 lg:grid-cols-[minmax(260px,0.72fr)_minmax(280px,0.58fr)_minmax(340px,1fr)]">
       <div className="grid content-start gap-3">
         <div className="flex flex-wrap items-center gap-2">
           <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">Selected chapter package</p>
@@ -147,11 +147,11 @@ function ResourceLinks({ chapter }: { chapter: BookChapter }) {
   ].filter((resource): resource is [string, string] => Boolean(resource[1]));
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="grid gap-2 sm:flex sm:flex-wrap">
       {resources.map(([label, href]) => (
         <ResourceLink
           key={label}
-          className="inline-flex min-h-10 items-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7]"
+          className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7]"
           eventName="chapter_resource_clicked"
           eventProperties={{
             chapter: chapter.number,

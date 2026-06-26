@@ -54,7 +54,7 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
   return (
     <article className="grid gap-3.5 rounded-lg border border-[#ddcfad] bg-[#fffdf8]/95 p-3.5 shadow-xl shadow-[#071326]/10 lg:grid-cols-[minmax(360px,1.15fr)_minmax(300px,0.85fr)]">
       <ResourceLink
-        className="relative grid h-[clamp(390px,34vw,500px)] min-h-0 place-items-center overflow-hidden rounded-md border border-[#d9e2ec] bg-white"
+        className="relative grid h-[250px] min-h-0 place-items-center overflow-hidden rounded-md border border-[#d9e2ec] bg-white sm:h-[clamp(390px,34vw,500px)]"
         eventName="home_visual_clicked"
         eventProperties={{
           chapter: activeFigure.chapter,
@@ -92,21 +92,21 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
         <p className="min-h-[4.6rem] text-[#526070]">{activeFigure.description}</p>
         <div className="flex flex-wrap gap-2">
           <button
-            className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
+            className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
             type="button"
             onClick={showPrevious}
           >
             Previous
           </button>
           <button
-            className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
+            className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
             type="button"
             onClick={showNext}
           >
             Next
           </button>
           <button
-            className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
+            className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
             type="button"
             aria-pressed={isPaused}
             onClick={() => {
@@ -123,7 +123,7 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
         </div>
         <div className="grid gap-2 sm:grid-cols-2">
           <ResourceLink
-            className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
+            className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
             eventName="home_visual_clicked"
             eventProperties={{
               chapter: activeFigure.chapter,
@@ -138,7 +138,7 @@ export function FigureCarousel({ figures }: FigureCarouselProps) {
           </ResourceLink>
           {activeFigure.sourceHref ? (
             <ResourceLink
-              className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
+              className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]"
               eventName="home_visual_source_clicked"
               eventProperties={{
                 chapter: activeFigure.chapter,

@@ -73,7 +73,7 @@ export function InstructorRoadmap({
           </button>
         ))}
         <ResourceLink
-          className="rounded-lg border border-[#ddcfad] bg-[#fffdf8] p-2 text-sm font-black text-[#164b8f]"
+          className="inline-flex min-h-11 items-center rounded-lg border border-[#ddcfad] bg-[#fffdf8] px-3 py-2 text-sm font-black text-[#164b8f]"
           eventName="instructor_resource_clicked"
           eventProperties={{ location: "roadmap_picker", resource: "Preface" }}
           href={prefaceHref}
@@ -123,7 +123,7 @@ export function InstructorRoadmap({
                 </div>
                 <div className={`rounded-md border bg-white p-1.5 ${isOpen ? "border-[#164b8f] shadow-md shadow-[#071326]/10" : "border-[#d9e2ec]"}`}>
                 <button
-                  className="grid w-full gap-2 text-left md:grid-cols-[minmax(0,1fr)_auto] md:items-center"
+                  className="grid min-h-11 w-full gap-2 text-left md:grid-cols-[minmax(0,1fr)_auto] md:items-center"
                   aria-expanded={isOpen}
                   type="button"
                   onClick={() => {
@@ -182,7 +182,7 @@ export function InstructorRoadmap({
         {supportLinks.map((link) => (
           <ResourceLink
             key={link.label}
-            className="grid gap-1 border-b border-[#d9e2ec] py-1.5 transition-colors hover:text-[#164b8f]"
+            className="grid min-h-11 gap-1 border-b border-[#d9e2ec] py-2 transition-colors hover:text-[#164b8f]"
             eventName="instructor_resource_clicked"
             eventProperties={{
               location: "roadmap_support",
@@ -211,11 +211,11 @@ function ChapterResourceLinks({ chapter }: { chapter: BookChapter }) {
   ].filter((resource): resource is [string, string] => Boolean(resource[1]));
 
   return (
-    <div className="flex flex-wrap gap-1.5">
+    <div className="grid gap-2 sm:flex sm:flex-wrap sm:gap-1.5">
       {resources.map(([label, href]) => (
         <ResourceLink
           key={label}
-          className="inline-flex min-h-7 items-center rounded-md border border-[#c79222]/50 bg-white px-2 text-xs font-black text-[#164b8f] hover:bg-[#fff7e7]"
+          className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-2 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7] sm:text-xs"
           eventName="instructor_chapter_resource_clicked"
           eventProperties={{
             chapter: chapter.number,
