@@ -16,7 +16,7 @@ export function HomeHero() {
           Foundations, Algorithms, and Applications
         </p>
         <p className="max-w-[660px] text-[1.04rem] leading-[1.46] text-[#526070]">
-          Machine learning, from intuition to implementation.
+          The foundations of machine learning, from scratch.
         </p>
 
         <div className="mt-4 flex flex-wrap gap-2">

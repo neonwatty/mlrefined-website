@@ -21,7 +21,7 @@ export const socialPreviewImage = {
   url: "/opengraph-image.png",
   width: 1200,
   height: 630,
-  alt: "Machine Learning Refined book cover with the line Machine learning, from intuition to implementation.",
+  alt: "Machine Learning Refined book cover with the line The foundations of machine learning, from scratch.",
 } as const;
 
 export function absoluteUrl(path = "/") {

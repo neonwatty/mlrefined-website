@@ -1,1 +1,1 @@
-Machine Learning Refined book cover with the line Machine learning, from intuition to implementation.
+Machine Learning Refined book cover with the line The foundations of machine learning, from scratch.
