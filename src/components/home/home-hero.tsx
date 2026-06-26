@@ -5,7 +5,7 @@ import { pedagogySteps } from "@/content/home-page";
 
 export function HomeHero() {
   return (
-    <section className="mx-auto mb-5 mt-4 grid w-[min(1480px,calc(100%_-_24px))] gap-4 overflow-hidden rounded-lg border border-[#ddcfad] bg-[#fffdf8]/90 px-5 py-6 shadow-xl shadow-[#071326]/10 sm:w-[min(1480px,calc(100%_-_48px))] md:px-8 lg:grid-cols-[minmax(520px,720px)_minmax(300px,390px)] lg:items-center lg:justify-center lg:gap-x-[clamp(24px,3vw,44px)] lg:gap-y-5 lg:px-10 lg:py-8">
+    <section className="mx-auto mb-5 mt-3 grid w-[min(1480px,calc(100%_-_24px))] gap-4 overflow-hidden rounded-lg border border-[#ddcfad] bg-[#fffdf8]/90 px-4 py-5 shadow-xl shadow-[#071326]/10 sm:w-[min(1480px,calc(100%_-_48px))] sm:px-5 sm:py-6 md:px-8 lg:grid-cols-[minmax(520px,720px)_minmax(300px,390px)] lg:items-center lg:justify-center lg:gap-x-[clamp(24px,3vw,44px)] lg:gap-y-5 lg:px-10 lg:py-8">
       <div className="min-w-0 lg:justify-self-end">
         <h1 className="max-w-[720px] font-serif text-[clamp(2.75rem,5vw,4.55rem)] font-black leading-[0.92] tracking-normal">
           Machine Learning Refined
@@ -20,11 +20,11 @@ export function HomeHero() {
           Learn the foundations of machine learning, from scratch.
         </p>
 
-        <div className="mt-4 flex flex-wrap gap-2">
-          <TrackedLink className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-4 text-[0.82rem] font-black text-[#06172d] shadow-lg shadow-[#c79222]/20 transition-colors hover:bg-[#d7a02b]" eventName="primary_cta_clicked" eventProperties={{ location: "home_hero", label: "Explore chapter resources" }} href="/chapters">
+        <div className="mt-4 grid gap-2 sm:flex sm:flex-wrap">
+          <TrackedLink className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-4 text-[0.82rem] font-black text-[#06172d] shadow-lg shadow-[#c79222]/20 transition-colors hover:bg-[#d7a02b]" eventName="primary_cta_clicked" eventProperties={{ location: "home_hero", label: "Explore chapter resources" }} href="/chapters">
             Explore chapter resources
           </TrackedLink>
-          <TrackedLink className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-[0.82rem] font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" eventName="primary_cta_clicked" eventProperties={{ location: "home_hero", label: "Open Python notebooks" }} href="/notebooks">
+          <TrackedLink className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-[0.82rem] font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" eventName="primary_cta_clicked" eventProperties={{ location: "home_hero", label: "Open Python notebooks" }} href="/notebooks">
             Open Python notebooks
           </TrackedLink>
         </div>
@@ -55,7 +55,7 @@ export function HomeHero() {
             Visualize. Derive. Implement.
           </h2>
         </div>
-        <ol className="mt-3 grid grid-cols-3 gap-1 lg:mt-0 lg:gap-0">
+        <ol className="mt-3 grid gap-2 sm:grid-cols-3 lg:mt-0 lg:gap-0">
           {pedagogySteps.map((step) => (
             <li key={step.title} className="relative grid min-h-12 justify-items-center gap-1 px-1 py-1 text-center lg:px-2 lg:before:absolute lg:before:left-0 lg:before:right-0 lg:before:top-5 lg:before:h-px lg:before:bg-[#ead4a4]/42">
               <span className="z-10 grid size-7 place-items-center rounded-full border border-[#ead4a4] bg-[#fffdf8] font-serif text-[0.64rem] font-black text-[#164b8f] shadow-md shadow-black/20 lg:size-7 lg:text-[0.64rem]">

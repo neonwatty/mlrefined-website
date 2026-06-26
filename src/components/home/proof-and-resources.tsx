@@ -5,7 +5,7 @@ import { readerReviews, testimonials, universityLogos } from "@/content/book";
 
 export function ProofAndResources() {
   return (
-    <section className="mx-auto mb-8 mt-5 w-[min(1480px,calc(100%_-_48px))] rounded-lg border border-[#ddcfad] bg-[#fffdf8]/90 p-5 shadow-xl shadow-[#071326]/10 md:p-6">
+    <section className="mx-auto mb-8 mt-5 w-[min(1480px,calc(100%_-_24px))] rounded-lg border border-[#ddcfad] bg-[#fffdf8]/90 p-4 shadow-xl shadow-[#071326]/10 sm:w-[min(1480px,calc(100%_-_48px))] md:p-6">
       <div className="grid gap-5 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:items-end">
         <div>
           <p className="mb-2 text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
@@ -19,11 +19,11 @@ export function ProofAndResources() {
             and reader praise for its visual, first-principles approach.
           </p>
         </div>
-        <div className="flex flex-wrap gap-2 lg:justify-end">
-          <TrackedLink className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" eventName="primary_cta_clicked" eventProperties={{ location: "home_proof_panel", label: "For instructors" }} href="/instructors">
+        <div className="grid gap-2 sm:flex sm:flex-wrap lg:justify-end">
+          <TrackedLink className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" eventName="primary_cta_clicked" eventProperties={{ location: "home_proof_panel", label: "For instructors" }} href="/instructors">
             For instructors
           </TrackedLink>
-          <TrackedLink className="inline-flex min-h-10 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-3 text-sm font-black text-[#06172d] transition-colors hover:bg-[#d7a02b]" eventName="primary_cta_clicked" eventProperties={{ location: "home_proof_panel", label: "See adoption proof" }} href="/reviews">
+          <TrackedLink className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-3 text-sm font-black text-[#06172d] transition-colors hover:bg-[#d7a02b]" eventName="primary_cta_clicked" eventProperties={{ location: "home_proof_panel", label: "See adoption proof" }} href="/reviews">
             See adoption proof
           </TrackedLink>
         </div>

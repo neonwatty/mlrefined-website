@@ -85,7 +85,7 @@ export function FigureAtlas({
             Search figures
           </span>
           <input
-            className="min-h-10 rounded-md border border-[#ddcfad] bg-white px-3 text-sm outline-none transition-colors focus:border-[#164b8f]"
+            className="min-h-11 rounded-md border border-[#ddcfad] bg-white px-3 text-sm outline-none transition-colors focus:border-[#164b8f]"
             type="search"
             value={figureQuery}
             placeholder="Search figures, topics, chapters"
@@ -138,7 +138,7 @@ function FigureCoverage({
         return (
           <button
             key={chapter}
-            className={`inline-flex min-h-8 items-center gap-1.5 rounded-md border px-2.5 text-[0.7rem] font-black transition-colors ${
+            className={`inline-flex min-h-11 items-center justify-center gap-1.5 rounded-md border px-2.5 text-[0.78rem] font-black transition-colors sm:justify-start sm:text-[0.7rem] ${
               number === selectedNumber
                 ? "border-[#164b8f] bg-[#e9f1fb] text-[#0b2545]"
                 : "border-[#ddcfad] bg-white text-[#164b8f] hover:bg-[#fff7e7]"
@@ -181,7 +181,7 @@ function FigureInspector({ visual }: { visual: StaticVisual }) {
         </p>
         <h3 className="font-serif text-xl font-black text-[#0b2545]">{visual.title}</h3>
         <p className="text-sm leading-5 text-[#526070]">{visual.description}</p>
-        <div className="flex flex-wrap gap-2">
+        <div className="grid gap-2 sm:flex sm:flex-wrap">
           <AtlasLink href={visual.sourceHref} label="Source figure" visual={visual} />
           <AtlasLink href={visual.chapterHref} label="Chapter resources" visual={visual} />
         </div>
@@ -296,7 +296,7 @@ function AtlasLink({
 }) {
   return (
     <ResourceLink
-      className="inline-flex min-h-8 items-center rounded-md border border-[#c79222]/50 bg-white px-2.5 text-xs font-black text-[#164b8f] hover:bg-[#fff7e7]"
+      className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-2.5 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7] sm:text-xs"
       eventName="chapter_visual_source_clicked"
       eventProperties={{
         chapter: visual.chapter,

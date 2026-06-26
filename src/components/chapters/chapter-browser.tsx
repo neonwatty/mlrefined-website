@@ -156,7 +156,7 @@ export function ChapterBrowser({
               Search chapters
             </span>
             <input
-              className="min-h-10 rounded-md border border-[#ddcfad] bg-white px-3 text-sm outline-none transition-colors focus:border-[#164b8f]"
+              className="min-h-11 rounded-md border border-[#ddcfad] bg-white px-3 text-sm outline-none transition-colors focus:border-[#164b8f]"
               type="search"
               value={query}
               placeholder="Search chapters, topics, resources"
@@ -205,7 +205,7 @@ export function ChapterBrowser({
           </FilterGroup>
         </section>
 
-        <ul className="flex flex-wrap justify-end gap-5">
+        <ul className="grid grid-cols-2 gap-3 rounded-lg border border-[#ddcfad] bg-white/72 p-3 sm:flex sm:flex-wrap sm:justify-end sm:gap-5 sm:border-0 sm:bg-transparent sm:p-0">
           <SummaryItem value={filteredChapters.length} label="Chapters shown" />
           <SummaryItem value={84} label="Note notebooks" />
           <SummaryItem value={primaryChapters.filter((chapter) => chapter.resources.exercise).length} label="Exercise sets" />

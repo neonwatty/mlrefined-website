@@ -164,7 +164,7 @@ export function ReviewsProof({
                     &ldquo;{review.excerpt}&rdquo;
                   </p>
                   <ResourceLink
-                    className="mt-2 inline-flex text-sm font-black text-[#164b8f] underline-offset-4 hover:underline"
+                    className="mt-2 inline-flex min-h-11 items-center rounded-md text-sm font-black text-[#164b8f] underline-offset-4 hover:underline"
                     eventName="reader_review_source_clicked"
                     eventProperties={{
                       location: "reviews_reader_reviews",

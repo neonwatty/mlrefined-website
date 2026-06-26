@@ -28,7 +28,7 @@ export function FilterButton({
 }) {
   return (
     <button
-      className={`min-h-10 rounded-md border px-3 text-sm font-black transition-colors ${
+      className={`min-h-11 rounded-md border px-3 text-sm font-black transition-colors ${
         isSelected
           ? "border-[#c79222] bg-[#c79222] text-[#06172d]"
           : "border-[#ddcfad] bg-white text-[#164b8f] hover:bg-[#fff7e7]"
