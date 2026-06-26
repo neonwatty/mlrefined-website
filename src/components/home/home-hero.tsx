@@ -34,44 +34,44 @@ export function HomeHero() {
         </p>
       </div>
 
-      <figure className="m-0 justify-self-center lg:justify-self-start">
+      <figure className="m-0 w-full justify-self-center sm:w-auto lg:justify-self-start">
         <Image
-          className="h-auto w-[min(100%,200px)] border border-[#ead4a4]/75 object-contain shadow-2xl shadow-[#071326]/20 sm:w-[min(74%,300px)] lg:w-[min(100%,370px)] lg:max-h-[min(460px,calc(100vh-190px))]"
+          className="h-auto w-full border border-[#ead4a4]/75 object-contain shadow-2xl shadow-[#071326]/20 sm:w-[min(74%,300px)] lg:w-[min(100%,370px)] lg:max-h-[min(460px,calc(100vh-190px))]"
           src="/book-cover-2nd.png"
           alt="Machine Learning Refined second edition book cover"
           width={760}
           height={1000}
-          sizes="(max-width: 640px) 200px, (max-width: 1024px) 300px, 370px"
+          sizes="(max-width: 640px) calc(100vw - 56px), (max-width: 1024px) 300px, 370px"
           priority
         />
       </figure>
 
-      <div className="rounded-md bg-[linear-gradient(135deg,#071326,#0b2545_58%,#071326)] p-4 text-[#fffaf0] shadow-lg shadow-[#071326]/12 sm:p-5 lg:col-span-2 lg:grid lg:grid-cols-[minmax(260px,0.55fr)_minmax(0,1.45fr)] lg:items-center lg:gap-6">
+      <div className="rounded-md bg-[linear-gradient(135deg,#071326,#0b2545_58%,#071326)] p-3.5 text-[#fffaf0] shadow-lg shadow-[#071326]/12 sm:p-5 lg:col-span-2 lg:grid lg:grid-cols-[minmax(260px,0.55fr)_minmax(0,1.45fr)] lg:items-center lg:gap-6">
         <div className="max-w-[460px]">
           <p className="mb-1.5 text-[0.66rem] font-black uppercase tracking-[0.16em] text-[#ead4a4]">
             The pedagogy
           </p>
-          <h2 className="font-serif text-2xl font-black leading-[1.05] sm:text-3xl lg:text-2xl">
+          <h2 className="font-serif text-[1.7rem] font-black leading-[1.03] sm:text-3xl lg:text-2xl">
             Visualize. Derive. Implement.
           </h2>
-          <p className="mt-2 text-sm leading-6 text-[#fffaf0]/74">
+          <p className="mt-2 text-sm leading-5 text-[#fffaf0]/74 sm:leading-6">
             Every topic moves from geometric intuition to precise math to executable Python.
           </p>
         </div>
-        <ol className="mt-4 grid gap-2.5 sm:grid-cols-3 lg:mt-0 lg:gap-3">
+        <ol className="mt-3 grid gap-2 sm:grid-cols-3 lg:mt-0 lg:gap-3">
           {pedagogySteps.map((step) => (
             <li
               key={step.title}
-              className="grid grid-cols-[36px_minmax(0,1fr)] items-start gap-3 rounded-md border border-white/10 bg-white/[0.055] p-3 text-left sm:min-h-[126px] sm:grid-cols-1 sm:justify-items-start sm:p-3.5 lg:min-h-0"
+              className="grid grid-cols-[32px_minmax(0,1fr)] items-start gap-2.5 rounded-md border border-white/10 bg-white/[0.055] p-2.5 text-left sm:min-h-[126px] sm:grid-cols-1 sm:justify-items-start sm:p-3.5 lg:min-h-0"
             >
-              <span className="grid size-9 place-items-center rounded-full border border-[#ead4a4] bg-[#fffdf8] font-serif text-[0.64rem] font-black text-[#164b8f] shadow-md shadow-black/20 sm:size-8">
+              <span className="grid size-8 place-items-center rounded-full border border-[#ead4a4] bg-[#fffdf8] font-serif text-[0.6rem] font-black text-[#164b8f] shadow-md shadow-black/20">
                 {step.number}
               </span>
               <span className="min-w-0">
-                <strong className="block font-serif text-base font-black leading-tight">
+                <strong className="block font-serif text-[0.98rem] font-black leading-tight sm:text-base">
                   {step.title}
                 </strong>
-                <span className="mt-1 block text-sm leading-5 text-[#fffaf0]/70 sm:text-[0.78rem]">
+                <span className="mt-0.5 block text-[0.82rem] leading-5 text-[#fffaf0]/70 sm:mt-1 sm:text-[0.78rem]">
                   {step.note}
                 </span>
               </span>

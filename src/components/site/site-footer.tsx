@@ -117,7 +117,7 @@ function AuthorLinkGroup({ rows }: { rows: readonly AuthorFooterRow[] }) {
         {rows.map((row) => (
           <div
             key={row.name}
-            className="flex flex-wrap items-center gap-x-3 gap-y-1 md:items-baseline md:gap-x-4 md:gap-y-2"
+            className="grid gap-1 md:flex md:flex-wrap md:items-baseline md:gap-x-4 md:gap-y-2"
           >
             <p className="font-bold leading-6 text-white">{row.name}</p>
             <FooterLinkList
