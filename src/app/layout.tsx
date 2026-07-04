@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import { PageviewTracker } from "@/components/analytics/pageview-tracker";
 import { SiteFooter } from "@/components/site/site-footer";
-import { siteConfig, socialPreviewImage } from "@/lib/site";
+import { siteConfig, socialPreviewImage, twitterPreviewImage } from "@/lib/site";
 
 import "./globals.css";
 
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: [socialPreviewImage],
+    images: [twitterPreviewImage],
   },
   robots: {
     index: true,

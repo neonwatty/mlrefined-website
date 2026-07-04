@@ -26,10 +26,17 @@ export const bookCoverImage = {
 } as const;
 
 export const socialPreviewImage = {
-  url: "/opengraph-image.png",
+  url: "/opengraph-image",
   width: 1200,
   height: 630,
-  alt: "Machine Learning Refined book cover with the line Learn the foundations of machine learning from scratch.",
+  alt: "Machine Learning Refined second edition social preview with book cover, GitHub notebooks, chapter PDFs, exercises, and slides.",
+} as const;
+
+export const twitterPreviewImage = {
+  url: "/twitter-image",
+  width: 1200,
+  height: 630,
+  alt: socialPreviewImage.alt,
 } as const;
 
 export function absoluteUrl(path = "/") {
@@ -91,7 +98,7 @@ export function createPageMetadata({
       card: "summary_large_image",
       title: resolvedTitle,
       description,
-      images: [socialPreviewImage],
+      images: [twitterPreviewImage],
     },
   };
 }

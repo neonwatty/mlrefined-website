@@ -15,6 +15,7 @@ import {
   createPageMetadata,
   siteConfig,
   socialPreviewImage,
+  twitterPreviewImage,
 } from "./site";
 
 describe("seo helpers", () => {
@@ -40,7 +41,7 @@ describe("seo helpers", () => {
     expect(metadata.twitter).toMatchObject({
       card: "summary_large_image",
     });
-    expect(metadata.twitter?.images).toEqual([socialPreviewImage]);
+    expect(metadata.twitter?.images).toEqual([twitterPreviewImage]);
   });
 
   it("creates noindex metadata for owner-only surfaces", () => {

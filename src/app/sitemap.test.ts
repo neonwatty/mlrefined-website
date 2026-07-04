@@ -9,6 +9,7 @@ import {
   publicRoutes,
   siteConfig,
   socialPreviewImage,
+  twitterPreviewImage,
 } from "@/lib/site";
 import robots from "./robots";
 import sitemap, { sitemapLastModified } from "./sitemap";
@@ -64,7 +65,7 @@ describe("site metadata helpers", () => {
       "Reviews | Machine Learning Refined",
     );
     expect(reviewsMetadata.openGraph?.images).toEqual([socialPreviewImage]);
-    expect(reviewsMetadata.twitter?.images).toEqual([socialPreviewImage]);
+    expect(reviewsMetadata.twitter?.images).toEqual([twitterPreviewImage]);
 
     const homeMetadata = createPageMetadata({
       title: siteConfig.name,
