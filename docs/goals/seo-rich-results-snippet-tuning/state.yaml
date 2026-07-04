@@ -1,0 +1,354 @@
+version: 2
+
+goal:
+  title: "SEO Rich Results And Snippet Tuning"
+  slug: "seo-rich-results-snippet-tuning"
+  kind: existing_plan
+  tranche: "Validate live structured data and snippets, tune high-value notebooks/chapters metadata and copy, deploy verified changes, and record the Search Console recrawl checkpoint."
+  status: done
+  oracle:
+    signal: "Live rendered metadata/JSON-LD checks, rich-results/schema validation evidence where available, repo checks, production deploy inspection, live route/tag smoke checks, and Search Console follow-up evidence or recrawl-wait receipt."
+    cadence: "after Scout baseline, after Worker implementation, after production deploy, and at final audit"
+    final_proof: "Final Judge/PM receipt maps deployed snippet/schema improvements and Search Console follow-up state to the original next-step plan with full_outcome_complete true."
+  intake:
+    original_request: "Plan a GoalBuddy prep board for this."
+    interpreted_outcome: "Create a GoalBuddy board for the next SEO tranche: rich-results validation, notebooks/chapters snippet tuning, production deployment, and Search Console follow-up."
+    input_shape: existing_plan
+    audience: "Machine Learning Refined readers, instructors, independent learners, search crawlers, and the site owner."
+    authority: requested
+    proof_type: "test | artifact | metric | review"
+    completion_proof: "Live structured data and snippets are validated, high-value pages are tuned and deployed, checks pass, and Search Console recrawl follow-up is recorded or explicitly waiting on Google."
+    likely_misfire: "Doing generic SEO planning or copy edits without proving live schema/snippet state, deployment, or Search Console follow-up."
+    blind_spots_considered:
+      - "Google may not expose all rich-result eligibility for the schema types used."
+      - "Search Console recrawl timing is outside local control."
+      - "Snippet copy must not promise unavailable solutions/manual content."
+      - "Existing dirty worktree must be preserved."
+      - "Next.js 16 metadata file conventions must be followed."
+    existing_plan_facts:
+      - "Validate rich-results/structured data for homepage, /chapters, /notebooks, and a representative chapter detail page."
+      - "Tune /notebooks around Machine Learning Refined GitHub notebooks, Python notebooks, and chapter resources."
+      - "Tune /chapters and chapter detail snippets around chapter PDFs, exercises, slides, notebooks, and exact chapter topics."
+      - "Add a Search Console checkpoint after recrawl for discovered pages, indexing state, and impressions."
+
+rules:
+  pm_owns_state: true
+  one_active_task: true
+  max_write_workers: 1
+  no_implementation_without_worker_or_pm_task: true
+  no_completion_without_judge_or_pm_audit: true
+  planning_is_not_completion: true
+  queued_required_worker_blocks_completion: true
+  continuous_until_full_outcome: true
+  missing_input_or_credentials_do_not_stop_goal: true
+  preserve_and_validate_existing_plan: true
+  intake_misfire_must_be_audited: true
+  goal_pressure_requires_oracle: true
+  no_completion_on_weak_proof: true
+  slice_policy:
+    max_consecutive_tiny_tasks: 2
+    prefer_vertical_slices: true
+    judge_picks_largest_safe_slice: true
+    worker_completes_whole_slice: true
+
+agents:
+  scout: installed
+  worker: installed
+  judge: installed
+
+visual_board:
+  selected: local
+  local:
+    status: live
+    url: "http://goalbuddy.localhost:41737/seo-rich-results-snippet-tuning/"
+    command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal /Users/neonwatty/Desktop/mlrefined-website/docs/goals/seo-rich-results-snippet-tuning"
+
+active_task: null
+
+tasks:
+  - id: T001
+    type: scout
+    assignee: Scout
+    status: done
+    reasoning_hint: medium
+    objective: "Map the current live structured-data, metadata, snippet, and rich-results validation state for the priority SEO pages."
+    inputs:
+      - "AGENTS.md"
+      - "node_modules/next/dist/docs/ relevant metadata and OG image docs"
+      - "Live https://www.mlrefined.com/"
+      - "Live https://www.mlrefined.com/chapters"
+      - "Live https://www.mlrefined.com/notebooks"
+      - "Live representative chapter detail pages"
+      - "src/lib/seo.ts"
+      - "src/app route metadata files"
+      - "docs/goals/seo-growth-roadmap/notes/T007-search-console-browser-review-2026-07-04.md"
+      - "docs/goals/seo-growth-roadmap/notes/T009-url-inspection-indexing-requests-2026-07-04.md"
+      - "docs/goals/seo-growth-roadmap/notes/T010-og-image-draft-2026-07-04.md"
+    constraints:
+      - "Read-only."
+      - "Do not edit implementation files."
+      - "Use rendered/live evidence where possible."
+      - "Do not use Search Console API credentials; browser UI only if needed and already authenticated."
+      - "Do not overclaim rich-result eligibility beyond what validators or rendered markup prove."
+    expected_output:
+      - "Per-page metadata and JSON-LD baseline."
+      - "Rich-results/schema validation evidence or clear validator limitations."
+      - "Snippet gaps ranked by likely search intent impact."
+      - "Top three realistic failure modes to verify before completion."
+      - "Recommended first Worker package."
+    receipt:
+      result: done
+      note: "notes/T001-live-seo-schema-scout.md"
+      summary: "Mapped live metadata, JSON-LD, crawl surfaces, Search Console context, and Google guidance. Highest-impact gaps are /notebooks visible/source-intent copy, missing /chapters JSON-LD, generic chapter descriptions that may overstate unavailable resource kinds, and stale sitemap lastmod values."
+      evidence:
+        - "Live metadata/JSON-LD extractor for /, /chapters, /notebooks, /chapters/introduction-to-machine-learning, /chapters/linear-regression."
+        - "Structured-data sanity checker: 0 errors for routes with JSON-LD."
+        - "robots.txt allows / and points to sitemap."
+        - "sitemap.xml lists public and chapter URLs but lastmod remains 2026-06-26."
+        - "Google Search Central structured data, title link, and snippet guidance."
+      spawned_tasks:
+        - T002
+
+  - id: T002
+    type: judge
+    assignee: Judge
+    status: done
+    reasoning_hint: high
+    objective: "Choose the largest safe first implementation package from the Scout evidence."
+    inputs:
+      - "T001 receipt"
+      - "Goal oracle"
+      - "Existing plan facts"
+    constraints:
+      - "Read-only."
+      - "Do not implement."
+      - "Prefer a vertical page/snippet/schema package over isolated tiny edits when safe."
+      - "Every approved Worker package must include allowed_files, verify commands, and stop_if conditions."
+    expected_output:
+      - "Decision: approved, blocked, or needs more evidence."
+      - "Exact Worker objective."
+      - "allowed_files."
+      - "verify commands and live checks."
+      - "stop_if conditions."
+      - "Deferred tasks or blockers."
+    receipt:
+      result: done
+      decision: approved
+      full_outcome_complete: false
+      rationale: "Scout evidence shows a single safe vertical package can improve live schema/snippet readiness before recrawl: add /chapters collection JSON-LD, tune /notebooks source-intent metadata/copy, make chapter descriptions reflect actual resource kinds, and refresh sitemap lastmod for the July 4 SEO tranche."
+      approved_worker_task: T003
+      allowed_files:
+        - "src/app/chapters/page.tsx"
+        - "src/app/notebooks/page.tsx"
+        - "src/app/chapters/[slug]/page.tsx"
+        - "src/app/sitemap.ts"
+        - "src/app/sitemap.test.ts"
+        - "src/lib/seo.ts"
+        - "src/lib/seo.test.ts"
+        - "docs/goals/seo-rich-results-snippet-tuning/state.yaml"
+        - "docs/goals/seo-rich-results-snippet-tuning/notes/**"
+      verify:
+        - "npm run lint"
+        - "npm run typecheck"
+        - "npm run test:unit"
+        - "npm run build"
+        - "Rendered inspection of /chapters, /notebooks, and representative /chapters/[slug] pages for title, description, canonical, robots, OG/Twitter tags, JSON-LD, visible copy, and sitemap lastmod."
+      stop_if:
+        - "Need files outside allowed_files."
+        - "Snippet or schema copy would overpromise unavailable resources."
+        - "Local Next docs contradict the intended metadata/sitemap approach."
+        - "Verification fails twice with the same failure."
+
+  - id: T003
+    type: worker
+    assignee: Worker
+    status: done
+    reasoning_hint: medium
+    objective: "Implement the approved schema/snippet tuning package: /chapters collection JSON-LD, /notebooks source-intent metadata/copy, resource-accurate chapter descriptions, and refreshed sitemap lastmod."
+    allowed_files:
+      - "src/app/chapters/page.tsx"
+      - "src/app/notebooks/page.tsx"
+      - "src/app/chapters/[slug]/page.tsx"
+      - "src/app/sitemap.ts"
+      - "src/app/sitemap.test.ts"
+      - "src/lib/seo.ts"
+      - "src/lib/seo.test.ts"
+      - "docs/goals/seo-rich-results-snippet-tuning/state.yaml"
+      - "docs/goals/seo-rich-results-snippet-tuning/notes/**"
+    verify:
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Rendered inspection of changed routes for title, description, canonical, robots, OG/Twitter tags, JSON-LD, and meaningful visible copy."
+    stop_if:
+      - "Need files outside Judge-approved allowed_files."
+      - "Snippet or schema claim would overpromise unavailable content."
+      - "Next.js metadata convention is unclear until local docs are read."
+      - "Verification fails twice with the same failure."
+    receipt:
+      result: done
+      changed_files:
+        - "src/app/chapters/page.tsx"
+        - "src/app/notebooks/page.tsx"
+        - "src/app/chapters/[slug]/page.tsx"
+        - "src/app/sitemap.ts"
+        - "src/app/sitemap.test.ts"
+        - "src/lib/seo.ts"
+        - "src/lib/seo.test.ts"
+      commands:
+        - cmd: "npm run test:unit -- src/lib/seo.test.ts src/app/sitemap.test.ts"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run knip:production"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Rendered local inspection on http://localhost:3026 for /chapters, /notebooks, /chapters/introduction-to-machine-learning, /chapters/linear-regression"
+          status: pass
+        - cmd: "curl -sS http://localhost:3026/sitemap.xml | rg -n '<loc>|<lastmod>'"
+          status: pass
+      summary: "Implemented the approved schema/snippet package. /chapters now emits CollectionPage/BreadcrumbList JSON-LD, /notebooks metadata and visible copy target GitHub/Python notebook intent, chapter descriptions are generated from actual resource kinds, chapter detail copy mentions GitHub-backed source resources, and sitemap lastmod is refreshed to 2026-07-04."
+      residual_risk:
+        - "Not deployed yet; T004 must verify production."
+        - "Google rich-result display is not guaranteed even with valid markup."
+
+  - id: T004
+    type: worker
+    assignee: Worker
+    status: done
+    reasoning_hint: medium
+    objective: "Deploy the verified SEO tranche to production and prove the live domain serves the improved metadata, schema, routes, and image tags."
+    allowed_files:
+      - "docs/goals/seo-rich-results-snippet-tuning/notes/**"
+      - "docs/goals/seo-rich-results-snippet-tuning/state.yaml"
+    verify:
+      - "npm run ci"
+      - "npx vercel --prod --yes"
+      - "npx vercel inspect <deployment-url>"
+      - "Live curl/browser checks for changed pages and generated metadata routes."
+      - "Live rendered metadata/JSON-LD inspection for changed pages."
+    stop_if:
+      - "Local verification is red."
+      - "Vercel project link or auth is missing."
+      - "Production deploy fails twice with the same failure."
+      - "Live domain does not alias the new deployment."
+    receipt:
+      result: done
+      changed_files:
+        - "docs/goals/seo-rich-results-snippet-tuning/state.yaml"
+      commands:
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "npx vercel --prod --yes"
+          status: pass
+        - cmd: "npx vercel inspect mlrefined-website-8dwuw8yfb-jermwatts-projects.vercel.app"
+          status: pass
+        - cmd: "Live rendered metadata/JSON-LD inspection for /chapters, /notebooks, /chapters/introduction-to-machine-learning, /chapters/linear-regression"
+          status: pass
+        - cmd: "curl -sS https://www.mlrefined.com/sitemap.xml | rg -n '<loc>|<lastmod>'"
+          status: pass
+        - cmd: "curl -sS -D /tmp/mlr-rich-og.headers https://www.mlrefined.com/opengraph-image -o /tmp/mlr-rich-og.png && file /tmp/mlr-rich-og.png"
+          status: pass
+      summary: "Deployed the verified SEO tranche to production. Vercel deployment dpl_F5q1RdPak81e64Yonq4j6tTYo7Vg is Ready, target production, and aliased to https://www.mlrefined.com. Live pages expose the improved titles/descriptions, /chapters JSON-LD, /notebooks GitHub notebook wording, resource-accurate chapter descriptions, no solutions/manual overclaim, and sitemap lastmod 2026-07-04."
+      deployment:
+        id: "dpl_F5q1RdPak81e64Yonq4j6tTYo7Vg"
+        url: "https://mlrefined-website-8dwuw8yfb-jermwatts-projects.vercel.app"
+        alias: "https://www.mlrefined.com"
+
+  - id: T005
+    type: pm
+    assignee: PM
+    status: done
+    reasoning_hint: medium
+    objective: "Record or schedule the Search Console follow-up checkpoint for recrawl/indexing/impressions evidence."
+    inputs:
+      - "Search Console property sc-domain:mlrefined.com"
+      - "T009 URL Inspection receipt"
+      - "Latest production deployment receipt"
+    constraints:
+      - "Use authenticated browser UI when collecting Search Console evidence."
+      - "If Google has not recrawled yet, record the exact wait state and follow-up criteria."
+      - "Do not create API keys or service-account private keys."
+    expected_output:
+      - "Search Console checkpoint note or explicit recrawl-wait receipt."
+      - "URLs and metrics to recheck."
+      - "Next recommended date/window."
+    receipt:
+      result: done
+      note: "notes/T005-search-console-follow-up-checkpoint.md"
+      summary: "Recorded the Search Console recrawl follow-up checkpoint for the deployed schema/snippet tranche. Recommended recheck window is 2026-07-07 to 2026-07-11, covering sitemap last read/discovered pages, URL Inspection states for submitted URLs, and performance impressions/CTR for GitHub/PDF/notebook intent."
+      evidence:
+        - "T009 URL Inspection indexing requests were submitted on 2026-07-04."
+        - "T004 production deployment dpl_F5q1RdPak81e64Yonq4j6tTYo7Vg is live."
+        - "Live sitemap now advertises 2026-07-04 lastmod values."
+      residual_risk:
+        - "Actual indexing and query impressions depend on Google's recrawl/reprocessing timing."
+
+  - id: T999
+    type: judge
+    assignee: Judge
+    status: done
+    reasoning_hint: high
+    objective: "Audit whether the rich-results/snippet-tuning tranche is complete."
+    inputs:
+      - "All done task receipts"
+      - "Latest local and live verification"
+      - "Current dirty diff"
+      - "Goal oracle"
+    constraints:
+      - "Read-only."
+      - "Do not call complete if required Worker tasks remain queued, active, or unverified."
+      - "List residual risks explicitly."
+    expected_output:
+      - "complete | not_complete"
+      - "full_outcome_complete: true | false"
+      - "Evidence mapping to the original plan"
+      - "Missing evidence"
+      - "Next task if not complete"
+    receipt:
+      result: done
+      decision: complete
+      full_outcome_complete: true
+      summary: "Final audit passes. The tranche validated live schema/snippet state, implemented and deployed the high-value /chapters, /notebooks, and chapter-detail snippet/schema tuning, proved production is serving deployment dpl_F5q1RdPak81e64Yonq4j6tTYo7Vg, and recorded the Search Console recrawl follow-up window for 2026-07-07 to 2026-07-11."
+      evidence_mapping:
+        - plan_item: "Validate live structured data and snippets for priority pages."
+          evidence: "T001 mapped baseline rendered metadata/JSON-LD and Google guidance; T004/T999 live checks verified title, description, JSON-LD, canonical deployment id, and sitemap behavior on production routes."
+        - plan_item: "Tune /notebooks around GitHub notebooks, Python notebooks, and chapter resources."
+          evidence: "T003 changed /notebooks metadata and visible copy; T004/T999 live checks verified the title 'Machine Learning Refined GitHub Notebooks', GitHub/Python notebook description, and visible GitHub-backed notebook copy."
+        - plan_item: "Tune /chapters and chapter detail snippets around exact available resources."
+          evidence: "T003 added /chapters CollectionPage/BreadcrumbList JSON-LD and resource-derived chapter descriptions; T004/T999 live checks verified /chapters JSON-LD, intro chapter PDF/source-only description, and linear regression PDF/notebook/exercise/slides description."
+        - plan_item: "Deploy verified changes to production."
+          evidence: "T004 deployed Vercel production deployment dpl_F5q1RdPak81e64Yonq4j6tTYo7Vg, inspected it as Ready, and verified www.mlrefined.com aliases the deployment."
+        - plan_item: "Record Search Console follow-up after recrawl."
+          evidence: "T005 recorded the recrawl wait state and follow-up checks for sitemap status, URL Inspection, and performance impressions/CTR."
+      commands:
+        - cmd: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/scripts/check-goal-state.mjs docs/goals/seo-rich-results-snippet-tuning/state.yaml"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "Corrected live verifier for https://www.mlrefined.com/chapters, /notebooks, /chapters/introduction-to-machine-learning, /chapters/linear-regression, and /sitemap.xml"
+          status: pass
+        - cmd: "curl -sS https://www.mlrefined.com/chapters | rg -n 'ld\\+json|CollectionPage|BreadcrumbList|application'"
+          status: pass
+        - cmd: "curl -sS https://www.mlrefined.com/chapters/linear-regression | rg -n 'ld\\+json|LearningResource|BreadcrumbList|application'"
+          status: pass
+      top_failure_modes_checked:
+        - failure_mode: "Production might still serve an old deployment or stale tags."
+          evidence: "Live verifier found data-dpl-id dpl_F5q1RdPak81e64Yonq4j6tTYo7Vg and expected titles/descriptions on all checked routes."
+        - failure_mode: "Structured data might be missing or malformed after deploy."
+          evidence: "Live curl/rg and verifier found BreadcrumbList/CollectionPage on /chapters and BreadcrumbList/LearningResource on representative chapter detail pages."
+        - failure_mode: "Snippet copy might overclaim unavailable resources."
+          evidence: "Live verifier confirmed the intro chapter description does not claim exercises or slides and no checked page/body claims a solutions manual."
+      missing_evidence:
+        - "Google's actual recrawl, indexing, rich-result display, and query impressions cannot be forced locally; T005 records the Search Console follow-up window and criteria."
+      residual_risk:
+        - "Google may choose different snippets or decline rich-result presentation even with valid, visible structured data."
+        - "Search Console performance impact needs recheck after Google recrawls, recommended 2026-07-07 to 2026-07-11."

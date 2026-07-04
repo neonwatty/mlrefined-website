@@ -24,10 +24,18 @@ const resourceCues = {
 } as const;
 
 export const metadata = createPageMetadata({
-  title: "Resources",
+  title: "Machine Learning Refined Resources",
   description:
-    "Machine Learning Refined resources, including PDFs, notebooks, exercises, presentations, and GitHub source links.",
+    "Find Machine Learning Refined PDFs, Python notebooks, exercises, slides, roadmaps, Colab-friendly notes, and canonical GitHub source links.",
   path: "/resources",
+  keywords: [
+    "Machine Learning Refined resources",
+    "machine learning Python notebooks",
+    "machine learning exercises",
+    "machine learning PDFs",
+    "Colab machine learning notebooks",
+    "machine learning slides",
+  ],
 });
 
 export default function ResourcesPage() {
@@ -96,7 +104,8 @@ export default function ResourcesPage() {
           </div>
           <div className="mt-10 grid gap-4 md:grid-cols-2">
             {resourceGroups.map((resource) => {
-              const cue = resourceCues[resource.title as keyof typeof resourceCues];
+              const cue =
+                resourceCues[resource.title as keyof typeof resourceCues];
 
               return (
                 <ResourceLink

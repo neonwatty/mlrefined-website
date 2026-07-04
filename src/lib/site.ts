@@ -2,12 +2,20 @@ import type { Metadata } from "next";
 
 export const siteConfig = {
   name: "Machine Learning Refined",
+  title: "Machine Learning Refined 2nd Edition | GitHub, PDFs & Notebooks",
   description:
-    "Machine Learning Refined: Foundations, Algorithms, and Applications. Explore the textbook, chapter resources, visual notebooks, instructor paths, and adoption proof.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mlrefined.com",
+    "Official Machine Learning Refined 2nd edition site with chapter PDFs, GitHub notebooks, exercises, slides, and Python resources for the Cambridge textbook.",
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mlrefined.com").replace(
+    /\/$/,
+    "",
+  ),
   githubRepo: "https://github.com/neonwatty/machine-learning-refined",
   resourceRepo:
     "https://github.com/neonwatty/machine-learning-refined/tree/main",
+  publisherUrl:
+    "https://www.cambridge.org/highereducation/books/machine-learning-refined/0A64B2370C2F7CE3ACF535835E9D7955",
+  isbn: "9781108480727",
+  authors: ["Jeremy Watt", "Reza Borhani", "Aggelos K. Katsaggelos"],
 };
 
 export const bookCoverImage = {
@@ -30,10 +38,14 @@ export function absoluteUrl(path = "/") {
 
 export function createPageMetadata({
   description,
+  keywords = [],
+  noIndex = false,
   path,
   title,
 }: {
   description: string;
+  keywords?: string[];
+  noIndex?: boolean;
   path: string;
   title: string;
 }): Metadata {
@@ -43,9 +55,30 @@ export function createPageMetadata({
   return {
     title,
     description,
+    keywords,
     alternates: {
       canonical: path,
     },
+    robots: noIndex
+      ? {
+          index: false,
+          follow: false,
+          googleBot: {
+            index: false,
+            follow: false,
+          },
+        }
+      : {
+          index: true,
+          follow: true,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+            "max-video-preview": -1,
+          },
+        },
     openGraph: {
       title: resolvedTitle,
       description,
@@ -55,9 +88,9 @@ export function createPageMetadata({
       images: [socialPreviewImage],
     },
     twitter: {
-    card: "summary_large_image",
-    title: resolvedTitle,
-    description,
+      card: "summary_large_image",
+      title: resolvedTitle,
+      description,
       images: [socialPreviewImage],
     },
   };
