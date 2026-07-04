@@ -2,8 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 
+import { chapters } from "@/content/book";
 import { publicRoutes } from "@/lib/site";
-import sitemap from "./sitemap";
+import robots from "./robots";
+import sitemap, { sitemapLastModified } from "./sitemap";
 
 function pageFileForRoute(route: string) {
   if (route === "/") {
@@ -15,13 +17,28 @@ function pageFileForRoute(route: string) {
 
 describe("sitemap metadata route", () => {
   it("only advertises implemented public app routes", () => {
-    const sitemapPaths = sitemap().map((entry) => new URL(entry.url).pathname);
+    const entries = sitemap();
+    const sitemapPaths = entries.map((entry) => new URL(entry.url).pathname);
+    const chapterRoutes = chapters.map((chapter) => `/chapters/${chapter.slug}`);
 
-    expect(sitemapPaths).toEqual(publicRoutes);
-    expect(sitemapPaths).not.toContain("/chapters/introduction-to-machine-learning");
+    expect(sitemapPaths).toEqual([...publicRoutes, ...chapterRoutes]);
+    expect(sitemapPaths).not.toContain("/dashboard");
+    expect(entries.every((entry) => entry.lastModified === sitemapLastModified))
+      .toBe(true);
 
-    for (const route of sitemapPaths) {
+    for (const route of publicRoutes) {
       expect(fs.existsSync(pageFileForRoute(route)), route).toBe(true);
     }
+  });
+
+  it("allows noindex dashboard pages to be crawled while disallowing private systems", () => {
+    const rules = robots().rules;
+
+    expect(rules).toMatchObject({
+      userAgent: "*",
+      allow: "/",
+      disallow: ["/api/", "/admin/"],
+    });
+    expect(JSON.stringify(rules)).not.toContain("/dashboard");
   });
 });

@@ -22,9 +22,23 @@ describe("book content contracts", () => {
     const slugs = new Set(chapters.map((chapter) => chapter.slug));
 
     expect(slugs.size).toBe(chapters.length);
-    expect(chapters.every((chapter) => chapter.number && chapter.title)).toBe(
-      true,
-    );
+
+    for (const chapter of chapters) {
+      expect(chapter.number).toBeTruthy();
+      expect(chapter.title).toBeTruthy();
+      expect(chapter.topics.length).toBeGreaterThan(0);
+      expect(chapter.resources.length).toBeGreaterThan(0);
+    }
+  });
+
+  it("keeps chapter resources pointed at source-backed locations", () => {
+    for (const chapter of chapters) {
+      for (const resource of chapter.resources) {
+        expect(resource.href).toMatch(
+          /^https:\/\/(github\.com\/neonwatty\/machine-learning-refined|www\.dropbox\.com)\//,
+        );
+      }
+    }
   });
 
   it("uses local visual assets for proof and track imagery", () => {

@@ -22,6 +22,9 @@
 
 # misc
 .worktrees/
+.codex-workers/
+.superpowers/
+docs/goals/**/.goalbuddy-board/
 .DS_Store
 *.pem
 

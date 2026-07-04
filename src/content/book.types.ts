@@ -3,7 +3,17 @@ export type BookChapter = {
   title: string;
   slug: string;
   intent: "learner" | "instructor" | "reference";
+  part: string;
   summary: string;
+  topics: string[];
+  resources: ChapterResource[];
+};
+
+export type ChapterResource = {
+  title: string;
+  kind: "pdf" | "notes" | "exercise" | "slides" | "source";
+  description: string;
+  href: string;
 };
 
 export type SocialProofLogo = {

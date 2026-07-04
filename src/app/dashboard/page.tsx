@@ -1,10 +1,14 @@
 import Link from "next/link";
 
-export const metadata = {
-  title: "Analytics Dashboard | Machine Learning Refined",
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata = createPageMetadata({
+  title: "Analytics Dashboard",
   description:
     "Owner dashboard scaffold for PostHog events, Google Search Console trends, and content SEO opportunities.",
-};
+  path: "/dashboard",
+  noIndex: true,
+});
 
 const dashboardSections = [
   "Search Console query opportunities",

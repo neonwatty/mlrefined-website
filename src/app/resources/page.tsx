@@ -2,12 +2,22 @@ import Link from "next/link";
 
 import { ResourceLink } from "@/components/analytics/resource-link";
 import { resourceGroups } from "@/content/book";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Resources | Machine Learning Refined",
+export const metadata = createPageMetadata({
+  title: "Machine Learning Refined Resources",
   description:
-    "Machine Learning Refined resources, including PDFs, notebooks, exercises, presentations, and GitHub source links.",
-};
+    "Find Machine Learning Refined PDFs, Python notebooks, exercises, slides, roadmaps, Colab-friendly notes, and canonical GitHub source links.",
+  path: "/resources",
+  keywords: [
+    "Machine Learning Refined resources",
+    "machine learning Python notebooks",
+    "machine learning exercises",
+    "machine learning PDFs",
+    "Colab machine learning notebooks",
+    "machine learning slides",
+  ],
+});
 
 export default function ResourcesPage() {
   return (

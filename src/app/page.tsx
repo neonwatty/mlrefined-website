@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { ResourceLink } from "@/components/analytics/resource-link";
 import { chapterTracks, resourceGroups, universityLogos } from "@/content/book";
+import { homeJsonLd, stringifyJsonLd } from "@/lib/seo";
 import { primaryNav, siteConfig } from "@/lib/site";
 
 const featuredTrack = chapterTracks[1];
@@ -76,8 +77,14 @@ function ResourceGlyph({ index }: { index: number }) {
 }
 
 export default function Home() {
+  const jsonLd = homeJsonLd();
+
   return (
     <main className="min-h-screen bg-white text-[#0b0b0b]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: stringifyJsonLd(jsonLd) }}
+      />
       <header className="border-b border-black/10 bg-white">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <Link className="text-lg font-semibold tracking-normal" href="/">
@@ -114,12 +121,12 @@ export default function Home() {
             Foundations, Algorithms, and Applications
           </p>
           <p className="mt-7 max-w-xl text-lg leading-8 text-black/68">
-            A university textbook and open resource collection for learning
-            machine learning from intuition and geometry through derivation and
-            hands-on Python implementation.
+            The official second-edition home for the Cambridge University Press
+            text, with chapter PDFs, GitHub notebooks, exercises, slides, and
+            Python resources for learning from derivation through implementation.
           </p>
 
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+          <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
             <ResourceLink
               className="inline-flex h-12 items-center justify-center rounded-md bg-[#f6b91a] px-6 text-sm font-semibold text-black shadow-sm shadow-[#f6b91a]/20 transition-colors hover:bg-[#f0ad00]"
               eventName="chapter_pdf_clicked"
@@ -141,9 +148,15 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
             >
-              View GitHub repo
+              Open GitHub resources
               <GitHubMark />
             </ResourceLink>
+            <Link
+              className="inline-flex h-12 items-center justify-center rounded-md border border-black/20 px-6 text-sm font-semibold transition-colors hover:bg-black/[0.03]"
+              href="/notebooks"
+            >
+              Browse Python notebooks
+            </Link>
           </div>
         </div>
 
