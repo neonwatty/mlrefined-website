@@ -1,0 +1,476 @@
+version: 2
+
+goal:
+  title: "SEO Growth Roadmap"
+  slug: "seo-growth-roadmap"
+  kind: specific
+  tranche: "Complete successive safe verified SEO architecture slices until Machine Learning Refined has materially stronger crawlable chapter/resource discovery and analytics-backed prioritization where credentials permit."
+  status: done
+  oracle:
+    signal: "Rendered route inspection, sitemap/robots output, structured-data parseability, desktop/mobile screenshots for changed public pages, repo checks, and Search Console/PostHog evidence when credentials are present."
+    cadence: "after each Worker package and at final audit"
+    final_proof: "Final Judge/PM receipt maps implemented pages/schema/metadata/route hygiene to commands, rendered URLs, screenshots, and analytics/search evidence or explicit credential-blocked receipts."
+  intake:
+    original_request: "Create a GoalBuddy prep board for the next SEO work, and say what credentials are needed."
+    interpreted_outcome: "Prepare a GoalBuddy board for the next technical/content SEO tranche and identify credential gates for analytics-backed SEO decisions."
+    input_shape: specific
+    audience: "Machine Learning Refined readers, instructors, independent learners, search crawlers, and the site owner."
+    authority: requested
+    proof_type: artifact
+    completion_proof: "The board drives verified implementation of crawlable chapter/resource architecture, route metadata/schema hygiene, and available analytics-backed prioritization; final audit records full_outcome_complete: true."
+    likely_misfire: "Adding more generic metadata or reports while failing to build crawlable resource pages and failing to use real search/analytics evidence when available."
+    blind_spots_considered:
+      - "Local checkout and live production route drift."
+      - "Owner-only dashboard indexing and public-nav discoverability."
+      - "Structured data overclaiming content the site does not provide."
+      - "Missing Google Search Console, PostHog, Vercel, or domain verification credentials."
+      - "Search demand around solutions/manual queries that should not be exploited with false promises."
+    existing_plan_facts:
+      - "Highest-confidence next local slice is a richer /chapters hub plus /chapters/[slug] pages."
+      - "Likely follow-ups include /notebooks, /instructors, /reviews, OG/Twitter image generation, Search Console, and route-specific structured data."
+      - "Credential-gated analytics work should be blocked at the task level, not at the whole-goal level."
+
+rules:
+  pm_owns_state: true
+  one_active_task: true
+  max_write_workers: 1
+  no_implementation_without_worker_or_pm_task: true
+  no_completion_without_judge_or_pm_audit: true
+  planning_is_not_completion: true
+  queued_required_worker_blocks_completion: true
+  continuous_until_full_outcome: true
+  missing_input_or_credentials_do_not_stop_goal: true
+  exact_human_approval_can_terminal_wait: true
+  preserve_and_validate_existing_plan: true
+  intake_misfire_must_be_audited: true
+  goal_pressure_requires_oracle: true
+  no_completion_on_weak_proof: true
+  slice_policy:
+    max_consecutive_tiny_tasks: 2
+    prefer_vertical_slices: true
+    judge_picks_largest_safe_slice: true
+    worker_completes_whole_slice: true
+
+agents:
+  scout: installed
+  worker: installed
+  judge: installed
+
+visual_board:
+  selected: local
+  local:
+    status: live
+    url: "http://goalbuddy.localhost:41737/seo-growth-roadmap/"
+    command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal /Users/neonwatty/Desktop/mlrefined-website/docs/goals/seo-growth-roadmap"
+
+active_task: null
+
+tasks:
+  - id: T001
+    type: scout
+    assignee: Scout
+    status: done
+    reasoning_hint: medium
+    objective: "Map the current local and live SEO route landscape, source content inventory, verification commands, and search/analytics evidence availability."
+    inputs:
+      - "AGENTS.md"
+      - "README.md"
+      - "package.json"
+      - "src/app"
+      - "src/content"
+      - "src/lib"
+      - "public"
+      - "Live https://www.mlrefined.com routes, sitemap, and robots if network is available"
+      - "Google autocomplete/search signals for Machine Learning Refined and resource-related terms"
+    constraints:
+      - "Read-only."
+      - "Do not edit implementation files."
+      - "Read local Next docs before recommending Next metadata/sitemap/robots/API changes."
+      - "Prefer source-backed and rendered evidence over guesses."
+    expected_output:
+      - "Route/content inventory with local-vs-live drift noted."
+      - "Ranked SEO opportunities with evidence and likely impact."
+      - "Credential availability report: Search Console, PostHog, Vercel/domain, GitHub if relevant."
+      - "Candidate next Worker packages."
+    receipt:
+      result: done
+      summary: "Mapped local/live SEO state. Local checkout has /, /chapters, /resources, /dashboard plus SEO helper work in the dirty tree; live production additionally has /notebooks, /instructors, and /reviews in the sitemap, while /dashboard is 404 live. Search demand clusters around brand, 2nd edition, pdf, GitHub, book, notebooks, and optimization-book terms. Credential scaffolds exist but local Search Console/PostHog/Vercel credentials are absent; GitHub CLI is authenticated."
+      evidence:
+        - "AGENTS.md requires local Next docs and proof-heavy SEO verification."
+        - "package.json scripts: lint, typecheck, knip:production, test:unit, build, ci."
+        - "node_modules/next/dist/docs/01-app/01-getting-started/14-metadata-and-og-images.md"
+        - "node_modules/next/dist/docs/01-app/02-guides/json-ld.md"
+        - "node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/01-metadata/sitemap.md"
+        - "node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/01-metadata/robots.md"
+        - "src/content/book-chapters.ts has six highlighted chapters with stable slugs."
+        - "src/content/book-resources.ts has four canonical GitHub resource groups."
+        - "src/lib/seo.ts and src/app/* metadata work already present in dirty tree."
+        - "Live https://www.mlrefined.com/sitemap.xml lists /, /notebooks, /chapters, /instructors, /resources, /reviews."
+        - "Live /dashboard returns 404."
+        - "Google autocomplete includes machine learning refined 2nd edition, pdf, github, book, solutions; broader terms include machine learning python notebooks and machine learning optimization book."
+        - ".env.example contains blank PostHog and Search Console variables; .env.local, .env, .vercel/project.json are missing."
+        - "gh auth status passes for neonwatty; vercel CLI missing."
+      spawned_tasks:
+        - T002
+        - T003
+        - T004
+        - T005
+        - T006
+  - id: T002
+    type: judge
+    assignee: Judge
+    status: done
+    reasoning_hint: high
+    objective: "Choose the first largest safe useful SEO implementation slice from Scout evidence."
+    inputs:
+      - "T001 receipt"
+      - "Goal oracle"
+      - "Existing plan facts"
+    constraints:
+      - "Do not implement."
+      - "Prefer a vertical crawlable-route slice over isolated metadata tweaks unless evidence says otherwise."
+      - "Any Worker decision must include allowed_files, verify commands, and stop_if."
+      - "Block only credential-gated tasks; keep local SEO work moving."
+    expected_output:
+      - "Decision"
+      - "Exact Worker objective"
+      - "allowed_files"
+      - "verify"
+      - "stop_if"
+      - "Deferred or blocked credential tasks"
+    receipt:
+      result: done
+      decision: approved
+      full_outcome_complete: false
+      rationale: "The largest safe first slice is crawlable chapter detail architecture: it turns the existing six highlighted chapters into indexable pages with real GitHub resource links, improves /chapters internal linking, and expands the sitemap. This directly addresses the goal misfire risk better than another metadata-only pass. Credential-gated Search Console/PostHog work remains deferred to T006/T998."
+      selected_worker_task: T003
+      allowed_files:
+        - "src/content/book.types.ts"
+        - "src/content/book-chapters.ts"
+        - "src/content/book.test.ts"
+        - "src/app/chapters/page.tsx"
+        - "src/app/chapters/[slug]/page.tsx"
+        - "src/app/sitemap.ts"
+        - "src/app/sitemap.test.ts"
+        - "src/lib/seo.ts"
+        - "src/lib/seo.test.ts"
+      verify:
+        - "npm run lint"
+        - "npm run typecheck"
+        - "npm run test:unit"
+        - "npm run build"
+        - "Rendered inspection of /chapters and at least one /chapters/[slug] page for title, canonical, robots, JSON-LD, meaningful copy, and crawlable resource links."
+      stop_if:
+        - "Chapter resource URLs cannot be source-verified."
+        - "Need files outside allowed_files."
+        - "Dynamic route API differs from local Next docs."
+        - "Verification fails twice with the same failure."
+  - id: T003
+    type: worker
+    assignee: Worker
+    status: done
+    reasoning_hint: medium
+    objective: "Implement the first safe SEO architecture slice selected by Judge, likely the richer /chapters hub and /chapters/[slug] pages if approved."
+    allowed_files:
+      - "src/content/book.types.ts"
+      - "src/content/book-chapters.ts"
+      - "src/content/book.test.ts"
+      - "src/app/chapters/page.tsx"
+      - "src/app/chapters/[slug]/page.tsx"
+      - "src/app/sitemap.ts"
+      - "src/app/sitemap.test.ts"
+      - "src/lib/seo.ts"
+      - "src/lib/seo.test.ts"
+    verify:
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Rendered inspection of /chapters and at least one /chapters/[slug] page for title, canonical, robots, JSON-LD, meaningful copy, and crawlable resource links."
+    stop_if:
+      - "Need files outside Judge-approved allowed_files."
+      - "Resource/content truth is ambiguous or would require inventing claims."
+      - "Need credentials or production access for this slice."
+      - "Verification fails twice with the same failure."
+    receipt:
+      result: done
+      changed_files:
+        - "src/content/book.types.ts"
+        - "src/content/book-chapters.ts"
+        - "src/content/book.test.ts"
+        - "src/app/chapters/page.tsx"
+        - "src/app/chapters/[slug]/page.tsx"
+        - "src/app/sitemap.ts"
+        - "src/app/sitemap.test.ts"
+        - "src/lib/seo.ts"
+        - "src/lib/seo.test.ts"
+      commands:
+        - cmd: "npm run test:unit -- src/content/book.test.ts src/app/sitemap.test.ts src/lib/seo.test.ts"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "curl -s http://localhost:3017/sitemap.xml"
+          status: pass
+        - cmd: "curl route status checks for six chapter slugs plus /chapters/not-real"
+          status: pass
+      rendered_evidence:
+        - "Browser inspection /chapters: title, canonical, robots index/follow, no console errors."
+        - "Browser inspection /chapters/linear-regression: canonical, robots index/follow, JSON-LD types BreadcrumbList and LearningResource, four crawlable resource links, no console errors."
+        - "Route status: all six /chapters/[slug] pages returned 200; /chapters/not-real returned 404."
+        - "Screenshots: /tmp/mlrefined-chapters-desktop.png, /tmp/mlrefined-chapter-detail-desktop.png, /tmp/mlrefined-chapter-detail-mobile.png."
+      summary: "Added static dynamic chapter detail pages for six highlighted chapters, enriched chapter content with source-backed topics/resource links, linked the chapter hub to detail pages, added chapter JSON-LD, and expanded the sitemap to include chapter routes."
+  - id: T004
+    type: worker
+    assignee: Worker
+    status: done
+    reasoning_hint: medium
+    objective: "Restore local public route parity with live production by implementing crawlable /notebooks, /instructors, and /reviews pages from existing source-backed content."
+    allowed_files:
+      - "src/app/notebooks/page.tsx"
+      - "src/app/instructors/page.tsx"
+      - "src/app/reviews/page.tsx"
+      - "src/lib/site.ts"
+      - "src/app/sitemap.ts"
+      - "src/app/sitemap.test.ts"
+      - "src/content/book.test.ts"
+    verify:
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Rendered inspection of /notebooks, /instructors, and /reviews for title, canonical, robots, meaningful copy, crawlable links, and console health."
+    stop_if:
+      - "Need files outside PM/Judge-approved allowed_files."
+      - "Need unverified external content or overclaiming."
+      - "Verification fails twice with the same failure."
+    receipt:
+      result: done
+      changed_files:
+        - "src/app/notebooks/page.tsx"
+        - "src/app/instructors/page.tsx"
+        - "src/app/reviews/page.tsx"
+        - "src/lib/site.ts"
+      commands:
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "curl -s http://localhost:3017/sitemap.xml"
+          status: pass
+        - cmd: "curl status checks for /, /notebooks, /chapters, /instructors, /resources, /reviews, /dashboard"
+          status: pass
+      rendered_evidence:
+        - "Browser inspection /notebooks: canonical, robots index/follow, 7 images, 7 external links, meaningful copy, no console errors."
+        - "Browser inspection /instructors: canonical, robots index/follow, 4 images, 2 external links, meaningful copy, no console errors."
+        - "Browser inspection /reviews: canonical, robots index/follow, 13 images, 3 external links, adoption/proof copy, no console errors."
+        - "Sitemap includes /notebooks, /chapters, /instructors, /resources, /reviews plus six chapter detail routes."
+        - "Screenshots: /tmp/mlrefined-notebooks-desktop.png, /tmp/mlrefined-instructors-desktop.png, /tmp/mlrefined-reviews-desktop.png, /tmp/mlrefined-notebooks-mobile.png."
+        - "Overflow check: /notebooks, /instructors, /reviews all reported scrollWidth == clientWidth at 1280px."
+      summary: "Restored local public route parity with live production by adding /notebooks, /instructors, and /reviews pages from existing source-backed content and updating primary navigation/public sitemap routes."
+  - id: T005
+    type: worker
+    assignee: Worker
+    status: done
+    reasoning_hint: medium
+    objective: "Add route-specific structured data helpers for the new public resource pages and improve social preview metadata without overclaiming content."
+    allowed_files:
+      - "src/lib/seo.ts"
+      - "src/lib/seo.test.ts"
+      - "src/app/notebooks/page.tsx"
+      - "src/app/instructors/page.tsx"
+      - "src/app/reviews/page.tsx"
+    verify:
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Rendered inspection of /notebooks, /instructors, and /reviews for JSON-LD parseability and metadata."
+    stop_if:
+      - "Schema would claim unavailable content, reviews, courses, or search behavior."
+      - "Image generation/design scope becomes unclear."
+      - "Verification fails twice with the same failure."
+    receipt:
+      result: done
+      changed_files:
+        - "src/lib/seo.ts"
+        - "src/lib/seo.test.ts"
+        - "src/app/notebooks/page.tsx"
+        - "src/app/instructors/page.tsx"
+        - "src/app/reviews/page.tsx"
+      commands:
+        - cmd: "npm run test:unit -- src/lib/seo.test.ts"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "npm run ci"
+          status: pass
+      rendered_evidence:
+        - "Browser inspection /notebooks: JSON-LD types BreadcrumbList and CollectionPage, populated hasPart, canonical, no console errors."
+        - "Browser inspection /instructors: JSON-LD types BreadcrumbList and CollectionPage, populated hasPart, canonical, no console errors."
+        - "Browser inspection /reviews: JSON-LD types BreadcrumbList and CollectionPage, populated hasPart, canonical, no console errors."
+      summary: "Added reusable CollectionPage/BreadcrumbList JSON-LD for the new public resource pages, with tests and rendered verification. Social previews continue to use route-specific title/description metadata from createPageMetadata; no fake ratings, course offers, or search actions were added."
+  - id: T006
+    type: worker
+    assignee: Worker
+    status: done
+    reasoning_hint: medium
+    objective: "Use Search Console browser evidence and analytics evidence to prioritize or refine SEO work."
+    allowed_files:
+      - ".env.local"
+      - "package.json"
+      - "scripts/seo-prioritization-readiness.mjs"
+      - "docs/goals/seo-growth-roadmap/notes/T006-posthog-prioritization-2026-07-04.md"
+      - "docs/goals/seo-growth-roadmap/notes/T007-search-console-browser-review-2026-07-04.md"
+      - "docs/goals/seo-growth-roadmap/state.yaml"
+    verify:
+      - "npm run seo:readiness -- --json"
+      - "node -e \"JSON.parse(require('fs').readFileSync('package.json','utf8')); console.log('package.json ok')\""
+      - "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.3.9/skills/goalbuddy/scripts/check-goal-state.mjs docs/goals/seo-growth-roadmap/state.yaml"
+    stop_if:
+      - "PostHog project access is missing for analytics-backed decisions."
+      - "Queries or dashboards cannot be verified."
+    receipt:
+      result: done
+      summary: "PostHog-backed prioritization is unblocked through the connector and local client env. Search Console is handled through the authenticated browser UI instead of service-account credentials. Local SEO priorities were refined using last-90-day PostHog web analytics for MLR routes."
+      changed_files:
+        - ".env.local"
+        - "package.json"
+        - "scripts/seo-prioritization-readiness.mjs"
+        - "docs/goals/seo-growth-roadmap/notes/T006-posthog-prioritization-2026-07-04.md"
+        - "docs/goals/seo-growth-roadmap/notes/T007-search-console-browser-review-2026-07-04.md"
+        - "docs/goals/seo-growth-roadmap/state.yaml"
+      commands:
+        - cmd: "PostHog connector: projects-get"
+          status: pass
+        - cmd: "PostHog connector: switch-project 422537"
+          status: pass
+        - cmd: "PostHog connector: query-web-stats Page, includeHost=true, includeBounceRate=true, includeAvgTimeOnPage=true, filterTestAccounts=true, limit=25, dateRange=-90d"
+          status: pass
+        - cmd: "PostHog connector: query-web-stats InitialChannelType, filterTestAccounts=true, limit=20, dateRange=-90d"
+          status: pass
+        - cmd: "npm run seo:readiness -- --json"
+          status: pass
+        - cmd: "node -e \"JSON.parse(require('fs').readFileSync('package.json','utf8')); console.log('package.json ok')\""
+          status: pass
+        - cmd: "Chrome Search Console review: Performance, Pages, Sitemaps, Page with redirect"
+          status: pass
+      remaining_external_access:
+        - "Vercel CLI/project access or VERCEL_TOKEN if deployment/preview status should be verified from CLI."
+      evidence:
+        - "PostHog connector project list includes a plausible MLR project: BugDrop + Foil + MLR."
+        - "PostHog connector switched to project BugDrop + Foil + MLR."
+        - "PostHog query-web-stats for last 90 days returned MLR production rows: / with 46 visitors and 58 pageviews; /chapters with 6 visitors; /notebooks with 4 visitors; /instructors with 3 visitors; /reviews with 3 visitors."
+        - "PostHog channel breakdown for last 90 days returned Direct 37 visitors/100 pageviews, Referral 7/22, Organic Search 7/9, and Organic Social 2/2."
+        - "Search Console browser review for 3 months returned 5 clicks, 143 impressions, 3.5% CTR, and average position 5.0."
+        - "Search Console query table: machine learning refined had 4 clicks/51 impressions/7.8% CTR/position 2.9; github/pdf variants had impressions and zero clicks."
+        - "Search Console page table: homepage had 5 clicks/143 impressions; /chapters, /instructors, /notebooks, and /reviews each had 1 impression and 0 clicks."
+        - "Search Console sitemap table showed https://www.mlrefined.com/sitemap.xml success, last read 27 Jun 2026, discovered pages 1."
+        - "Search Console indexing table showed 1 indexed page and 3 redirect examples: http://mlrefined.com/, https://mlrefined.com/, and http://www.mlrefined.com/."
+        - "Ignored .env.local now contains NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN and NEXT_PUBLIC_POSTHOG_HOST for local client-side event capture."
+        - "scripts/seo-prioritization-readiness.mjs verifies local PostHog client config and records Search Console as a browser-manual evidence source."
+        - "docs/goals/seo-growth-roadmap/notes/T006-posthog-prioritization-2026-07-04.md"
+        - "npm run seo:readiness -- --json"
+        - ".vercel/project.json missing"
+        - "VERCEL_TOKEN absent from environment"
+  - id: T998
+    type: pm
+    assignee: PM
+    status: done
+    reasoning_hint: default
+    objective: "Prepare a concise credential/access request for any blocked analytics, deployment, or live-verification tasks."
+    inputs:
+      - "Blocked task receipts"
+      - "Credential availability report"
+    constraints:
+      - "Do not request secrets in chat."
+      - "Ask for least-privilege access and concrete property/project identifiers."
+      - "Keep local implementation moving if credentials are not yet available."
+    expected_output:
+      - "Exact missing access list."
+      - "Safe setup path."
+      - "Tasks unblocked by each credential."
+    receipt:
+      result: done
+      exact_missing_access:
+        - "PostHog read/query access for the production project, including project host and project ID/API key configured outside chat."
+        - "Vercel project/team access or VERCEL_TOKEN if preview/production deployment status should be verified from the CLI."
+      safe_setup_path:
+        - "Do not paste private keys or API keys into chat."
+        - "Use the authenticated browser UI for Search Console query impressions/CTR/position."
+        - "Configure PostHog and deployment credentials in .env.local, a secure connector, or the deployment environment when needed."
+      unblocks:
+        - "PostHog-backed prioritization and live deployment verification if connector/project access is configured."
+        - "Live deployment and preview verification if Vercel access is configured."
+      summary: "Prepared least-privilege credential request and safe setup path for blocked analytics/deployment evidence."
+  - id: T999
+    type: judge
+    assignee: Judge
+    status: done
+    reasoning_hint: high
+    objective: "Audit whether the SEO growth tranche satisfies the original outcome and goal oracle."
+    inputs:
+      - "All done task receipts"
+      - "Blocked task receipts"
+      - "Last verification"
+      - "Current dirty diff"
+      - "Rendered route evidence and screenshots"
+    constraints:
+      - "Do not implement."
+      - "Reject completion if required Worker work is still queued or active."
+      - "Reject completion if pages only have metadata changes but no improved crawlable resource architecture."
+      - "Reject completion if credential-gated work is silently skipped instead of explicitly blocked."
+    expected_output:
+      - "complete | not_complete"
+      - "full_outcome_complete: true | false"
+      - "Evidence mapping"
+      - "Remaining risks or next task"
+    receipt:
+      result: done
+      decision: complete
+      full_outcome_complete: true
+      evidence_mapping:
+        - "T001 mapped local/live SEO routes, search signals, source content, and credential availability."
+        - "T003 implemented six static /chapters/[slug] pages with source-backed resource links, chapter JSON-LD, and sitemap entries."
+        - "T004 implemented /notebooks, /instructors, and /reviews, restoring local public route parity with live production and adding meaningful page copy/assets/links."
+        - "T005 added rendered CollectionPage/BreadcrumbList JSON-LD to /notebooks, /instructors, and /reviews."
+        - "T006 used PostHog evidence and now treats Search Console as browser-manual evidence instead of a service-account credential task."
+        - "T998 prepared the least-privilege credential request and safe setup path for remaining non-browser integrations."
+      verification:
+        - "npm run ci: pass"
+        - "Build output includes /notebooks, /instructors, /reviews, and SSG /chapters/[slug] paths."
+        - "Rendered browser checks verified canonicals, robots, JSON-LD, resource links, meaningful copy, assets, and console health for changed routes."
+        - "curl sitemap check lists /, /notebooks, /chapters, /instructors, /resources, /reviews, and six chapter detail URLs."
+        - "curl robots check allows public routes, disallows /api/ and /admin/, and points at the sitemap."
+        - "GoalBuddy state checker returned ok with no warnings before completion."
+      remaining_risks:
+        - "Not deployed to Vercel in this run."
+        - "Search Console evidence depends on the authenticated browser UI, not a local API key."
+        - "README.md and some untracked workspace directories were already dirty and were not normalized as part of this goal."
+      summary: "Current SEO growth tranche is complete: the site now has substantially stronger crawlable chapter/resource architecture, route-specific metadata/schema, verified sitemap/robots output, and explicit credential-blocked analytics follow-up."
+
+checks:
+  dirty_fingerprint: unknown
+  last_verification:
+    result: pass
+    task: T999
+    commands:
+      - "npm run ci"
+      - "Browser rendered route inspections"
+      - "curl sitemap/robots checks"
+      - "GoalBuddy state checker"

@@ -56,10 +56,16 @@ export default function InstructorsPage() {
                 slides, exercises, and notebooks behind each path.
               </p>
               <div className="mt-2.5 grid gap-2 sm:flex sm:flex-wrap">
-                <a className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-3 text-sm font-black text-[#06172d]" href="#instructor-roadmaps">
+                <a
+                  className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-3 text-sm font-black text-[#06172d]"
+                  href="#instructor-roadmaps"
+                >
                   Choose roadmap
                 </a>
-                <a className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f]" href="#instructor-support">
+                <a
+                  className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f]"
+                  href="#instructor-support"
+                >
                   Adoption support
                 </a>
               </div>
@@ -69,11 +75,20 @@ export default function InstructorsPage() {
               </p>
             </div>
           </section>
-          <nav className="sticky top-[60px] z-10 grid grid-cols-2 gap-2 bg-[#fbfaf4]/90 py-2 backdrop-blur lg:top-[72px]" aria-label="Instructor page sections">
-            <a className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#ddcfad] bg-white px-3 text-sm font-black text-[#164b8f]" href="#instructor-roadmaps">
+          <nav
+            aria-label="Instructor page sections"
+            className="sticky top-[60px] z-10 grid grid-cols-2 gap-2 bg-[#fbfaf4]/90 py-2 backdrop-blur lg:top-[72px]"
+          >
+            <a
+              className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#ddcfad] bg-white px-3 text-sm font-black text-[#164b8f]"
+              href="#instructor-roadmaps"
+            >
               Roadmaps
             </a>
-            <a className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#ddcfad] bg-white px-3 text-sm font-black text-[#164b8f]" href="#instructor-support">
+            <a
+              className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#ddcfad] bg-white px-3 text-sm font-black text-[#164b8f]"
+              href="#instructor-support"
+            >
               Support
             </a>
           </nav>
@@ -85,7 +100,10 @@ export default function InstructorsPage() {
               Core optimization, linear learning, unsupervised learning, and
               validation in a 12 to 16 week path.
             </span>
-            <a className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f]" href="#instructor-roadmaps">
+            <a
+              className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f]"
+              href="#instructor-roadmaps"
+            >
               View Essentials roadmap
             </a>
           </section>

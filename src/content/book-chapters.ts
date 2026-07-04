@@ -86,7 +86,9 @@ export const chapters: BookChapter[] = [
       notebook: repoPath(
         "blob/main/notes/6_Linear_twoclass_classification/6_2_Cross_entropy.ipynb",
       ),
-      colab: colabPath("notes/6_Linear_twoclass_classification/6_2_Cross_entropy.ipynb"),
+      colab: colabPath(
+        "notes/6_Linear_twoclass_classification/6_2_Cross_entropy.ipynb",
+      ),
       exercise: repoPath("blob/main/exercises/chapter_6/chapter_6_exercises.ipynb"),
       slides: bookLinks.slides,
     },
@@ -101,7 +103,9 @@ export const chapters: BookChapter[] = [
     audience: ["learner", "instructor"],
     resources: {
       pdf: bookLinks.pdfs,
-      notebook: repoPath("blob/main/notes/7_Linear_multiclass_classification/7_2_OvA.ipynb"),
+      notebook: repoPath(
+        "blob/main/notes/7_Linear_multiclass_classification/7_2_OvA.ipynb",
+      ),
       colab: colabPath("notes/7_Linear_multiclass_classification/7_2_OvA.ipynb"),
       exercise: repoPath("blob/main/exercises/chapter_7/chapter_7_exercises.ipynb"),
       slides: bookLinks.slides,
@@ -116,7 +120,9 @@ export const chapters: BookChapter[] = [
     audience: ["learner", "instructor"],
     resources: {
       pdf: bookLinks.pdfs,
-      notebook: repoPath("blob/main/notes/8_Linear_unsupervised_learning/8_5_Kmeans.ipynb"),
+      notebook: repoPath(
+        "blob/main/notes/8_Linear_unsupervised_learning/8_5_Kmeans.ipynb",
+      ),
       colab: colabPath("notes/8_Linear_unsupervised_learning/8_5_Kmeans.ipynb"),
       exercise: repoPath("blob/main/exercises/chapter_8/chapter_8_exercises.ipynb"),
       slides: bookLinks.slides,
@@ -195,7 +201,9 @@ export const chapters: BookChapter[] = [
       notebook: repoPath(
         "blob/main/notes/13_Multilayer_perceptrons/13_2_Multi_layer_perceptrons.ipynb",
       ),
-      colab: colabPath("notes/13_Multilayer_perceptrons/13_2_Multi_layer_perceptrons.ipynb"),
+      colab: colabPath(
+        "notes/13_Multilayer_perceptrons/13_2_Multi_layer_perceptrons.ipynb",
+      ),
       exercise: repoPath("tree/main/exercises/chapter_13"),
       slides: bookLinks.slides,
     },
@@ -228,3 +236,7 @@ export const chapters: BookChapter[] = [
     },
   },
 ];
+
+export function getChapterBySlug(slug: string) {
+  return chapters.find((chapter) => chapter.slug === slug);
+}

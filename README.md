@@ -18,7 +18,8 @@ readiness, and Vercel-friendly deployment.
 - Tailwind CSS
 - Vitest
 - Knip
-- PostHog and Google Search Console scaffolding
+- PostHog client analytics scaffold
+- Browser-based Google Search Console review workflow
 
 ## Development
 
@@ -37,3 +38,12 @@ npm run ci
 ```
 
 CI runs lint, TypeScript, Knip, unit coverage, and the production build.
+
+## Analytics
+
+PostHog is initialized through `src/instrumentation-client.ts` only when
+`NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN` is present.
+
+Google Search Console is reviewed in the authenticated browser UI for query,
+page, CTR, position, indexing, and sitemap evidence. No service-account private
+key is required for the current workflow.

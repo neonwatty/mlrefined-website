@@ -13,6 +13,7 @@
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
     "test:unit:coverage": "vitest run --coverage",
+    "seo:readiness": "node scripts/seo-prioritization-readiness.mjs",
     "knip": "knip",
     "knip:production": "knip --production",
     "check": "npm run lint && npm run typecheck && npm run knip:production && npm run test:unit && npm run build",
