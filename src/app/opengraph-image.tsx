@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
 export const alt =
-  "Machine Learning Refined second edition social preview with book cover, PDFs, notebooks, exercises, and slides";
+  "Machine Learning Refined second edition social preview with book cover, GitHub notebooks, chapter PDFs, exercises, and slides";
 
 export const size = {
   width: 1200,
@@ -26,10 +26,10 @@ export default async function Image() {
           width: "100%",
           height: "100%",
           display: "flex",
-          background: "#fbfbf8",
-          color: "#111111",
-          fontFamily: "Arial, Helvetica, sans-serif",
-          padding: "58px 64px",
+          background: "#fbfaf4",
+          color: "#0b2545",
+          fontFamily: "Georgia, Times New Roman, serif",
+          padding: "46px 52px",
         }}
       >
         <div
@@ -37,8 +37,8 @@ export default async function Image() {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
-            width: 704,
-            paddingRight: 48,
+            width: 700,
+            padding: "18px 42px 18px 0",
           }}
         >
           <div style={{ display: "flex", flexDirection: "column" }}>
@@ -46,18 +46,21 @@ export default async function Image() {
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: 14,
-                color: "#1e4d59",
-                fontSize: 28,
-                fontWeight: 700,
+                gap: 12,
+                color: "#8a6519",
+                fontFamily: "Arial, Helvetica, sans-serif",
+                fontSize: 24,
+                fontWeight: 800,
+                letterSpacing: 1.5,
+                textTransform: "uppercase",
               }}
             >
               <div
                 style={{
                   display: "flex",
-                  width: 54,
-                  height: 8,
-                  background: "#f6b91a",
+                  width: 74,
+                  height: 7,
+                  background: "#c79222",
                 }}
               />
               Second Edition
@@ -65,10 +68,11 @@ export default async function Image() {
             <div
               style={{
                 display: "flex",
-                marginTop: 34,
-                fontSize: 72,
-                lineHeight: 0.98,
-                fontWeight: 800,
+                marginTop: 26,
+                maxWidth: 660,
+                fontSize: 82,
+                lineHeight: 0.94,
+                fontWeight: 900,
                 letterSpacing: 0,
               }}
             >
@@ -78,15 +82,26 @@ export default async function Image() {
               style={{
                 display: "flex",
                 marginTop: 26,
-                maxWidth: 620,
-                color: "#323232",
+                width: 332,
+                height: 8,
+                borderRadius: 8,
+                background: "#c79222",
+              }}
+            />
+            <div
+              style={{
+                display: "flex",
+                marginTop: 24,
+                maxWidth: 640,
+                color: "#526070",
+                fontFamily: "Arial, Helvetica, sans-serif",
                 fontSize: 31,
-                lineHeight: 1.24,
-                fontWeight: 500,
+                lineHeight: 1.22,
+                fontWeight: 700,
               }}
             >
-              Chapter PDFs, GitHub notebooks, exercises, slides, and Python
-              resources for the Cambridge textbook.
+              The official second-edition home for chapter PDFs, GitHub
+              notebooks, exercises, slides, and Python resources.
             </div>
           </div>
 
@@ -94,26 +109,30 @@ export default async function Image() {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: 18,
-              color: "#111111",
-              fontSize: 24,
-              fontWeight: 700,
+              gap: 14,
+              color: "#0b2545",
+              fontFamily: "Arial, Helvetica, sans-serif",
+              fontSize: 22,
+              fontWeight: 900,
             }}
           >
-            {["PDFs", "Notebooks", "Exercises", "Slides"].map((label) => (
-              <div
-                key={label}
-                style={{
-                  display: "flex",
-                  border: "2px solid #111111",
-                  borderRadius: 999,
-                  padding: "12px 18px",
-                  background: "#ffffff",
-                }}
-              >
-                {label}
-              </div>
-            ))}
+            {["PDFs", "GitHub notebooks", "Exercises", "Slides"].map(
+              (label) => (
+                <div
+                  key={label}
+                  style={{
+                    display: "flex",
+                    border: "2px solid #ddcfad",
+                    borderRadius: 10,
+                    padding: "13px 16px",
+                    background: "#ffffff",
+                    boxShadow: "0 8px 0 rgba(7, 19, 38, 0.08)",
+                  }}
+                >
+                  {label}
+                </div>
+              ),
+            )}
           </div>
         </div>
 
@@ -121,31 +140,47 @@ export default async function Image() {
           style={{
             display: "flex",
             flexDirection: "column",
-            width: 368,
+            width: 378,
             height: "100%",
             alignItems: "center",
             justifyContent: "center",
-            background: "#153840",
-            border: "4px solid #111111",
+            background: "#0b2545",
+            border: "5px solid #071326",
+            boxShadow: "18px 18px 0 rgba(11, 37, 69, 0.18)",
           }}
         >
+          <div
+            style={{
+              display: "flex",
+              marginBottom: 20,
+              color: "#f8df73",
+              fontFamily: "Arial, Helvetica, sans-serif",
+              fontSize: 18,
+              fontWeight: 900,
+              letterSpacing: 1.2,
+              textTransform: "uppercase",
+            }}
+          >
+            Cambridge textbook resources
+          </div>
           <img
             alt=""
             src={coverSrc}
-            width={270}
-            height={385}
+            width={258}
+            height={367}
             style={{
               display: "flex",
-              boxShadow: "0 22px 0 rgba(0, 0, 0, 0.22)",
+              boxShadow: "0 22px 0 rgba(0, 0, 0, 0.28)",
             }}
           />
           <div
             style={{
               display: "flex",
-              marginTop: 28,
-              color: "#f7f2da",
-              fontSize: 24,
-              fontWeight: 700,
+              marginTop: 24,
+              color: "#fbfaf4",
+              fontFamily: "Arial, Helvetica, sans-serif",
+              fontSize: 26,
+              fontWeight: 900,
             }}
           >
             mlrefined.com
