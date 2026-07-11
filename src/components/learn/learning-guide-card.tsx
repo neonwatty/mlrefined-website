@@ -4,7 +4,13 @@ import { TrackedLink } from "@/components/analytics/tracked-link";
 import type { LearningGuide } from "@/content/book";
 import { learningGuideHref } from "@/content/book";
 
-export function LearningGuideCard({ guide }: { guide: LearningGuide }) {
+export function LearningGuideCard({
+  guide,
+  eager = false,
+}: {
+  guide: LearningGuide;
+  eager?: boolean;
+}) {
   return (
     <article className="grid overflow-hidden rounded-xl border border-[#ddcfad] bg-white shadow-lg shadow-[#071326]/5">
       <div className="grid min-h-64 place-items-center bg-[#f7fbff] p-5">
@@ -14,6 +20,7 @@ export function LearningGuideCard({ guide }: { guide: LearningGuide }) {
           alt={guide.image.alt}
           width={guide.image.width}
           height={guide.image.height}
+          loading={eager ? "eager" : "lazy"}
           unoptimized
         />
       </div>

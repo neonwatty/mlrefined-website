@@ -67,7 +67,7 @@ visual_board:
     url: "http://goalbuddy.localhost:41737/seo-geo-growth-experiments/"
     command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.4.0/skills/goal-prep/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal docs/goals/seo-geo-growth-experiments"
 
-active_task: T014
+active_task: T017
 
 tasks:
   - id: T001
@@ -922,7 +922,7 @@ tasks:
   - id: T014
     type: pm
     assignee: PM
-    status: active
+    status: blocked
     reasoning_hint: high
     objective: "Recover the browser and GitHub API gates, complete the coordinated website production release, open and merge the prepared resource-repository PR only after live guide proof, and record all live evidence."
     inputs:
@@ -943,7 +943,35 @@ tasks:
       - "Live 25-URL sitemap, metadata, JSON-LD, robots, media, analytics, and negative-route smoke receipt"
       - "GitHub API re-authentication, draft PR creation, live-guide merge gate, merge commit, and rendered README/CFF proof"
       - "Search Console sitemap/URL submission receipts within authority"
-    receipt: null
+    receipt:
+      result: blocked
+      blocked_reason: "The restored in-app Browser found a real release-gate defect: the first above-the-fold learning hub visual is lazy-loaded and triggers the Next.js LCP console warning. T014 explicitly prohibits product-file edits, so T016 is required before release. GitHub authentication is now restored."
+      note: notes/T014-local-browser-gate.md
+      commands:
+        - cmd: "GoalBuddy state checker"
+          status: pass
+        - cmd: "gh auth status and resource repository inspection"
+          status: pass
+        - cmd: "In-app Browser 1440x1000 guide layout, image, overflow, and header checks"
+          status: pass
+        - cmd: "In-app Browser 390x844 hub, three guides, matching chapters, notebooks, resources, and mobile-menu checks"
+          status: pass
+        - cmd: "Tracked guide-to-chapter browser navigation"
+          status: pass
+        - cmd: "In-app Browser clean-console release gate"
+          status: fail
+        - cmd: "PostHog immediate learning_guide_resource_clicked taxonomy lookup"
+          status: fail
+      summary: "Recovered both previously missing operator capabilities: the in-app Browser now attaches and GitHub CLI is authenticated as neonwatty with repo scope. Responsive and navigation behavior pass on the local release routes, but the browser exposed an LCP lazy-image warning that must be fixed in the separately scoped T016 Worker task. PostHog ingestion remains pending rather than assumed."
+      spawned_tasks:
+        - T016
+        - T017
+      remaining_blockers:
+        - "T016 must eliminate the LCP console warning without eagerly loading all guide images."
+        - "T017 must re-prove a clean browser gate and analytics ingestion before release."
+        - "Production and the resource PR remain intentionally unpublished until those gates pass."
+      verification_attempts: 1
+      stopped_because: "The active PM task disallows product-file edits when browser verification reveals a defect."
   - id: T015
     type: pm
     assignee: PM
@@ -962,6 +990,69 @@ tasks:
       - "Exact L+14 and L+28 calendar checkpoints from the actual launch timestamp"
       - "Per-guide expand, revise, consolidate, stop, or insufficient-data decision"
       - "Updated final Judge evidence"
+    receipt: null
+  - id: T016
+    type: worker
+    assignee: Worker
+    status: done
+    reasoning_hint: medium
+    objective: "Eliminate the learning hub LCP console warning by eagerly loading only the first above-the-fold guide visual, preserving lazy loading for the remaining cards."
+    allowed_files:
+      - src/app/learn/page.tsx
+      - src/components/learn/learning-guide-card.tsx
+    verify:
+      - npm run lint
+      - npm run typecheck
+      - npm run test:unit
+      - npm run build
+      - "In-app Browser desktop and 390px /learn console inspection shows no image LCP warning"
+    stop_if:
+      - "The fix requires files outside allowed_files."
+      - "Any responsive overflow, broken image, or duplicate eager-load regression appears."
+    expected_output:
+      - "Only the first learning guide image renders with loading=eager"
+      - "No Next.js LCP warning on desktop or 390px /learn"
+      - "Passing repository checks and browser evidence"
+    receipt:
+      result: done
+      changed_files:
+        - src/app/learn/page.tsx
+        - src/components/learn/learning-guide-card.tsx
+      commands:
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "In-app Browser 390x844 /learn loading, image, overflow, and console verification"
+          status: pass
+        - cmd: "In-app Browser 1440x1000 /learn loading, image, overflow, and console verification"
+          status: pass
+      summary: "The learning hub now marks only its first above-the-fold guide visual as loading=eager; the remaining two cards stay lazy. Both responsive widths render every image with non-zero dimensions and no horizontal overflow. The only LCP warning retained by the browser predates the fix; no warning or error was emitted during verification beginning at 2026-07-11T21:25:14Z."
+  - id: T017
+    type: pm
+    assignee: PM
+    status: active
+    reasoning_hint: high
+    objective: "Resume the coordinated release after T016: re-run the clean browser gate, publish and verify the website, deploy production, publish the gated GitHub distribution PR, and record search/analytics evidence."
+    inputs:
+      - "T014 partial browser and GitHub-auth evidence"
+      - "T016 LCP warning fix and verification"
+      - "Website branch codex/seo-geo-growth-experiments"
+      - "Resource branch codex/website-distribution-loop"
+    constraints:
+      - "No product-file edits; activate a separately scoped Worker if verification reveals another defect."
+      - "Do not merge the resource repository branch before /learn and all three guide URLs return 200 on the production alias."
+      - "Do not claim indexing, AI citations, or analytics ingestion without direct evidence."
+    expected_output:
+      - "Clean desktop and 390px browser/console/click-event evidence"
+      - "Pushed website branch, verified preview, and Ready production deployment"
+      - "Live route, sitemap, metadata, JSON-LD, robots, image, and negative-route evidence"
+      - "Created and merged resource-repository PR after the live URL gate"
+      - "Search Console and PostHog launch receipts"
     receipt: null
 
 checks:

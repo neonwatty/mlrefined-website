@@ -45,8 +45,12 @@ export default function LearnPage() {
           repository.
         </p>
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {learningGuides.map((guide) => (
-            <LearningGuideCard key={guide.slug} guide={guide} />
+          {learningGuides.map((guide, index) => (
+            <LearningGuideCard
+              key={guide.slug}
+              guide={guide}
+              eager={index === 0}
+            />
           ))}
         </div>
       </div>
