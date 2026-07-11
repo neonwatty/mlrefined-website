@@ -1091,6 +1091,81 @@ tasks:
         - "Search Console sitemap discovery remains at the pre-launch 12-page read until Google recrawls the existing submission."
         - "Indexing and ranking are eligibility outcomes, not guaranteed by deployment."
         - "L+14 and L+28 experiment decisions require the T011 minimum samples."
+  - id: T018
+    type: worker
+    assignee: Worker
+    status: done
+    reasoning_hint: medium
+    objective: "Replace the circular top-of-README companion-site CTA in the canonical resource repository with a concise repository-native resource map while retaining the official-site URL only as bibliographic metadata."
+    allowed_files:
+      - /Users/neonwatty/Desktop/machine-learning-refined-seo-distribution/README.md
+    verify:
+      - "The prominent README section links only to repository-native chapter PDFs, notebooks, exercises, and presentations."
+      - "The three guide CTA links and the 'Start with the official companion site' heading are absent."
+      - "The official companion site remains only in the Book and citation section."
+      - "GitHub Markdown API renders the replacement section and all four repository links."
+      - git diff --check
+    stop_if:
+      - "The requested correction requires changes outside README.md."
+      - "Any existing notebook, chapter, exercise, slide, citation, or Colab link is unintentionally removed."
+    expected_output:
+      - "A repository-first top-level orientation panel"
+      - "No prominent bounce-back CTA to mlrefined.com"
+      - "Verified Markdown rendering and unchanged resource inventory"
+    receipt:
+      result: done
+      changed_files:
+        - /Users/neonwatty/Desktop/machine-learning-refined-seo-distribution/README.md
+      commands:
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "README contract: old heading and three guide CTAs absent; official-site URL occurs once in Book and citation"
+          status: pass
+        - cmd: "Repository map contract: six top-panel links are relative repository paths or README anchors"
+          status: pass
+        - cmd: "Resource directories chapter_pdfs, notes, exercises, and presentations exist on origin/main"
+          status: pass
+        - cmd: "Colab URL multiset and resource-path occurrence counts compared with origin/main"
+          status: pass
+        - cmd: "GitHub Markdown API rendering of replacement panel"
+          status: pass
+      summary: "Replaced the circular companion-site CTA with a concise repository map for chapter PDFs, source notebooks, exercises, slides, and the two audience workflows already in the README. All six prominent links stay inside the repository. The official-site URL remains only as bibliographic metadata. GitHub rendering passes, all 156 Colab URLs are unchanged, and repository resource occurrence counts are identical to origin/main."
+  - id: T019
+    type: pm
+    assignee: PM
+    status: done
+    reasoning_hint: medium
+    objective: "Publish the approved repository-first README correction through a focused GitHub PR, verify the rendered default branch, and return control to T015 measurement."
+    inputs:
+      - "T018 verified README-only correction"
+      - "Canonical repository neonwatty/machine-learning-refined"
+    constraints:
+      - "PR diff must contain only README.md."
+      - "Do not change citation metadata or repository resource paths."
+      - "Merge only after the PR is mergeable and the rendered Markdown contract passes."
+    expected_output:
+      - "Focused branch, commit, and PR"
+      - "Merged default-branch README with repository-native top panel"
+      - "T015 reactivated with its original launch checkpoints"
+    receipt:
+      result: done
+      commands:
+        - cmd: "Commit 3440cc4 Keep README navigation repository-first"
+          status: pass
+        - cmd: "Push codex/repository-first-readme"
+          status: pass
+        - cmd: "PR #51 file-scope and mergeability inspection"
+          status: pass
+        - cmd: "GitHub rendered branch README contract"
+          status: pass
+        - cmd: "Merge PR #51 as c9be485adcc8d072b0c02e2b6ac81950067211b1"
+          status: pass
+        - cmd: "GitHub rendered default-branch README contract"
+          status: pass
+      summary: "Published and merged the repository-first README correction through PR #51. The default branch now shows a concise resource map whose links stay within the repository or README. The former companion-site heading and three guide CTAs are absent; the official-site URL remains once in Book and citation. The PR changed only README.md and merged as c9be485adcc8d072b0c02e2b6ac81950067211b1."
+      pr: "https://github.com/neonwatty/machine-learning-refined/pull/51"
+      merge_commit: c9be485adcc8d072b0c02e2b6ac81950067211b1
+      next_task: T015
 checks:
   dirty_fingerprint: "Prep began on branch codex/og-image-polish with only docs/goals/seo-geo-growth-experiments untracked."
   last_verification:
