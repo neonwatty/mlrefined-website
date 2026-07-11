@@ -67,7 +67,7 @@ visual_board:
     url: "http://goalbuddy.localhost:41737/seo-geo-growth-experiments/"
     command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.4.0/skills/goal-prep/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal docs/goals/seo-geo-growth-experiments"
 
-active_task: T017
+active_task: T015
 
 tasks:
   - id: T001
@@ -975,7 +975,7 @@ tasks:
   - id: T015
     type: pm
     assignee: PM
-    status: queued
+    status: active
     reasoning_hint: high
     objective: "Run the L+1 launch verification and schedule/execute the L+14 and L+28 Search Console/PostHog/GitHub/GEO measurement decisions from the T011 baseline."
     inputs:
@@ -1035,7 +1035,7 @@ tasks:
   - id: T017
     type: pm
     assignee: PM
-    status: active
+    status: done
     reasoning_hint: high
     objective: "Resume the coordinated release after T016: re-run the clean browser gate, publish and verify the website, deploy production, publish the gated GitHub distribution PR, and record search/analytics evidence."
     inputs:
@@ -1053,8 +1053,44 @@ tasks:
       - "Live route, sitemap, metadata, JSON-LD, robots, image, and negative-route evidence"
       - "Created and merged resource-repository PR after the live URL gate"
       - "Search Console and PostHog launch receipts"
-    receipt: null
-
+    receipt:
+      result: done
+      note: notes/T017-production-release.md
+      commands:
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "In-app Browser desktop and 390px production route, image, overflow, header, console, and click verification"
+          status: pass
+        - cmd: "Vercel preview dpl_4Tqm9WNxqdunopEvRvYRrmQY3PZN authenticated route gate"
+          status: pass
+        - cmd: "Vercel production dpl_4YQqW16DSHSZWhwzeE9VV2w59FVz Ready and www alias"
+          status: pass
+        - cmd: "Website PR #44 GitHub checks and merge commit 06856c21f56f54ea6036639c224cfa44b96b29f5"
+          status: pass
+        - cmd: "Final main production dpl_2t8GM4QuE8BzBn8SSaPCa3iLRL4w Ready and live alias fingerprint"
+          status: pass
+        - cmd: "Live 25-URL sitemap HTTP verification"
+          status: pass
+        - cmd: "Live canonical, JSON-LD entity references, robots, guide media, and /llms.txt negative checks"
+          status: pass
+        - cmd: "Resource PR #50 CFF/live-link validation and merge commit 4c62f70558f8b4ce59c6d4088b7f7204d996dea9"
+          status: pass
+        - cmd: "Search Console live URL test for gradient guide"
+          status: pass
+        - cmd: "PostHog exact production learning_guide_resource_clicked event query"
+          status: pass
+      summary: "Completed the coordinated release. The verified website branch is merged to main, the main-triggered Vercel production deployment is Ready on www.mlrefined.com, all 25 sitemap URLs and the complete responsive/browser/crawl oracle pass, both website and resource PRs are merged, Search Console proves the new guide is available to Google, and PostHog proves the live click with exact event properties. T015 now owns the time-delayed measurement checkpoints from L=2026-07-11T21:36:42Z."
+      launch_timestamp: "2026-07-11T21:36:42Z"
+      website_pr: "https://github.com/neonwatty/mlrefined-website/pull/44"
+      website_merge_commit: 06856c21f56f54ea6036639c224cfa44b96b29f5
+      production_deployment: dpl_2t8GM4QuE8BzBn8SSaPCa3iLRL4w
+      resource_pr: "https://github.com/neonwatty/machine-learning-refined/pull/50"
+      resource_merge_commit: 4c62f70558f8b4ce59c6d4088b7f7204d996dea9
+      next_task: T015
+      remaining_risks:
+        - "Search Console sitemap discovery remains at the pre-launch 12-page read until Google recrawls the existing submission."
+        - "Indexing and ranking are eligibility outcomes, not guaranteed by deployment."
+        - "L+14 and L+28 experiment decisions require the T011 minimum samples."
 checks:
   dirty_fingerprint: "Prep began on branch codex/og-image-polish with only docs/goals/seo-geo-growth-experiments untracked."
   last_verification:
