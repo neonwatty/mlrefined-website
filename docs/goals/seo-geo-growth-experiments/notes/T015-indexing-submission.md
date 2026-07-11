@@ -33,3 +33,13 @@ Google's confirmation states that repeated submissions do not change crawl queue
 - Submission and discovery are now proven.
 - Indexing is **not** yet proven and is not claimed.
 - T015 should check URL Inspection and Search Console page/query evidence at L+1, then retain the L+14 and L+28 sample rules.
+
+## Scheduled reminders
+
+Codex heartbeat automation `mlr-seo-l-1-checkpoint` was created and consolidated into `MLR SEO L+ checkpoints`, attached to this task's thread.
+
+- L+1: `2026-07-12 14:36` America/Phoenix
+- L+14: `2026-07-25 14:36` America/Phoenix
+- L+28: `2026-08-08 14:36` America/Phoenix
+
+The automation has exactly three occurrences and carries the checkpoint-specific T015 evidence and decision instructions.
