@@ -67,7 +67,7 @@ visual_board:
     url: "http://goalbuddy.localhost:41737/seo-geo-growth-experiments/"
     command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.4.0/skills/goal-prep/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal docs/goals/seo-geo-growth-experiments"
 
-active_task: T010
+active_task: T014
 
 tasks:
   - id: T001
@@ -725,7 +725,7 @@ tasks:
   - id: T010
     type: pm
     assignee: PM
-    status: active
+    status: blocked
     reasoning_hint: high
     objective: "Run the release gate, deploy the complete verified tranche to Vercel production, verify the live domain, and submit or notify search platforms only within established authority."
     inputs:
@@ -743,11 +743,35 @@ tasks:
       - "Live route, metadata, link, analytics, sitemap, robots, and media smoke checks"
       - "Search Console sitemap/URL Inspection submission evidence when authorized"
       - "Bing Webmaster/IndexNow setup or an explicit credential/authority-gated receipt"
-    receipt: null
+    receipt:
+      result: blocked
+      blocked_reason: "Production deployment is prohibited while the required browser-based desktop/mobile, console, media, and click-event gate is red. The mandated in-app Browser webview failed twice after documented recovery. The website commit and Vercel identity are ready, but no push/deploy was performed. GitHub resource PR creation is independently credential-blocked after its branch push."
+      note: notes/T010-release-gate-blocked.md
+      commands:
+        - cmd: "git commit b0464ca Add SEO learning and distribution foundation"
+          status: pass
+        - cmd: "git rebase origin/main"
+          status: pass
+        - cmd: "npm run ci after rebase"
+          status: pass
+        - cmd: "Vercel CLI whoami and project linkage inspection"
+          status: pass
+        - cmd: "Vercel deployment listing and current production baseline inspection"
+          status: pass
+        - cmd: "Codex in-app Browser required release verification"
+          status: fail
+      summary: "Prepared a clean one-commit website release branch on current origin/main and re-proved the entire CI gate after rebase. Vercel authentication and project linkage are valid. Production was not deployed and the website branch was not pushed because the browser verification gate remains unavailable. The prepared GitHub resource branch is also unmerged pending API re-authentication and live guide URLs. The recovery order is fully recorded."
+      deployment: null
+      verification_attempts: 2
+      remaining_blockers:
+        - "Restore in-app Browser and complete responsive/console/media/analytics proof."
+        - "Push/deploy website only after that proof passes."
+        - "Re-authenticate GitHub API and open the resource-repository draft PR; merge only after live guide 200 proof."
+      stopped_because: "The release constraint explicitly forbids deploying while local verification is red."
   - id: T011
     type: pm
     assignee: PM
-    status: queued
+    status: blocked
     reasoning_hint: high
     objective: "Record the launch baseline and perform or schedule the delayed measurement checkpoint for search discovery, generative visibility, GitHub referrals, and resource conversions."
     inputs:
@@ -767,7 +791,29 @@ tasks:
       - "Bing and Google AI citation/impression evidence when the reports are available"
       - "Decision for each experiment: expand, revise, consolidate, or stop"
       - "Next measurement date if the sample is still insufficient"
-    receipt: null
+    receipt:
+      result: blocked
+      blocked_reason: "The durable pre-launch Search Console/PostHog/GEO baseline and decision contract are complete, but no post-launch comparison can exist before T010 deploys. Production remains blocked by required browser verification; the prepared GitHub distribution branch remains unmerged due API authentication and the live guide-URL gate."
+      note: notes/T011-measurement-baseline.md
+      commands:
+        - cmd: "Authenticated Search Console performance baseline read for 2026-06-28 through 2026-07-09"
+          status: pass
+        - cmd: "PostHog project/schema discovery and www.mlrefined.com host verification"
+          status: pass
+        - cmd: "PostHog pre-launch page/path/referrer/resource breakdown for 2026-06-28 through 2026-07-11"
+          status: pass
+        - cmd: "PostHog bot-classified ordered 14-day pageview-to-resource funnel"
+          status: pass
+        - cmd: "Post-launch Search Console/PostHog/Bing comparison"
+          status: fail
+      summary: "Recorded an exact pre-launch baseline: Search Console 8 clicks/312 impressions/2.6% CTR/position 4.9; PostHog 180 human-classified pageviews/95 people; ordered pageview-to-resource conversion 13/95 (13.7%); GitHub 6 pageviews/4 people; ChatGPT 4/2; Google 16/11; Bing 2/2. New guide events are absent pre-launch, providing a clean zero-observed event baseline. Bing/generative reports and non-JS crawler logs are not available and are labeled uninstrumented, not zero. Defined L+1/L+14/L+28 gates, minimum samples, and expand/revise/consolidate/stop rules."
+      next_check_date: 2026-07-12
+      verification_attempts: 1
+      remaining_blockers:
+        - "T010 production deploy and exact launch timestamp L."
+        - "T010 live event/property/indexing verification at L+1."
+        - "Search Console/PostHog comparison at L+14 and decision at L+28 when minimum samples are met."
+      stopped_because: "A deploy is required before a post-launch measurement exists; successful local implementation is not measurement proof."
   - id: T012
     type: worker
     assignee: Worker
@@ -828,7 +874,7 @@ tasks:
   - id: T999
     type: judge
     assignee: Judge
-    status: queued
+    status: done
     reasoning_hint: xhigh
     objective: "Audit whether the full SEO/GEO growth tranche satisfies the owner's original outcome rather than merely completing implementation."
     inputs:
@@ -847,6 +893,75 @@ tasks:
       - "Evidence mapping for all five workstreams"
       - "Top three failure modes and evidence ruling each out"
       - "Residual risks, approval-gated items, and next task if incomplete"
+    receipt:
+      result: done
+      decision: not_complete
+      full_outcome_complete: false
+      note: notes/T999-final-audit-not-complete.md
+      rationale: "Local implementation, static verification, pre-launch measurement, and the prepared GitHub commit are substantial, but the original outcome is a live, measurable discovery/distribution system. Production still returns 404 for every guide, the resource repository branch is unmerged, mandatory browser/analytics-click evidence is missing, and post-launch results cannot exist. Completion would be false."
+      evidence_mapping:
+        - "T012 proves all 15 chapter links, /resources navigation, conversion paths, analytics properties, 21-route health, and responsive foundation."
+        - "T003-T005/T013 prove source selection, high content contracts, exact NumPy execution, metadata/schema/sitemap, and rendered incoming links for three guides, with browser acceptance still missing."
+        - "T006-T008 prove the canonical repository audit and pushed commit c5bf0d4, with draft PR creation/auth and merge/live-link gates still missing."
+        - "T009 proves the consistent book/author/source graph, explicit Googlebot/OAI-SearchBot eligibility, truthful lastmod, and negative llms.txt check, with live/browser proof missing."
+        - "T010-T011 prove a clean rebased website commit b0464ca, post-rebase CI, Vercel identity, Search Console baseline, PostHog human/referral/resource baseline, and honest delayed measurement rules; deployment has not occurred."
+      top_failure_modes:
+        - "Current production 404s mean the new work is not available to readers."
+        - "The GitHub distribution loop is unmerged and must not merge before live guide 200 proof."
+        - "Mobile/media/console/click behavior remains unproved because the required Browser is unavailable."
+      residual_risks:
+        - "In-app Browser webview availability."
+        - "GitHub API/CLI re-authentication for PR creation."
+        - "Production deployment, live alias, Search Console submission, and event-ingestion evidence."
+        - "L+14/L+28 sample sufficiency and experiment decisions."
+      next_task: T014
+      required_board_updates:
+        - "Activate T014 release recovery."
+        - "Run T015 only after T014 records the actual launch timestamp."
+        - "Create a new final Judge audit after T015; do not reuse this not-complete decision as completion."
+  - id: T014
+    type: pm
+    assignee: PM
+    status: active
+    reasoning_hint: high
+    objective: "Recover the browser and GitHub API gates, complete the coordinated website production release, open and merge the prepared resource-repository PR only after live guide proof, and record all live evidence."
+    inputs:
+      - "Website commit b0464ca on codex/seo-geo-growth-experiments"
+      - "Resource repository commit c5bf0d4 on codex/website-distribution-loop"
+      - "T010 release recovery sequence"
+      - "T013 and T009 missing browser evidence"
+    constraints:
+      - "No product-file edits; if live verification reveals a defect, activate a separately scoped Worker task."
+      - "Do not push/deploy until the in-app Browser can complete desktop and 390px local or preview verification."
+      - "Do not merge the resource repository branch before /learn and all three guide URLs return 200 on the production alias."
+      - "Do not claim indexing, AI citations, or analytics ingestion from deployment alone."
+      - "Preserve exact deployment, branch, commit, PR, merge, alias, and submission identifiers."
+    expected_output:
+      - "Desktop and 390px responsive, image, overflow, header-collision, console, and click-event proof"
+      - "Pushed website branch and verified preview"
+      - "Ready Vercel production deployment and www.mlrefined.com alias proof"
+      - "Live 25-URL sitemap, metadata, JSON-LD, robots, media, analytics, and negative-route smoke receipt"
+      - "GitHub API re-authentication, draft PR creation, live-guide merge gate, merge commit, and rendered README/CFF proof"
+      - "Search Console sitemap/URL submission receipts within authority"
+    receipt: null
+  - id: T015
+    type: pm
+    assignee: PM
+    status: queued
+    reasoning_hint: high
+    objective: "Run the L+1 launch verification and schedule/execute the L+14 and L+28 Search Console/PostHog/GitHub/GEO measurement decisions from the T011 baseline."
+    inputs:
+      - "T011 baseline and query contract"
+      - "T014 production launch timestamp and live event proof"
+    constraints:
+      - "Use exact UTC windows and human/bot separation."
+      - "Do not infer lift when minimum guide impression/landing thresholds are not met."
+      - "Label unavailable Bing/AI reports and non-JS crawler logs as uninstrumented, not zero."
+    expected_output:
+      - "L+1 event/property, sitemap, canonical, and indexability gate"
+      - "Exact L+14 and L+28 calendar checkpoints from the actual launch timestamp"
+      - "Per-guide expand, revise, consolidate, stop, or insufficient-data decision"
+      - "Updated final Judge evidence"
     receipt: null
 
 checks:
