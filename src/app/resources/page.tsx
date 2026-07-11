@@ -1,8 +1,9 @@
 import { ResourceLink } from "@/components/analytics/resource-link";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 import { BookSideRail } from "@/components/site/book-side-rail";
 import { PageHeader } from "@/components/site/page-header";
 import { bookLinks, resourceGroups } from "@/content/book";
-import { createPageMetadata } from "@/lib/site";
+import { createPageMetadata, siteConfig } from "@/lib/site";
 
 const resourceCues = {
   "Chapter PDFs": {
@@ -80,7 +81,61 @@ export default function ResourcesPage() {
             slides, and roadmap guidance. Use Chapters for the guided path; use
             Resources when you already know what you need.
           </p>
+          <section
+            aria-labelledby="book-identity"
+            className="mt-6 max-w-4xl rounded-xl border border-[#ddcfad] bg-[#fffdf8] p-5"
+          >
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
+              Book identity
+            </p>
+            <h2
+              className="mt-2 font-serif text-2xl font-black text-[#0b2545]"
+              id="book-identity"
+            >
+              {siteConfig.bookTitle}
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-[#526070]">
+              Second edition by {siteConfig.authors.join(", ")}, published by
+              Cambridge University Press on March 12, 2020.
+            </p>
+            <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-3">
+              <div>
+                <dt className="font-black text-[#0b2545]">Print ISBN</dt>
+                <dd className="mt-1 text-[#526070]">{siteConfig.isbn}</dd>
+              </div>
+              <div>
+                <dt className="font-black text-[#0b2545]">Digital ISBN</dt>
+                <dd className="mt-1 text-[#526070]">{siteConfig.digitalIsbn}</dd>
+              </div>
+              <div>
+                <dt className="font-black text-[#0b2545]">DOI</dt>
+                <dd className="mt-1">
+                  <ResourceLink
+                    className="font-bold text-[#164b8f] hover:underline"
+                    eventName="book_entity_clicked"
+                    eventProperties={{
+                      location: "resources_page",
+                      resource: "doi",
+                    }}
+                    href={siteConfig.doiUrl}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    {siteConfig.doi}
+                  </ResourceLink>
+                </dd>
+              </div>
+            </dl>
+          </section>
           <div className="mt-6 flex flex-wrap gap-3">
+            <TrackedLink
+              className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#164b8f]/40 bg-[#f7fbff] px-5 text-sm font-black text-[#164b8f] transition-colors hover:bg-[#eaf4ff]"
+              eventName="learning_guide_opened"
+              eventProperties={{ location: "resources_page", resource: "learn_hub" }}
+              href="/learn"
+            >
+              Start with learning guides
+            </TrackedLink>
             <ResourceLink
               className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-5 text-sm font-black text-[#06172d] transition-colors hover:bg-[#d7a02b]"
               eventName="github_resource_clicked"

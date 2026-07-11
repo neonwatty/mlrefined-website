@@ -1,0 +1,1063 @@
+version: 2
+
+goal:
+  title: "SEO And GEO Growth Experiments"
+  slug: "seo-geo-growth-experiments"
+  kind: existing_plan
+  tranche: "Implement and measure successive safe SEO, GEO, GitHub-distribution, and resource-conversion improvements until the defined growth foundation and initial content experiments are live and evidenced."
+  status: active
+  oracle:
+    signal: "Live crawlable internal architecture plus Search Console, PostHog, Bing/AI visibility when available, and production smoke evidence showing discovery and resource-use improvement."
+    cadence: "after each Worker package, after production deployment, at the measurement checkpoint, and at final audit"
+    final_proof: "Receipt-backed local and production evidence maps every required workstream to working behavior and records measured baselines/follow-up outcomes before full_outcome_complete: true."
+  intake:
+    original_request: "Make a detailed plan for the SEO/GEO improvements and implement it as a GoalBuddy prep board."
+    interpreted_outcome: "Turn the completed SEO audit into a staged, executable growth program that improves page discovery, useful content surface area, GitHub distribution, generative-search eligibility, and measurable resource usage."
+    input_shape: existing_plan
+    audience: "Machine Learning Refined readers, instructors, independent learners, search engines, AI answer systems, and the site owner"
+    authority: approved
+    proof_type: metric
+    completion_proof: "Priority internal-linking and conversion fixes, substantive content experiments, GitHub cross-distribution, crawler/entity readiness, production deployment, and durable search/usage measurement checkpoints are all implemented and verified."
+    likely_misfire: "Shipping metadata, schema, or many thin pages without improving crawlable internal links, reader usefulness, GitHub/resource conversions, or measurable discovery."
+    blind_spots_considered:
+      - "Search Console indexing data is delayed and must not be treated as real-time truth."
+      - "The resource and chapter-detail routes are weakly linked despite existing sitemap/schema coverage."
+      - "Autocomplete demand for solutions/manual content must not cause misleading or piracy-adjacent claims."
+      - "AI visibility is partly platform-controlled; eligibility and measurement are provable, guaranteed citations are not."
+      - "The repository has more existing authority than the relaunched website and should be used as a distribution channel."
+    existing_plan_facts:
+      - "Preserve the completed technical SEO baseline: canonical metadata, JSON-LD, sitemap, robots, public routes, and Vercel deployment."
+      - "First repair crawlable internal links to chapter-detail pages and /resources."
+      - "Then improve branded GitHub/PDF/resource pathways and outbound analytics coverage."
+      - "Publish a small set of substantive source-backed learning pages before considering broader content expansion."
+      - "Strengthen GitHub README/entity cross-links and canonical resource paths."
+      - "Keep OAI-SearchBot and standard search crawlers eligible; do not add speculative llms.txt work as a requirement."
+      - "Use Search Console, PostHog, Bing Webmaster/AI reports when available, and live checks as evidence."
+
+rules:
+  pm_owns_state: true
+  one_active_task: true
+  max_write_workers: 1
+  no_implementation_without_worker_or_pm_task: true
+  no_completion_without_judge_or_pm_audit: true
+  planning_is_not_completion: true
+  queued_required_worker_blocks_completion: true
+  continuous_until_full_outcome: true
+  missing_input_or_credentials_do_not_stop_goal: true
+  exact_human_approval_can_terminal_wait: true
+  preserve_and_validate_existing_plan: true
+  intake_misfire_must_be_audited: true
+  goal_pressure_requires_oracle: true
+  no_completion_on_weak_proof: true
+  slice_policy:
+    max_consecutive_tiny_tasks: 2
+    prefer_vertical_slices: true
+    judge_picks_largest_safe_slice: true
+    worker_completes_whole_slice: true
+
+agents:
+  scout: installed
+  worker: installed
+  judge: installed
+
+visual_board:
+  selected: local
+  local:
+    status: live
+    url: "http://goalbuddy.localhost:41737/seo-geo-growth-experiments/"
+    command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.4.0/skills/goal-prep/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal docs/goals/seo-geo-growth-experiments"
+
+active_task: T017
+
+tasks:
+  - id: T001
+    type: judge
+    assignee: Judge
+    status: done
+    reasoning_hint: high
+    objective: "Validate the existing SEO/GEO audit and approved sequence, then specify the largest safe first implementation package."
+    inputs:
+      - "Prior audit evidence from the current conversation"
+      - "Completed boards under docs/goals/seo-growth-roadmap and docs/goals/seo-rich-results-snippet-tuning"
+    constraints:
+      - "Read-only."
+      - "Do not repeat work already proved complete by earlier boards."
+      - "Prioritize crawlable internal architecture and measurable resource use over another metadata-only pass."
+    expected_output:
+      - "Validated plan and dependency order"
+      - "Exact first Worker objective"
+      - "allowed_files"
+      - "verify"
+      - "stop_if"
+      - "Deferred or credential-gated work"
+    receipt:
+      result: done
+      decision: approved
+      full_outcome_complete: false
+      rationale: "Current source proves a coherent first slice: chapter cards are button-only, /resources is in publicRoutes but absent from primaryNav, the homepage lacks direct GitHub/PDF paths, and chapter-detail resource anchors bypass the analytics wrapper. Earlier boards already proved metadata, JSON-LD, sitemap, robots, and snippet tuning, so repeating those would be misaligned. Approve one vertical discovery/conversion package before content expansion; it is reversible, locally testable, and directly addresses the observed Search Console concentration on top-level pages."
+      worker_package:
+        objective: "Implement the crawlable discovery and resource-conversion foundation: ordinary internal links to every chapter detail from chapters, notebooks, and instructor paths; a site-wide visible /resources route; compact homepage GitHub/PDF resource paths; and complete stable analytics for chapter-detail outbound resources."
+        allowed_files:
+          - src/lib/site.ts
+          - src/components/site/page-header.tsx
+          - src/components/chapters/chapter-panels.tsx
+          - src/components/notebooks/notebook-workbench.tsx
+          - src/components/instructors/instructor-roadmap.tsx
+          - src/components/home/home-hero.tsx
+          - "src/app/chapters/[slug]/page.tsx"
+          - src/content/book-links.ts
+          - "src/**/*.test.ts"
+          - "src/**/*.test.tsx"
+          - "docs/goals/seo-geo-growth-experiments/notes/**"
+          - docs/goals/seo-geo-growth-experiments/state.yaml
+        verify:
+          - "Read the relevant Next.js 16.2.9 local Link and App Router documentation before edits."
+          - "Focused tests proving /resources is site-wide navigation and every chapter slug has an ordinary internal anchor contract."
+          - "npm run lint"
+          - "npm run typecheck"
+          - "npm run knip:production"
+          - "npm run test:unit"
+          - "npm run build"
+          - "Desktop and 390px mobile browser inspection of /, /chapters, /resources, /notebooks, /instructors, and representative chapter pages."
+          - "Rendered DOM/HTML proof that every chapter detail and /resources is reachable through ordinary href anchors."
+          - "Analytics debug proof that representative chapter-detail outbound clicks emit chapter_resource_clicked with chapter, location, resource, and href."
+          - "Console, broken-link, image, and horizontal-overflow checks on all changed routes."
+        stop_if:
+          - "Need files outside allowed_files."
+          - "Navigation density requires removing an existing primary path or a material product-design decision."
+          - "A CTA would imply unavailable content or a public solutions manual."
+          - "Analytics verification would require transmitting private or sensitive data."
+          - "Verification fails twice with the same failure."
+      evidence:
+        - "src/components/chapters/chapter-panels.tsx: chapter rows are buttons and selected panels expose only external resource links."
+        - "src/lib/site.ts: /resources is a public route but not present in primaryNav."
+        - "src/components/home/home-hero.tsx: above-fold CTAs only target /chapters and /notebooks."
+        - "src/app/chapters/[slug]/page.tsx: outbound resource cards use raw anchors rather than ResourceLink analytics."
+        - "docs/goals/seo-growth-roadmap/state.yaml and docs/goals/seo-rich-results-snippet-tuning/state.yaml: metadata/schema/sitemap/snippet packages are already complete and deployed."
+      blocked_tasks: []
+      missing_evidence:
+        - "Search-impact proof remains deliberately deferred until after implementation, deployment, and crawl latency."
+      required_board_updates:
+        - "Copy worker_package onto T002 and activate T002."
+        - "Keep T003 and later content/GitHub/GEO/measurement phases queued."
+  - id: T002
+    type: worker
+    assignee: Worker
+    status: blocked
+    reasoning_hint: medium
+    objective: "Implement the crawlable discovery and resource-conversion foundation: ordinary internal links to every chapter detail from chapters, notebooks, and instructor paths; a site-wide visible /resources route; compact homepage GitHub/PDF resource paths; and complete stable analytics for chapter-detail outbound resources."
+    allowed_files:
+      - "src/lib/site.ts"
+      - "src/components/site/page-header.tsx"
+      - "src/components/chapters/chapter-panels.tsx"
+      - "src/components/notebooks/notebook-workbench.tsx"
+      - "src/components/instructors/instructor-roadmap.tsx"
+      - "src/components/home/home-hero.tsx"
+      - "src/app/chapters/[slug]/page.tsx"
+      - "src/content/book-links.ts"
+      - "src/**/*.test.ts"
+      - "src/**/*.test.tsx"
+      - "docs/goals/seo-geo-growth-experiments/notes/**"
+      - "docs/goals/seo-geo-growth-experiments/state.yaml"
+    verify:
+      - "Read the relevant Next.js 16.2.9 local Link and App Router documentation before edits."
+      - "Focused tests proving /resources is site-wide navigation and every chapter slug has an ordinary internal anchor contract."
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run knip:production"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Desktop and 390px mobile browser inspection of /, /chapters, /resources, /notebooks, /instructors, and representative chapter pages."
+      - "Rendered DOM/HTML proof that every chapter detail and /resources is reachable through ordinary href anchors."
+      - "Analytics debug proof that representative chapter-detail outbound clicks emit chapter_resource_clicked with chapter, location, resource, and href."
+      - "Console, broken-link, image, and horizontal-overflow checks on all changed routes."
+    stop_if:
+      - "Need files outside allowed_files."
+      - "Navigation density requires removing an existing primary path or a material product-design decision."
+      - "A CTA would imply unavailable content or a public solutions manual."
+      - "Analytics verification would require transmitting private or sensitive data."
+      - "Verification fails twice with the same failure."
+    receipt:
+      result: blocked
+      changed_files:
+        - src/lib/site.ts
+        - src/components/chapters/chapter-panels.tsx
+        - src/components/notebooks/notebook-workbench.tsx
+        - src/components/instructors/instructor-roadmap.tsx
+        - src/components/home/home-hero.tsx
+        - "src/app/chapters/[slug]/page.tsx"
+        - src/lib/seo.test.ts
+        - src/content/book.test.ts
+      commands:
+        - cmd: "npm run test:unit -- src/lib/seo.test.ts src/app/sitemap.test.ts"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run knip:production"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "Runtime chapter-anchor verifier: unique /chapters/[slug] href count equals 15"
+          status: fail
+        - cmd: "Desktop/mobile browser checks for /resources navigation, representative chapter links, images, and overflow"
+          status: pass
+        - cmd: "Analytics debug check for Chapter 5 PDF outbound click"
+          status: pass
+      summary: "Implemented the approved internal discovery and conversion slice: /resources is site-wide navigation, chapter links now appear in chapter/notebook/instructor paths, homepage GitHub/PDF links are explicit, and chapter-detail outbound events include chapter/location/resource/href. Runtime proof found 14 rather than 15 unique chapter anchors because Appendix C is filtered in out-of-scope chapter-browser.tsx. T012 is the narrow follow-up required to complete the package and rerun the full oracle."
+      deviations:
+        - "Build was not accepted for this task because the 15-route runtime contract failed before final build verification."
+      remaining_blockers:
+        - "Appendix C /chapters/linear-algebra must be restored to the chapter browser from a separately scoped Worker task."
+      verification_attempts: 1
+      stopped_because: "The required fix is in src/components/chapters/chapter-browser.tsx, outside T002 allowed_files; GoalBuddy forbids widening an active Worker scope."
+  - id: T003
+    type: scout
+    assignee: Scout
+    status: done
+    reasoning_hint: medium
+    objective: "Select the first three substantive learning-page experiments by joining Search Console/autocomplete demand, canonical repository depth, visual assets, and non-overlapping search intent."
+    inputs:
+      - "Fresh Search Console query/page/indexing evidence"
+      - "Google autocomplete and current result evidence"
+      - "Canonical repository notebooks, PDFs, exercises, and figures"
+      - "Existing chapter and notebook routes"
+    constraints:
+      - "Read-only."
+      - "Use the authenticated browser for Search Console."
+      - "Do not select a topic without enough primary source material for a genuinely useful page."
+      - "Do not target solutions-manual intent unless the page is a truthful official-resource clarification."
+      - "Avoid intent cannibalization with existing chapter/notebook pages."
+    expected_output:
+      - "Demand/source matrix"
+      - "Three selected experiments and rejected alternatives"
+      - "Search intent and proposed canonical URL for each"
+      - "Source notebook/PDF/figure/exercise inventory for each"
+      - "Baseline queries and pages to measure"
+    receipt:
+      result: done
+      note: notes/T003-content-experiment-selection.md
+      summary: "Selected gradient descent, logistic regression, and K-means from-scratch learning pages. All three combine fresh autocomplete/tutorial intent with canonical chapter notebooks, exercises, PDFs, and existing visuals; each has a distinct implementation-oriented contract that avoids duplicating chapter detail or notebook-gallery intent. Feature normalization and cross-validation are reserved, the instructor roadmap is rejected as duplicative, and solutions-manual targeting is rejected as misleading."
+      findings:
+        - "Search Console baseline is 8 clicks, 312 impressions, 2.6% CTR, and average position 4.9 for 2026-06-28 through 2026-07-09; only eight mostly branded queries are visible and no non-branded topic query has an observed baseline yet."
+        - "Fresh autocomplete evidence supports from-scratch Python and notebook intent for gradient descent, logistic regression, and K-means."
+        - "The canonical repository contains 13 Chapter 3 note/exercise files, 10 Chapter 6 files, and 6 Chapter 8 files, including exact source and exercise notebooks for every selected topic."
+        - "Existing local GIFs give every selected page a source-aligned visual; rejected/reserved alternatives are documented with intent-overlap reasons."
+        - "Per-page query families, page metrics, resource-conversion events, crawl checks, and cannibalization guardrails are defined for launch measurement."
+      evidence:
+        - "Authenticated Google Search Console Performance report for sc-domain:mlrefined.com read 2026-07-11."
+        - "Fresh Google autocomplete and current result checks collected 2026-07-11."
+        - "GitHub recursive tree API for neonwatty/machine-learning-refined main branch."
+        - "src/content/book-learning.ts, src/content/book-chapters.ts, and local learning-visual GIF inspection."
+      remaining_risks:
+        - "Search Console is too new to validate non-branded query volume; the package is a falsifiable experiment, not a ranking forecast."
+        - "The Judge must enforce substantive visible content, executable examples, and intent separation before authorizing implementation."
+  - id: T004
+    type: judge
+    assignee: Judge
+    status: done
+    reasoning_hint: high
+    objective: "Approve a coherent three-page content experiment package with evidence-backed briefs, reuse boundaries, internal-link placements, and falsifiable success criteria."
+    inputs:
+      - "T003 receipt"
+      - "T002 implementation receipt"
+    constraints:
+      - "Read-only."
+      - "Reject thin programmatic content, keyword variants, and unsupported educational claims."
+      - "Require visible source attribution and a useful next action for readers."
+      - "Specify how each page differs from its chapter detail and notebook workbench."
+    expected_output:
+      - "Approved topics and URLs"
+      - "Per-page content contract"
+      - "Required source-backed figures, derivations, examples, and resource CTAs"
+      - "Exact Worker allowed_files, verify, and stop_if"
+      - "Baseline and post-launch measurement plan"
+    receipt:
+      result: done
+      decision: approved
+      full_outcome_complete: false
+      note: notes/T004-content-package-approval.md
+      rationale: "T003 establishes one coherent, falsifiable from-scratch tutorial hypothesis across three topics with fresh demand evidence and unusually strong first-party source depth. The approved contract prevents thin or duplicative pages by requiring a direct answer, equation/objective, canonical animation, executable deterministic NumPy example, topic-specific cautions, attribution, resource pathways, intent-separated internal distribution, truthful metadata/JSON-LD, sitemap coverage, and analytics."
+      worker_package:
+        objective: "Build and verify the complete three-page source-backed learning experiment package, the /learn hub, internal distribution, truthful metadata/JSON-LD, executable example tests, sitemap coverage, and outbound resource analytics."
+        allowed_files:
+          - src/content/learning-guides.ts
+          - src/content/learning-guides.test.ts
+          - src/content/book.ts
+          - "src/components/learn/**"
+          - src/app/learn/page.tsx
+          - "src/app/learn/[slug]/page.tsx"
+          - "src/app/chapters/[slug]/page.tsx"
+          - src/components/notebooks/notebook-workbench.tsx
+          - src/app/resources/page.tsx
+          - src/lib/site.ts
+          - src/lib/seo.ts
+          - src/lib/seo.test.ts
+          - src/app/sitemap.ts
+          - src/app/sitemap.test.ts
+          - "src/**/*.test.tsx"
+          - "docs/goals/seo-geo-growth-experiments/notes/**"
+          - docs/goals/seo-geo-growth-experiments/state.yaml
+        verify:
+          - "Read the local Next.js 16.2.9 dynamic-route, Link, metadata, sitemap, and Image documentation before edits."
+          - "Focused unit tests execute all three example implementations against deterministic fixtures and assert source/route uniqueness."
+          - "Metadata/JSON-LD tests prove unique self-canonicals, visible-content alignment, parseability, book/source attribution, and no disallowed schema claims."
+          - "Sitemap tests prove /learn plus all three guide URLs and image URLs appear once with truthful launch lastModified."
+          - "Rendered proof that all four new routes are crawlable and every guide is linked from /learn, its matching chapter, and its matching notebook card."
+          - "Analytics debug proof for internal guide navigation and external resource action with guide, location, resource, and href."
+          - "npm run lint"
+          - "npm run typecheck"
+          - "npm run knip:production"
+          - "npm run test:unit"
+          - "npm run build"
+          - "Desktop and 390px mobile browser inspection of all new routes and changed chapter/notebook/resources surfaces."
+          - "Console, broken-link, image, header-collision, and horizontal-overflow checks on all changed routes."
+          - "Runtime smoke check that every sitemap URL returns 200."
+          - "git diff --check"
+        stop_if:
+          - "Any educational assertion or displayed implementation cannot be reconciled with the named canonical notebook/chapter source."
+          - "A needed product file falls outside the allowed list."
+          - "Adding Learn causes an unresolved navigation collision at a supported breakpoint."
+          - "A page would need a misleading solution/manual promise, unsupported rich-result markup, or content duplicated from another route."
+          - "A deterministic code fixture fails twice for the same reason."
+          - "Full verification fails twice with the same failure outside the allowed scope."
+      evidence:
+        - "T003 demand/source matrix and per-page briefs."
+        - "Existing chapter detail pages are resource indexes and /notebooks is a visual chooser, leaving a distinct answer-and-implementation intent for /learn/*."
+        - "Next.js 16.2.9 local documentation supports statically generated dynamic routes, server metadata, programmatic sitemap entries, and intrinsic image dimensions used by the package."
+        - "All three topics have exact canonical notebooks, chapter exercises, chapter/PDF paths, and local GIFs."
+      missing_evidence:
+        - "Ranking and non-branded demand outcomes remain post-launch measurements; zero observed topic queries is the honest launch baseline."
+      required_board_updates:
+        - "Copy worker_package onto T005 and activate T005."
+        - "Keep GitHub distribution, GEO, release, and measurement phases queued."
+  - id: T005
+    type: worker
+    assignee: Worker
+    status: blocked
+    reasoning_hint: high
+    objective: "Build and verify the approved three-page source-backed learning experiment package, including internal distribution, structured metadata aligned to visible content, and resource-conversion analytics."
+    allowed_files:
+      - "src/content/learning-guides.ts"
+      - "src/content/learning-guides.test.ts"
+      - "src/content/book.ts"
+      - "src/components/learn/**"
+      - "src/app/learn/page.tsx"
+      - "src/app/learn/[slug]/page.tsx"
+      - "src/app/chapters/[slug]/page.tsx"
+      - "src/components/notebooks/notebook-workbench.tsx"
+      - "src/app/resources/page.tsx"
+      - "src/lib/site.ts"
+      - "src/lib/seo.ts"
+      - "src/lib/seo.test.ts"
+      - "src/app/sitemap.ts"
+      - "src/app/sitemap.test.ts"
+      - "src/**/*.test.tsx"
+      - "docs/goals/seo-geo-growth-experiments/notes/**"
+      - "docs/goals/seo-geo-growth-experiments/state.yaml"
+    verify:
+      - "Read the local Next.js 16.2.9 dynamic-route, Link, metadata, sitemap, and Image documentation before edits."
+      - "Focused unit tests execute all three example implementations against deterministic fixtures and assert source/route uniqueness."
+      - "Metadata/JSON-LD tests prove unique self-canonicals, visible-content alignment, parseability, book/source attribution, and no disallowed schema claims."
+      - "Sitemap tests prove /learn plus all three guide URLs and image URLs appear once with truthful launch lastModified."
+      - "Rendered proof that all four new routes are crawlable and every guide is linked from /learn, its matching chapter, and its matching notebook card."
+      - "Analytics debug proof for internal guide navigation and external resource action with guide, location, resource, and href."
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run knip:production"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Desktop and 390px mobile browser inspection of all new routes and changed chapter/notebook/resources surfaces."
+      - "Console, broken-link, image, header-collision, and horizontal-overflow checks on all changed routes."
+      - "Runtime smoke check that every sitemap URL returns 200."
+      - "git diff --check"
+    stop_if:
+      - "T004 has not supplied exact content contracts and allowed files."
+      - "Primary source material is insufficient for a substantive page."
+      - "A page would duplicate an existing route's intent instead of adding distinct reader value."
+      - "Verification fails twice with the same failure."
+    receipt:
+      result: blocked
+      blocked_reason: "The full unit suite correctly rejects the newly implemented site-wide Learn navigation because src/content/book.test.ts still asserts the old six-item approvedPublicNav contract. That file is outside T005 allowed_files, so the active Worker cannot update it or accept the full verification gate."
+      changed_files:
+        - src/content/learning-guides.ts
+        - src/content/learning-guides.test.ts
+        - src/content/book.ts
+        - src/components/learn/learning-guide-card.tsx
+        - src/components/learn/learning-guide-page.tsx
+        - src/components/learn/notebook-learning-guide-link.tsx
+        - src/app/learn/page.tsx
+        - "src/app/learn/[slug]/page.tsx"
+        - "src/app/chapters/[slug]/page.tsx"
+        - src/components/notebooks/notebook-workbench.tsx
+        - src/app/resources/page.tsx
+        - src/lib/site.ts
+        - src/lib/seo.ts
+        - src/lib/seo.test.ts
+        - src/app/sitemap.ts
+        - src/app/sitemap.test.ts
+      commands:
+        - cmd: "npm run test:unit -- src/content/learning-guides.test.ts src/lib/seo.test.ts src/app/sitemap.test.ts"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "Exact displayed NumPy snippet verifier for all three guides"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run knip:production"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: fail
+      summary: "Implemented the approved /learn hub and three substantive guides with source-aligned visuals, equations, executable NumPy examples, cautions, chapter/notebook/resource distribution, truthful metadata/JSON-LD, sitemap image entries, and stable resource analytics. Focused contracts and exact Python execution pass. Full-suite verification stopped at the out-of-scope stale navigation expectation; T013 is the narrow completion slice that can update that contract and finish build/browser/analytics proof."
+      spawned_tasks:
+        - T013
+      verification_attempts: 1
+      stopped_because: "GoalBuddy forbids changing src/content/book.test.ts because it was omitted from T005 allowed_files."
+  - id: T006
+    type: scout
+    assignee: Scout
+    status: done
+    reasoning_hint: medium
+    objective: "Audit the canonical GitHub repository and external entity references for the smallest high-leverage cross-distribution and canonical-consistency package."
+    inputs:
+      - "https://github.com/neonwatty/machine-learning-refined"
+      - "Current website routes and analytics conventions"
+      - "Publisher, author, Google Books, and university references"
+    constraints:
+      - "Read-only."
+      - "Determine whether the canonical repository is locally available and whether changes require a separate branch/PR or owner approval."
+      - "Inventory legacy repository URLs, README entry points, repository topics, homepage link, citation metadata, and descriptive anchors."
+      - "Do not treat third-party link outreach as automatically authorized mutation."
+    expected_output:
+      - "Repository availability and authority map"
+      - "Canonical/legacy URL inventory"
+      - "Ranked GitHub-to-site distribution changes"
+      - "Entity-reference gaps"
+      - "Exact safe implementation or PR package"
+    receipt:
+      result: done
+      note: notes/T006-github-distribution-audit.md
+      summary: "The canonical repository has strong existing authority and healthy About metadata but its 57 KB README never links to mlrefined.com, contains 156 pre-rename Colab owner/repository paths, has one dead Cambridge instructor link, names none of the three book authors, and has no CITATION.cff. Recommend a separate-repository README/CFF package: add a compact official-site/guide panel, canonicalize only the exact legacy Colab segment, repair the publisher link, and add a source-backed citation/entity block. Prepare the branch before release if useful, but do not merge guide links until the production URLs return 200."
+      findings:
+        - "Authenticated neonwatty account has admin and push authority on neonwatty/machine-learning-refined; no local checkout exists."
+        - "Repository metadata already has the correct homepage, strong description, and seven relevant topics; no mutation is recommended there."
+        - "README has 297 URL occurrences, 120 unique URLs, zero mlrefined.com links, 55 canonical repository occurrences, and 156 legacy jermwatt/machine_learning_refined Colab occurrences."
+        - "Representative legacy and canonical Colab GETs both return 200, so replacement is canonical-consistency work rather than an emergency broken-link repair."
+        - "The Cambridge force.com instructor link returns 404; the current official Cambridge second-edition page returns 200."
+        - "The repository has no CITATION.cff and the README has no visible author, ISBN label, DOI, or citation block."
+        - "The new /learn and three guide production URLs currently return 404, so GitHub merge must follow website deployment and live 200 proof."
+      evidence:
+        - "GitHub API repository metadata, permissions, tree, README, license, and resource README inspection on 2026-07-11."
+        - "Exact README URL/string counts and representative live GitHub/Colab/publisher status checks."
+        - "Official Cambridge second-edition metadata and Northwestern book/author pages."
+      remaining_risks:
+        - "CITATION.cff semantics must clearly distinguish the book citation from repository material licensing."
+        - "The existing LICENSE.md attribution to two authors may be intentional and must remain untouched without an owner/legal decision."
+        - "The cross-repository implementation and merge sequence must avoid a window where the README advertises 404 guide pages."
+  - id: T013
+    type: worker
+    assignee: Worker
+    status: blocked
+    reasoning_hint: medium
+    objective: "Update the approved navigation contract for /learn, complete any in-scope integration fixes, and verify the entire T005 learning experiment package end to end."
+    allowed_files:
+      - "src/content/book.test.ts"
+      - "src/content/learning-guides.ts"
+      - "src/content/learning-guides.test.ts"
+      - "src/content/book.ts"
+      - "src/components/learn/**"
+      - "src/app/learn/page.tsx"
+      - "src/app/learn/[slug]/page.tsx"
+      - "src/app/chapters/[slug]/page.tsx"
+      - "src/components/notebooks/notebook-workbench.tsx"
+      - "src/app/resources/page.tsx"
+      - "src/lib/site.ts"
+      - "src/lib/seo.ts"
+      - "src/lib/seo.test.ts"
+      - "src/app/sitemap.ts"
+      - "src/app/sitemap.test.ts"
+      - "src/**/*.test.tsx"
+      - "docs/goals/seo-geo-growth-experiments/notes/**"
+      - "docs/goals/seo-geo-growth-experiments/state.yaml"
+    verify:
+      - "Update the existing approvedPublicNav expectation for the implemented /learn route without weakening other assertions."
+      - "Focused unit tests execute all three example implementations and prove source/route uniqueness."
+      - "Execute the exact three displayed NumPy snippets against deterministic expected results."
+      - "Metadata/JSON-LD and sitemap tests prove unique canonicals, visible claim alignment, image entries, and truthful launch lastModified."
+      - "Rendered proof that all four new routes are crawlable and every guide is linked from /learn, its matching chapter, and its matching notebook card."
+      - "Analytics debug proof for internal guide navigation and external resource action with guide, location, resource, and href."
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run knip:production"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Desktop and 390px mobile browser inspection of all new routes and changed chapter/notebook/resources surfaces."
+      - "Console, broken-link, image, header-collision, and horizontal-overflow checks on all changed routes."
+      - "Runtime smoke check that every sitemap URL returns 200."
+      - "git diff --check"
+    stop_if:
+      - "The navigation expectation reveals a product requirement against a site-wide Learn route."
+      - "A needed file falls outside allowed_files."
+      - "Adding Learn causes an unresolved navigation collision at a supported breakpoint."
+      - "A deterministic code fixture or full verification fails twice with the same failure."
+    receipt:
+      result: blocked
+      blocked_reason: "All code, content, metadata, sitemap, rendered-HTML, route-health, and exact NumPy checks pass, but the required desktop/mobile browser and analytics-click proof could not be completed because the Codex in-app Browser twice timed out attaching to its webview after the supported reconnect and visibility retry. The skill forbids silently substituting an unrelated browser backend."
+      changed_files:
+        - src/content/book.test.ts
+      commands:
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run knip:production"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "Exact displayed NumPy snippet verifier for gradient descent, logistic regression, and K-means"
+          status: pass
+        - cmd: "Rendered HTML contract: self-canonical, LearningResource JSON-LD, substantive source/code sections, and incoming links from hub/chapter/notebooks for all three guides"
+          status: pass
+        - cmd: "Runtime smoke check for all 25 sitemap URLs"
+          status: pass
+        - cmd: "Codex in-app Browser desktop/mobile and analytics-click verification"
+          status: fail
+      summary: "Updated the approved navigation contract for the new Learn route and brought the complete static package through lint, types, Knip, 25 unit tests, production build, exact Python execution, rendered metadata/schema/source inspection, ordinary incoming-link inspection, and 25-route sitemap smoke checks. The package prerenders /learn and all three /learn/[slug] routes. Visual responsive and live click-event proof remains explicitly unaccepted because the mandated browser surface is unavailable; carry that gate into T010 before deployment acceptance."
+      verification_attempts: 2
+      remaining_blockers:
+        - "Desktop and 390px mobile screenshots/overflow/header-collision/media inspection for /learn, all three guides, and changed source routes."
+        - "Runtime click proof for learning_guide_opened and learning_resource_clicked properties."
+      stopped_because: "The same in-app Browser webview attachment timeout recurred after the documented reconnect and visibility path; verification cannot be truthfully claimed."
+  - id: T007
+    type: judge
+    assignee: Judge
+    status: done
+    reasoning_hint: high
+    objective: "Choose and scope the cross-repository distribution/entity package, separating authorized local work from changes that require an external PR, owner decision, or third-party outreach."
+    inputs:
+      - "T006 receipt"
+      - "Completed content experiment routes"
+    constraints:
+      - "Read-only."
+      - "Prefer a working canonical repository/site loop over a strategy document."
+      - "Do not authorize third-party edits, outreach, or publisher changes without explicit scope."
+    expected_output:
+      - "Approved implementation boundary"
+      - "Exact Worker objective"
+      - "allowed_files or cross-repo worktree path"
+      - "verify and stop_if"
+      - "Explicit approval-gated follow-ups"
+    receipt:
+      result: done
+      decision: approved
+      full_outcome_complete: false
+      note: notes/T007-github-package-approval.md
+      rationale: "The audited repository is owner-controlled and has far greater existing authority than the relaunched site. A two-file draft PR is the largest safe distribution slice: it adds the missing official-site/guide loop and book identity, canonicalizes the exact pre-rename Colab segment, repairs one dead official link, and gives GitHub a valid preferred citation. Draft-only status prevents the three currently undeployed guide URLs from becoming live 404s in the canonical README."
+      worker_package:
+        objective: "Prepare, validate, commit, push, and open a draft PR for the canonical repository's official-site/guide distribution panel, canonical Colab paths, live publisher link, visible book entity block, and valid preferred citation—without merging ahead of the website deploy."
+        allowed_files:
+          - "/Users/neonwatty/Desktop/machine-learning-refined-seo-distribution/.git/**"
+          - /Users/neonwatty/Desktop/machine-learning-refined-seo-distribution/README.md
+          - /Users/neonwatty/Desktop/machine-learning-refined-seo-distribution/CITATION.cff
+          - "docs/goals/seo-geo-growth-experiments/notes/**"
+          - docs/goals/seo-geo-growth-experiments/state.yaml
+        verify:
+          - "Clone/fetch canonical main, create codex/website-distribution-loop, and prove base commit/repository identity."
+          - "git diff --check and a diff limited to README.md plus CITATION.cff."
+          - "Exact legacy count goes 156 to 0, canonical count rises by exactly 156, and notebook path suffix multiset is unchanged."
+          - "Representative resulting Colab GETs return 200."
+          - "Dead force.com link is absent; current Cambridge link returns 200 and retains examination-copy behavior."
+          - "Official site returns 200; undeployed /learn route 404s are recorded as a draft PR merge gate."
+          - "Every new descriptive anchor and visible author/ISBN/DOI field is present once in the intended section."
+          - "uvx --from cffconvert cffconvert --validate passes."
+          - "README Markdown renders without malformed HTML or links."
+          - "Commit intentionally, push the branch, create a draft PR, and verify it remains draft and unmerged."
+        stop_if:
+          - "The clone target exists with unrelated state or a dirty worktree."
+          - "The base repository or branch differs from neonwatty/machine-learning-refined main."
+          - "A replacement changes notebook path suffixes or more than the exact owner/repository segment."
+          - "CFF validation requires changing license attribution or inventing contributor identity."
+          - "GitHub permissions or branch protection reject the scoped branch/draft-PR flow."
+          - "Any requested edit falls outside README.md and CITATION.cff."
+          - "The operation would merge or publish guide links on main before production 200 proof."
+      evidence:
+        - "T006 GitHub distribution and entity audit."
+        - "Authenticated repository admin/push permissions and no existing local checkout."
+        - "Official CFF 1.2.0 guidance supports a root companion-resource record with preferred-citation for the book."
+        - "Official Cambridge and Northwestern sources agree on authors, edition, publisher, date, ISBN, and DOI."
+      missing_evidence:
+        - "The draft PR cannot merge until T010 proves /learn and all three guide URLs return 200 in production."
+      required_board_updates:
+        - "Copy worker_package onto T008 and activate T008."
+        - "Carry draft PR merge into the T010 coordinated release gate."
+  - id: T008
+    type: worker
+    assignee: Worker
+    status: blocked
+    reasoning_hint: medium
+    objective: "Implement the Judge-approved GitHub/site distribution and entity-consistency package and verify canonical links, attribution, and measurable referral paths."
+    allowed_files:
+      - "/Users/neonwatty/Desktop/machine-learning-refined-seo-distribution/.git/**"
+      - "/Users/neonwatty/Desktop/machine-learning-refined-seo-distribution/README.md"
+      - "/Users/neonwatty/Desktop/machine-learning-refined-seo-distribution/CITATION.cff"
+      - "docs/goals/seo-geo-growth-experiments/notes/**"
+      - "docs/goals/seo-geo-growth-experiments/state.yaml"
+    verify:
+      - "Clone/fetch canonical main, create codex/website-distribution-loop, and prove base commit/repository identity."
+      - "git diff --check and a diff limited to README.md plus CITATION.cff."
+      - "Exact legacy count goes 156 to 0, canonical count rises by exactly 156, and notebook path suffix multiset is unchanged."
+      - "Representative resulting Colab GETs return 200."
+      - "Dead force.com link is absent; current Cambridge link returns 200 and retains examination-copy behavior."
+      - "Official site returns 200; undeployed /learn route 404s are recorded as a draft PR merge gate."
+      - "Every new descriptive anchor and visible author/ISBN/DOI field is present once in the intended section."
+      - "uvx --from cffconvert cffconvert --validate passes."
+      - "README Markdown renders without malformed HTML or links."
+      - "Commit intentionally, push the branch, create a draft PR, and verify it remains draft and unmerged."
+    stop_if:
+      - "T007 has not supplied exact authority, repository path, and allowed files."
+      - "The change requires modifying a third-party property or sending outreach without approval."
+      - "A legacy URL cannot be changed safely without breaking Colab or repository redirects."
+      - "Verification fails twice with the same failure."
+    receipt:
+      result: blocked
+      blocked_reason: "The complete two-file package is committed and pushed to the canonical repository branch, but a draft PR could not be opened. The connected GitHub app returned 403 Resource not accessible by integration, then the authenticated gh token became invalid and both GraphQL/REST returned 401. SSH git push remains valid. Re-authentication is required to create the draft PR; merge remains separately gated on live guide URLs."
+      changed_files:
+        - /Users/neonwatty/Desktop/machine-learning-refined-seo-distribution/README.md
+        - /Users/neonwatty/Desktop/machine-learning-refined-seo-distribution/CITATION.cff
+      commands:
+        - cmd: "git diff --check and staged diff limited to README.md plus CITATION.cff"
+          status: pass
+        - cmd: "Legacy/canonical Colab count and notebook-suffix multiset verifier"
+          status: pass
+        - cmd: "Representative canonical Chapter 3, 6, and 8 Colab GET checks"
+          status: pass
+        - cmd: "Current Cambridge page and examination-copy text check"
+          status: pass
+        - cmd: "GitHub Markdown API render contract"
+          status: pass
+        - cmd: "uvx --from cffconvert cffconvert --validate"
+          status: pass
+        - cmd: "git commit c5bf0d4 Add website distribution and citation links"
+          status: pass
+        - cmd: "git push -u origin codex/website-distribution-loop"
+          status: pass
+        - cmd: "git ls-remote --heads origin codex/website-distribution-loop"
+          status: pass
+        - cmd: "GitHub connector create draft PR"
+          status: fail
+        - cmd: "gh pr create --draft"
+          status: fail
+      summary: "Prepared and published commit c5bf0d4 on codex/website-distribution-loop. The README now adds the official site/guide panel and visible citation block, canonicalizes all 156 Colab owner/repository segments with an unchanged notebook-path multiset, and replaces the dead Cambridge link. CITATION.cff validates against schema 1.2.0 with companion-resource root authorship and a three-author preferred book citation. The branch is clean, tracks origin, and is unmerged; only PR creation is credential-blocked."
+      verification_attempts: 2
+      remaining_blockers:
+        - "Re-authenticate gh or restore GitHub app PR-create permission, then open a draft PR from codex/website-distribution-loop to main using /tmp/mlrefined-resource-pr-body.md."
+        - "Do not merge until https://www.mlrefined.com/learn and all three guide URLs return 200 after T010 deployment."
+      stopped_because: "PR creation failed through both approved paths with stable authorization errors; T008 stop_if requires stopping when permissions differ or reject the branch/PR flow."
+  - id: T009
+    type: worker
+    assignee: Worker
+    status: blocked
+    reasoning_hint: medium
+    objective: "Implement the evidence-backed GEO foundation that remains after content and GitHub work: consistent book/author/source entities, crawler eligibility checks, accurate freshness signals, and no speculative AI-only files."
+    allowed_files:
+      - "src/lib/**"
+      - "src/app/**"
+      - "src/content/**"
+      - "src/**/*.test.ts"
+      - "src/**/*.test.tsx"
+      - "scripts/**"
+      - "docs/goals/seo-geo-growth-experiments/notes/**"
+      - "docs/goals/seo-geo-growth-experiments/state.yaml"
+    verify:
+      - "Structured-data tests and parseability checks."
+      - "Visible-content-to-schema claim audit."
+      - "Live or local robots checks for Googlebot and OAI-SearchBot eligibility."
+      - "Truthful per-route sitemap lastmod inspection."
+      - "npm run ci"
+      - "Rendered representative-route inspection with no console or page errors."
+    stop_if:
+      - "The proposed change is llms.txt, unsupported AI schema, keyword stuffing, or crawler theater without evidence."
+      - "Entity fields cannot be backed by official author, publisher, repository, or ISBN sources."
+      - "The package duplicates changes already completed in T005 or T008."
+      - "Verification fails twice with the same failure."
+    receipt:
+      result: blocked
+      blocked_reason: "The evidence-backed GEO implementation and all non-visual verification pass, but the task's required rendered browser/console inspection cannot be accepted while the mandated in-app Browser webview remains unavailable. This is the same external verification gate recorded by T013 and must be recovered in T010 before production acceptance."
+      changed_files:
+        - src/lib/site.ts
+        - src/lib/seo.ts
+        - src/lib/seo.test.ts
+        - src/app/robots.ts
+        - src/app/sitemap.ts
+        - src/app/sitemap.test.ts
+        - src/app/resources/page.tsx
+      commands:
+        - cmd: "npm run ci"
+          status: pass
+        - cmd: "git diff --check"
+          status: pass
+        - cmd: "Rendered HTML/JSON-LD graph audit for WebSite, Book, authors, SoftwareSourceCode, chapters, and guides"
+          status: pass
+        - cmd: "Visible resources-page identity audit for exact title, three authors, print/digital ISBN, and DOI"
+          status: pass
+        - cmd: "Local robots.txt content and Googlebot/OAI-SearchBot HTTP 200 checks"
+          status: pass
+        - cmd: "Sitemap freshness audit: 24 changed routes dated 2026-07-11 and unchanged /reviews dated 2026-07-04"
+          status: pass
+        - cmd: "Negative check: /llms.txt remains absent with HTTP 404"
+          status: pass
+        - cmd: "In-app Browser rendered layout, media, and console inspection"
+          status: fail
+      summary: "Implemented a consistent, visible entity graph for the exact book title, edition, publication date, three authors, print/digital ISBN, DOI, Cambridge publisher, and canonical source repository. Chapter and guide LearningResource objects now reuse stable Book/source IDs, and the Resources page visibly supports the identity claims. Robots explicitly allows Googlebot and OAI-SearchBot while preserving private-path exclusions. Sitemap lastmod is now route-accurate instead of one blanket date. No speculative llms.txt or unsupported AI schema was added. CI and programmatic runtime proof pass; only the unavailable browser's visual/console gate remains."
+      verification_attempts: 2
+      remaining_blockers:
+        - "Recover desktop/mobile rendered and console inspection in T010 before accepting deployment."
+        - "Verify the same entity graph, robots policy, and lastmod distribution on the live production alias."
+      stopped_because: "The same required browser surface failure has already recurred twice; the task stop_if forbids claiming or repeatedly retrying failed verification."
+  - id: T010
+    type: pm
+    assignee: PM
+    status: blocked
+    reasoning_hint: high
+    objective: "Run the release gate, deploy the complete verified tranche to Vercel production, verify the live domain, and submit or notify search platforms only within established authority."
+    inputs:
+      - "All required Worker receipts"
+      - "Current deployment and Search Console configuration"
+      - "Canonical sitemap and analytics readiness"
+    constraints:
+      - "Do not deploy while local verification is red or the worktree contains ambiguous unrelated changes."
+      - "Production and external submissions must follow the current execution confirmation rules."
+      - "Record exact deployment ID/URL, aliases, submission responses, and timestamps."
+      - "Do not claim indexing or AI inclusion from successful submission alone."
+    expected_output:
+      - "npm run ci receipt"
+      - "Vercel Ready deployment and live alias proof"
+      - "Live route, metadata, link, analytics, sitemap, robots, and media smoke checks"
+      - "Search Console sitemap/URL Inspection submission evidence when authorized"
+      - "Bing Webmaster/IndexNow setup or an explicit credential/authority-gated receipt"
+    receipt:
+      result: blocked
+      blocked_reason: "Production deployment is prohibited while the required browser-based desktop/mobile, console, media, and click-event gate is red. The mandated in-app Browser webview failed twice after documented recovery. The website commit and Vercel identity are ready, but no push/deploy was performed. GitHub resource PR creation is independently credential-blocked after its branch push."
+      note: notes/T010-release-gate-blocked.md
+      commands:
+        - cmd: "git commit b0464ca Add SEO learning and distribution foundation"
+          status: pass
+        - cmd: "git rebase origin/main"
+          status: pass
+        - cmd: "npm run ci after rebase"
+          status: pass
+        - cmd: "Vercel CLI whoami and project linkage inspection"
+          status: pass
+        - cmd: "Vercel deployment listing and current production baseline inspection"
+          status: pass
+        - cmd: "Codex in-app Browser required release verification"
+          status: fail
+      summary: "Prepared a clean one-commit website release branch on current origin/main and re-proved the entire CI gate after rebase. Vercel authentication and project linkage are valid. Production was not deployed and the website branch was not pushed because the browser verification gate remains unavailable. The prepared GitHub resource branch is also unmerged pending API re-authentication and live guide URLs. The recovery order is fully recorded."
+      deployment: null
+      verification_attempts: 2
+      remaining_blockers:
+        - "Restore in-app Browser and complete responsive/console/media/analytics proof."
+        - "Push/deploy website only after that proof passes."
+        - "Re-authenticate GitHub API and open the resource-repository draft PR; merge only after live guide 200 proof."
+      stopped_because: "The release constraint explicitly forbids deploying while local verification is red."
+  - id: T011
+    type: pm
+    assignee: PM
+    status: blocked
+    reasoning_hint: high
+    objective: "Record the launch baseline and perform or schedule the delayed measurement checkpoint for search discovery, generative visibility, GitHub referrals, and resource conversions."
+    inputs:
+      - "Pre-launch Search Console baseline: 8 clicks, 312 impressions, 2.6% CTR, average position 4.9 for 2026-06-28 through 2026-07-09"
+      - "Pre-launch sitemap state: 12 discovered URLs versus 21 live sitemap URLs on 2026-07-11"
+      - "Pre-launch query state: machine learning refined github and PDF variants had impressions but zero clicks"
+      - "PostHog project and implemented event taxonomy"
+      - "Bing/Google generative-performance reports when available"
+    constraints:
+      - "Use exact date windows and distinguish crawl lag from implementation failure."
+      - "Do not manufacture percentage lifts from tiny samples."
+      - "If the platform needs time, create the narrowest supported reminder/monitor or record an exact next-check date and required evidence."
+      - "A successful deploy is not measurement proof."
+    expected_output:
+      - "Search Console query/page/indexing/sitemap comparison"
+      - "PostHog landing-to-resource and GitHub referral funnel baseline"
+      - "Bing and Google AI citation/impression evidence when the reports are available"
+      - "Decision for each experiment: expand, revise, consolidate, or stop"
+      - "Next measurement date if the sample is still insufficient"
+    receipt:
+      result: blocked
+      blocked_reason: "The durable pre-launch Search Console/PostHog/GEO baseline and decision contract are complete, but no post-launch comparison can exist before T010 deploys. Production remains blocked by required browser verification; the prepared GitHub distribution branch remains unmerged due API authentication and the live guide-URL gate."
+      note: notes/T011-measurement-baseline.md
+      commands:
+        - cmd: "Authenticated Search Console performance baseline read for 2026-06-28 through 2026-07-09"
+          status: pass
+        - cmd: "PostHog project/schema discovery and www.mlrefined.com host verification"
+          status: pass
+        - cmd: "PostHog pre-launch page/path/referrer/resource breakdown for 2026-06-28 through 2026-07-11"
+          status: pass
+        - cmd: "PostHog bot-classified ordered 14-day pageview-to-resource funnel"
+          status: pass
+        - cmd: "Post-launch Search Console/PostHog/Bing comparison"
+          status: fail
+      summary: "Recorded an exact pre-launch baseline: Search Console 8 clicks/312 impressions/2.6% CTR/position 4.9; PostHog 180 human-classified pageviews/95 people; ordered pageview-to-resource conversion 13/95 (13.7%); GitHub 6 pageviews/4 people; ChatGPT 4/2; Google 16/11; Bing 2/2. New guide events are absent pre-launch, providing a clean zero-observed event baseline. Bing/generative reports and non-JS crawler logs are not available and are labeled uninstrumented, not zero. Defined L+1/L+14/L+28 gates, minimum samples, and expand/revise/consolidate/stop rules."
+      next_check_date: 2026-07-12
+      verification_attempts: 1
+      remaining_blockers:
+        - "T010 production deploy and exact launch timestamp L."
+        - "T010 live event/property/indexing verification at L+1."
+        - "Search Console/PostHog comparison at L+14 and decision at L+28 when minimum samples are met."
+      stopped_because: "A deploy is required before a post-launch measurement exists; successful local implementation is not measurement proof."
+  - id: T012
+    type: worker
+    assignee: Worker
+    status: done
+    reasoning_hint: medium
+    objective: "Restore Appendix C to the crawlable chapter browser and verify the complete T002 discovery/conversion package across all 15 chapter detail routes."
+    allowed_files:
+      - "src/components/chapters/chapter-browser.tsx"
+      - "src/**/*.test.ts"
+      - "src/**/*.test.tsx"
+      - "docs/goals/seo-geo-growth-experiments/notes/**"
+      - "docs/goals/seo-geo-growth-experiments/state.yaml"
+    verify:
+      - "Focused tests proving all 15 chapter slugs and /resources remain in navigation contracts."
+      - "npm run lint"
+      - "npm run typecheck"
+      - "npm run knip:production"
+      - "npm run test:unit"
+      - "npm run build"
+      - "Rendered desktop and 390px mobile proof that /chapters exposes 15 unique ordinary /chapters/[slug] hrefs including /chapters/linear-algebra."
+      - "Representative /notebooks and /instructors internal chapter-link checks."
+      - "Analytics debug proof for chapter-detail outbound resource properties."
+      - "Console, image, broken-link, and horizontal-overflow checks on changed routes."
+    stop_if:
+      - "Need files outside allowed_files."
+      - "Appendix C is intentionally excluded by a current product requirement supported by stronger evidence."
+      - "Verification fails twice with the same failure."
+    receipt:
+      result: done
+      changed_files:
+        - src/components/chapters/chapter-browser.tsx
+      commands:
+        - cmd: "Runtime chapter-anchor verifier: 15 unique /chapters/[slug] hrefs including /chapters/linear-algebra"
+          status: pass
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run knip:production"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "Desktop and 390px mobile browser proof: 15 unique chapter hrefs, /resources present, no overflow, no broken images, no console warnings/errors"
+          status: pass
+        - cmd: "All 21 sitemap URLs return HTTP 200 locally"
+          status: pass
+        - cmd: "Analytics debug proof: chapter_resource_clicked includes chapter=5, location=chapter_detail, resource=pdf, and canonical href"
+          status: pass
+        - cmd: "git diff --check"
+          status: pass
+      summary: "Restored Appendix C to the chapter browser and completed the T002 discovery/conversion oracle. The site now exposes ordinary internal links for all 15 chapter details, /resources is site-wide navigation, notebook and instructor surfaces link into chapter pages, the homepage exposes official GitHub/PDF paths, and chapter-detail outbound resources emit stable analytics. Desktop/mobile checks found no overflow, broken images, or console errors; all 21 sitemap URLs return 200; lint, typecheck, Knip, unit tests, and production build pass."
+      deviations: []
+      remaining_blockers: []
+      verification_attempts: 1
+      stopped_because: null
+  - id: T999
+    type: judge
+    assignee: Judge
+    status: done
+    reasoning_hint: xhigh
+    objective: "Audit whether the full SEO/GEO growth tranche satisfies the owner's original outcome rather than merely completing implementation."
+    inputs:
+      - "All done and blocked receipts"
+      - "Latest local and production verification"
+      - "Search Console, PostHog, Bing/AI, and GitHub evidence"
+      - "Current dirty diff and external PR/deployment state"
+    constraints:
+      - "Read-only."
+      - "Reject completion if any required Worker package remains queued, active, unverified, or falsely substituted with planning."
+      - "Reject completion if new pages are thin, orphaned, duplicative, unsupported, or unmeasured."
+      - "Do not require guaranteed rankings or citations; require proven eligibility, quality, deployment, and honest measurement state."
+    expected_output:
+      - "complete | not_complete"
+      - "full_outcome_complete: true | false"
+      - "Evidence mapping for all five workstreams"
+      - "Top three failure modes and evidence ruling each out"
+      - "Residual risks, approval-gated items, and next task if incomplete"
+    receipt:
+      result: done
+      decision: not_complete
+      full_outcome_complete: false
+      note: notes/T999-final-audit-not-complete.md
+      rationale: "Local implementation, static verification, pre-launch measurement, and the prepared GitHub commit are substantial, but the original outcome is a live, measurable discovery/distribution system. Production still returns 404 for every guide, the resource repository branch is unmerged, mandatory browser/analytics-click evidence is missing, and post-launch results cannot exist. Completion would be false."
+      evidence_mapping:
+        - "T012 proves all 15 chapter links, /resources navigation, conversion paths, analytics properties, 21-route health, and responsive foundation."
+        - "T003-T005/T013 prove source selection, high content contracts, exact NumPy execution, metadata/schema/sitemap, and rendered incoming links for three guides, with browser acceptance still missing."
+        - "T006-T008 prove the canonical repository audit and pushed commit c5bf0d4, with draft PR creation/auth and merge/live-link gates still missing."
+        - "T009 proves the consistent book/author/source graph, explicit Googlebot/OAI-SearchBot eligibility, truthful lastmod, and negative llms.txt check, with live/browser proof missing."
+        - "T010-T011 prove a clean rebased website commit b0464ca, post-rebase CI, Vercel identity, Search Console baseline, PostHog human/referral/resource baseline, and honest delayed measurement rules; deployment has not occurred."
+      top_failure_modes:
+        - "Current production 404s mean the new work is not available to readers."
+        - "The GitHub distribution loop is unmerged and must not merge before live guide 200 proof."
+        - "Mobile/media/console/click behavior remains unproved because the required Browser is unavailable."
+      residual_risks:
+        - "In-app Browser webview availability."
+        - "GitHub API/CLI re-authentication for PR creation."
+        - "Production deployment, live alias, Search Console submission, and event-ingestion evidence."
+        - "L+14/L+28 sample sufficiency and experiment decisions."
+      next_task: T014
+      required_board_updates:
+        - "Activate T014 release recovery."
+        - "Run T015 only after T014 records the actual launch timestamp."
+        - "Create a new final Judge audit after T015; do not reuse this not-complete decision as completion."
+  - id: T014
+    type: pm
+    assignee: PM
+    status: blocked
+    reasoning_hint: high
+    objective: "Recover the browser and GitHub API gates, complete the coordinated website production release, open and merge the prepared resource-repository PR only after live guide proof, and record all live evidence."
+    inputs:
+      - "Website commit b0464ca on codex/seo-geo-growth-experiments"
+      - "Resource repository commit c5bf0d4 on codex/website-distribution-loop"
+      - "T010 release recovery sequence"
+      - "T013 and T009 missing browser evidence"
+    constraints:
+      - "No product-file edits; if live verification reveals a defect, activate a separately scoped Worker task."
+      - "Do not push/deploy until the in-app Browser can complete desktop and 390px local or preview verification."
+      - "Do not merge the resource repository branch before /learn and all three guide URLs return 200 on the production alias."
+      - "Do not claim indexing, AI citations, or analytics ingestion from deployment alone."
+      - "Preserve exact deployment, branch, commit, PR, merge, alias, and submission identifiers."
+    expected_output:
+      - "Desktop and 390px responsive, image, overflow, header-collision, console, and click-event proof"
+      - "Pushed website branch and verified preview"
+      - "Ready Vercel production deployment and www.mlrefined.com alias proof"
+      - "Live 25-URL sitemap, metadata, JSON-LD, robots, media, analytics, and negative-route smoke receipt"
+      - "GitHub API re-authentication, draft PR creation, live-guide merge gate, merge commit, and rendered README/CFF proof"
+      - "Search Console sitemap/URL submission receipts within authority"
+    receipt:
+      result: blocked
+      blocked_reason: "The restored in-app Browser found a real release-gate defect: the first above-the-fold learning hub visual is lazy-loaded and triggers the Next.js LCP console warning. T014 explicitly prohibits product-file edits, so T016 is required before release. GitHub authentication is now restored."
+      note: notes/T014-local-browser-gate.md
+      commands:
+        - cmd: "GoalBuddy state checker"
+          status: pass
+        - cmd: "gh auth status and resource repository inspection"
+          status: pass
+        - cmd: "In-app Browser 1440x1000 guide layout, image, overflow, and header checks"
+          status: pass
+        - cmd: "In-app Browser 390x844 hub, three guides, matching chapters, notebooks, resources, and mobile-menu checks"
+          status: pass
+        - cmd: "Tracked guide-to-chapter browser navigation"
+          status: pass
+        - cmd: "In-app Browser clean-console release gate"
+          status: fail
+        - cmd: "PostHog immediate learning_guide_resource_clicked taxonomy lookup"
+          status: fail
+      summary: "Recovered both previously missing operator capabilities: the in-app Browser now attaches and GitHub CLI is authenticated as neonwatty with repo scope. Responsive and navigation behavior pass on the local release routes, but the browser exposed an LCP lazy-image warning that must be fixed in the separately scoped T016 Worker task. PostHog ingestion remains pending rather than assumed."
+      spawned_tasks:
+        - T016
+        - T017
+      remaining_blockers:
+        - "T016 must eliminate the LCP console warning without eagerly loading all guide images."
+        - "T017 must re-prove a clean browser gate and analytics ingestion before release."
+        - "Production and the resource PR remain intentionally unpublished until those gates pass."
+      verification_attempts: 1
+      stopped_because: "The active PM task disallows product-file edits when browser verification reveals a defect."
+  - id: T015
+    type: pm
+    assignee: PM
+    status: queued
+    reasoning_hint: high
+    objective: "Run the L+1 launch verification and schedule/execute the L+14 and L+28 Search Console/PostHog/GitHub/GEO measurement decisions from the T011 baseline."
+    inputs:
+      - "T011 baseline and query contract"
+      - "T014 production launch timestamp and live event proof"
+    constraints:
+      - "Use exact UTC windows and human/bot separation."
+      - "Do not infer lift when minimum guide impression/landing thresholds are not met."
+      - "Label unavailable Bing/AI reports and non-JS crawler logs as uninstrumented, not zero."
+    expected_output:
+      - "L+1 event/property, sitemap, canonical, and indexability gate"
+      - "Exact L+14 and L+28 calendar checkpoints from the actual launch timestamp"
+      - "Per-guide expand, revise, consolidate, stop, or insufficient-data decision"
+      - "Updated final Judge evidence"
+    receipt: null
+  - id: T016
+    type: worker
+    assignee: Worker
+    status: done
+    reasoning_hint: medium
+    objective: "Eliminate the learning hub LCP console warning by eagerly loading only the first above-the-fold guide visual, preserving lazy loading for the remaining cards."
+    allowed_files:
+      - src/app/learn/page.tsx
+      - src/components/learn/learning-guide-card.tsx
+    verify:
+      - npm run lint
+      - npm run typecheck
+      - npm run test:unit
+      - npm run build
+      - "In-app Browser desktop and 390px /learn console inspection shows no image LCP warning"
+    stop_if:
+      - "The fix requires files outside allowed_files."
+      - "Any responsive overflow, broken image, or duplicate eager-load regression appears."
+    expected_output:
+      - "Only the first learning guide image renders with loading=eager"
+      - "No Next.js LCP warning on desktop or 390px /learn"
+      - "Passing repository checks and browser evidence"
+    receipt:
+      result: done
+      changed_files:
+        - src/app/learn/page.tsx
+        - src/components/learn/learning-guide-card.tsx
+      commands:
+        - cmd: "npm run lint"
+          status: pass
+        - cmd: "npm run typecheck"
+          status: pass
+        - cmd: "npm run test:unit"
+          status: pass
+        - cmd: "npm run build"
+          status: pass
+        - cmd: "In-app Browser 390x844 /learn loading, image, overflow, and console verification"
+          status: pass
+        - cmd: "In-app Browser 1440x1000 /learn loading, image, overflow, and console verification"
+          status: pass
+      summary: "The learning hub now marks only its first above-the-fold guide visual as loading=eager; the remaining two cards stay lazy. Both responsive widths render every image with non-zero dimensions and no horizontal overflow. The only LCP warning retained by the browser predates the fix; no warning or error was emitted during verification beginning at 2026-07-11T21:25:14Z."
+  - id: T017
+    type: pm
+    assignee: PM
+    status: active
+    reasoning_hint: high
+    objective: "Resume the coordinated release after T016: re-run the clean browser gate, publish and verify the website, deploy production, publish the gated GitHub distribution PR, and record search/analytics evidence."
+    inputs:
+      - "T014 partial browser and GitHub-auth evidence"
+      - "T016 LCP warning fix and verification"
+      - "Website branch codex/seo-geo-growth-experiments"
+      - "Resource branch codex/website-distribution-loop"
+    constraints:
+      - "No product-file edits; activate a separately scoped Worker if verification reveals another defect."
+      - "Do not merge the resource repository branch before /learn and all three guide URLs return 200 on the production alias."
+      - "Do not claim indexing, AI citations, or analytics ingestion without direct evidence."
+    expected_output:
+      - "Clean desktop and 390px browser/console/click-event evidence"
+      - "Pushed website branch, verified preview, and Ready production deployment"
+      - "Live route, sitemap, metadata, JSON-LD, robots, image, and negative-route evidence"
+      - "Created and merged resource-repository PR after the live URL gate"
+      - "Search Console and PostHog launch receipts"
+    receipt: null
+
+checks:
+  dirty_fingerprint: "Prep began on branch codex/og-image-polish with only docs/goals/seo-geo-growth-experiments untracked."
+  last_verification:
+    result: unknown
+    task: null
+    commands: []

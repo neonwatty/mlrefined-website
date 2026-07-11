@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { chapters } from "@/content/book";
+import { chapters, learningGuideHref, learningGuides } from "@/content/book";
 import {
   chapterPageDescription,
   chapterJsonLd,
@@ -8,11 +8,15 @@ import {
   chaptersCollectionJsonLd,
   collectionPageJsonLd,
   homeJsonLd,
+  learningGuideJsonLd,
+  learningGuidesCollectionJsonLd,
   stringifyJsonLd,
 } from "./seo";
 import {
   absoluteUrl,
+  chapterPageHref,
   createPageMetadata,
+  primaryNav,
   siteConfig,
   socialPreviewImage,
   twitterPreviewImage,
@@ -22,6 +26,14 @@ describe("seo helpers", () => {
   it("builds canonical absolute URLs from the configured site URL", () => {
     expect(absoluteUrl("/chapters")).toBe(`${siteConfig.url}/chapters`);
     expect(absoluteUrl("resources")).toBe(`${siteConfig.url}/resources`);
+  });
+
+  it("keeps every chapter and the resource index in ordinary navigation contracts", () => {
+    expect(primaryNav).toContainEqual({ href: "/resources", label: "Resources" });
+    expect(primaryNav).toContainEqual({ href: "/learn", label: "Learn" });
+    expect(chapters.map(chapterPageHref)).toEqual(
+      chapters.map((chapter) => `/chapters/${chapter.slug}`),
+    );
   });
 
   it("creates indexable metadata with canonical and social URLs", () => {
@@ -62,16 +74,28 @@ describe("seo helpers", () => {
     const parsed = JSON.parse(serialized);
 
     expect(serialized).not.toContain("<");
-    expect(parsed).toHaveLength(4);
+    expect(parsed).toHaveLength(5);
     expect(parsed[1]).toMatchObject({
       "@type": "Book",
+      name: siteConfig.bookTitle,
       isbn: siteConfig.isbn,
-      bookEdition: "2nd",
+      bookEdition: siteConfig.bookEdition,
+      datePublished: siteConfig.datePublished,
+      sameAs: [siteConfig.publisherUrl, siteConfig.doiUrl],
+    });
+    expect(parsed[1].author).toHaveLength(siteConfig.authorEntities.length);
+    expect(parsed[1].identifier).toContainEqual(
+      expect.objectContaining({ propertyID: "DOI", value: siteConfig.doi }),
+    );
+    expect(parsed[2]).toMatchObject({
+      "@type": "SoftwareSourceCode",
+      url: siteConfig.githubRepo,
+      isPartOf: { name: siteConfig.bookTitle },
     });
   });
 
   it("keeps every highlighted chapter represented in homepage JSON-LD", () => {
-    const itemList = homeJsonLd()[2];
+    const itemList = homeJsonLd()[3];
     const itemListElement = itemList.itemListElement ?? [];
     const firstItem = itemListElement[0];
 
@@ -93,6 +117,11 @@ describe("seo helpers", () => {
     expect(parsed[1]).toMatchObject({
       "@type": "LearningResource",
       name: `Chapter ${chapter.number}: ${chapter.title}`,
+      isPartOf: { name: siteConfig.bookTitle, isbn: siteConfig.isbn },
+      isBasedOn: {
+        "@type": "SoftwareSourceCode",
+        url: siteConfig.githubRepo,
+      },
     });
     expect(parsed[1].hasPart).toHaveLength(
       Object.values(chapter.resources).filter(Boolean).length,
@@ -144,5 +173,45 @@ describe("seo helpers", () => {
       url: `${siteConfig.url}/chapters`,
     });
     expect(parsed[1].hasPart).toHaveLength(chapters.length);
+  });
+
+  it("creates visible-claim-aligned learning guide JSON-LD", () => {
+    const guide = learningGuides[0];
+    const parsed = JSON.parse(stringifyJsonLd(learningGuideJsonLd(guide)));
+
+    expect(parsed[0]).toMatchObject({ "@type": "BreadcrumbList" });
+    expect(parsed[1]).toMatchObject({
+      "@type": "LearningResource",
+      name: guide.title,
+      url: absoluteUrl(learningGuideHref(guide)),
+      image: absoluteUrl(guide.image.src),
+      learningResourceType: "Programming tutorial",
+      educationalLevel: "Introductory machine learning",
+    });
+    expect(parsed[1].hasPart).toHaveLength(guide.resources.length);
+    expect(parsed[1].author).toHaveLength(siteConfig.authors.length);
+    expect(parsed[1]).toMatchObject({
+      isPartOf: { name: siteConfig.bookTitle, isbn: siteConfig.isbn },
+      isBasedOn: {
+        "@type": "DigitalDocument",
+        url: guide.resources.find((resource) => resource.kind === "notebook")
+          ?.href,
+      },
+    });
+
+    const serialized = JSON.stringify(parsed);
+    expect(serialized).not.toMatch(/FAQPage|HowTo|AggregateRating|Course/);
+  });
+
+  it("creates a collection contract for every learning guide", () => {
+    const parsed = JSON.parse(
+      stringifyJsonLd(learningGuidesCollectionJsonLd(learningGuides)),
+    );
+
+    expect(parsed[1]).toMatchObject({
+      "@type": "CollectionPage",
+      url: absoluteUrl("/learn"),
+    });
+    expect(parsed[1].hasPart).toHaveLength(learningGuides.length);
   });
 });

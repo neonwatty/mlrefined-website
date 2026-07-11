@@ -3,12 +3,14 @@
 import Image from "next/image";
 
 import { ResourceLink } from "@/components/analytics/resource-link";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 import type {
   BookChapter,
   ChapterTrack,
   LearningWidget,
   StaticVisual,
 } from "@/content/book";
+import { chapterPageHref } from "@/lib/site";
 
 export function ChapterList({
   chapters,
@@ -30,32 +32,47 @@ export function ChapterList({
   return (
     <div className="grid content-start gap-2">
       {chapters.map((chapter) => (
-        <button
+        <article
           key={chapter.slug}
-          className={`grid gap-2 rounded-lg border bg-white p-3 text-left transition-all md:grid-cols-[74px_minmax(0,1fr)_minmax(210px,0.48fr)] md:items-center ${chapter.number === selectedNumber ? "border-[#164b8f] shadow-lg shadow-[#071326]/10" : "border-[#ddcfad] hover:border-[#164b8f]/50"}`}
-          aria-pressed={chapter.number === selectedNumber}
-          type="button"
-          onClick={() => setSelectedNumber(chapter.number)}
+          className={`grid gap-2 rounded-lg border bg-white p-2 transition-all md:grid-cols-[minmax(0,1fr)_auto] md:items-center ${chapter.number === selectedNumber ? "border-[#164b8f] shadow-lg shadow-[#071326]/10" : "border-[#ddcfad] hover:border-[#164b8f]/50"}`}
         >
-          <span className="font-serif text-3xl font-black leading-none text-[#164b8f]">
-            <span className="block font-sans text-[0.62rem] uppercase tracking-[0.1em] text-[#526070]">
-              {chapter.number === "C" ? "Appendix" : "Chapter"}
+          <button
+            className="grid gap-2 rounded-md p-1 text-left md:grid-cols-[74px_minmax(0,1fr)_minmax(210px,0.48fr)] md:items-center"
+            aria-pressed={chapter.number === selectedNumber}
+            type="button"
+            onClick={() => setSelectedNumber(chapter.number)}
+          >
+            <span className="font-serif text-3xl font-black leading-none text-[#164b8f]">
+              <span className="block font-sans text-[0.62rem] uppercase tracking-[0.1em] text-[#526070]">
+                {chapter.number === "C" ? "Appendix" : "Chapter"}
+              </span>
+              {chapter.number}
             </span>
-            {chapter.number}
-          </span>
-          <span>
-            <strong className="block font-serif text-xl font-black text-[#0b2545]">
-              {chapter.title}
-            </strong>
-            <span className="mt-1 block text-sm leading-6 text-[#526070]">{chapter.summary}</span>
-          </span>
-          <span className="flex flex-wrap gap-2 text-xs font-black text-[#164b8f] md:justify-end">
-            <span>{chapterFigures(visuals, chapter.number).length} figures</span>
-            <span>{chapterWidgets(widgets, chapter.number).length} notebooks</span>
-            {chapter.resources.exercise ? <span>Exercises</span> : null}
-            {chapter.resources.slides ? <span>Slides</span> : null}
-          </span>
-        </button>
+            <span>
+              <strong className="block font-serif text-xl font-black text-[#0b2545]">
+                {chapter.title}
+              </strong>
+              <span className="mt-1 block text-sm leading-6 text-[#526070]">{chapter.summary}</span>
+            </span>
+            <span className="flex flex-wrap gap-2 text-xs font-black text-[#164b8f] md:justify-end">
+              <span>{chapterFigures(visuals, chapter.number).length} figures</span>
+              <span>{chapterWidgets(widgets, chapter.number).length} notebooks</span>
+              {chapter.resources.exercise ? <span>Exercises</span> : null}
+              {chapter.resources.slides ? <span>Slides</span> : null}
+            </span>
+          </button>
+          <TrackedLink
+            className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-[#fffdf8] px-3 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7]"
+            eventName="chapter_detail_opened"
+            eventProperties={{
+              chapter: chapter.number,
+              location: "chapter_list",
+            }}
+            href={chapterPageHref(chapter)}
+          >
+            Open chapter page
+          </TrackedLink>
+        </article>
       ))}
     </div>
   );
@@ -85,6 +102,17 @@ export function SelectedChapterPanel({
           {chapter.number === "C" ? "Appendix C" : `Chapter ${chapter.number}`}: {chapter.title}
         </h2>
         <p className="mt-3 leading-7 text-[#526070]">{chapter.summary}</p>
+        <TrackedLink
+          className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-3 text-sm font-black text-[#06172d] hover:bg-[#d7a02b]"
+          eventName="chapter_detail_opened"
+          eventProperties={{
+            chapter: chapter.number,
+            location: "selected_chapter_panel",
+          }}
+          href={chapterPageHref(chapter)}
+        >
+          Read the chapter overview
+        </TrackedLink>
         <ResourceLinks chapter={chapter} />
       </div>
       {heroFigure ? <VisualPreview visual={heroFigure} /> : null}
