@@ -41,8 +41,10 @@ describe("book content contracts", () => {
   it("models the approved public navigation without advertising unbuilt routes", () => {
     expect(approvedPublicNav.map((item) => item.label)).toEqual([
       "Home",
+      "Learn",
       "Notebooks",
       "Chapters",
+      "Resources",
       "Instructors",
       "Reviews",
     ]);

@@ -84,18 +84,15 @@ export function ChapterBrowser({
   const [resourceKind, setResourceKind] = useState<ResourceKind>("all");
   const [selectedNumber, setSelectedNumber] = useState("6");
   const lastCommittedSearch = useRef("");
-  const primaryChapters = useMemo(
-    () => chapters.filter((chapter) => chapter.number !== "C"),
-    [chapters],
-  );
+  const browseableChapters = useMemo(() => chapters, [chapters]);
 
   const filteredChapters = useMemo(() => {
-    return primaryChapters.filter((chapter) => {
+    return browseableChapters.filter((chapter) => {
       return matchesAudience(chapter, audienceKind) &&
         matchesQuery(chapter, query) &&
         hasResource(chapter, resourceKind, visuals, widgets);
     });
-  }, [audienceKind, primaryChapters, query, resourceKind, visuals, widgets]);
+  }, [audienceKind, browseableChapters, query, resourceKind, visuals, widgets]);
 
   const selectedChapter =
     chapters.find((chapter) => chapter.number === selectedNumber) ??
@@ -208,8 +205,8 @@ export function ChapterBrowser({
         <ul className="grid grid-cols-2 gap-3 rounded-lg border border-[#ddcfad] bg-white/72 p-3 sm:flex sm:flex-wrap sm:justify-end sm:gap-5 sm:border-0 sm:bg-transparent sm:p-0">
           <SummaryItem value={filteredChapters.length} label="Chapters shown" />
           <SummaryItem value={84} label="Note notebooks" />
-          <SummaryItem value={primaryChapters.filter((chapter) => chapter.resources.exercise).length} label="Exercise sets" />
-          <SummaryItem value={primaryChapters.filter((chapter) => chapter.resources.slides).length} label="PPTX chapters" />
+          <SummaryItem value={browseableChapters.filter((chapter) => chapter.resources.exercise).length} label="Exercise sets" />
+          <SummaryItem value={browseableChapters.filter((chapter) => chapter.resources.slides).length} label="PPTX chapters" />
         </ul>
 
         <SelectedChapterPanel

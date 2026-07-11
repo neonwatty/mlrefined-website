@@ -1,6 +1,8 @@
 import Image from "next/image";
 
+import { ResourceLink } from "@/components/analytics/resource-link";
 import { TrackedLink } from "@/components/analytics/tracked-link";
+import { bookLinks } from "@/content/book";
 import { pedagogySteps } from "@/content/home-page";
 
 export function HomeHero() {
@@ -27,6 +29,28 @@ export function HomeHero() {
           <TrackedLink className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-4 text-[0.82rem] font-black text-[#164b8f] transition-colors hover:bg-[#fff7e7]" eventName="primary_cta_clicked" eventProperties={{ location: "home_hero", label: "Open Python notebooks" }} href="/notebooks">
             Open Python notebooks
           </TrackedLink>
+        </div>
+
+        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-black">
+          <ResourceLink
+            className="inline-flex min-h-11 items-center text-[#164b8f] underline decoration-[#c79222]/70 underline-offset-4 hover:text-[#0b2545]"
+            eventName="home_resource_clicked"
+            eventProperties={{ location: "home_hero", resource: "github_repository" }}
+            href={bookLinks.repo}
+            target="_blank"
+          >
+            Official GitHub repository
+          </ResourceLink>
+          <span aria-hidden="true" className="text-[#c79222]">•</span>
+          <ResourceLink
+            className="inline-flex min-h-11 items-center text-[#164b8f] underline decoration-[#c79222]/70 underline-offset-4 hover:text-[#0b2545]"
+            eventName="home_resource_clicked"
+            eventProperties={{ location: "home_hero", resource: "chapter_pdfs" }}
+            href={bookLinks.pdfs}
+            target="_blank"
+          >
+            Free chapter PDFs
+          </ResourceLink>
         </div>
 
         <p className="mt-3 max-w-[610px] text-sm font-bold text-[#6b5b3d]">

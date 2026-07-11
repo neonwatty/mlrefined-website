@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 
-import { chapters } from "@/content/book";
+import { chapters, learningGuideHref, learningGuides } from "@/content/book";
 import {
   absoluteUrl,
   createPageMetadata,
@@ -12,7 +12,11 @@ import {
   twitterPreviewImage,
 } from "@/lib/site";
 import robots from "./robots";
-import sitemap, { sitemapLastModified } from "./sitemap";
+import sitemap, {
+  chaptersLastModified,
+  learningGuidesLastModified,
+  routeLastModified,
+} from "./sitemap";
 
 function pageFileForRoute(route: string) {
   if (route === "/") {
@@ -23,15 +27,42 @@ function pageFileForRoute(route: string) {
 }
 
 describe("sitemap metadata route", () => {
-  it("only advertises implemented public app routes and chapter detail pages", () => {
+  it("only advertises implemented public app routes, chapters, and learning guides", () => {
     const entries = sitemap();
     const sitemapPaths = entries.map((entry) => new URL(entry.url).pathname);
     const chapterRoutes = chapters.map((chapter) => `/chapters/${chapter.slug}`);
+    const learningGuideRoutes = learningGuides.map(learningGuideHref);
 
-    expect(sitemapPaths).toEqual([...publicRoutes, ...chapterRoutes]);
+    expect(sitemapPaths).toEqual([
+      ...publicRoutes,
+      ...chapterRoutes,
+      ...learningGuideRoutes,
+    ]);
     expect(sitemapPaths).not.toContain("/dashboard");
-    expect(entries.every((entry) => entry.lastModified === sitemapLastModified))
-      .toBe(true);
+    expect(new Set(sitemapPaths).size).toBe(sitemapPaths.length);
+
+    for (const route of publicRoutes) {
+      const entry = entries.find(
+        (candidate) => new URL(candidate.url).pathname === route,
+      );
+      expect(entry?.lastModified).toBe(routeLastModified[route]);
+    }
+
+    for (const chapter of chapters) {
+      const entry = entries.find(
+        (candidate) =>
+          new URL(candidate.url).pathname === `/chapters/${chapter.slug}`,
+      );
+      expect(entry?.lastModified).toBe(chaptersLastModified);
+    }
+
+    for (const guide of learningGuides) {
+      const entry = entries.find(
+        (candidate) => new URL(candidate.url).pathname === learningGuideHref(guide),
+      );
+      expect(entry?.lastModified).toBe(learningGuidesLastModified);
+      expect(entry?.images).toEqual([absoluteUrl(guide.image.src)]);
+    }
 
     for (const route of publicRoutes) {
       expect(fs.existsSync(pageFileForRoute(route)), route).toBe(true);
@@ -41,11 +72,23 @@ describe("sitemap metadata route", () => {
   it("allows public pages while disallowing private systems", () => {
     const rules = robots().rules;
 
-    expect(rules).toMatchObject({
-      userAgent: "*",
-      allow: "/",
-      disallow: ["/api/", "/admin/"],
-    });
+    expect(rules).toEqual([
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: ["/api/", "/admin/"],
+      },
+      {
+        userAgent: "OAI-SearchBot",
+        allow: "/",
+        disallow: ["/api/", "/admin/"],
+      },
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/", "/admin/"],
+      },
+    ]);
     expect(JSON.stringify(rules)).not.toContain("/dashboard");
   });
 });

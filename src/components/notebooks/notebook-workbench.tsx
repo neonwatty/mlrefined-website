@@ -5,7 +5,10 @@ import { useMemo, useState } from "react";
 
 import { captureAnalyticsEvent } from "@/components/analytics/capture";
 import { ResourceLink } from "@/components/analytics/resource-link";
+import { TrackedLink } from "@/components/analytics/tracked-link";
+import { NotebookLearningGuideLink } from "@/components/learn/notebook-learning-guide-link";
 import type { BookChapter, LearningWidget } from "@/content/book";
+import { chapterPageHref } from "@/lib/site";
 
 type NotebookWorkbenchProps = {
   chapters: BookChapter[];
@@ -46,12 +49,18 @@ export function NotebookWorkbench({ chapters, widgets }: NotebookWorkbenchProps)
               {selectedWidget.chapter} / {selectedWidget.topic} / Live visual notebook
             </p>
             <div className="grid gap-2 sm:flex sm:flex-wrap">
+              <NotebookLearningGuideLink
+                chapter={selectedChapter}
+                className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222] bg-[#fff7e7] px-3 text-sm font-black text-[#164b8f] hover:bg-[#ffefc9]"
+                location="notebook_featured"
+                resource={selectedWidget.title}
+              />
               {selectedChapter ? (
-                <SourceLink
+                <ChapterPageLink
                   className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-3 text-sm font-black text-[#164b8f] hover:bg-[#fff7e7]"
                   detail=""
-                  href={selectedChapter.resources.notes ?? selectedChapter.resources.notebook ?? selectedWidget.href}
-                  label="Chapter resources"
+                  chapter={selectedChapter}
+                  label="Chapter page"
                   resource={selectedWidget.title}
                 />
               ) : null}
@@ -137,12 +146,18 @@ export function NotebookWorkbench({ chapters, widgets }: NotebookWorkbenchProps)
                   {widget.description}
                 </span>
               </button>
-              <div className="mt-auto grid gap-2 sm:grid-cols-3 sm:gap-1.5">
-                <SourceLink
+              <div className="mt-auto grid gap-2 sm:grid-cols-2 sm:gap-1.5">
+                <NotebookLearningGuideLink
+                  chapter={chapterForWidget(chapters, widget)}
+                  className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222] bg-[#fff7e7] px-2 text-center text-sm font-black leading-tight text-[#164b8f] hover:bg-[#ffefc9] sm:px-1.5 sm:text-[0.68rem] sm:leading-[0.875rem]"
+                  location="notebook_grid"
+                  resource={widget.title}
+                />
+                <ChapterPageLink
                   className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-white px-2 text-center text-sm font-black leading-tight text-[#164b8f] hover:bg-[#fff7e7] sm:px-1.5 sm:text-[0.68rem] sm:leading-[0.875rem]"
                   detail=""
-                  href={chapterHrefForWidget(chapters, widget)}
-                  label="Chapter resources"
+                  chapter={chapterForWidget(chapters, widget)}
+                  label="Chapter page"
                   resource={widget.title}
                 />
                 <SourceLink
@@ -194,6 +209,21 @@ function SourceBundle({
         label="Open in Colab"
         resource={widget.title}
       />
+      {chapter ? (
+        <NotebookLearningGuideLink
+          chapter={chapter}
+          location="notebook_source_bundle"
+          resource={widget.title}
+        />
+      ) : null}
+      {chapter ? (
+        <ChapterPageLink
+          chapter={chapter}
+          detail={chapter.title}
+          label="Chapter overview"
+          resource={widget.title}
+        />
+      ) : null}
       {chapterHref ? (
         <SourceLink
           detail={chapter?.title ?? widget.topic}
@@ -214,6 +244,38 @@ function SourceBundle({
   );
 }
 
+function ChapterPageLink({
+  chapter,
+  className,
+  detail,
+  label,
+  resource,
+}: {
+  chapter?: BookChapter;
+  className?: string;
+  detail: string;
+  label: string;
+  resource: string;
+}) {
+  if (!chapter) return null;
+
+  return (
+    <TrackedLink
+      className={className ?? "rounded-md border border-[#d9e2ec] bg-white p-3 transition-colors hover:border-[#164b8f]/50 hover:bg-[#f7fbff]"}
+      eventName="chapter_detail_opened"
+      eventProperties={{
+        chapter: chapter.number,
+        location: "notebook_workbench",
+        resource,
+      }}
+      href={chapterPageHref(chapter)}
+    >
+      <strong className="block text-sm font-black text-[#164b8f]">{label}</strong>
+      {detail ? <span className="mt-1 block text-xs leading-5 text-[#526070]">{detail}</span> : null}
+    </TrackedLink>
+  );
+}
+
 function SourceLink({
   className,
   detail,
@@ -222,8 +284,7 @@ function SourceLink({
   resource,
 }: {
   className?: string;
-  detail: string;
-  href: string;
+  detail: string; href: string;
   label: string;
   resource: string;
 }) {
@@ -246,10 +307,8 @@ function chapterNumber(label?: string) {
   return label?.replace("Ch. ", "").replace("Appendix ", "");
 }
 
-function chapterHrefForWidget(chapters: BookChapter[], widget: LearningWidget) {
-  const chapter = chapters.find((item) => item.number === chapterNumber(widget.chapter));
-
-  return chapter?.resources.notes ?? chapter?.resources.notebook ?? widget.href;
+function chapterForWidget(chapters: BookChapter[], widget: LearningWidget) {
+  return chapters.find((item) => item.number === chapterNumber(widget.chapter));
 }
 
 function fileName(href: string) {

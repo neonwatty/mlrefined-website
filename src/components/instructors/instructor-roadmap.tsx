@@ -5,7 +5,9 @@ import { useState } from "react";
 
 import { captureAnalyticsEvent } from "@/components/analytics/capture";
 import { ResourceLink } from "@/components/analytics/resource-link";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 import type { BookChapter, ChapterTrack } from "@/content/book";
+import { chapterPageHref } from "@/lib/site";
 
 type InstructorRoadmapProps = {
   chapters: BookChapter[];
@@ -150,6 +152,20 @@ export function InstructorRoadmap({
                     {isOpen ? "Viewing" : "Show resources"}
                   </span>
                 </button>
+                {chapter ? (
+                  <TrackedLink
+                    className="mt-1 inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222]/50 bg-[#fffdf8] px-2 text-xs font-black text-[#164b8f] hover:bg-[#fff7e7]"
+                    eventName="chapter_detail_opened"
+                    eventProperties={{
+                      chapter: chapter.number,
+                      location: "instructor_roadmap",
+                      roadmap: activeRoadmap.title,
+                    }}
+                    href={chapterPageHref(chapter)}
+                  >
+                    Open chapter page
+                  </TrackedLink>
+                ) : null}
                 {isOpen ? (
                   <div className="mt-2 grid gap-2 border-t border-[#ddcfad] pt-2">
                     <div className="flex flex-wrap gap-1.5">
@@ -212,6 +228,17 @@ function ChapterResourceLinks({ chapter }: { chapter: BookChapter }) {
 
   return (
     <div className="grid gap-2 sm:flex sm:flex-wrap sm:gap-1.5">
+      <TrackedLink
+        className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#c79222] bg-[#c79222] px-2 text-sm font-black text-[#06172d] hover:bg-[#d7a02b] sm:text-xs"
+        eventName="chapter_detail_opened"
+        eventProperties={{
+          chapter: chapter.number,
+          location: "roadmap_chapter_resources",
+        }}
+        href={chapterPageHref(chapter)}
+      >
+        Chapter page
+      </TrackedLink>
       {resources.map(([label, href]) => (
         <ResourceLink
           key={label}
