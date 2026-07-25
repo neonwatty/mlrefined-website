@@ -982,6 +982,7 @@ tasks:
       - "T011 baseline and query contract"
       - "T014 production launch timestamp and live event proof"
       - "notes/T015-indexing-submission.md"
+      - "notes/T015-l14-measurement.md"
     constraints:
       - "Use exact UTC windows and human/bot separation."
       - "Do not infer lift when minimum guide impression/landing thresholds are not met."

@@ -42,4 +42,4 @@ Codex heartbeat automation `mlr-seo-l-1-checkpoint` was created and consolidated
 - L+14: `2026-07-25 14:36` America/Phoenix
 - L+28: `2026-08-08 14:36` America/Phoenix
 
-The automation has exactly three occurrences and carries the checkpoint-specific T015 evidence and decision instructions.
+The first two reminders originally fired seven hours early because their hour was interpreted as UTC. The schedule was corrected before L+14 so the real checkpoint ran at `2026-07-25T21:36:42Z`. After the L+14 receipt, the automation retains only the exact L+28 occurrence at `2026-08-08T21:36:42Z`.
