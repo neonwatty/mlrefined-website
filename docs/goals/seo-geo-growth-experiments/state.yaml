@@ -5,7 +5,7 @@ goal:
   slug: "seo-geo-growth-experiments"
   kind: existing_plan
   tranche: "Implement and measure successive safe SEO, GEO, GitHub-distribution, and resource-conversion improvements until the defined growth foundation and initial content experiments are live and evidenced."
-  status: active
+  status: done
   oracle:
     signal: "Live crawlable internal architecture plus Search Console, PostHog, Bing/AI visibility when available, and production smoke evidence showing discovery and resource-use improvement."
     cadence: "after each Worker package, after production deployment, at the measurement checkpoint, and at final audit"
@@ -67,7 +67,7 @@ visual_board:
     url: "http://goalbuddy.localhost:41737/seo-geo-growth-experiments/"
     command: "node /Users/neonwatty/.codex/plugins/cache/goalbuddy/goalbuddy/0.4.0/skills/goal-prep/surfaces/local-goal-board/scripts/local-goal-board.mjs --goal docs/goals/seo-geo-growth-experiments"
 
-active_task: T015
+active_task: null
 
 tasks:
   - id: T001
@@ -975,7 +975,7 @@ tasks:
   - id: T015
     type: pm
     assignee: PM
-    status: active
+    status: done
     reasoning_hint: high
     objective: "Run the L+1 launch verification and schedule/execute the L+14 and L+28 Search Console/PostHog/GitHub/GEO measurement decisions from the T011 baseline."
     inputs:
@@ -992,7 +992,33 @@ tasks:
       - "Exact L+14 and L+28 calendar checkpoints from the actual launch timestamp"
       - "Per-guide expand, revise, consolidate, stop, or insufficient-data decision"
       - "Updated final Judge evidence"
-    receipt: null
+    receipt:
+      result: done
+      decision: checkpoint_complete
+      note: notes/T015-l28-measurement.md
+      summary: "Ran the exact L+28 PostHog window with verified Regular/AI Agent classification and consistent launch-verification exclusion; compared the exact second half, referrals, guide landings, resource conversions, live crawl eligibility, and adjacent GitHub traffic windows. Current Search Console was unavailable through the supported authenticated surface, so the newest direct L+14 range and its two-day lag are retained without fabrication. Logistic regression and gradient descent are revise decisions; k-means is insufficient data; no guide qualifies to expand, consolidate, or stop."
+      commands:
+        - cmd: "PostHog exact [L,L+28) traffic, guide, referral, resource, ordered-conversion, AI-agent, and synthetic-exclusion queries"
+          status: pass
+        - cmd: "PostHog exact [L+14,L+28) reader, guide, and ordered-conversion comparison"
+          status: pass
+        - cmd: "GitHub traffic views, clones, popular referrers, and popular paths API"
+          status: pass
+        - cmd: "Live /learn and guide status, redirect, canonical, robots, sitemap, and robots.txt verifier"
+          status: pass
+        - cmd: "Authenticated Search Console through the supported in-app browser surface"
+          status: unavailable
+        - cmd: "git diff --check"
+          status: pass
+      decisions:
+        logistic_regression: revise
+        gradient_descent: revise
+        k_means: insufficient_data
+      remaining_risks:
+        - "Current L+28 Search Console performance and Google-selected canonical evidence are unavailable; the last direct capture is L+14."
+        - "Bing Webmaster, platform-native generative reports, and non-JavaScript crawler logs remain unavailable or uninstrumented."
+        - "No genuine learning_guide_resource_clicked action was observed after launch-verification exclusion."
+      next_task: T020
   - id: T016
     type: worker
     assignee: Worker
@@ -1168,6 +1194,48 @@ tasks:
       pr: "https://github.com/neonwatty/machine-learning-refined/pull/51"
       merge_commit: c9be485adcc8d072b0c02e2b6ac81950067211b1
       next_task: T015
+  - id: T020
+    type: judge
+    assignee: Judge
+    status: done
+    reasoning_hint: xhigh
+    objective: "Re-audit the full SEO/GEO growth outcome after the L+28 measurement decisions and determine whether the original goal oracle is complete."
+    inputs:
+      - "All task receipts, including the earlier not-complete T999 audit"
+      - "notes/T015-l14-measurement.md"
+      - "notes/T015-l28-measurement.md"
+      - "Current live crawl, PostHog, GitHub, Search Console availability, and repository state"
+    constraints:
+      - "Read-only except for GoalBuddy control files and the audit note."
+      - "Do not reuse T999's pre-launch decision as completion evidence."
+      - "Do not require guaranteed rankings or AI citations; require deployed quality, eligibility, distribution, honest measurement, and per-guide decisions."
+      - "Treat unavailable current Search Console/Bing/non-JS crawler evidence as a disclosed limitation, never as zero or fabricated proof."
+    expected_output:
+      - "complete | not_complete"
+      - "full_outcome_complete: true | false"
+      - "Evidence mapping for all five workstreams"
+      - "Likely-misfire audit and top three failure modes"
+      - "Residual risks and bounded follow-up recommendations"
+    receipt:
+      result: done
+      decision: complete
+      full_outcome_complete: true
+      note: notes/T020-final-audit.md
+      rationale: "All five approved workstreams are deployed and receipt-backed, the GitHub distribution loop is merged, live crawl and analytics behavior are proved, and the delayed Search Console/PostHog/GitHub checkpoints now contain honest per-guide decisions. Missing current Search Console, Bing, platform-native AI, and non-JavaScript crawler surfaces are disclosed limitations within the oracle's when-available scope, not fabricated zeroes."
+      evidence_mapping:
+        - "T012/T017/T015 prove live crawlable internal architecture, tracked resource pathways, and measured ordered conversion."
+        - "T003/T004/T013/T016/T017/T015 prove three substantive source-backed guides, production quality, direct L+14 index/canonical evidence, and L+28 decisions."
+        - "T006/T007/T017/T018/T019 and current GitHub API evidence prove the merged repository distribution and repository-native README loop."
+        - "T009/T017 prove crawler/entity controls and the production deployment."
+        - "T011/T015 prove baseline, direct L+14 search evidence, exact L+28 analytics/GitHub/live evidence, minimum-sample enforcement, and honest unavailable-platform handling."
+      top_failure_modes:
+        - "Not live or crawlable: ruled out by merged PRs and current production HTTP/canonical/sitemap/robots proof."
+        - "Thin, duplicative, or orphaned guides: ruled out by content/source contracts, distinct canonicals, incoming links, browser proof, and direct L+14 index evidence."
+        - "Manufactured success: ruled out by exact windows, synthetic and AI-agent separation, anomaly disclosure, minimum samples, and no indexing-request or causal-lift claims."
+      residual_risks:
+        - "Current L+28 Search Console evidence is unavailable; recapture it before a revision baseline."
+        - "Logistic regression and gradient descent require a new revision experiment, while k-means remains insufficient data."
+        - "No genuine guide resource action has occurred, and non-JavaScript crawler visibility remains uninstrumented."
 checks:
   dirty_fingerprint: "Prep began on branch codex/og-image-polish with only docs/goals/seo-geo-growth-experiments untracked."
   last_verification:
