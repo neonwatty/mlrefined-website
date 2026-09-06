@@ -21,9 +21,9 @@
   },
   "dependencies": {
     "next": "16.2.9",
-    "posthog-js": "^1.393.0",
-    "react": "19.2.7",
-    "react-dom": "19.2.7"
+    "posthog-js": "^1.425.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -32,9 +32,9 @@
     "@types/react-dom": "^19",
     "@vitest/coverage-v8": "^4.1.9",
     "eslint": "^9",
-    "eslint-config-next": "16.2.9",
-    "knip": "^6.18.0",
-    "playwright": "^1.61.1",
+    "eslint-config-next": "16.3.4",
+    "knip": "^6.34.0",
+    "playwright": "^1.62.1",
     "tailwindcss": "^4",
     "typescript": "^6",
     "vitest": "^4.1.8"
