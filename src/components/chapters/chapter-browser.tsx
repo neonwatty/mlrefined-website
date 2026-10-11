@@ -49,25 +49,25 @@ const audienceFilters: Array<{ key: AudienceKind; label: string }> = [
 const sourceEvidence = [
   {
     href: bookLinks.pdfs,
-    label: "chapter_pdfs/README.md",
+    label: "Chapter PDFs",
     note: "Dropbox PDF collection",
     resource: "chapter_pdfs",
   },
   {
     href: bookLinks.notes,
-    label: "notes/",
+    label: "Python notebooks",
     note: "Source notebooks and notes",
     resource: "notes",
   },
   {
     href: bookLinks.exercises,
-    label: "exercises/",
+    label: "Chapter exercises",
     note: "Exercise notebooks",
     resource: "exercises",
   },
   {
     href: bookLinks.slides,
-    label: "presentations/README.md",
+    label: "Lecture slides",
     note: "PPTX collection",
     resource: "slides",
   },
@@ -142,8 +142,15 @@ export function ChapterBrowser({
               Chapter resource hub
             </p>
             <h1 className={innerPageTitleClassName}>
-              Find the chapter, then open the exact resource
+              Chapter PDFs, notebooks, and exercises
             </h1>
+            <p className="mt-4 max-w-3xl text-base leading-7 text-[#526070]">
+              Find the official resources for each Machine Learning Refined
+              chapter, from optimization and linear regression to neural
+              networks. Search by topic, open a chapter overview, then choose
+              its Python notebooks, exercises, slides, or the chapter PDF
+              collection. Available resources vary by chapter.
+            </p>
           </div>
         </section>
 

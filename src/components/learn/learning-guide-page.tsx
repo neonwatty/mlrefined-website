@@ -5,6 +5,7 @@ import { ResourceLink } from "@/components/analytics/resource-link";
 import { TrackedLink } from "@/components/analytics/tracked-link";
 import type { LearningGuide } from "@/content/book";
 import { chapterPageHref } from "@/lib/site";
+import { GuideExampleResults } from "./guide-example-results";
 
 export function LearningGuidePage({ guide }: { guide: LearningGuide }) {
   const chapter = { slug: guide.chapterSlug };
@@ -93,6 +94,10 @@ export function LearningGuidePage({ guide }: { guide: LearningGuide }) {
                 </p>
               ))}
             </div>
+          </GuideSection>
+
+          <GuideSection id="worked-result" title="Check your result and choose parameters">
+            <GuideExampleResults guide={guide} />
           </GuideSection>
 
           <GuideSection id="failure-modes" title="What can go wrong">
@@ -194,6 +199,9 @@ export function LearningGuidePage({ guide }: { guide: LearningGuide }) {
             </a>
             <a className="min-h-10 py-2 hover:text-[#0b2545]" href="#python-example">
               NumPy implementation
+            </a>
+            <a className="min-h-10 py-2 hover:text-[#0b2545]" href="#worked-result">
+              Results and parameters
             </a>
             <a className="min-h-10 py-2 hover:text-[#0b2545]" href="#failure-modes">
               What can go wrong

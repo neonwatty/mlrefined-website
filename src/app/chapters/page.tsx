@@ -10,9 +10,9 @@ import { chaptersCollectionJsonLd, stringifyJsonLd } from "@/lib/seo";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
-  title: "Machine Learning Refined Chapters",
+  title: "Chapters: PDFs, Notebooks & Exercises",
   description:
-    "Browse Machine Learning Refined chapter highlights for optimization, linear regression, classification, neural networks, PDFs, notebooks, exercises, and GitHub resources.",
+    "Find Machine Learning Refined chapter PDFs, Python notebooks, exercises, and slides. Browse by topic and open the official GitHub resources for each chapter.",
   path: "/chapters",
   keywords: [
     "Machine Learning Refined chapters",

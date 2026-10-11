@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { LearningGuideCard } from "@/components/learn/learning-guide-card";
 import { PageHeader } from "@/components/site/page-header";
 import { learningGuides } from "@/content/book";
@@ -44,6 +46,31 @@ export default function LearnPage() {
           Machine Learning Refined chapter, notebook, exercises, and source
           repository.
         </p>
+        <section className="mt-8 max-w-3xl rounded-xl border border-[#ddcfad] bg-white p-5">
+          <h2 className="font-serif text-2xl font-black text-[#0b2545]">
+            Where to start
+          </h2>
+          <p className="mt-3 text-base leading-7 text-[#526070]">
+            You will need basic Python, NumPy arrays, and some familiarity with
+            derivatives. Start with gradient descent to understand parameter
+            updates, then use logistic regression to fit a two-class model.
+            Choose K-means to explore grouping samples without labels. Each
+            guide includes runnable code, expected output, parameter choices,
+            and an experiment you can try.
+          </p>
+          <p className="mt-3 text-base leading-7 text-[#526070]">
+            For the full mathematical treatment, browse the{" "}
+            <Link className="font-bold text-[#164b8f] underline" href="/chapters">
+              book chapters and exercises
+            </Link>
+            . To explore the companion animations and run source notebooks, open
+            the{" "}
+            <Link className="font-bold text-[#164b8f] underline" href="/notebooks">
+              Python notebook workbench
+            </Link>
+            .
+          </p>
+        </section>
         <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {learningGuides.map((guide, index) => (
             <LearningGuideCard

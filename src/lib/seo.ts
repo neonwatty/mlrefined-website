@@ -311,7 +311,7 @@ export function chaptersCollectionJsonLd() {
   return collectionPageJsonLd({
     name: "Machine Learning Refined Chapters",
     description:
-      "Browse Machine Learning Refined chapter highlights, PDFs, notebooks, exercises, slides, and source resources.",
+      "Find Machine Learning Refined chapter PDFs, Python notebooks, exercises, and slides. Browse by topic and open the official GitHub resources for each chapter.",
     path: "/chapters",
     items: chapters.map((chapter) => ({
       name: `Chapter ${chapter.number}: ${chapter.title}`,
