@@ -29,6 +29,11 @@ export type LearningGuide = {
   steps: string[];
   code: string;
   walkthrough: string[];
+  outputCode: string;
+  expectedOutput: string;
+  resultExplanation: string;
+  parameterNotes: Array<{ title: string; description: string }>;
+  experiment: string;
   cautions: Array<{ title: string; description: string }>;
   resources: LearningGuideResource[];
   keywords: string[];
@@ -101,6 +106,28 @@ minimum, path = gradient_descent(initial_w=8.0)`,
       "The gradient function returns the local slope; the loop contains the complete learning rule rather than calling an optimizer.",
       "Keeping history makes the optimization path available for plotting or convergence checks.",
     ],
+    outputCode: `print(f"minimum = {minimum:.6f}")
+print(f"objective = {objective(minimum):.2e}")
+print("first steps:", np.round(path[:4], 2))`,
+    expectedOutput: `minimum = 3.000001
+objective = 1.22e-12
+first steps: [8.   6.   4.8  4.08]`,
+    resultExplanation:
+      "Starting at 8, the first update is 8 - 0.2 × 10 = 6. After 30 updates the parameter is within about one millionth of the known minimum, 3. The objective is nearly zero; this verifies convergence for this quadratic, not for every objective.",
+    parameterNotes: [
+      {
+        title: "Why step_size=0.2?",
+        description:
+          "For this objective, the error w - 3 is multiplied by 1 - 2 × step_size each iteration. At 0.2, that factor is 0.6, so the error shrinks without changing sign. Convergence requires 0 < step_size < 1 for this particular quadratic.",
+      },
+      {
+        title: "Why 30 iterations?",
+        description:
+          "Thirty updates make the initial error of 5 shrink to 5 × 0.6^30. For an objective without a known solution, monitor the gradient norm and objective instead of treating a fixed iteration count as proof of convergence.",
+      },
+    ],
+    experiment:
+      "Run gradient_descent(initial_w=8.0, step_size=1.0, iterations=6). The path alternates between 8 and -2, so the objective never improves. Then try 0.05 and compare how many updates it takes to approach 3.",
     cautions: [
       {
         title: "A large step can overshoot",
@@ -209,6 +236,30 @@ predictions = (predict_proba(X, weights) >= 0.5).astype(int)`,
       "Clipping scores keeps exp from overflowing while leaving ordinary score values unchanged.",
       "The training loop is the full vectorized gradient method, and the threshold is applied only after probabilities are computed.",
     ],
+    outputCode: `probabilities = predict_proba(X, weights)
+loss = np.mean(np.logaddexp(0, X @ weights) - y * (X @ weights))
+print("predictions:", predictions)
+print("probabilities:", np.round(probabilities, 3))
+print(f"training loss = {loss:.4f}")`,
+    expectedOutput: `predictions: [0 0 0 1 1 1]
+probabilities: [0.    0.001 0.026 0.974 0.999 1.   ]
+training loss = 0.0089`,
+    resultExplanation:
+      "The six predictions match the six training labels. Mean cross-entropy falls from about 0.6931 at zero weights to 0.0089. Displayed probabilities are rounded; 0 and 1 here do not mean exact certainty. This tiny, separable training set is a learning example, not a held-out accuracy or calibration result.",
+    parameterNotes: [
+      {
+        title: "Step size and feature scale",
+        description:
+          "A step size of 0.2 works for these small feature values. For other data, standardize features using training-set statistics and monitor loss while choosing the step size. The same value is not guaranteed to work for a different scale.",
+      },
+      {
+        title: "Iterations and the 0.5 threshold",
+        description:
+          "The 2,000 updates produce the result shown, but unregularized logistic regression on separable data can keep increasing weight magnitude. Use regularization and validation in a practical model. The 0.5 threshold is a separate decision rule chosen after fitting.",
+      },
+    ],
+    experiment:
+      "Change only the prediction threshold to 0.99: the point x=0.5 switches to class 0 while the learned weights stay the same. Compare 200 and 2,000 training iterations using the stable loss calculation above; lower training loss alone does not establish better generalization.",
     cautions: [
       {
         title: "Scale affects optimization",
@@ -312,6 +363,32 @@ centroids, labels = kmeans(X, initial_centroids=np.array([[0, 0], [9, 9]]))`,
       "An empty cluster keeps its previous centroid, making the edge-case policy explicit rather than producing a NaN mean.",
       "The convergence check compares successive centroid arrays; assignments are recomputed once for the returned centroids.",
     ],
+    outputCode: `inertia = ((X - centroids[labels]) ** 2).sum()
+print("centroids:")
+print(np.round(centroids, 3))
+print("labels:", labels)
+print(f"inertia = {inertia:.4f}")`,
+    expectedOutput: `centroids:
+[[0.333 0.333]
+ [8.333 8.333]]
+labels: [0 0 0 1 1 1]
+inertia = 2.6667`,
+    resultExplanation:
+      "The first three points have mean (1/3, 1/3), and the last three have mean (25/3, 25/3). The returned centers match those means. Inertia is the sum of squared distances to assigned centers, not a classification accuracy. Cluster numbers are arbitrary labels.",
+    parameterNotes: [
+      {
+        title: "Two centers, chosen explicitly",
+        description:
+          "The number of initial centers sets k=2. Starting at (0, 0) and (9, 9) places one center near each visible group. For unfamiliar data, compare multiple initializations at a fixed k and inspect both inertia and the resulting groups.",
+      },
+      {
+        title: "Tolerance and iteration limit",
+        description:
+          "The tolerance 1e-8 measures the norm of the change in the entire centroid array, in feature units. This small example settles after two iterations. The limit of 100 is a safety cap, not evidence that a larger dataset has converged.",
+      },
+    ],
+    experiment:
+      "Swap the order of the two initial centers. The final geometry and inertia stay the same, but the labels switch to [1, 1, 1, 0, 0, 0]. This shows why comparing raw cluster numbers across runs can be misleading.",
     cautions: [
       {
         title: "Initialization changes the answer",
