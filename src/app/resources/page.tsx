@@ -1,3 +1,6 @@
+import Link from "next/link";
+
+import { ResourceSetup } from "@/components/resources/resource-setup";
 import { ResourceLink } from "@/components/analytics/resource-link";
 import { TrackedLink } from "@/components/analytics/tracked-link";
 import { BookSideRail } from "@/components/site/book-side-rail";
@@ -7,27 +10,35 @@ import { createPageMetadata, siteConfig } from "@/lib/site";
 
 const resourceCues = {
   "Chapter PDFs": {
-    count: "PDFs",
+    count: "PDFs · GitHub index",
+    action: "Choose a chapter PDF",
+    href: bookLinks.pdfs,
     cue: "Best for reading offline or assigning chapter excerpts.",
   },
   "Colab and Jupyter notebooks": {
-    count: "Notes + notebooks",
+    count: "Python · GitHub",
+    action: "Browse Jupyter notebooks",
+    href: bookLinks.notes,
     cue: "Best for moving from the page into runnable examples.",
   },
   Exercises: {
-    count: "Practice sets",
+    count: "Practice · GitHub",
+    action: "Browse exercises and datasets",
+    href: bookLinks.exercises,
     cue: "Best for homework, labs, and self-checks.",
   },
   "Slides and roadmaps": {
-    count: "Course materials",
+    count: "PPTX · GitHub index",
+    action: "Choose lecture slides",
+    href: bookLinks.slides,
     cue: "Best for planning a syllabus or lecture sequence.",
   },
 } as const;
 
 export const metadata = createPageMetadata({
-  title: "Machine Learning Refined Resources",
+  title: "Resources: PDFs, Notebooks & Slides",
   description:
-    "Find Machine Learning Refined PDFs, Python notebooks, exercises, slides, roadmaps, Colab-friendly notes, and canonical GitHub source links.",
+    "Get official Machine Learning Refined chapter PDFs, Python notebooks, exercises, and slides. Follow setup instructions for Google Colab or local Jupyter.",
   path: "/resources",
   keywords: [
     "Machine Learning Refined resources",
@@ -71,16 +82,62 @@ export default function ResourcesPage() {
         />
         <div className="min-w-0">
           <p className="mb-2 text-xs font-black uppercase tracking-[0.16em] text-[#8a6519]">
-            Canonical resource index
+            Official second-edition resources
           </p>
           <h1 className="font-serif text-4xl font-black leading-tight text-[#0b2545] sm:text-5xl">
-            Resources
+            PDFs, notebooks, and setup instructions
           </h1>
           <p className="mt-3 max-w-3xl text-base leading-7 text-[#526070] md:mt-4 md:text-lg md:leading-8">
-            Jump straight to source-backed PDFs, notes, notebooks, exercises,
-            slides, and roadmap guidance. Use Chapters for the guided path; use
-            Resources when you already know what you need.
+            Get the official Machine Learning Refined downloads and choose how to
+            run the Python notebooks. Start with a resource below, or browse{" "}
+            <Link className="font-bold text-[#164b8f] underline" href="/chapters">
+              chapters by topic
+            </Link>
+            . The PDF and slide indexes on GitHub link to the authors’ Dropbox
+            downloads; notebooks and exercises live in the source repository.
           </p>
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {resourceGroups.map((resource) => {
+              const cue =
+                resourceCues[resource.title as keyof typeof resourceCues];
+
+              return (
+                <ResourceLink
+                  key={resource.title}
+                  className="group rounded-lg border border-[#ddcfad] bg-white p-5 shadow-lg shadow-[#071326]/5 transition-all hover:-translate-y-0.5 hover:border-[#164b8f]/45 hover:shadow-[#071326]/10"
+                  eventName="github_resource_clicked"
+                  eventProperties={{
+                    location: "resources_page",
+                    resource: resource.title,
+                  }}
+                  href={cue?.href ?? resource.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {cue ? (
+                    <span className="mb-3 inline-flex rounded-md bg-[#f7fbff] px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-[#164b8f]">
+                      {cue.count}
+                    </span>
+                  ) : null}
+                  <h2 className="font-serif text-2xl font-black text-[#0b2545]">
+                    {resource.title}
+                  </h2>
+                  <p className="mt-3 text-sm leading-6 text-[#526070]">
+                    {resource.description}
+                  </p>
+                  {cue ? (
+                    <p className="mt-3 text-sm font-black leading-6 text-[#0b2545]">
+                      {cue.cue}
+                    </p>
+                  ) : null}
+                  <span className="mt-4 inline-flex text-sm font-black text-[#164b8f] transition-transform group-hover:translate-x-1">
+                    {cue?.action ?? "Open resource"}
+                  </span>
+                </ResourceLink>
+              );
+            })}
+          </div>
+          <ResourceSetup />
           <section
             aria-labelledby="book-identity"
             className="mt-6 max-w-4xl rounded-xl border border-[#ddcfad] bg-[#fffdf8] p-5"
@@ -157,47 +214,7 @@ export default function ResourcesPage() {
               Open figure assets
             </ResourceLink>
           </div>
-          <div className="mt-10 grid gap-4 md:grid-cols-2">
-            {resourceGroups.map((resource) => {
-              const cue =
-                resourceCues[resource.title as keyof typeof resourceCues];
 
-              return (
-                <ResourceLink
-                  key={resource.title}
-                  className="group rounded-lg border border-[#ddcfad] bg-white p-5 shadow-lg shadow-[#071326]/5 transition-all hover:-translate-y-0.5 hover:border-[#164b8f]/45 hover:shadow-[#071326]/10"
-                  eventName="github_resource_clicked"
-                  eventProperties={{
-                    location: "resources_page",
-                    resource: resource.title,
-                  }}
-                  href={resource.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {cue ? (
-                    <span className="mb-3 inline-flex rounded-md bg-[#f7fbff] px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-[#164b8f]">
-                      {cue.count}
-                    </span>
-                  ) : null}
-                  <h2 className="font-serif text-2xl font-black text-[#0b2545]">
-                    {resource.title}
-                  </h2>
-                  <p className="mt-3 text-sm leading-6 text-[#526070]">
-                    {resource.description}
-                  </p>
-                  {cue ? (
-                    <p className="mt-3 text-sm font-black leading-6 text-[#0b2545]">
-                      {cue.cue}
-                    </p>
-                  ) : null}
-                  <span className="mt-4 inline-flex text-sm font-black text-[#164b8f] transition-transform group-hover:translate-x-1">
-                    Open resource
-                  </span>
-                </ResourceLink>
-              );
-            })}
-          </div>
         </div>
       </div>
     </main>

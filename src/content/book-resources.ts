@@ -17,13 +17,13 @@ export const resourceGroups = [
   {
     title: "Chapter PDFs",
     description:
-      "Sample chapters and book PDFs linked back to the canonical GitHub repo.",
+      "Second-edition chapters, appendices, and errata. Choose a PDF in the official index, then download it from Dropbox.",
     href: "https://github.com/neonwatty/machine-learning-refined/tree/main/chapter_pdfs",
   },
   {
     title: "Colab and Jupyter notebooks",
     description:
-      "Interactive notes for optimization, regression, classification, clustering, and neural networks.",
+      "Python notebooks for optimization, regression, classification, clustering, and neural networks. Open in Colab or run with local Jupyter.",
     href: "https://github.com/neonwatty/machine-learning-refined/tree/main/notes",
   },
   {
@@ -34,7 +34,7 @@ export const resourceGroups = [
   {
     title: "Slides and roadmaps",
     description:
-      "Instructor-facing presentations and recommended study paths for different courses.",
+      "Second-edition PowerPoint slides organized by chapter. The official index links to the downloadable Dropbox collections.",
     href: "https://github.com/neonwatty/machine-learning-refined/tree/main/presentations",
   },
 ];
