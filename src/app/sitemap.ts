@@ -9,7 +9,7 @@ export const routeLastModified: Record<string, Date> = {
   "/notebooks": new Date("2026-07-11T00:00:00.000Z"),
   "/chapters": new Date("2026-10-11T00:00:00.000Z"),
   "/instructors": new Date("2026-07-11T00:00:00.000Z"),
-  "/resources": new Date("2026-07-11T00:00:00.000Z"),
+  "/resources": new Date("2026-10-11T00:00:00.000Z"),
   "/reviews": new Date("2026-07-04T00:00:00.000Z"),
 };
 export const chaptersLastModified = new Date("2026-07-11T00:00:00.000Z");
