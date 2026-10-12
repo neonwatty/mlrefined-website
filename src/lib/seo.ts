@@ -63,6 +63,10 @@ export function chapterResourceLabelList(chapter: BookChapter) {
 }
 
 export function chapterPageDescription(chapter: BookChapter) {
+  if (chapter.slug === "linear-regression") {
+    return "Explore Chapter 5 with the book’s notation, original Least Squares figures, and a tested NumPy adaptation of its gradient-descent notebook.";
+  }
+
   return `${chapter.summary} Open the Machine Learning Refined ${chapterResourceLabelList(
     chapter,
   )} for this chapter.`;
