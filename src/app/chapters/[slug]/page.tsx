@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { ResourceLink } from "@/components/analytics/resource-link";
 import { TrackedLink } from "@/components/analytics/tracked-link";
+import { LinearRegressionLesson } from "@/components/chapters/linear-regression-lesson";
 import { PageHeader } from "@/components/site/page-header";
 import {
   chapters,
@@ -37,7 +38,9 @@ export async function generateMetadata({ params }: ChapterPageProps) {
   }
 
   return createPageMetadata({
-    title: `Chapter ${chapter.number}: ${chapter.title}`,
+    title: chapter.slug === "linear-regression"
+      ? "Linear Regression: Least Squares & NumPy Example"
+      : `Chapter ${chapter.number}: ${chapter.title}`,
     description: chapterPageDescription(chapter),
     path: `/chapters/${chapter.slug}`,
     keywords: chapterKeywords(chapter),
@@ -79,6 +82,8 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           {chapter.summary}
         </p>
 
+        {chapter.slug === "linear-regression" ? <LinearRegressionLesson /> : null}
+
         {learningGuide ? (
           <aside className="mt-8 max-w-3xl rounded-xl border border-[#c79222]/45 bg-[#fff7e7] p-5">
             <p className="text-xs font-black uppercase tracking-[0.14em] text-[#8a6519]">
@@ -109,7 +114,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
 
         <section aria-labelledby="chapter-resources" className="mt-10">
           <h2
-            className="font-serif text-3xl font-black text-[#0b2545]"
+            className="scroll-mt-24 font-serif text-3xl font-black text-[#0b2545]"
             id="chapter-resources"
           >
             Chapter resources

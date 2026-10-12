@@ -63,6 +63,10 @@ export function chapterResourceLabelList(chapter: BookChapter) {
 }
 
 export function chapterPageDescription(chapter: BookChapter) {
+  if (chapter.slug === "linear-regression") {
+    return "Learn linear regression with a least-squares explanation, residual plot, and tested NumPy example. Explore Chapter 5 notebooks, exercises, and PDFs.";
+  }
+
   return `${chapter.summary} Open the Machine Learning Refined ${chapterResourceLabelList(
     chapter,
   )} for this chapter.`;
