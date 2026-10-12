@@ -64,7 +64,7 @@ export const chapters: BookChapter[] = [
     title: "Linear Regression",
     slug: "linear-regression",
     summary:
-      "Least squares, regularization, and statistical foundations of linear regression.",
+      "Least Squares, Least Absolute Deviations, regression quality metrics, and weighted and multi-output regression.",
     audience: ["learner", "instructor"],
     resources: {
       pdf: bookLinks.pdfs,

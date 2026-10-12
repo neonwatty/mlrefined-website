@@ -1,27 +1,44 @@
-export const linearRegressionExample = `import numpy as np
+export const linearRegressionExample = `from urllib.request import urlopen
+import numpy as np
 
-# Five illustrative observations (not a real-world dataset).
-x = np.array([0., 1., 2., 3., 4.])
-y = np.array([1., 2., 2., 4., 5.])
+# Official Section 5.2 dataset, pinned to a repository revision.
+root = "https://raw.githubusercontent.com/"
+repo = "neonwatty/machine-learning-refined-notes-assets/"
+revision = "63161442406ebbdd331af1e22e6327eabd81d344/"
+path = "notes/5_Linear_regression/chapter_5_datasets/"
+url = root + repo + revision + path + "2d_linregress_data.csv"
+with urlopen(url) as response:
+    data = np.loadtxt(response, delimiter=",")
+x = data[:-1, :]  # N by P: one input per column
+y = data[-1:, :]  # 1 by P
 
-# Least-squares solution for one feature and an intercept.
-x_centered = x - x.mean()
-y_centered = y - y.mean()
-slope = (x_centered @ y_centered) / (x_centered @ x_centered)
-intercept = y.mean() - slope * x.mean()
+# Section 5.2: bias plus feature-touching weights.
+def model(x, w):
+    a = w[0] + np.dot(x.T, w[1:])
+    return a.T
 
-predictions = intercept + slope * x
-residuals = y - predictions
-mse = np.mean(residuals ** 2)
+def least_squares(w):
+    cost = np.sum((model(x, w) - y) ** 2)
+    return cost / float(y.size)
 
-print(f"intercept={intercept:.2f}, slope={slope:.2f}")
-print("predictions:", np.round(predictions, 2))
-print("residuals:", np.round(residuals, 2))
-print(f"training MSE={mse:.2f}")`;
+# Notebook Example 3 / book Example 5.2.
+w = np.array([-1.0, -2.0])[:, np.newaxis]
+alpha = 0.5
+initial_cost = least_squares(w)
+for k in range(75):
+    error = model(x, w) - y
+    # Analytic gradient in place of the notebook's autograd helper.
+    bias_grad = 2 * np.mean(error)
+    feature_grad = 2 * (x @ error.T) / y.size
+    gradient = np.vstack(([bias_grad], feature_grad))
+    w = w - alpha * gradient
 
-export const linearRegressionOutput = `intercept=0.80, slope=1.00
-predictions: [0.8 1.8 2.8 3.8 4.8]
-residuals: [ 0.2  0.2 -0.8  0.2  0.2]
-training MSE=0.16`;
+print(f"N={x.shape[0]}, P={y.size}")
+print(f"initial cost={initial_cost:.6f}")
+print(f"w0={w[0, 0]:.6f}, w1={w[1, 0]:.6f}")
+print(f"cost after 75 steps={least_squares(w):.6f}")`;
 
-export const regressionObservations = [1, 2, 2, 4, 5];
+export const linearRegressionOutput = `N=1, P=50
+initial cost=5.960095
+w0=0.001918, w1=0.985097
+cost after 75 steps=0.002296`;

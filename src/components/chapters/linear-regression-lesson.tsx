@@ -1,83 +1,90 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import {
   linearRegressionExample,
   linearRegressionOutput,
-  regressionObservations,
 } from "@/content/linear-regression-example";
 
-const heading = "scroll-mt-24 font-serif text-2xl font-black text-[#0b2545] sm:text-3xl";
-const linkStyle = "font-bold text-[#164b8f] underline underline-offset-4 hover:text-[#0b2545]";
+const heading = "scroll-mt-24 font-serif text-2xl font-bold text-[#0b2545] sm:text-3xl";
+const linkStyle = "text-[#164b8f] underline underline-offset-4 hover:text-[#0b2545]";
 const notebookRoot = "https://github.com/neonwatty/machine-learning-refined/blob/main/notes/5_Linear_regression";
+const chapterPdf = "https://www.dropbox.com/scl/fi/g2w41g4cg4rpi3dxr5gq1/chapter_5.pdf?rlkey=fqmi4ttvzgothvlqifka3dk82&dl=0";
 
 export function LinearRegressionLesson() {
   return (
-    <article aria-label="Linear regression introduction" className="mt-10 max-w-3xl space-y-10 text-base leading-7 text-[#33475b]">
+    <article aria-label="Chapter 5 reading companion" className="mt-8 max-w-3xl space-y-10 text-base leading-8 text-[#33475b]">
+      <p className="border-l-2 border-[#c79222] pl-5 text-sm leading-7">
+        A reading companion to <a className={linkStyle} href={chapterPdf}>Chapter 5 of the second edition</a>,
+        by Jeremy Watt, Reza Borhani, and Aggelos K. Katsaggelos. The explanation below follows
+        Sections 5.2.1–5.2.4 (pp. 99–107); the figures are reproduced from the published chapter.
+        The runnable example adapts the <a className={linkStyle} href={`${notebookRoot}/5_2_Least.ipynb`}>Section 5.2 companion notebook</a>,
+        which accompanies an earlier draft of the book.
+      </p>
       <nav aria-label="On this page" className="flex flex-wrap gap-x-5 gap-y-2 border-y border-[#ddcfad] py-4 text-sm">
-        <a className={linkStyle} href="#least-squares">Least squares</a>
-        <a className={linkStyle} href="#residual-visual">See the residuals</a>
-        <a className={linkStyle} href="#numpy-example">NumPy example</a>
-        <a className={linkStyle} href="#chapter-resources">Chapter resources</a>
+        <a className={linkStyle} href="#notation">Notation</a>
+        <a className={linkStyle} href="#least-squares">Least Squares cost</a>
+        <a className={linkStyle} href="#minimization">Gradient descent</a>
+        <a className={linkStyle} href="#numpy-example">Notebook example</a>
+        <a className={linkStyle} href="#chapter-resources">Resources</a>
       </nav>
-      <section aria-labelledby="least-squares">
-        <h2 id="least-squares" className={heading}>What does linear regression learn?</h2>
-        <p className="mt-4">Linear regression predicts a numerical target from input features. With one feature, it fits a line: the intercept sets the prediction at zero, and the slope tells us how much the prediction changes when the input increases by one unit. It is a useful starting point for continuous outcomes when an approximately linear relationship is plausible.</p>
-        <p className="mt-4">Before starting, you should be comfortable with Python arrays, means, and basic algebra. By the end, you will be able to fit a line with NumPy, interpret its residuals, and calculate its training error. Derivatives help with the full chapter, but are not needed to run this example.</p>
-        <div className="mt-5 rounded-xl border border-[#ddcfad] bg-white p-5">
-          <p className="font-mono font-bold text-[#0b2545]">prediction = intercept + slope × x</p>
-          <p className="mt-2 font-mono">residual = observed y − prediction</p>
-          <p className="mt-2 font-mono">MSE = sum of squared residuals / number of observations</p>
-        </div>
-        <p className="mt-4">Least squares chooses the coefficients that minimize the sum of squared residuals. Dividing that sum by the number of observations gives mean squared error (MSE), with the same minimizer. Squaring prevents positive and negative errors from canceling and gives larger misses more influence. These are vertical errors in the target, not perpendicular distances to the line.</p>
-        <p className="mt-4">For one feature with nonzero variance, we can solve directly using centered inputs and targets. For many features, a numerical least-squares solver or an iterative method is more practical. The <Link className={linkStyle} href="/learn/gradient-descent-from-scratch">gradient descent guide</Link> explains how iterative parameter updates minimize a cost.</p>
+      <section aria-labelledby="notation">
+        <h2 id="notation" className={heading}>5.2.1 Notation and modeling</h2>
+        <p className="mt-4">The chapter begins with P input/output pairs (xₚ, yₚ). Each input xₚ is a column vector with N features; the output yₚ is a scalar. The task is to fit a line when N = 1, or a hyperplane when there are multiple input features.</p>
+        <p className="my-5 font-serif text-xl text-[#0b2545]">w₀ + x₁,ₚw₁ + ⋯ + x<sub>N,p</sub>w<sub>N</sub> ≈ yₚ</p>
+        <p>The parameter w₀ is the <em>bias</em>. The remaining parameters are the book’s <em>feature-touching weights</em>: each multiplies one input feature. The approximate equality matters because the observations need not lie exactly on one line or hyperplane.</p>
+        <p className="mt-4">The book stacks a 1 above xₚ to form the augmented input x̊ₚ, and collects the bias and feature weights in the vector <strong>w</strong>. Equations (5.7) and (5.11) then express the same model compactly:</p>
+        <p className="my-5 font-serif text-xl text-[#0b2545]">model(xₚ, <strong>w</strong>) = x̊ₚᵀ<strong>w</strong> ≈ yₚ</p>
+        <p className="text-sm">Prerequisites: vectors, dot products, and the gradient-descent update from Chapter 3. The code below keeps the bias separate, so its input array contains the N features without an added row of ones.</p>
       </section>
-      <section aria-labelledby="residual-visual">
-        <h2 id="residual-visual" className={heading}>See what the line misses</h2>
-        <figure className="mt-5 rounded-xl border border-[#ddcfad] bg-white p-4 sm:p-6">
-          <svg viewBox="0 0 560 350" role="img" aria-labelledby="regression-plot-title regression-plot-desc" className="h-auto w-full">
-            <title id="regression-plot-title">Least-squares line and residuals for five observations</title>
-            <desc id="regression-plot-desc">Inputs 0, 1, 2, 3, 4 have observed targets 1, 2, 2, 4, 5. The fitted line is y equals 0.8 plus x. Dashed vertical segments show residuals of 0.2, 0.2, minus 0.8, 0.2, and 0.2.</desc>
-            {[0, 1, 2, 3, 4, 5].map((y) => (
-              <g key={y}>
-                <line x1="60" y1={285 - y * 44} x2="505" y2={285 - y * 44} stroke="#e2e8ef" />
-                <text x="43" y={290 - y * 44} textAnchor="end" fontSize="14" fill="#526070">{y}</text>
-              </g>
-            ))}
-            <path d="M60 40 V285 H505" fill="none" stroke="#526070" strokeWidth="2" />
-            <line x1="75" y1={285 - 0.8 * 44} x2="475" y2={285 - 4.8 * 44} stroke="#164b8f" strokeWidth="3" />
-            {regressionObservations.map((y, x) => (
-              <g key={x}>
-                <line x1={75 + x * 100} x2={75 + x * 100} y1={285 - y * 44} y2={285 - (0.8 + x) * 44} stroke="#a36a10" strokeWidth="3" strokeDasharray="4 3" />
-                <circle cx={75 + x * 100} cy={285 - y * 44} r="6" fill="#0b2545" />
-                <text x={75 + x * 100} y="309" textAnchor="middle" fontSize="14" fill="#526070">{x}</text>
-              </g>
-            ))}
-            <text x="65" y="24" fontSize="15" fill="#0b2545">Target y</text>
-            <text x="275" y="337" textAnchor="middle" fontSize="15" fill="#0b2545">Input x</text>
-            <text x="95" y="67" fontSize="16" fill="#164b8f">Fitted line: y = 0.8 + x</text>
-          </svg>
-          <figcaption className="mt-3 text-sm leading-6">Dots are observations; the blue line shows predictions. Dashed gold segments are residuals. At x = 2, the line predicts 2.8 but the observed target is 2: the residual is −0.8. Its squared error is 0.64, contributing most of the total squared error of 0.80.</figcaption>
+      <section aria-labelledby="least-squares">
+        <h2 id="least-squares" className={heading}>5.2.2 The Least Squares cost function</h2>
+        <p className="mt-4">For one observation, the chapter measures error with the squared difference between the model and its target. Averaging these point-wise costs over the P observations gives Equation (5.9):</p>
+        <div className="my-5 border-y border-[#ddcfad] py-5 font-serif text-xl leading-9 text-[#0b2545]">
+          <p>gₚ(<strong>w</strong>) = (x̊ₚᵀ<strong>w</strong> − yₚ)²</p>
+          <p>g(<strong>w</strong>) = (1/P) ∑<sub>p=1</sub><sup>P</sup> (x̊ₚᵀ<strong>w</strong> − yₚ)²</p>
+        </div>
+        <p>Squaring treats errors of equal magnitude alike, regardless of sign. The dataset stays fixed while we tune <strong>w</strong> to minimize g(<strong>w</strong>). This turns fitting a model into the kind of optimization problem developed in Chapters 2–4.</p>
+        <figure className="mt-6">
+          <a href="/learning-visuals/chapter-5/figure-5-2.png" aria-label="Open Figure 5.2 at full size">
+            <Image src="/learning-visuals/chapter-5/figure-5-2.png" width={1412} height={488} sizes="(max-width: 768px) 100vw, 768px" alt="Figure 5.2: a fitted line with vertical error bars on the left; the same errors form the sides of blue squares on the right." className="h-auto w-full bg-white" />
+          </a>
+          <figcaption className="mt-3 text-sm leading-6"><strong>Figure 5.2 · Least Squares geometry.</strong> The left panel marks the prediction errors; the right represents their squares as areas. Minimizing the sum of those areas gives the same weights as minimizing their average. Reproduced from Chapter 5, p. 102. <a href={chapterPdf} className={linkStyle}>Read in the book</a>. Select the figure to enlarge it.</figcaption>
         </figure>
       </section>
-      <section aria-labelledby="numpy-example">
-        <h2 id="numpy-example" className={heading}>Fit linear regression with NumPy</h2>
-        <p className="mt-4">Run this complete example in a Python notebook with NumPy installed. It uses the same five illustrative observations as the plot, with no random seed or external dataset required. See the <Link className={linkStyle} href="/resources">Colab and local Jupyter setup instructions</Link> if you need an environment.</p>
-        <pre className="mt-5 max-w-full overflow-x-auto rounded-xl bg-[#06172d] p-5 text-xs leading-6 text-[#edf5ff] sm:text-sm"><code>{linearRegressionExample}</code></pre>
-        <h3 className="mt-6 text-lg font-black text-[#0b2545]">Expected output</h3>
-        <pre className="mt-3 max-w-full overflow-x-auto rounded-xl border border-[#ddcfad] bg-white p-5 text-xs leading-6 sm:text-sm"><code>{linearRegressionOutput}</code></pre>
-        <p className="mt-4">Centering subtracts the mean from each array. The ratio of the two dot products gives the slope, and the intercept puts the fitted line through the mean input and mean target. Here the model predicts 0.8 + x. The MSE is 0.16 in squared target units; it measures fit on these five training observations, not performance on new data.</p>
-        <p className="mt-4"><strong>Try it:</strong> change the middle target from 2 to 8 and rerun. Watch the coefficients and error change. A single unusual observation can pull a least-squares fit away from the rest of the data.</p>
+      <section aria-labelledby="minimization">
+        <h2 id="minimization" className={heading}>5.2.3 Minimizing the cost</h2>
+        <p className="mt-4">Least Squares is a convex quadratic in the weights. Example 5.1 introduces a dataset of 50 observations near the line y = x and visualizes its cost surface. Example 5.2 then applies gradient descent with a fixed steplength α = 0.5 for 75 steps.</p>
+        <figure className="mt-6">
+          <a href="/learning-visuals/chapter-5/figure-5-4.png" aria-label="Open Figure 5.4 at full size">
+            <Image src="/learning-visuals/chapter-5/figure-5-4.png" width={1412} height={536} sizes="(max-width: 768px) 100vw, 768px" alt="Figure 5.4: four stages of gradient descent, with steps on cost contours above and corresponding fitted lines below, progressing from green to red." className="h-auto w-full bg-white" />
+          </a>
+          <figcaption className="mt-3 text-sm leading-6"><strong>Figure 5.4 · Example 5.2.</strong> Read from left to right: the top row tracks movement through weight space, while the bottom row shows the line defined by those weights. Reproduced from Chapter 5, p. 104. <a href={chapterPdf} className={linkStyle}>Read in the book</a>. Select the figure to enlarge it.</figcaption>
+        </figure>
+        <p className="mt-5">The steplength still needs attention even though the cost is convex. The chapter compares α = 0.5 with α = 0.01 in Figure 5.5; the smaller value makes slower progress over this run. Revisit the <Link className={linkStyle} href="/learn/gradient-descent-from-scratch">gradient descent guide</Link> for the update rule.</p>
       </section>
-      <section aria-labelledby="regression-pitfalls">
-        <h2 id="regression-pitfalls" className={heading}>Common mistakes and next steps</h2>
-        <ul className="mt-4 list-disc space-y-3 pl-5">
-          <li><strong>Constant inputs:</strong> if every x is identical, the slope formula divides by zero. There is no information to identify a unique slope and intercept; check that inputs vary.</li>
-          <li><strong>Training error as a promise:</strong> low training MSE does not establish generalization. Evaluate on held-out observations and compare with a baseline that predicts the training target mean.</li>
-          <li><strong>Extrapolation and causation:</strong> a fitted trend can fail outside the observed input range, and an association does not show that changing x causes y to change.</li>
-          <li><strong>Outliers and curved patterns:</strong> inspect residuals. Large errors can dominate least squares; a systematic pattern can indicate that a straight line misses important structure.</li>
+      <section aria-labelledby="numpy-example">
+        <h2 id="numpy-example" className={heading}>5.2.4 From the model to Python</h2>
+        <p className="mt-4">The book separates implementation into <code>model</code> and <code>least_squares</code>. The model computes the bias plus a dot product; the cost averages squared errors. Inputs have shape N × P and outputs have shape 1 × P, with one observation per column.</p>
+        <p className="mt-4">This NumPy adaptation uses the companion notebook’s actual <a className={linkStyle} href="/learning-data/chapter-5/2d_linregress_data.csv" download>50-point CSV dataset</a>, initial weights [−1, −2]ᵀ, steplength 0.5, and 75 iterations. It retains the notebook’s vectorized model and cost, replacing its <code>autograd</code> optimizer helper with the analytic gradient. The code downloads a pinned revision of the dataset, so it needs internet access and NumPy. <Link className={linkStyle} href="/resources">Set up Python or Colab</Link>.</p>
+        <details className="mt-5 border-y border-[#ddcfad] py-4" open>
+          <summary className="cursor-pointer font-bold text-[#0b2545]">Run the Section 5.2 example</summary>
+          <pre className="mt-4 max-w-full overflow-x-auto bg-[#f1f3f5] p-4 text-xs leading-6 text-[#152a3f] sm:text-sm"><code>{linearRegressionExample}</code></pre>
+        </details>
+        <h3 className="mt-5 font-serif text-xl font-bold text-[#0b2545]">Verified output</h3>
+        <pre className="mt-3 max-w-full overflow-x-auto border-l-2 border-[#c79222] pl-4 text-xs leading-6 sm:text-sm"><code>{linearRegressionOutput}</code></pre>
+        <p className="mt-4">The cost falls from about 5.96 to 0.00230, and the weights approach a line with bias near zero and slope near one. These are results of the adaptation above, rounded to six decimal places, rather than values transcribed from the printed figure.</p>
+        <p className="mt-4"><strong>Repeat the chapter’s comparison:</strong> change α from 0.5 to 0.01 and keep 75 steps. Compare the final costs. For the original animations, automatic differentiation, and the two-feature example, open the <a className={linkStyle} href={`${notebookRoot}/5_2_Least.ipynb`}>complete Section 5.2 notebook</a>.</p>
+      </section>
+      <section aria-labelledby="beyond-least-squares">
+        <h2 id="beyond-least-squares" className={heading}>Continue through Chapter 5</h2>
+        <p className="mt-4">Least Squares is the starting point, not the whole chapter. Section 5.3 introduces Least Absolute Deviations, Section 5.4 examines regression quality metrics, and Sections 5.5–5.6 extend the formulation to weighted and multi-output regression.</p>
+        <ul className="mt-4 list-disc space-y-2 pl-5">
+          <li><a className={linkStyle} href={`${notebookRoot}/5_3_Absolute.ipynb`}>5.3 · Least Absolute Deviations</a></li>
+          <li><a className={linkStyle} href={`${notebookRoot}/5_4_Metrics.ipynb`}>5.4 · Regression Quality Metrics</a></li>
+          <li><a className={linkStyle} href={`${notebookRoot}/5_5_Weighted.ipynb`}>5.5 · Weighted Regression</a></li>
+          <li><a className={linkStyle} href={`${notebookRoot}/5_6_Multi.ipynb`}>5.6 · Multi-Output Regression</a></li>
         </ul>
-        <p className="mt-5">Continue with the official <a className={linkStyle} href={`${notebookRoot}/5_2_Least.ipynb`}>least-squares notebook (Section 5.2)</a> for the full formulation, then <a className={linkStyle} href={`${notebookRoot}/5_4_Metrics.ipynb`}>regression quality metrics (Section 5.4)</a> to compare ways of measuring error. The chapter resources below include exercises and the PDF collection.</p>
-        <p className="mt-4">For categorical targets, continue to <Link className={linkStyle} href="/learn/logistic-regression-from-scratch">logistic regression from scratch</Link>. Despite its name, logistic regression models class probabilities rather than an unrestricted numerical target.</p>
       </section>
     </article>
   );
